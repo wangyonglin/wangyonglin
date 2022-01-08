@@ -1,4 +1,5 @@
 #include <SHA256WithRSA.h>
+#include <skinny.h>
 const char privateKey[] = "-----BEGIN RSA PRIVATE KEY-----\n"
                           "MIICXQIBAAKBgQDlLm5+Kosybacfp8hzjn1fl2wT7Au2lm5SEtz6r+/wwSfq5KfY\n"
                           "H8q1AO/C92IwEpplNbrqYmOXQu6P07mg0lQOCvE5sdtmAvD2ex3wCef8lWmgdh5q\n"
@@ -37,4 +38,13 @@ int main()
     {
         fprintf(stderr, "\tNot Authentic\r\n");
     }
+    char *timestamp;
+    skinny_timestamp(&timestamp);
+    fprintf(stdout, "\t%s\r\n", timestamp);
+    free(timestamp);
+
+    char *hex;
+    skinny_hexrand(&hex,128);
+    fprintf(stdout, "\t%s\r\n", hex);
+    free(hex);
 }

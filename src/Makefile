@@ -128,7 +128,7 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libskinny_la_LIBADD =
-am_libskinny_la_OBJECTS = SHA256WithRSA.lo
+am_libskinny_la_OBJECTS = SHA256WithRSA.lo skinny.lo
 libskinny_la_OBJECTS = $(am_libskinny_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -149,7 +149,8 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/SHA256WithRSA.Plo
+am__depfiles_remade = ./$(DEPDIR)/SHA256WithRSA.Plo \
+	./$(DEPDIR)/skinny.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -321,7 +322,8 @@ AUTOMAKE_OPTIONS = foreign
 lib_LTLIBRARIES = libskinny.la
 AM_CPPFLAGS = -I $(top_srcdir)/include/
 libskinny_la_SOURCES = \
-     SHA256WithRSA.c
+     SHA256WithRSA.c \
+     skinny.c
 
 all: all-am
 
@@ -402,6 +404,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/SHA256WithRSA.Plo # am--include-marker
+include ./$(DEPDIR)/skinny.Plo # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -565,6 +568,7 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
+	-rm -f ./$(DEPDIR)/skinny.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -611,6 +615,7 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
+	-rm -f ./$(DEPDIR)/skinny.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

@@ -72,7 +72,7 @@ main.o: main.c /usr/include/stdc-predef.h include/SHA256WithRSA.h \
  /usr/include/linux/errno.h /usr/include/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/assert.h /usr/include/string.h /usr/include/strings.h \
- /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h include/skinny.h
 
 /usr/include/stdc-predef.h:
 
@@ -353,3 +353,5 @@ include/SHA256WithRSA.h:
 /usr/include/strings.h:
 
 /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
+
+include/skinny.h:
