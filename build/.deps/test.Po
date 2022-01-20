@@ -1,5 +1,5 @@
-SHA256WithRSA.lo: SHA256WithRSA.c /usr/include/stdc-predef.h \
- ../include/SHA256WithRSA.h /usr/include/openssl/aes.h \
+test.o: ../test.c /usr/include/stdc-predef.h \
+ ../include/skinny/SHA256WithRSA.h /usr/include/openssl/aes.h \
  /usr/include/openssl/opensslconf.h \
  /usr/include/openssl/opensslconf-x86_64.h \
  /usr/include/openssl/opensslv.h \
@@ -73,11 +73,22 @@ SHA256WithRSA.lo: SHA256WithRSA.c /usr/include/stdc-predef.h \
  /usr/include/linux/errno.h /usr/include/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/assert.h /usr/include/string.h /usr/include/strings.h \
- /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
+ ../include/skinny/skinny.h /usr/include/curl/curl.h \
+ /usr/include/curl/curlver.h /usr/include/curl/system.h \
+ /usr/include/sys/socket.h /usr/include/bits/types/struct_iovec.h \
+ /usr/include/bits/socket.h /usr/include/bits/socket_type.h \
+ /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+ /usr/include/asm-generic/socket.h /usr/include/asm/sockios.h \
+ /usr/include/asm-generic/sockios.h \
+ /usr/include/bits/types/struct_osockaddr.h /usr/include/sys/time.h \
+ /usr/include/curl/easy.h /usr/include/curl/multi.h \
+ /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
+ /usr/include/curl/typecheck-gcc.h ../include/skinny/cJSON.h
 
 /usr/include/stdc-predef.h:
 
-../include/SHA256WithRSA.h:
+../include/skinny/SHA256WithRSA.h:
 
 /usr/include/openssl/aes.h:
 
@@ -354,3 +365,45 @@ SHA256WithRSA.lo: SHA256WithRSA.c /usr/include/stdc-predef.h \
 /usr/include/strings.h:
 
 /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
+
+../include/skinny/skinny.h:
+
+/usr/include/curl/curl.h:
+
+/usr/include/curl/curlver.h:
+
+/usr/include/curl/system.h:
+
+/usr/include/sys/socket.h:
+
+/usr/include/bits/types/struct_iovec.h:
+
+/usr/include/bits/socket.h:
+
+/usr/include/bits/socket_type.h:
+
+/usr/include/bits/sockaddr.h:
+
+/usr/include/asm/socket.h:
+
+/usr/include/asm-generic/socket.h:
+
+/usr/include/asm/sockios.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/bits/types/struct_osockaddr.h:
+
+/usr/include/sys/time.h:
+
+/usr/include/curl/easy.h:
+
+/usr/include/curl/multi.h:
+
+/usr/include/curl/curl.h:
+
+/usr/include/curl/urlapi.h:
+
+/usr/include/curl/typecheck-gcc.h:
+
+../include/skinny/cJSON.h:

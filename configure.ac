@@ -4,11 +4,12 @@
 AC_PREREQ([2.69])
 AC_INIT(skinny, 1.0,admin@wangyonglin.com)
 AM_INIT_AUTOMAKE
-AC_CONFIG_SRCDIR([main.c])
+AC_CONFIG_SRCDIR([test.c])
 AC_CONFIG_HEADERS([config.h])
 LIBTOOL
 LT_INIT
 # Checks for programs.
+AC_PROG_LIBTOOL
 AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_AWK

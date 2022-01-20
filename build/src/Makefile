@@ -14,7 +14,7 @@
 
 
 
-
+VPATH = ../../src
 am__is_gnu_make = { \
   if test -z '$(MAKELEVEL)'; then \
     false; \
@@ -128,7 +128,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libskinny_la_LIBADD =
-am_libskinny_la_OBJECTS = SHA256WithRSA.lo skinny.lo
+am_libskinny_la_OBJECTS = Base64.lo SHA256WithRSA.lo skinny.lo \
+	cJSON.lo cJSON_Utils.lo
 libskinny_la_OBJECTS = $(am_libskinny_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -146,11 +147,12 @@ AM_V_at = $(am__v_at_$(V))
 am__v_at_ = $(am__v_at_$(AM_DEFAULT_VERBOSITY))
 am__v_at_0 = @
 am__v_at_1 = 
-DEFAULT_INCLUDES = -I. -I$(top_builddir)
+DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/SHA256WithRSA.Plo \
-	./$(DEPDIR)/skinny.Plo
+am__depfiles_remade = ./$(DEPDIR)/Base64.Plo \
+	./$(DEPDIR)/SHA256WithRSA.Plo ./$(DEPDIR)/cJSON.Plo \
+	./$(DEPDIR)/cJSON_Utils.Plo ./$(DEPDIR)/skinny.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -265,10 +267,10 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = strip
 VERSION = 1.0
-abs_builddir = /home/wangyonglin/Github/skinny/src
-abs_srcdir = /home/wangyonglin/Github/skinny/src
-abs_top_builddir = /home/wangyonglin/Github/skinny
-abs_top_srcdir = /home/wangyonglin/Github/skinny
+abs_builddir = /home/wangyonglin/Github/skinny/build/src
+abs_srcdir = /home/wangyonglin/Github/skinny/build/../src
+abs_top_builddir = /home/wangyonglin/Github/skinny/build
+abs_top_srcdir = /home/wangyonglin/Github/skinny/build/..
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_CXX = g++
@@ -307,23 +309,26 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /usr/local/skinny
+prefix = /usr/local
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
-srcdir = .
+srcdir = ../../src
 sysconfdir = ${prefix}/etc
 target_alias = 
 top_build_prefix = ../
 top_builddir = ..
-top_srcdir = ..
+top_srcdir = ../..
 AUTOMAKE_OPTIONS = foreign
+AM_CPPFLAGS = -I  $(top_srcdir)/include/
 lib_LTLIBRARIES = libskinny.la
-AM_CPPFLAGS = -I $(top_srcdir)/include/
 libskinny_la_SOURCES = \
+     Base64.c \
      SHA256WithRSA.c \
-     skinny.c
+     skinny.c \
+     cJSON.c \
+     cJSON_Utils.c
 
 all: all-am
 
@@ -403,7 +408,10 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/Base64.Plo # am--include-marker
 include ./$(DEPDIR)/SHA256WithRSA.Plo # am--include-marker
+include ./$(DEPDIR)/cJSON.Plo # am--include-marker
+include ./$(DEPDIR)/cJSON_Utils.Plo # am--include-marker
 include ./$(DEPDIR)/skinny.Plo # am--include-marker
 
 $(am__depfiles_remade):
@@ -567,7 +575,10 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 	mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
+		-rm -f ./$(DEPDIR)/Base64.Plo
+	-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
+	-rm -f ./$(DEPDIR)/cJSON.Plo
+	-rm -f ./$(DEPDIR)/cJSON_Utils.Plo
 	-rm -f ./$(DEPDIR)/skinny.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -614,7 +625,10 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
+		-rm -f ./$(DEPDIR)/Base64.Plo
+	-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
+	-rm -f ./$(DEPDIR)/cJSON.Plo
+	-rm -f ./$(DEPDIR)/cJSON_Utils.Plo
 	-rm -f ./$(DEPDIR)/skinny.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

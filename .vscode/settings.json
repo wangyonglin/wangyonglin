@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "stdio.h": "c",
-        "bn.h": "c"
+        "bn.h": "c",
+        "sha256withrsa.h": "c",
+        "cjson.h": "c"
     }
 }

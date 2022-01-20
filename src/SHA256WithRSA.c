@@ -1,5 +1,17 @@
-#include <SHA256WithRSA.h>
-
+#include <skinny/SHA256WithRSA.h>
+#include <skinny/Base64.h>
+SHA256WithRSA *SHA256WithRSA_RSAPrivateKey_file(const char *file)
+{
+    RSA *rsa = NULL;
+    BIO *bio = BIO_new(BIO_s_file());
+    if (bio == NULL)
+    {
+        return NULL;
+    }
+    BIO_read_filename(bio,file);
+    rsa = PEM_read_bio_RSAPrivateKey(bio, &rsa, NULL, NULL);
+    return rsa;
+}
 SHA256WithRSA *SHA256WithRSA_Private(char *key)
 {
     RSA *rsa = NULL;
@@ -96,49 +108,17 @@ bool SHA256withRSA_Verify(SHA256WithRSA *rsa,
     }
 }
 
-void SHA256withRSA_Base64Encode(const unsigned char *buffer,
-                  size_t length,
-                  char **base64Text)
-{
-    BIO *bio, *b64;
-    BUF_MEM *bufferPtr;
-    b64 = BIO_new(BIO_f_base64());
-    // 控制 base64 输出字符串不换行
-    BIO_set_flags(b64, BIO_FLAGS_BASE64_NO_NL);
-    bio = BIO_new(BIO_s_mem());
-    bio = BIO_push(b64, bio);
-    BIO_write(bio, buffer, length);
-    BIO_flush(bio);
-    BIO_get_mem_ptr(bio, &bufferPtr);
-    BIO_set_close(bio, BIO_NOCLOSE);
-    BIO_free_all(bio);
-    *base64Text = (*bufferPtr).data;
-}
 
-size_t calcDecodeLength(const char *b64input)
+char* SHA256WithRSA_Signature_RSAPrivateKey_file(const char *file, char *plaintext, int plainlenth)
 {
-    size_t len = strlen(b64input), padding = 0;
-
-    if (b64input[len - 1] == '=' && b64input[len - 2] == '=') // last two chars are =
-        padding = 2;
-    else if (b64input[len - 1] == '=') // last char is =
-        padding = 1;
-    return (len * 3) / 4 - padding;
-}
-
-void SHA256withRSA_Base64Decode(const char *b64message, unsigned char **buffer, size_t *length)
-{
-    BIO *bio, *b64;
-    int decodeLen = calcDecodeLength(b64message);
-    *buffer = (unsigned char *)malloc(decodeLen + 1);
-    (*buffer)[decodeLen] = '\0';
-    bio = BIO_new_mem_buf(b64message, -1);
-    b64 = BIO_new(BIO_f_base64());
-    // 控制 base64 输出字符串不换行
-    BIO_set_flags(b64, BIO_FLAGS_BASE64_NO_NL);
-    bio = BIO_push(b64, bio);
-    *length = BIO_read(bio, *buffer, strlen(b64message));
-    BIO_free_all(bio);
+    SHA256WithRSA *privateRSA = SHA256WithRSA_RSAPrivateKey_file(file);
+    unsigned char *encMessage;
+    char *base64Text;
+    size_t encMessageLength;
+    SHA256withRSA_Signature(privateRSA, (unsigned char *)plaintext, plainlenth, &encMessage, &encMessageLength);
+    Base64Encode(encMessage, encMessageLength, &base64Text);
+    free(encMessage);
+    return base64Text;
 }
 
 char *signMessage(char *privateKey, char *plaintext, int plainlenth)
@@ -148,7 +128,7 @@ char *signMessage(char *privateKey, char *plaintext, int plainlenth)
     char *base64Text;
     size_t encMessageLength;
     SHA256withRSA_Signature(privateRSA, (unsigned char *)plaintext, plainlenth, &encMessage, &encMessageLength);
-    SHA256withRSA_Base64Encode(encMessage, encMessageLength, &base64Text);
+    Base64Encode(encMessage, encMessageLength, &base64Text);
     free(encMessage);
     return base64Text;
 }
@@ -159,8 +139,7 @@ bool verifySignature(char *publicKey, char *plaintext, int plainlenth, char *sig
     unsigned char *encMessage;
     size_t encMessageLength;
     bool authentic;
-    SHA256withRSA_Base64Decode(signatureBase64, &encMessage, &encMessageLength);
+    Base64Decode(signatureBase64, &encMessage, &encMessageLength);
     bool result = SHA256withRSA_Verify(publicRSA, encMessage, encMessageLength, plaintext, plainlenth, &authentic);
     return result & authentic;
 }
-

@@ -1,12 +1,21 @@
 AUTOMAKE_OPTIONS=foreign
+AM_CPPFLAGS= -I  $(top_srcdir)/include/
 bin_PROGRAMS=skinny
-skinny_SOURCES=main.c 
+skinny_SOURCES=test.c 
 SUBDIRS = src
-skinny_LDADD= \
-    $(top_srcdir)/src/libskinny.la \
+skinny_LDADD= $(top_builddir)/src/libskinny.la \
     $(FLIBS)
-AM_CPPFLAGS=-I $(top_srcdir)/include/
-LIBS += -Wall -pedantic   -lm -levent -lssl -lcrypto -lpthread -levent_openssl
-includedir= $(prefix)/include
-bindir =    $(prefix)/bin
-libdir =    $(prefix)/lib
+#需要引用的动态库文件
+LIBS += -Wall -pedantic   -lm -levent -lssl -lcrypto -lpthread -levent_openssl -lcurl
+#安装的各个目录和文件
+bindir=     $(prefix)/bin
+libdir=     $(prefix)/lib
+datadir=    $(prefix)/share
+sysconfdir= $(prefix)/etc
+
+# Headers to install
+#include_HEADERS= $(top_srcdir)/include/skinny/*.h
+#includedir=$(prefix)/include/skinny
+
+pkginclude_HEADERS=$(top_srcdir)/include/skinny/*.h
+pkgincludedir= $(prefix)/include/skinny
