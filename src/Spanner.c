@@ -1,9 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
-#include <openssl/bn.h>
-#include <skinny/skinny.h>
+#include <wangyonglin/wangyonglin.h>
+#include <wangyonglin/core.h>
+#include <wangyonglin/Spanner.h>
 int timestamp(char **dest)
 {
 

@@ -1,7 +1,6 @@
-#include <string.h>
-#include <openssl/bio.h>
-#include <openssl/err.h>
-#include <openssl/pem.h>
+#include <wangyonglin/wangyonglin.h>
+#include <wangyonglin/core.h>
+#include <wangyonglin/Base64.h>
 void Base64Encode(const unsigned char *buffer,
                                 size_t length,
                                 char **base64Text)

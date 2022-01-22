@@ -1,7 +1,9 @@
-#include <skinny/SHA256WithRSA.h>
-#include <skinny/skinny.h>
+#include <wangyonglin/wangyonglin.h>
+#include <wangyonglin/core.h>
+#include <wangyonglin/SHA256WithRSA.h>
+#include <wangyonglin/cJSON.h>
 #include <curl/curl.h>
-#include <skinny/cJSON.h>
+#include <wangyonglin/Spanner.h>
 typedef struct
 {
     char appid[32];

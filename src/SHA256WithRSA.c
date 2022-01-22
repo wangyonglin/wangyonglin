@@ -1,5 +1,7 @@
-#include <skinny/SHA256WithRSA.h>
-#include <skinny/Base64.h>
+#include <wangyonglin/wangyonglin.h>
+#include <wangyonglin/core.h>
+#include <wangyonglin/SHA256WithRSA.h>
+#include <wangyonglin/Base64.h>
 SHA256WithRSA *SHA256WithRSA_RSAPrivateKey_file(const char *file)
 {
     RSA *rsa = NULL;

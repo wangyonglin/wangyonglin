@@ -38,7 +38,8 @@ cJSON_Utils.lo: ../../src/cJSON_Utils.c /usr/include/stdc-predef.h \
  /usr/include/bits/mathcalls-helper-functions.h \
  /usr/include/bits/mathcalls.h /usr/include/bits/mathinline.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/float.h \
- ../../include/skinny/cJSON_Utils.h ../../include/skinny/cJSON.h
+ ../../include/wangyonglin/cJSON_Utils.h \
+ ../../include/wangyonglin/cJSON.h
 
 /usr/include/stdc-predef.h:
 
@@ -182,6 +183,6 @@ cJSON_Utils.lo: ../../src/cJSON_Utils.c /usr/include/stdc-predef.h \
 
 /usr/lib/gcc/x86_64-redhat-linux/8/include/float.h:
 
-../../include/skinny/cJSON_Utils.h:
+../../include/wangyonglin/cJSON_Utils.h:
 
-../../include/skinny/cJSON.h:
+../../include/wangyonglin/cJSON.h:

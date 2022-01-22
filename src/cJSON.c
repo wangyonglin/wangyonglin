@@ -57,7 +57,7 @@
 #endif
 
 
-#include <skinny/cJSON.h>
+#include <wangyonglin/cJSON.h>
 /* define our own boolean type */
 #ifdef true
 #undef true

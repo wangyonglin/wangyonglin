@@ -88,7 +88,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
 host_triplet = x86_64-pc-linux-gnu
-bin_PROGRAMS = skinny$(EXEEXT)
+bin_PROGRAMS = wangyonglin_test$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -104,9 +104,9 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(pkgincludedir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_skinny_OBJECTS = test.$(OBJEXT)
-skinny_OBJECTS = $(am_skinny_OBJECTS)
-skinny_DEPENDENCIES = $(top_builddir)/src/libskinny.la
+am_wangyonglin_test_OBJECTS = test.$(OBJEXT)
+wangyonglin_test_OBJECTS = $(am_wangyonglin_test_OBJECTS)
+wangyonglin_test_DEPENDENCIES = $(top_builddir)/src/libwangyonglin.la
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
@@ -146,8 +146,8 @@ AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(skinny_SOURCES)
-DIST_SOURCES = $(skinny_SOURCES)
+SOURCES = $(wangyonglin_test_SOURCES)
+DIST_SOURCES = $(wangyonglin_test_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive cscopelist-recursive \
 	ctags-recursive dvi-recursive html-recursive info-recursive \
 	install-data-recursive install-dvi-recursive \
@@ -263,14 +263,14 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-pkgincludedir = $(prefix)/include/skinny
-ACLOCAL = ${SHELL} /home/wangyonglin/Github/skinny/missing aclocal-1.16
+pkgincludedir = $(prefix)/include/wangyonglin
+ACLOCAL = ${SHELL} /home/wangyonglin/github/wangyonglin/missing aclocal-1.16
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = ar
-AUTOCONF = ${SHELL} /home/wangyonglin/Github/skinny/missing autoconf
-AUTOHEADER = ${SHELL} /home/wangyonglin/Github/skinny/missing autoheader
-AUTOMAKE = ${SHELL} /home/wangyonglin/Github/skinny/missing automake-1.16
+AUTOCONF = ${SHELL} /home/wangyonglin/github/wangyonglin/missing autoconf
+AUTOHEADER = ${SHELL} /home/wangyonglin/github/wangyonglin/missing autoheader
+AUTOMAKE = ${SHELL} /home/wangyonglin/github/wangyonglin/missing automake-1.16
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -310,7 +310,7 @@ LIPO =
 LN_S = ln -s
 LTLIBOBJS = 
 LT_SYS_LIBRARY_PATH = 
-MAKEINFO = ${SHELL} /home/wangyonglin/Github/skinny/missing makeinfo
+MAKEINFO = ${SHELL} /home/wangyonglin/github/wangyonglin/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /usr/bin/mkdir -p
 NM = /usr/bin/nm -B
@@ -333,10 +333,10 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = strip
 VERSION = 1.0
-abs_builddir = /home/wangyonglin/Github/skinny/build
-abs_srcdir = /home/wangyonglin/Github/skinny/build/..
-abs_top_builddir = /home/wangyonglin/Github/skinny/build
-abs_top_srcdir = /home/wangyonglin/Github/skinny/build/..
+abs_builddir = /home/wangyonglin/github/wangyonglin/build
+abs_srcdir = /home/wangyonglin/github/wangyonglin/build/..
+abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
+abs_top_srcdir = /home/wangyonglin/github/wangyonglin/build/..
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_CXX = g++
@@ -367,7 +367,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/wangyonglin/Github/skinny/install-sh
+install_sh = ${SHELL} /home/wangyonglin/github/wangyonglin/install-sh
 libdir = $(prefix)/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -376,7 +376,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /usr/local
+prefix = /usr/local/wangyonglin
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
@@ -389,16 +389,16 @@ top_builddir = .
 top_srcdir = ..
 AUTOMAKE_OPTIONS = foreign
 AM_CPPFLAGS = -I  $(top_srcdir)/include/
-skinny_SOURCES = test.c 
+wangyonglin_test_SOURCES = test.c 
 SUBDIRS = src
-skinny_LDADD = $(top_builddir)/src/libskinny.la \
+wangyonglin_test_LDADD = $(top_builddir)/src/libwangyonglin.la \
     $(FLIBS)
 
 
 # Headers to install
-#include_HEADERS= $(top_srcdir)/include/skinny/*.h
-#includedir=$(prefix)/include/skinny
-pkginclude_HEADERS = $(top_srcdir)/include/skinny/*.h
+#include_HEADERS= $(top_srcdir)/include/wangyonglin/*.h
+#includedir=$(prefix)/include/wangyonglin
+pkginclude_HEADERS = $(top_srcdir)/include/wangyonglin/*.h
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -502,9 +502,9 @@ clean-binPROGRAMS:
 	echo " rm -f" $$list; \
 	rm -f $$list
 
-skinny$(EXEEXT): $(skinny_OBJECTS) $(skinny_DEPENDENCIES) $(EXTRA_skinny_DEPENDENCIES) 
-	@rm -f skinny$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(skinny_OBJECTS) $(skinny_LDADD) $(LIBS)
+wangyonglin_test$(EXEEXT): $(wangyonglin_test_OBJECTS) $(wangyonglin_test_DEPENDENCIES) $(EXTRA_wangyonglin_test_DEPENDENCIES) 
+	@rm -f wangyonglin_test$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(wangyonglin_test_OBJECTS) $(wangyonglin_test_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

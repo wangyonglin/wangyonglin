@@ -1,9 +1,9 @@
 AUTOMAKE_OPTIONS=foreign
 AM_CPPFLAGS= -I  $(top_srcdir)/include/
-bin_PROGRAMS=skinny
-skinny_SOURCES=test.c 
+bin_PROGRAMS=wangyonglin_test
+wangyonglin_test_SOURCES=test.c 
 SUBDIRS = src
-skinny_LDADD= $(top_builddir)/src/libskinny.la \
+wangyonglin_test_LDADD= $(top_builddir)/src/libwangyonglin.la \
     $(FLIBS)
 #需要引用的动态库文件
 LIBS += -Wall -pedantic   -lm -levent -lssl -lcrypto -lpthread -levent_openssl -lcurl
@@ -14,8 +14,8 @@ datadir=    $(prefix)/share
 sysconfdir= $(prefix)/etc
 
 # Headers to install
-#include_HEADERS= $(top_srcdir)/include/skinny/*.h
-#includedir=$(prefix)/include/skinny
+#include_HEADERS= $(top_srcdir)/include/wangyonglin/*.h
+#includedir=$(prefix)/include/wangyonglin
 
-pkginclude_HEADERS=$(top_srcdir)/include/skinny/*.h
-pkgincludedir= $(prefix)/include/skinny
+pkginclude_HEADERS=$(top_srcdir)/include/wangyonglin/*.h
+pkgincludedir= $(prefix)/include/wangyonglin

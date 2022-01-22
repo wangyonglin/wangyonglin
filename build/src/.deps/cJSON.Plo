@@ -39,7 +39,7 @@ cJSON.lo: ../../src/cJSON.c /usr/include/stdc-predef.h \
  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
  /usr/include/bits/posix2_lim.h /usr/include/ctype.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/float.h \
- ../../include/skinny/cJSON.h
+ ../../include/wangyonglin/cJSON.h
 
 /usr/include/stdc-predef.h:
 
@@ -183,4 +183,4 @@ cJSON.lo: ../../src/cJSON.c /usr/include/stdc-predef.h \
 
 /usr/lib/gcc/x86_64-redhat-linux/8/include/float.h:
 
-../../include/skinny/cJSON.h:
+../../include/wangyonglin/cJSON.h:

@@ -127,10 +127,10 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libskinny_la_LIBADD =
-am_libskinny_la_OBJECTS = Base64.lo SHA256WithRSA.lo skinny.lo \
+libwangyonglin_la_LIBADD =
+am_libwangyonglin_la_OBJECTS = Base64.lo SHA256WithRSA.lo Spanner.lo \
 	cJSON.lo cJSON_Utils.lo
-libskinny_la_OBJECTS = $(am_libskinny_la_OBJECTS)
+libwangyonglin_la_OBJECTS = $(am_libwangyonglin_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -151,8 +151,8 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/Base64.Plo \
-	./$(DEPDIR)/SHA256WithRSA.Plo ./$(DEPDIR)/cJSON.Plo \
-	./$(DEPDIR)/cJSON_Utils.Plo ./$(DEPDIR)/skinny.Plo
+	./$(DEPDIR)/SHA256WithRSA.Plo ./$(DEPDIR)/Spanner.Plo \
+	./$(DEPDIR)/cJSON.Plo ./$(DEPDIR)/cJSON_Utils.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -172,8 +172,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libskinny_la_SOURCES)
-DIST_SOURCES = $(libskinny_la_SOURCES)
+SOURCES = $(libwangyonglin_la_SOURCES)
+DIST_SOURCES = $(libwangyonglin_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -322,11 +322,11 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
 AM_CPPFLAGS = -I  $(top_srcdir)/include/
-lib_LTLIBRARIES = libskinny.la
-libskinny_la_SOURCES = \
+lib_LTLIBRARIES = libwangyonglin.la
+libwangyonglin_la_SOURCES = \
      Base64.c \
      SHA256WithRSA.c \
-     skinny.c \
+     Spanner.c \
      cJSON.c \
      cJSON_Utils.c
 
@@ -399,8 +399,8 @@ clean-libLTLIBRARIES:
 	  rm -f $${locs}; \
 	}
 
-libskinny.la: $(libskinny_la_OBJECTS) $(libskinny_la_DEPENDENCIES) $(EXTRA_libskinny_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(LINK) -rpath $(libdir) $(libskinny_la_OBJECTS) $(libskinny_la_LIBADD) $(LIBS)
+libwangyonglin.la: $(libwangyonglin_la_OBJECTS) $(libwangyonglin_la_DEPENDENCIES) $(EXTRA_libwangyonglin_la_DEPENDENCIES) 
+	$(AM_V_CCLD)$(LINK) -rpath $(libdir) $(libwangyonglin_la_OBJECTS) $(libwangyonglin_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -410,9 +410,9 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Base64.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SHA256WithRSA.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Spanner.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cJSON.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cJSON_Utils.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/skinny.Plo@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -577,9 +577,9 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/Base64.Plo
 	-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
+	-rm -f ./$(DEPDIR)/Spanner.Plo
 	-rm -f ./$(DEPDIR)/cJSON.Plo
 	-rm -f ./$(DEPDIR)/cJSON_Utils.Plo
-	-rm -f ./$(DEPDIR)/skinny.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -627,9 +627,9 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/Base64.Plo
 	-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
+	-rm -f ./$(DEPDIR)/Spanner.Plo
 	-rm -f ./$(DEPDIR)/cJSON.Plo
 	-rm -f ./$(DEPDIR)/cJSON_Utils.Plo
-	-rm -f ./$(DEPDIR)/skinny.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

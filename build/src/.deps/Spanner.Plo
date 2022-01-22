@@ -1,4 +1,4 @@
-Base64.lo: ../../src/Base64.c /usr/include/stdc-predef.h \
+Spanner.lo: ../../src/Spanner.c /usr/include/stdc-predef.h \
  ../../include/wangyonglin/wangyonglin.h /usr/include/assert.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/bits/long-double.h \
@@ -76,7 +76,7 @@ Base64.lo: ../../src/Base64.c /usr/include/stdc-predef.h \
  /usr/include/errno.h /usr/include/bits/errno.h \
  /usr/include/linux/errno.h /usr/include/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- ../../include/wangyonglin/core.h ../../include/wangyonglin/Base64.h
+ ../../include/wangyonglin/core.h ../../include/wangyonglin/Spanner.h
 
 /usr/include/stdc-predef.h:
 
@@ -360,4 +360,4 @@ Base64.lo: ../../src/Base64.c /usr/include/stdc-predef.h \
 
 ../../include/wangyonglin/core.h:
 
-../../include/wangyonglin/Base64.h:
+../../include/wangyonglin/Spanner.h:

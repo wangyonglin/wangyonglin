@@ -3,6 +3,12 @@
         "stdio.h": "c",
         "bn.h": "c",
         "sha256withrsa.h": "c",
-        "cjson.h": "c"
+        "cjson.h": "c",
+        "base64.h": "c",
+        "wangyonglin.h": "c",
+        "string.h": "c",
+        "bio.h": "c",
+        "skinny.h": "c",
+        "core.h": "c"
     }
 }
