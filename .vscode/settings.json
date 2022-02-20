@@ -9,6 +9,14 @@
         "string.h": "c",
         "bio.h": "c",
         "skinny.h": "c",
-        "core.h": "c"
+        "core.h": "c",
+        "ssl.h": "c",
+        "openssl_hostname_validation.h": "c",
+        "assert.h": "c",
+        "pid.h": "c",
+        "config.h": "c",
+        "log.h": "c",
+        "linux.h": "c",
+        "conf.h": "c"
     }
 }

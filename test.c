@@ -1,9 +1,6 @@
-#include <wangyonglin/wangyonglin.h>
 #include <wangyonglin/core.h>
-#include <wangyonglin/SHA256WithRSA.h>
-#include <wangyonglin/cJSON.h>
-#include <curl/curl.h>
-#include <wangyonglin/Spanner.h>
+#include <wangyonglin/config.h>
+/*
 typedef struct
 {
     char appid[32];
@@ -34,17 +31,17 @@ void buildSignature(char **signature, char *key, const char *method, const char 
     BIO_puts(mem, "\n");
     BIO_get_mem_ptr(mem, &bptr);
     // BIO_set_close(mem, BIO_NOCLOSE); /* BIO_free() 不释放BUF_MEM结构 */
-    char *message = SHA256WithRSA_Signature_RSAPrivateKey_file(key, bptr->data, bptr->length);
-    printf("\tplaintext:%d\r\n%s\r\n", bptr->length, bptr->data);
-    int len = strlen(message);
-    // printf("signature:%d\r\n%s\r\n", strlen(message), message);
-    (*signature) = (char *)malloc(len + 1);
-    memset(*signature, 0x00, len + 1);
-    memcpy(*signature, message, len);
-    BIO_free(mem);
-    free(message);
-}
-
+// char *message = SHA256WithRSA_Signature_RSAPrivateKey_file(key, bptr->data, bptr->length);
+// printf("\tplaintext:%d\r\n%s\r\n", bptr->length, bptr->data);
+// int len = strlen(message);
+// printf("signature:%d\r\n%s\r\n", strlen(message), message);
+// (*signature) = (char *)malloc(len + 1);
+//  memset(*signature, 0x00, len + 1);
+//  memcpy(*signature, message, len);
+//  BIO_free(mem);
+// free(message);
+//}
+/*
 int buildToken(char **token, const char *mchid, char *nonce_str, char *timestamp, char *serial_no, char *signature)
 {
     const char format[] = "WECHATPAY2-SHA256-RSA2048 mchid=\"%s\",nonce_str=\"%s\",timestamp=\"%s\",serial_no=\"%s\",signature=\"%s\"";
@@ -78,28 +75,30 @@ int geturl(const char *url, char *token, char *body)
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
         curl_easy_setopt(curl, CURLOPT_URL, url);
         /* Now specify the POST data */
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, body);
+/*
+curl_easy_setopt(curl, CURLOPT_POSTFIELDS, body);
 #ifdef SKIP_PEER_VERIFICATION
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
 #endif
 
 #ifdef SKIP_HOSTNAME_VERIFICATION
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
 #endif
-        res = curl_easy_perform(curl);
-        if (res != CURLE_OK)
-            fprintf(stderr, "curl_easy_perform() failed: %s\n",
-                    curl_easy_strerror(res));
+res = curl_easy_perform(curl);
+if (res != CURLE_OK)
+    fprintf(stderr, "curl_easy_perform() failed: %s\n",
+            curl_easy_strerror(res));
 
-        curl_easy_cleanup(curl);
-    }
-    curl_global_cleanup();
-
-    return 0;
+curl_easy_cleanup(curl);
 }
+curl_global_cleanup();
 
+return 0;
+}
+*/
 int main()
 {
+    /*
     wechat_config_t *config = (wechat_config_t *)malloc(sizeof(wechat_config_t));
     memset(config, 0x00, sizeof(config));
     int ret = timestamp(&config->timestamp);
@@ -134,9 +133,30 @@ int main()
     buildToken(&config->token, config->mchid, config->nonceStr, config->timestamp, config->serial_no, config->signature);
     printf("\ttoken:%s \t\n", config->token);
 
-    geturl("https://api.mch.weixin.qq.com/v3/pay/transactions/jsapi", config->token,out);
+   // geturl("https://api.mch.weixin.qq.com/v3/pay/transactions/jsapi", config->token,out);
     // free(out);
     //  cJSON_Delete(root);
+
+    /*
+    https_client_t client;
+    int retd = 0;
+    retd = https_client(&client, "https://api.mch.weixin.qq.com/v3/certificates", -1);
+    fprintf(stderr, "\r\n\t%s\r\n", client.reps.reason);
+    fprintf(stderr, "\r\n\t%d\r\n", client.reps.error_code);
+    fprintf(stderr, "\r\n\t%d %s\r\n", client.reps.lenght, client.reps.body);
+
     printf("\t\n");
-    return EXIT_SUCCESS;
+
+    return retd;*/
+
+    config_t *config;
+    config_init(&config, "/home/wangyonglin/github/wangyonglin/conf/wangyonglin.conf");
+
+    // pid(config);
+
+    log_init(config);
+    log_echo(config,LOG_INFO,"wangyonglin");
+    log_free(config);
+    config_free(config);
+    return 0;
 }

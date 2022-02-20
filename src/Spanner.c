@@ -1,6 +1,11 @@
 #include <wangyonglin/wangyonglin.h>
 #include <wangyonglin/core.h>
+#include <wangyonglin/Base64.h>
 #include <wangyonglin/Spanner.h>
+#define KEY_LENGTH 24
+#define SEPARATOR "$"
+#define SALTLEN 12
+
 int timestamp(char **dest)
 {
 
@@ -24,14 +29,14 @@ int timestamp(char **dest)
     return -1;
 }
 
-int noncehex(char **dest, int bits)
+int randhex(char **dest, int bits)
 {
     BIGNUM *bn;
     bn = BN_new(); //生成一个BIGNUM结构
     int top = -1;
     int bottom = 1;
     BN_rand(bn, bits, top, bottom); //生成指定bits的随机数
-    char *buffer = BN_bn2hex(bn);      //转化成16进制字符串
+    char *buffer = BN_bn2hex(bn);   //转化成16进制字符串
     if (*dest == NULL)
     {
         *dest = (char *)malloc(strlen(buffer) + 1);
@@ -41,5 +46,11 @@ int noncehex(char **dest, int bits)
     bzero(*dest, sizeof(*dest));
     memcpy(*dest, buffer, strlen(buffer));
     BN_free(bn); //释放BIGNUM结构
+    return 0;
+}
+
+int ciphertext(char **dest, char *buffer, int length)
+{
+   
     return 0;
 }

@@ -129,7 +129,8 @@ am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libwangyonglin_la_LIBADD =
 am_libwangyonglin_la_OBJECTS = Base64.lo SHA256WithRSA.lo Spanner.lo \
-	cJSON.lo cJSON_Utils.lo
+	cJSON.lo cJSON_Utils.lo hostcheck.lo \
+	openssl_hostname_validation.lo HttpsClient.lo
 libwangyonglin_la_OBJECTS = $(am_libwangyonglin_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -151,8 +152,10 @@ DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/Base64.Plo \
-	./$(DEPDIR)/SHA256WithRSA.Plo ./$(DEPDIR)/Spanner.Plo \
-	./$(DEPDIR)/cJSON.Plo ./$(DEPDIR)/cJSON_Utils.Plo
+	./$(DEPDIR)/HttpsClient.Plo ./$(DEPDIR)/SHA256WithRSA.Plo \
+	./$(DEPDIR)/Spanner.Plo ./$(DEPDIR)/cJSON.Plo \
+	./$(DEPDIR)/cJSON_Utils.Plo ./$(DEPDIR)/hostcheck.Plo \
+	./$(DEPDIR)/openssl_hostname_validation.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -328,7 +331,10 @@ libwangyonglin_la_SOURCES = \
      SHA256WithRSA.c \
      Spanner.c \
      cJSON.c \
-     cJSON_Utils.c
+     cJSON_Utils.c \
+     hostcheck.c \
+     openssl_hostname_validation.c \
+     HttpsClient.c
 
 all: all-am
 
@@ -409,10 +415,13 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/Base64.Plo # am--include-marker
+include ./$(DEPDIR)/HttpsClient.Plo # am--include-marker
 include ./$(DEPDIR)/SHA256WithRSA.Plo # am--include-marker
 include ./$(DEPDIR)/Spanner.Plo # am--include-marker
 include ./$(DEPDIR)/cJSON.Plo # am--include-marker
 include ./$(DEPDIR)/cJSON_Utils.Plo # am--include-marker
+include ./$(DEPDIR)/hostcheck.Plo # am--include-marker
+include ./$(DEPDIR)/openssl_hostname_validation.Plo # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -576,10 +585,13 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/Base64.Plo
+	-rm -f ./$(DEPDIR)/HttpsClient.Plo
 	-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
 	-rm -f ./$(DEPDIR)/Spanner.Plo
 	-rm -f ./$(DEPDIR)/cJSON.Plo
 	-rm -f ./$(DEPDIR)/cJSON_Utils.Plo
+	-rm -f ./$(DEPDIR)/hostcheck.Plo
+	-rm -f ./$(DEPDIR)/openssl_hostname_validation.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -626,10 +638,13 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/Base64.Plo
+	-rm -f ./$(DEPDIR)/HttpsClient.Plo
 	-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
 	-rm -f ./$(DEPDIR)/Spanner.Plo
 	-rm -f ./$(DEPDIR)/cJSON.Plo
 	-rm -f ./$(DEPDIR)/cJSON_Utils.Plo
+	-rm -f ./$(DEPDIR)/hostcheck.Plo
+	-rm -f ./$(DEPDIR)/openssl_hostname_validation.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

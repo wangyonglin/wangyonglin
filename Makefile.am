@@ -2,8 +2,8 @@ AUTOMAKE_OPTIONS=foreign
 AM_CPPFLAGS= -I  $(top_srcdir)/include/
 bin_PROGRAMS=wangyonglin_test
 wangyonglin_test_SOURCES=test.c 
-SUBDIRS = src
-wangyonglin_test_LDADD= $(top_builddir)/src/libwangyonglin.la \
+SUBDIRS = src/core
+wangyonglin_test_LDADD= $(top_builddir)/src/core/libcore.la \
     $(FLIBS)
 #需要引用的动态库文件
 LIBS += -Wall -pedantic   -lm -levent -lssl -lcrypto -lpthread -levent_openssl -lcurl
@@ -19,3 +19,8 @@ sysconfdir= $(prefix)/etc
 
 pkginclude_HEADERS=$(top_srcdir)/include/wangyonglin/*.h
 pkgincludedir= $(prefix)/include/wangyonglin
+
+confdir =   $(prefix)/conf
+conf_DATA = $(top_srcdir)/conf/wangyonglin.conf
+
+logsdir =   $(prefix)/logs

@@ -63,19 +63,19 @@
 #define LT_OBJDIR ".libs/"
 
 /* Name of package */
-#define PACKAGE "skinny"
+#define PACKAGE "wangyonglin"
 
 /* Define to the address where bug reports for this package should be sent. */
 #define PACKAGE_BUGREPORT "admin@wangyonglin.com"
 
 /* Define to the full name of this package. */
-#define PACKAGE_NAME "skinny"
+#define PACKAGE_NAME "wangyonglin"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "skinny 1.0"
+#define PACKAGE_STRING "wangyonglin 1.0"
 
 /* Define to the one symbol short name of this package. */
-#define PACKAGE_TARNAME "skinny"
+#define PACKAGE_TARNAME "wangyonglin"
 
 /* Define to the home page for this package. */
 #define PACKAGE_URL ""

@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT(skinny, 1.0,admin@wangyonglin.com)
+AC_INIT(wangyonglin, 1.0,admin@wangyonglin.com)
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([test.c])
 AC_CONFIG_HEADERS([config.h])
@@ -46,5 +46,5 @@ AC_FUNC_MALLOC
 AC_CHECK_FUNCS([memset])
 
 AC_CONFIG_FILES([Makefile
-                 src/Makefile])
+                 src/core/Makefile])
 AC_OUTPUT

@@ -6,4 +6,7 @@ libwangyonglin_la_SOURCES= \
      SHA256WithRSA.c \
      Spanner.c \
      cJSON.c \
-     cJSON_Utils.c
+     cJSON_Utils.c \
+     hostcheck.c \
+     openssl_hostname_validation.c \
+     HttpsClient.c

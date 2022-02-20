@@ -1,0 +1,13 @@
+#ifndef __LINUX__H__
+#define __LINUX__H__
+#include <assert.h>
+#include <ctype.h>
+#include <errno.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <stdarg.h>
+#endif  //!__LINUX__H__

@@ -3,5 +3,6 @@
 #include <wangyonglin/wangyonglin.h>
 #include <wangyonglin/core.h>
 int timestamp(char **dest);
-int noncehex(char **dest, int bits);
+int randhex(char **dest, int bits);
+int ciphertext(char **dest,char *buffer, int length);
 #endif  //!__SPANNER__H__

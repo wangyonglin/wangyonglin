@@ -1,7 +1,7 @@
 #include <wangyonglin/wangyonglin.h>
 #include <wangyonglin/core.h>
 #include <wangyonglin/Base64.h>
-void Base64Encode(const unsigned char *buffer,
+int Base64Encode(const unsigned char *buffer,
                                 size_t length,
                                 char **base64Text)
 {
@@ -18,6 +18,7 @@ void Base64Encode(const unsigned char *buffer,
     BIO_set_close(bio, BIO_NOCLOSE);
     BIO_free_all(bio);
     *base64Text = (*bufferPtr).data;
+    return bufferPtr->length;
 }
 
 size_t calcDecodeLength(const char *b64input)
