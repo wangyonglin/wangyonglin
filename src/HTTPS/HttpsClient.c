@@ -1,7 +1,7 @@
 #if defined(__APPLE__) && defined(__clang__)
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 #endif
-#include <wangyonglin/HttpsClient.h>
+#include <HTTPS/HttpsClient.h>
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -39,7 +39,7 @@
 
 #ifdef USE_MBEDTLS
 #else
-#include <wangyonglin/openssl_hostname_validation.h>
+#include <HTTPS/openssl_hostname_validation.h>
 #endif
 
 static int ignore_cert = 0;

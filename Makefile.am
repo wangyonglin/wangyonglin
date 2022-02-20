@@ -2,8 +2,12 @@ AUTOMAKE_OPTIONS=foreign
 AM_CPPFLAGS= -I  $(top_srcdir)/include/
 bin_PROGRAMS=wangyonglin_test
 wangyonglin_test_SOURCES=test.c 
-SUBDIRS = src/core
+SUBDIRS = src/core \
+    src/json    \
+    src/encryption
 wangyonglin_test_LDADD= $(top_builddir)/src/core/libcore.la \
+    $(top_builddir)/src/json/libjson.la \
+    $(top_builddir)/src/encryption/libencryption.la \
     $(FLIBS)
 #需要引用的动态库文件
 LIBS += -Wall -pedantic   -lm -levent -lssl -lcrypto -lpthread -levent_openssl -lcurl

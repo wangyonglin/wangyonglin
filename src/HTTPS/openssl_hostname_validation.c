@@ -40,8 +40,8 @@ SOFTWARE.
 #include <openssl/ssl.h>
 #include <string.h>
 
-#include <wangyonglin/openssl_hostname_validation.h>
-#include <wangyonglin/hostcheck.h>
+#include <HTTPS/openssl_hostname_validation.h>
+#include <HTTPS/hostcheck.h>
 #define HOSTNAME_MAX_SIZE 255
 
 #if (OPENSSL_VERSION_NUMBER < 0x10100000L) || \

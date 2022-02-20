@@ -1,6 +1,6 @@
 #ifndef __HTTPSCLIENT__H__
 #define __HTTPSCLIENT__H__
-#include <wangyonglin/wangyonglin.h>
+#include <wangyonglin/config.h>
 #include <wangyonglin/core.h>
 typedef struct
 {

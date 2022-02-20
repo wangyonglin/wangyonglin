@@ -1,5 +1,6 @@
 #include <wangyonglin/core.h>
 #include <wangyonglin/config.h>
+#include <json/cJSON.h>
 /*
 typedef struct
 {
@@ -155,7 +156,8 @@ int main()
     // pid(config);
 
     log_init(config);
-    log_echo(config,LOG_INFO,"wangyonglin");
+    char * out = cJSON_Version();
+    log_echo(config,LOG_INFO,out);
     log_free(config);
     config_free(config);
     return 0;

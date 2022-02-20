@@ -46,5 +46,7 @@ AC_FUNC_MALLOC
 AC_CHECK_FUNCS([memset])
 
 AC_CONFIG_FILES([Makefile
-                 src/core/Makefile])
+                 src/core/Makefile
+                 src/encryption/Makefile
+                 src/json/Makefile])
 AC_OUTPUT

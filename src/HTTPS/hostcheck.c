@@ -40,7 +40,7 @@ be used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization of the copyright holder.
 */
 
-#include <wangyonglin/hostcheck.h>
+#include <HTTPS/hostcheck.h>
 #include <string.h>
 
 /* Portable, consistent toupper (remember EBCDIC). Do not use toupper() because

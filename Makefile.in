@@ -108,7 +108,9 @@ am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(confdir)" \
 PROGRAMS = $(bin_PROGRAMS)
 am_wangyonglin_test_OBJECTS = test.$(OBJEXT)
 wangyonglin_test_OBJECTS = $(am_wangyonglin_test_OBJECTS)
-wangyonglin_test_DEPENDENCIES = $(top_builddir)/src/core/libcore.la
+wangyonglin_test_DEPENDENCIES = $(top_builddir)/src/core/libcore.la \
+	$(top_builddir)/src/json/libjson.la \
+	$(top_builddir)/src/encryption/libencryption.la
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -393,8 +395,13 @@ top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
 AM_CPPFLAGS = -I  $(top_srcdir)/include/
 wangyonglin_test_SOURCES = test.c 
-SUBDIRS = src/core
+SUBDIRS = src/core \
+    src/json    \
+    src/encryption
+
 wangyonglin_test_LDADD = $(top_builddir)/src/core/libcore.la \
+    $(top_builddir)/src/json/libjson.la \
+    $(top_builddir)/src/encryption/libencryption.la \
     $(FLIBS)
 
 

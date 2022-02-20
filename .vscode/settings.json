@@ -17,6 +17,7 @@
         "config.h": "c",
         "log.h": "c",
         "linux.h": "c",
-        "conf.h": "c"
+        "conf.h": "c",
+        "hostcheck.h": "c"
     }
 }
