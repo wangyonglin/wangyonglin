@@ -128,7 +128,7 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libjson_la_LIBADD =
-am_libjson_la_OBJECTS = cJSON.lo cJSON_Utils.lo
+am_libjson_la_OBJECTS = cJSON.lo cJSON_Utils.lo cJSON_Results.lo
 libjson_la_OBJECTS = $(am_libjson_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -150,7 +150,7 @@ DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/cJSON.Plo \
-	./$(DEPDIR)/cJSON_Utils.Plo
+	./$(DEPDIR)/cJSON_Results.Plo ./$(DEPDIR)/cJSON_Utils.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -211,10 +211,6 @@ CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
 CPP = gcc -E
 CPPFLAGS = 
-CXX = g++
-CXXCPP = g++ -E
-CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -236,7 +232,7 @@ INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
-LIBS = -lssl -lpthread -lm -levent_openssl -levent -lcrypto -lcjson 
+LIBS = -lssl -lpthread -lm -levent_openssl -levent -lcurl -lcrypto 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
@@ -259,6 +255,7 @@ PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
 PACKAGE_VERSION = 1.0
 PATH_SEPARATOR = :
+POW_LIB = 
 RANLIB = ranlib
 SED = /usr/bin/sed
 SET_MAKE = 
@@ -271,7 +268,6 @@ abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
 abs_top_srcdir = /home/wangyonglin/github/wangyonglin/build/..
 ac_ct_AR = ar
 ac_ct_CC = gcc
-ac_ct_CXX = g++
 ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .
@@ -323,7 +319,8 @@ lib_LTLIBRARIES = libjson.la
 AM_CPPFLAGS = -I $(top_srcdir)/include/
 libjson_la_SOURCES = \
      cJSON.c \
-     cJSON_Utils.c
+     cJSON_Utils.c \
+     cJSON_Results.c
 
 all: all-am
 
@@ -404,6 +401,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/cJSON.Plo # am--include-marker
+include ./$(DEPDIR)/cJSON_Results.Plo # am--include-marker
 include ./$(DEPDIR)/cJSON_Utils.Plo # am--include-marker
 
 $(am__depfiles_remade):
@@ -568,6 +566,7 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/cJSON.Plo
+	-rm -f ./$(DEPDIR)/cJSON_Results.Plo
 	-rm -f ./$(DEPDIR)/cJSON_Utils.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -615,6 +614,7 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/cJSON.Plo
+	-rm -f ./$(DEPDIR)/cJSON_Results.Plo
 	-rm -f ./$(DEPDIR)/cJSON_Utils.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

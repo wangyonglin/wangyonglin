@@ -128,7 +128,7 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libjson_la_LIBADD =
-am_libjson_la_OBJECTS = cJSON.lo cJSON_Utils.lo
+am_libjson_la_OBJECTS = cJSON.lo cJSON_Utils.lo cJSON_Results.lo
 libjson_la_OBJECTS = $(am_libjson_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -150,7 +150,7 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/cJSON.Plo \
-	./$(DEPDIR)/cJSON_Utils.Plo
+	./$(DEPDIR)/cJSON_Results.Plo ./$(DEPDIR)/cJSON_Utils.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -211,10 +211,6 @@ CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
-CXX = @CXX@
-CXXCPP = @CXXCPP@
-CXXDEPMODE = @CXXDEPMODE@
-CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
@@ -259,6 +255,7 @@ PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+POW_LIB = @POW_LIB@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -271,7 +268,6 @@ abs_top_builddir = @abs_top_builddir@
 abs_top_srcdir = @abs_top_srcdir@
 ac_ct_AR = @ac_ct_AR@
 ac_ct_CC = @ac_ct_CC@
-ac_ct_CXX = @ac_ct_CXX@
 ac_ct_DUMPBIN = @ac_ct_DUMPBIN@
 am__include = @am__include@
 am__leading_dot = @am__leading_dot@
@@ -323,7 +319,8 @@ lib_LTLIBRARIES = libjson.la
 AM_CPPFLAGS = -I $(top_srcdir)/include/
 libjson_la_SOURCES = \
      cJSON.c \
-     cJSON_Utils.c
+     cJSON_Utils.c \
+     cJSON_Results.c
 
 all: all-am
 
@@ -404,6 +401,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cJSON.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cJSON_Results.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cJSON_Utils.Plo@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
@@ -568,6 +566,7 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/cJSON.Plo
+	-rm -f ./$(DEPDIR)/cJSON_Results.Plo
 	-rm -f ./$(DEPDIR)/cJSON_Utils.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -615,6 +614,7 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/cJSON.Plo
+	-rm -f ./$(DEPDIR)/cJSON_Results.Plo
 	-rm -f ./$(DEPDIR)/cJSON_Utils.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

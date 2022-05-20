@@ -89,7 +89,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
 host_triplet = x86_64-pc-linux-gnu
-bin_PROGRAMS = wangyonglin_test$(EXEEXT)
+bin_PROGRAMS = test$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -106,10 +106,11 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(confdir)" \
 	"$(DESTDIR)$(pkgincludedir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_wangyonglin_test_OBJECTS = test.$(OBJEXT)
-wangyonglin_test_OBJECTS = $(am_wangyonglin_test_OBJECTS)
-wangyonglin_test_DEPENDENCIES = $(top_builddir)/src/core/libcore.la \
+am_test_OBJECTS = test.$(OBJEXT)
+test_OBJECTS = $(am_test_OBJECTS)
+test_DEPENDENCIES = $(top_builddir)/src/core/libcore.la \
 	$(top_builddir)/src/json/libjson.la \
+	$(top_builddir)/src/https/libhttps.la \
 	$(top_builddir)/src/encryption/libencryption.la
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -150,8 +151,8 @@ AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(wangyonglin_test_SOURCES)
-DIST_SOURCES = $(wangyonglin_test_SOURCES)
+SOURCES = $(test_SOURCES)
+DIST_SOURCES = $(test_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive cscopelist-recursive \
 	ctags-recursive dvi-recursive html-recursive info-recursive \
 	install-data-recursive install-dvi-recursive \
@@ -282,10 +283,6 @@ CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
 CPP = gcc -E
 CPPFLAGS = 
-CXX = g++
-CXXCPP = g++ -E
-CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -308,8 +305,8 @@ LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
 #需要引用的动态库文件
-LIBS = -lssl -lpthread -lm -levent_openssl -levent -lcrypto -lcjson  -Wall -pedantic -lm -levent -lssl -lcrypto -lpthread \
-	-levent_openssl -lcurl
+LIBS = -lssl -lpthread -lm -levent_openssl -levent -lcurl -lcrypto  -g -O2 -Wall -pedantic -lm -levent -lssl -lcrypto \
+	-lpthread -levent_openssl -lcurl
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
@@ -332,6 +329,7 @@ PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
 PACKAGE_VERSION = 1.0
 PATH_SEPARATOR = :
+POW_LIB = 
 RANLIB = ranlib
 SED = /usr/bin/sed
 SET_MAKE = 
@@ -344,7 +342,6 @@ abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
 abs_top_srcdir = /home/wangyonglin/github/wangyonglin/build/..
 ac_ct_AR = ar
 ac_ct_CC = gcc
-ac_ct_CXX = g++
 ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .
@@ -394,15 +391,19 @@ top_builddir = .
 top_srcdir = ..
 AUTOMAKE_OPTIONS = foreign
 AM_CPPFLAGS = -I  $(top_srcdir)/include/
-wangyonglin_test_SOURCES = test.c 
-SUBDIRS = src/core \
-    src/json    \
+test_SOURCES = test.c 
+SUBDIRS = \
+    src/core\
+    src/json\
+    src/https\
     src/encryption
 
-wangyonglin_test_LDADD = $(top_builddir)/src/core/libcore.la \
+test_LDADD = \
+    $(top_builddir)/src/core/libcore.la \
     $(top_builddir)/src/json/libjson.la \
+    $(top_builddir)/src/https/libhttps.la \
     $(top_builddir)/src/encryption/libencryption.la \
-    $(FLIBS)
+    $(FLIBS) 
 
 
 # Headers to install
@@ -515,9 +516,9 @@ clean-binPROGRAMS:
 	echo " rm -f" $$list; \
 	rm -f $$list
 
-wangyonglin_test$(EXEEXT): $(wangyonglin_test_OBJECTS) $(wangyonglin_test_DEPENDENCIES) $(EXTRA_wangyonglin_test_DEPENDENCIES) 
-	@rm -f wangyonglin_test$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(wangyonglin_test_OBJECTS) $(wangyonglin_test_LDADD) $(LIBS)
+test$(EXEEXT): $(test_OBJECTS) $(test_DEPENDENCIES) $(EXTRA_test_DEPENDENCIES) 
+	@rm -f test$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(test_OBJECTS) $(test_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

@@ -1,20 +1,20 @@
 #ifndef __CONFIG__H__
 #define __CONFIG__H__
 #include <wangyonglin/linux.h>
-#include <wangyonglin/log.h>
+#include <wangyonglin/core.h>
 #include <wangyonglin/conf.h>
 
-typedef struct log_s log_t;
-typedef struct config_s config_t;
-
-struct config_s
+typedef struct
 {
-    /* data */
+    conf_t *conf;
     char *log_filename;
-    int log_mode;
-    FILE *log_fptr;
-    char *log_timestamp_format;
-};
-int config_init(config_t **config, const char *fileconf);
+    tags_t log_tags;
+    activated log_activated;
+    activated daemon_activated;
+} config_t;
+
+config_t *config_new(const char *filename);
+
+
 void config_free(config_t *config);
-#endif //!__CONFIG__H__
+#endif //!__CONF__H__

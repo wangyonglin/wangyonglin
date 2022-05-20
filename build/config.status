@@ -393,7 +393,7 @@ on `(hostname || uname -n) 2>/dev/null | sed 1q`
 "
 
 # Files that config.status was made for.
-config_files=" Makefile src/core/Makefile src/encryption/Makefile src/json/Makefile"
+config_files=" Makefile src/core/Makefile src/encryption/Makefile src/https/Makefile src/json/Makefile"
 config_headers=" config.h"
 config_commands=" depfiles libtool"
 
@@ -601,7 +601,7 @@ old_archive_cmds='$AR $AR_FLAGS $oldlib$oldobjs~$RANLIB $tool_oldlib'
 lock_old_archive_extraction='no'
 CC='gcc'
 CFLAGS='-g -O2'
-compiler='g++'
+compiler='gcc'
 GCC='yes'
 lt_cv_sys_global_symbol_pipe='sed -n -e '\''s/^.*[	 ]\([ABCDGIRSTW][ABCDGIRSTW]*\)[	 ][	 ]*\([_A-Za-z][_A-Za-z0-9]*\)$/\1 \2 \2/p'\'' | sed '\''/ __gnu_lto/d'\'''
 lt_cv_sys_global_symbol_to_cdecl='sed -n -e '\''s/^T .* \(.*\)$/extern int \1();/p'\'' -e '\''s/^[ABCDGIRSTW][ABCDGIRSTW]* .* \(.*\)$/extern char \1;/p'\'''
@@ -687,60 +687,6 @@ enable_dlopen_self='unknown'
 enable_dlopen_self_static='unknown'
 old_striplib='strip --strip-debug'
 striplib='strip --strip-unneeded'
-compiler_lib_search_dirs=''
-predep_objects=''
-postdep_objects=''
-predeps=''
-postdeps=''
-compiler_lib_search_path=''
-LD_CXX='/usr/bin/ld -m elf_x86_64'
-reload_flag_CXX=' -r'
-reload_cmds_CXX='$LD$reload_flag -o $output$reload_objs'
-old_archive_cmds_CXX='$AR $AR_FLAGS $oldlib$oldobjs~$RANLIB $tool_oldlib'
-compiler_CXX='g++'
-GCC_CXX='yes'
-lt_prog_compiler_no_builtin_flag_CXX=' -fno-builtin'
-lt_prog_compiler_pic_CXX=' -fPIC -DPIC'
-lt_prog_compiler_wl_CXX='-Wl,'
-lt_prog_compiler_static_CXX=''
-lt_cv_prog_compiler_c_o_CXX='yes'
-archive_cmds_need_lc_CXX='no'
-enable_shared_with_static_runtimes_CXX='no'
-export_dynamic_flag_spec_CXX='$wl--export-dynamic'
-whole_archive_flag_spec_CXX='$wl--whole-archive$convenience $wl--no-whole-archive'
-compiler_needs_object_CXX='no'
-old_archive_from_new_cmds_CXX=''
-old_archive_from_expsyms_cmds_CXX=''
-archive_cmds_CXX='$CC $pic_flag -shared -nostdlib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname -o $lib'
-archive_expsym_cmds_CXX='$CC $pic_flag -shared -nostdlib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
-module_cmds_CXX=''
-module_expsym_cmds_CXX=''
-with_gnu_ld_CXX='yes'
-allow_undefined_flag_CXX=''
-no_undefined_flag_CXX=''
-hardcode_libdir_flag_spec_CXX='$wl-rpath $wl$libdir'
-hardcode_libdir_separator_CXX=''
-hardcode_direct_CXX='no'
-hardcode_direct_absolute_CXX='no'
-hardcode_minus_L_CXX='no'
-hardcode_shlibpath_var_CXX='unsupported'
-hardcode_automatic_CXX='no'
-inherit_rpath_CXX='no'
-link_all_deplibs_CXX='unknown'
-always_export_symbols_CXX='no'
-export_symbols_cmds_CXX='$NM $libobjs $convenience | $global_symbol_pipe | $SED '\''s/.* //'\'' | sort | uniq > $export_symbols'
-exclude_expsyms_CXX='_GLOBAL_OFFSET_TABLE_|_GLOBAL__F[ID]_.*'
-include_expsyms_CXX=''
-prelink_cmds_CXX=''
-postlink_cmds_CXX=''
-file_list_spec_CXX=''
-hardcode_action_CXX='immediate'
-compiler_lib_search_dirs_CXX='/usr/lib/gcc/x86_64-redhat-linux/8 /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64 /lib/../lib64 /usr/lib/../lib64 /usr/lib/gcc/x86_64-redhat-linux/8/../../..'
-predep_objects_CXX='/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/8/crtbeginS.o'
-postdep_objects_CXX='/usr/lib/gcc/x86_64-redhat-linux/8/crtendS.o /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crtn.o'
-predeps_CXX=''
-postdeps_CXX='-lstdc++ -lm -lgcc_s -lc -lgcc_s'
-compiler_lib_search_path_CXX='-L/usr/lib/gcc/x86_64-redhat-linux/8 -L/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/8/../../..'
 
 LTCC='gcc'
 LTCFLAGS='-g -O2'
@@ -755,7 +701,7 @@ _LTECHO_EOF'
 }
 
 # Quote evaled strings.
-for var in SHELL ECHO PATH_SEPARATOR SED GREP EGREP FGREP LD NM LN_S lt_SP2NL lt_NL2SP reload_flag OBJDUMP deplibs_check_method file_magic_cmd file_magic_glob want_nocaseglob DLLTOOL sharedlib_from_linklib_cmd AR AR_FLAGS archiver_list_spec STRIP RANLIB CC CFLAGS compiler lt_cv_sys_global_symbol_pipe lt_cv_sys_global_symbol_to_cdecl lt_cv_sys_global_symbol_to_import lt_cv_sys_global_symbol_to_c_name_address lt_cv_sys_global_symbol_to_c_name_address_lib_prefix lt_cv_nm_interface nm_file_list_spec lt_cv_truncate_bin lt_prog_compiler_no_builtin_flag lt_prog_compiler_pic lt_prog_compiler_wl lt_prog_compiler_static lt_cv_prog_compiler_c_o need_locks MANIFEST_TOOL DSYMUTIL NMEDIT LIPO OTOOL OTOOL64 shrext_cmds export_dynamic_flag_spec whole_archive_flag_spec compiler_needs_object with_gnu_ld allow_undefined_flag no_undefined_flag hardcode_libdir_flag_spec hardcode_libdir_separator exclude_expsyms include_expsyms file_list_spec variables_saved_for_relink libname_spec library_names_spec soname_spec install_override_mode finish_eval old_striplib striplib compiler_lib_search_dirs predep_objects postdep_objects predeps postdeps compiler_lib_search_path LD_CXX reload_flag_CXX compiler_CXX lt_prog_compiler_no_builtin_flag_CXX lt_prog_compiler_pic_CXX lt_prog_compiler_wl_CXX lt_prog_compiler_static_CXX lt_cv_prog_compiler_c_o_CXX export_dynamic_flag_spec_CXX whole_archive_flag_spec_CXX compiler_needs_object_CXX with_gnu_ld_CXX allow_undefined_flag_CXX no_undefined_flag_CXX hardcode_libdir_flag_spec_CXX hardcode_libdir_separator_CXX exclude_expsyms_CXX include_expsyms_CXX file_list_spec_CXX compiler_lib_search_dirs_CXX predep_objects_CXX postdep_objects_CXX predeps_CXX postdeps_CXX compiler_lib_search_path_CXX; do
+for var in SHELL ECHO PATH_SEPARATOR SED GREP EGREP FGREP LD NM LN_S lt_SP2NL lt_NL2SP reload_flag OBJDUMP deplibs_check_method file_magic_cmd file_magic_glob want_nocaseglob DLLTOOL sharedlib_from_linklib_cmd AR AR_FLAGS archiver_list_spec STRIP RANLIB CC CFLAGS compiler lt_cv_sys_global_symbol_pipe lt_cv_sys_global_symbol_to_cdecl lt_cv_sys_global_symbol_to_import lt_cv_sys_global_symbol_to_c_name_address lt_cv_sys_global_symbol_to_c_name_address_lib_prefix lt_cv_nm_interface nm_file_list_spec lt_cv_truncate_bin lt_prog_compiler_no_builtin_flag lt_prog_compiler_pic lt_prog_compiler_wl lt_prog_compiler_static lt_cv_prog_compiler_c_o need_locks MANIFEST_TOOL DSYMUTIL NMEDIT LIPO OTOOL OTOOL64 shrext_cmds export_dynamic_flag_spec whole_archive_flag_spec compiler_needs_object with_gnu_ld allow_undefined_flag no_undefined_flag hardcode_libdir_flag_spec hardcode_libdir_separator exclude_expsyms include_expsyms file_list_spec variables_saved_for_relink libname_spec library_names_spec soname_spec install_override_mode finish_eval old_striplib striplib; do
     case `eval \\$ECHO \\""\\$$var"\\"` in
     *[\\\`\"\$]*)
       eval "lt_$var=\\\"\`\$ECHO \"\$$var\" | \$SED \"\$sed_quote_subst\"\`\\\"" ## exclude from sc_prohibit_nested_quotes
@@ -767,7 +713,7 @@ for var in SHELL ECHO PATH_SEPARATOR SED GREP EGREP FGREP LD NM LN_S lt_SP2NL lt
 done
 
 # Double-quote double-evaled strings.
-for var in reload_cmds old_postinstall_cmds old_postuninstall_cmds old_archive_cmds extract_expsyms_cmds old_archive_from_new_cmds old_archive_from_expsyms_cmds archive_cmds archive_expsym_cmds module_cmds module_expsym_cmds export_symbols_cmds prelink_cmds postlink_cmds postinstall_cmds postuninstall_cmds finish_cmds sys_lib_search_path_spec configure_time_dlsearch_path configure_time_lt_sys_library_path reload_cmds_CXX old_archive_cmds_CXX old_archive_from_new_cmds_CXX old_archive_from_expsyms_cmds_CXX archive_cmds_CXX archive_expsym_cmds_CXX module_cmds_CXX module_expsym_cmds_CXX export_symbols_cmds_CXX prelink_cmds_CXX postlink_cmds_CXX; do
+for var in reload_cmds old_postinstall_cmds old_postuninstall_cmds old_archive_cmds extract_expsyms_cmds old_archive_from_new_cmds old_archive_from_expsyms_cmds archive_cmds archive_expsym_cmds module_cmds module_expsym_cmds export_symbols_cmds prelink_cmds postlink_cmds postinstall_cmds postuninstall_cmds finish_cmds sys_lib_search_path_spec configure_time_dlsearch_path configure_time_lt_sys_library_path; do
     case `eval \\$ECHO \\""\\$$var"\\"` in
     *[\\\`\"\$]*)
       eval "lt_$var=\\\"\`\$ECHO \"\$$var\" | \$SED -e \"\$double_quote_subst\" -e \"\$sed_quote_subst\" -e \"\$delay_variable_subst\"\`\\\"" ## exclude from sc_prohibit_nested_quotes
@@ -796,8 +742,6 @@ fi
 
 
 
-
-
 # Handling of arguments.
 for ac_config_target in $ac_config_targets
 do
@@ -808,6 +752,7 @@ do
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "src/core/Makefile") CONFIG_FILES="$CONFIG_FILES src/core/Makefile" ;;
     "src/encryption/Makefile") CONFIG_FILES="$CONFIG_FILES src/encryption/Makefile" ;;
+    "src/https/Makefile") CONFIG_FILES="$CONFIG_FILES src/https/Makefile" ;;
     "src/json/Makefile") CONFIG_FILES="$CONFIG_FILES src/json/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
@@ -877,14 +822,8 @@ cat >>"$ac_tmp/subs1.awk" <<\_ACAWK &&
 S["am__EXEEXT_FALSE"]=""
 S["am__EXEEXT_TRUE"]="#"
 S["LTLIBOBJS"]=""
+S["POW_LIB"]=""
 S["LIBOBJS"]=""
-S["CXXCPP"]="g++ -E"
-S["am__fastdepCXX_FALSE"]="#"
-S["am__fastdepCXX_TRUE"]=""
-S["CXXDEPMODE"]="depmode=gcc3"
-S["ac_ct_CXX"]="g++"
-S["CXXFLAGS"]="-g -O2"
-S["CXX"]="g++"
 S["CPP"]="gcc -E"
 S["LT_SYS_LIBRARY_PATH"]=""
 S["OTOOL64"]=""
@@ -962,7 +901,7 @@ S["INSTALL_PROGRAM"]="${INSTALL}"
 S["target_alias"]=""
 S["host_alias"]=""
 S["build_alias"]=""
-S["LIBS"]="-lssl -lpthread -lm -levent_openssl -levent -lcrypto -lcjson "
+S["LIBS"]="-lssl -lpthread -lm -levent_openssl -levent -lcurl -lcrypto "
 S["ECHO_T"]=""
 S["ECHO_N"]="-n"
 S["ECHO_C"]=""
@@ -1059,17 +998,39 @@ D["HAVE_STDINT_H"]=" 1"
 D["HAVE_UNISTD_H"]=" 1"
 D["HAVE_DLFCN_H"]=" 1"
 D["LT_OBJDIR"]=" \".libs/\""
-D["HAVE_LIBCJSON"]=" 1"
 D["HAVE_LIBCRYPTO"]=" 1"
+D["HAVE_LIBCURL"]=" 1"
 D["HAVE_LIBEVENT"]=" 1"
 D["HAVE_LIBEVENT_OPENSSL"]=" 1"
 D["HAVE_LIBM"]=" 1"
 D["HAVE_LIBPTHREAD"]=" 1"
 D["HAVE_LIBSSL"]=" 1"
+D["HAVE_FLOAT_H"]=" 1"
+D["HAVE_LIMITS_H"]=" 1"
+D["HAVE_LOCALE_H"]=" 1"
+D["HAVE_NETINET_IN_H"]=" 1"
+D["HAVE_STDDEF_H"]=" 1"
+D["HAVE_STDINT_H"]=" 1"
+D["HAVE_STDLIB_H"]=" 1"
 D["HAVE_STRING_H"]=" 1"
+D["HAVE_SYS_SOCKET_H"]=" 1"
+D["HAVE_UNISTD_H"]=" 1"
+D["HAVE__BOOL"]=" 1"
 D["HAVE_STDLIB_H"]=" 1"
 D["HAVE_MALLOC"]=" 1"
+D["HAVE_STDLIB_H"]=" 1"
+D["HAVE_REALLOC"]=" 1"
+D["HAVE_BZERO"]=" 1"
+D["HAVE_GETPASS"]=" 1"
+D["HAVE_LOCALECONV"]=" 1"
 D["HAVE_MEMSET"]=" 1"
+D["HAVE_STRCASECMP"]=" 1"
+D["HAVE_STRCHR"]=" 1"
+D["HAVE_STRDUP"]=" 1"
+D["HAVE_STRERROR"]=" 1"
+D["HAVE_STRRCHR"]=" 1"
+D["HAVE_STRSPN"]=" 1"
+D["HAVE_STRSTR"]=" 1"
   for (key in D) D_is_set[key] = 1
   FS = ""
 }
@@ -1517,7 +1478,7 @@ See \`config.log' for more details" "$LINENO" 5; }
 
 
 # The names of the tagged configurations supported by this script.
-available_tags='CXX '
+available_tags=''
 
 # Configured defaults for sys_lib_dlsearch_path munging.
 : \${LT_SYS_LIBRARY_PATH="$configure_time_lt_sys_library_path"}
@@ -1922,20 +1883,6 @@ file_list_spec=$lt_file_list_spec
 # How to hardcode a shared library path into an executable.
 hardcode_action=$hardcode_action
 
-# The directories searched by this compiler when creating a shared library.
-compiler_lib_search_dirs=$lt_compiler_lib_search_dirs
-
-# Dependencies to place before and after the objects being linked to
-# create a shared library.
-predep_objects=$lt_predep_objects
-postdep_objects=$lt_postdep_objects
-predeps=$lt_predeps
-postdeps=$lt_postdeps
-
-# The library search path used internally by the compiler when linking
-# a shared library.
-compiler_lib_search_path=$lt_compiler_lib_search_path
-
 # ### END LIBTOOL CONFIG
 
 _LT_EOF
@@ -2027,159 +1974,6 @@ ltmain=$ac_aux_dir/ltmain.sh
    mv -f "$cfgfile" "$ofile" ||
     (rm -f "$ofile" && cp "$cfgfile" "$ofile" && rm -f "$cfgfile")
   chmod +x "$ofile"
-
-
-    cat <<_LT_EOF >> "$ofile"
-
-# ### BEGIN LIBTOOL TAG CONFIG: CXX
-
-# The linker used to build libraries.
-LD=$lt_LD_CXX
-
-# How to create reloadable object files.
-reload_flag=$lt_reload_flag_CXX
-reload_cmds=$lt_reload_cmds_CXX
-
-# Commands used to build an old-style archive.
-old_archive_cmds=$lt_old_archive_cmds_CXX
-
-# A language specific compiler.
-CC=$lt_compiler_CXX
-
-# Is the compiler the GNU compiler?
-with_gcc=$GCC_CXX
-
-# Compiler flag to turn off builtin functions.
-no_builtin_flag=$lt_lt_prog_compiler_no_builtin_flag_CXX
-
-# Additional compiler flags for building library objects.
-pic_flag=$lt_lt_prog_compiler_pic_CXX
-
-# How to pass a linker flag through the compiler.
-wl=$lt_lt_prog_compiler_wl_CXX
-
-# Compiler flag to prevent dynamic linking.
-link_static_flag=$lt_lt_prog_compiler_static_CXX
-
-# Does compiler simultaneously support -c and -o options?
-compiler_c_o=$lt_lt_cv_prog_compiler_c_o_CXX
-
-# Whether or not to add -lc for building shared libraries.
-build_libtool_need_lc=$archive_cmds_need_lc_CXX
-
-# Whether or not to disallow shared libs when runtime libs are static.
-allow_libtool_libs_with_static_runtimes=$enable_shared_with_static_runtimes_CXX
-
-# Compiler flag to allow reflexive dlopens.
-export_dynamic_flag_spec=$lt_export_dynamic_flag_spec_CXX
-
-# Compiler flag to generate shared objects directly from archives.
-whole_archive_flag_spec=$lt_whole_archive_flag_spec_CXX
-
-# Whether the compiler copes with passing no objects directly.
-compiler_needs_object=$lt_compiler_needs_object_CXX
-
-# Create an old-style archive from a shared archive.
-old_archive_from_new_cmds=$lt_old_archive_from_new_cmds_CXX
-
-# Create a temporary old-style archive to link instead of a shared archive.
-old_archive_from_expsyms_cmds=$lt_old_archive_from_expsyms_cmds_CXX
-
-# Commands used to build a shared archive.
-archive_cmds=$lt_archive_cmds_CXX
-archive_expsym_cmds=$lt_archive_expsym_cmds_CXX
-
-# Commands used to build a loadable module if different from building
-# a shared archive.
-module_cmds=$lt_module_cmds_CXX
-module_expsym_cmds=$lt_module_expsym_cmds_CXX
-
-# Whether we are building with GNU ld or not.
-with_gnu_ld=$lt_with_gnu_ld_CXX
-
-# Flag that allows shared libraries with undefined symbols to be built.
-allow_undefined_flag=$lt_allow_undefined_flag_CXX
-
-# Flag that enforces no undefined symbols.
-no_undefined_flag=$lt_no_undefined_flag_CXX
-
-# Flag to hardcode \$libdir into a binary during linking.
-# This must work even if \$libdir does not exist
-hardcode_libdir_flag_spec=$lt_hardcode_libdir_flag_spec_CXX
-
-# Whether we need a single "-rpath" flag with a separated argument.
-hardcode_libdir_separator=$lt_hardcode_libdir_separator_CXX
-
-# Set to "yes" if using DIR/libNAME\$shared_ext during linking hardcodes
-# DIR into the resulting binary.
-hardcode_direct=$hardcode_direct_CXX
-
-# Set to "yes" if using DIR/libNAME\$shared_ext during linking hardcodes
-# DIR into the resulting binary and the resulting library dependency is
-# "absolute",i.e impossible to change by setting \$shlibpath_var if the
-# library is relocated.
-hardcode_direct_absolute=$hardcode_direct_absolute_CXX
-
-# Set to "yes" if using the -LDIR flag during linking hardcodes DIR
-# into the resulting binary.
-hardcode_minus_L=$hardcode_minus_L_CXX
-
-# Set to "yes" if using SHLIBPATH_VAR=DIR during linking hardcodes DIR
-# into the resulting binary.
-hardcode_shlibpath_var=$hardcode_shlibpath_var_CXX
-
-# Set to "yes" if building a shared library automatically hardcodes DIR
-# into the library and all subsequent libraries and executables linked
-# against it.
-hardcode_automatic=$hardcode_automatic_CXX
-
-# Set to yes if linker adds runtime paths of dependent libraries
-# to runtime path list.
-inherit_rpath=$inherit_rpath_CXX
-
-# Whether libtool must link a program against all its dependency libraries.
-link_all_deplibs=$link_all_deplibs_CXX
-
-# Set to "yes" if exported symbols are required.
-always_export_symbols=$always_export_symbols_CXX
-
-# The commands to list exported symbols.
-export_symbols_cmds=$lt_export_symbols_cmds_CXX
-
-# Symbols that should not be listed in the preloaded symbols.
-exclude_expsyms=$lt_exclude_expsyms_CXX
-
-# Symbols that must always be exported.
-include_expsyms=$lt_include_expsyms_CXX
-
-# Commands necessary for linking programs (against libraries) with templates.
-prelink_cmds=$lt_prelink_cmds_CXX
-
-# Commands necessary for finishing linking programs.
-postlink_cmds=$lt_postlink_cmds_CXX
-
-# Specify filename containing input files.
-file_list_spec=$lt_file_list_spec_CXX
-
-# How to hardcode a shared library path into an executable.
-hardcode_action=$hardcode_action_CXX
-
-# The directories searched by this compiler when creating a shared library.
-compiler_lib_search_dirs=$lt_compiler_lib_search_dirs_CXX
-
-# Dependencies to place before and after the objects being linked to
-# create a shared library.
-predep_objects=$lt_predep_objects_CXX
-postdep_objects=$lt_postdep_objects_CXX
-predeps=$lt_predeps_CXX
-postdeps=$lt_postdeps_CXX
-
-# The library search path used internally by the compiler when linking
-# a shared library.
-compiler_lib_search_path=$lt_compiler_lib_search_path_CXX
-
-# ### END LIBTOOL TAG CONFIG: CXX
-_LT_EOF
 
  ;;
 

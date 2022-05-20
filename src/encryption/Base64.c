@@ -1,5 +1,5 @@
-#include <wangyonglin/core.h>
-#include <wangyonglin/config.h>
+#include <wangyonglin/linux.h>
+
 #include <encryption/Base64.h>
 
 int Base64Encode(const unsigned char *buffer,

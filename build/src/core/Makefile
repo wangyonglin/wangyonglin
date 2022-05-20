@@ -128,7 +128,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libcore_la_LIBADD =
-am_libcore_la_OBJECTS = conf.lo pid.lo log.lo config.lo
+am_libcore_la_OBJECTS = daemon.lo signal.lo string.lo config.lo pid.lo \
+	log.lo conf.lo
 libcore_la_OBJECTS = $(am_libcore_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -150,7 +151,8 @@ DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/conf.Plo ./$(DEPDIR)/config.Plo \
-	./$(DEPDIR)/log.Plo ./$(DEPDIR)/pid.Plo
+	./$(DEPDIR)/daemon.Plo ./$(DEPDIR)/log.Plo ./$(DEPDIR)/pid.Plo \
+	./$(DEPDIR)/signal.Plo ./$(DEPDIR)/string.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -211,10 +213,6 @@ CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
 CPP = gcc -E
 CPPFLAGS = 
-CXX = g++
-CXXCPP = g++ -E
-CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -236,7 +234,7 @@ INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
-LIBS = -lssl -lpthread -lm -levent_openssl -levent -lcrypto -lcjson 
+LIBS = -lssl -lpthread -lm -levent_openssl -levent -lcurl -lcrypto 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
@@ -259,6 +257,7 @@ PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
 PACKAGE_VERSION = 1.0
 PATH_SEPARATOR = :
+POW_LIB = 
 RANLIB = ranlib
 SED = /usr/bin/sed
 SET_MAKE = 
@@ -271,7 +270,6 @@ abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
 abs_top_srcdir = /home/wangyonglin/github/wangyonglin/build/..
 ac_ct_AR = ar
 ac_ct_CC = gcc
-ac_ct_CXX = g++
 ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .
@@ -322,10 +320,13 @@ AUTOMAKE_OPTIONS = foreign
 lib_LTLIBRARIES = libcore.la
 AM_CPPFLAGS = -I $(top_srcdir)/include/
 libcore_la_SOURCES = \
-    conf.c  \
+    daemon.c    \
+    signal.c    \
+    string.c \
+    config.c  \
     pid.c   \
     log.c   \
-    config.c
+    conf.c
 
 all: all-am
 
@@ -407,8 +408,11 @@ distclean-compile:
 
 include ./$(DEPDIR)/conf.Plo # am--include-marker
 include ./$(DEPDIR)/config.Plo # am--include-marker
+include ./$(DEPDIR)/daemon.Plo # am--include-marker
 include ./$(DEPDIR)/log.Plo # am--include-marker
 include ./$(DEPDIR)/pid.Plo # am--include-marker
+include ./$(DEPDIR)/signal.Plo # am--include-marker
+include ./$(DEPDIR)/string.Plo # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -573,8 +577,11 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/conf.Plo
 	-rm -f ./$(DEPDIR)/config.Plo
+	-rm -f ./$(DEPDIR)/daemon.Plo
 	-rm -f ./$(DEPDIR)/log.Plo
 	-rm -f ./$(DEPDIR)/pid.Plo
+	-rm -f ./$(DEPDIR)/signal.Plo
+	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -622,8 +629,11 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/conf.Plo
 	-rm -f ./$(DEPDIR)/config.Plo
+	-rm -f ./$(DEPDIR)/daemon.Plo
 	-rm -f ./$(DEPDIR)/log.Plo
 	-rm -f ./$(DEPDIR)/pid.Plo
+	-rm -f ./$(DEPDIR)/signal.Plo
+	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

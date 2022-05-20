@@ -1,16 +1,20 @@
 AUTOMAKE_OPTIONS=foreign
 AM_CPPFLAGS= -I  $(top_srcdir)/include/
-bin_PROGRAMS=wangyonglin_test
-wangyonglin_test_SOURCES=test.c 
-SUBDIRS = src/core \
-    src/json    \
+bin_PROGRAMS=test
+test_SOURCES=test.c 
+SUBDIRS =\
+    src/core\
+    src/json\
+    src/https\
     src/encryption
-wangyonglin_test_LDADD= $(top_builddir)/src/core/libcore.la \
+test_LDADD=\
+    $(top_builddir)/src/core/libcore.la \
     $(top_builddir)/src/json/libjson.la \
+    $(top_builddir)/src/https/libhttps.la \
     $(top_builddir)/src/encryption/libencryption.la \
-    $(FLIBS)
+    $(FLIBS) 
 #需要引用的动态库文件
-LIBS += -Wall -pedantic   -lm -levent -lssl -lcrypto -lpthread -levent_openssl -lcurl
+LIBS += -g -O2 -Wall -pedantic   -lm -levent -lssl -lcrypto -lpthread -levent_openssl -lcurl
 #安装的各个目录和文件
 bindir=     $(prefix)/bin
 libdir=     $(prefix)/lib

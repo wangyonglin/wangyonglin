@@ -1,6 +1,6 @@
 
-#include <wangyonglin/core.h>
-#include <wangyonglin/config.h>
+#include <wangyonglin/linux.h>
+
 #include <encryption/Base64.h>
 #include <encryption/Utils.h>
 #define KEY_LENGTH 24

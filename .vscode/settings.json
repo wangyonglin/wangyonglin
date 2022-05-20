@@ -18,6 +18,22 @@
         "log.h": "c",
         "linux.h": "c",
         "conf.h": "c",
-        "hostcheck.h": "c"
+        "hostcheck.h": "c",
+        "kernel.h": "c",
+        "client.h": "c",
+        "bufferevent_ssl.h": "c",
+        "app.h": "c",
+        "typeinfo": "c",
+        "daemon.h": "c",
+        "auto.h": "c",
+        "http_struct.h": "c",
+        "system_error": "c",
+        "result.h": "c",
+        "string_view": "c",
+        "sstream": "c",
+        "cjson_results.h": "c",
+        "istream": "c",
+        "ostream": "c",
+        "cmath": "c"
     }
 }

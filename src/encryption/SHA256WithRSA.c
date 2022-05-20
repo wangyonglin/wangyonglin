@@ -1,5 +1,5 @@
-#include <wangyonglin/core.h>
-#include <wangyonglin/config.h>
+#include <wangyonglin/linux.h>
+
 #include <encryption/SHA256WithRSA.h>
 #include <encryption/Base64.h>
 SHA256WithRSA *SHA256WithRSA_RSAPrivateKey_file(const char *file)

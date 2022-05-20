@@ -1,8 +1,8 @@
 #ifndef __BASE64__H__
 #define __BASE64__H__
 
-#include <wangyonglin/core.h>
-#include <wangyonglin/config.h>
+#include <wangyonglin/linux.h>
+
 
 int Base64Encode(const unsigned char *buffer,
                   size_t length,

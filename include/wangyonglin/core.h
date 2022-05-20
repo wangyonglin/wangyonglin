@@ -1,38 +1,25 @@
-#ifndef __CORE__H__
-#define __CORE__H__
+#ifndef __WANGYONGLIN_CORE_H__
+#define __WANGYONGLIN_CORE_H__
+typedef int tags_t;
+#define On ((tags_t)1)
+#define Off ((tags_t)0)
+#define None ((tags_t)-1)
 
-#include <wangyonglin/conf.h>
-#include <wangyonglin/log.h>
-#include <wangyonglin/pid.h>
+typedef int ok_t;
+#define ok ((ok_t)1)
+#define failed ((ok_t)0)
 
+typedef int activated;
+#define disabled ((activated)0)
+#define enabled ((activated)1)
 
-/* Log types */
-#define LOG_NONE 0
-#define LOG_INFO (1 << 0)
-#define LOG_NOTICE (1 << 1)
-#define LOG_WARNING (1 << 2)
-#define LOG_ERR (1 << 3)
-#define LOG_DEBUG (1 << 4)
-#define LOG_SUBSCRIBE (1 << 5)
-#define LOG_UNSUBSCRIBE (1 << 6)
-#define LOG_WEBSOCKETS (1 << 7)
-#define LOG_INTERNAL 0x80000000U
-#define LOG_ALL 0xFFFFFFFFU
-
-/* Error values */
-enum err_t
+typedef struct
 {
-	ERR_SIGNAL	= -3,
-	ERR_UNKNOWN	= -2,
-	ERR_DEBUG	= -1,
-	ERR_SUCCESS = 0,
-	ERR_CONFIG	= 1,
-	ERR_LOGGING = 2,
-	ERR_PID		= 3,
-	ERR_ERRNO	= 4,
-	ERR_DAEMON	= 5,
-	ERR_TIMEOUT = 100,
-};
+    void *(*allocate)(size_t size);
+    void (*deallocate)(void *pointer);
+    void *(*reallocate)(void *pointer, size_t size);
+} internal_hooks_t;
 
+static internal_hooks_t global_hooks = {malloc, free, realloc};
 
-#endif  //!__CORE__H__
+#endif /**__WANGYONGLIN_CORE_H__**/
