@@ -1,5 +1,6 @@
 #include <wangyonglin/linux.h>
 #include <wangyonglin/config.h>
+#include <wangyonglin/daemon.h>
 #include <wangyonglin/log.h>
 int main(int argc, char *argv[])
 {
@@ -10,7 +11,14 @@ int main(int argc, char *argv[])
     {
         if (log_loader_config(config) == ok)
         {
-            log_write(config, LOG_ERR, "erwefnwjefwefw");
+            if (daemond(config) == enabled)
+            {
+                log_write(config, LOG_INFO, "daemond success");
+            }
+            else
+            {
+                log_write(config, LOG_ERR, "daemond failure");
+            }
         }
 
         config_free(config);

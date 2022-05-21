@@ -5,53 +5,61 @@
 activated daemond(config_t *config)
 {
 
-    switch (fork())
+    if (config->conf->handler)
     {
-    case -1:
-        fprintf(stderr, "fork() failed");
-        return failed;
-    case 0:
-        break;
-    default:
-        exit(0);
-    }
-    if ((chdir("/")) < 0)
-    {
-        fprintf(stderr, "could change to root dir");
-        return failed;
-    }
-    if (setsid() == -1)
-    {
-        fprintf(stderr, "\t\tsetsid() failed");
-        return failed;
-    }
-    umask(0);
-
-    int fd = open("/dev/null", O_RDWR);
-    if (fd == -1)
-    {
-        fprintf(stderr, "open(\"/dev/null\") failed");
-        return failed;
-    }
-
-    if (dup2(fd, STDIN_FILENO) == -1)
-    {
-        fprintf(stderr, "dup2(STDIN) failed");
-        return failed;
-    }
-
-    if (dup2(fd, STDOUT_FILENO) == -1)
-    {
-        fprintf(stderr, "dup2(STDOUT) failed");
-        return failed;
-    }
-    if (fd > STDERR_FILENO)
-    {
-        if (close(fd) == -1)
+        tags_t tag = conf_get_tags(config->conf, NULL, "daemon");
+        if (tag == On)
         {
-            fprintf(stderr, "close() failed");
-            return failed;
+            switch (fork())
+            {
+            case -1:
+                log_write(config, LOG_ERR, "fork() failed");
+                return config->daemon_activated = disabled;
+            case 0:
+                break;
+            default:
+                exit(0);
+            }
+            if ((chdir("/")) < 0)
+            {
+                log_write(config, LOG_ERR, "could change to root dir");
+                return config->daemon_activated = disabled;
+            }
+            if (setsid() == -1)
+            {
+                log_write(config, LOG_ERR, "\t\tsetsid() failed");
+                return config->daemon_activated = disabled;
+            }
+            umask(0);
+
+            int fd = open("/dev/null", O_RDWR);
+            if (fd == -1)
+            {
+                log_write(config, LOG_ERR, "open(\"/dev/null\") failed");
+                return config->daemon_activated = disabled;
+            }
+
+            if (dup2(fd, STDIN_FILENO) == -1)
+            {
+                log_write(config, LOG_ERR, "dup2(STDIN) failed");
+                return config->daemon_activated = disabled;
+            }
+
+            if (dup2(fd, STDOUT_FILENO) == -1)
+            {
+                log_write(config, LOG_ERR, "dup2(STDOUT) failed");
+                return config->daemon_activated = disabled;
+            }
+            if (fd > STDERR_FILENO)
+            {
+                if (close(fd) == -1)
+                {
+                    log_write(config, LOG_ERR, "close() failed");
+                    return config->daemon_activated = disabled;
+                }
+            }
+            return config->daemon_activated = enabled;
         }
     }
-    return ok;
+    return  disabled;
 }
