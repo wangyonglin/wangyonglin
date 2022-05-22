@@ -2,7 +2,7 @@
 #include <wangyonglin/config.h>
 #include <wangyonglin/log.h>
 
-activated daemond(config_t *config)
+ok_t daemond(config_t *config)
 {
 
     if (config->conf->handler)
@@ -14,7 +14,8 @@ activated daemond(config_t *config)
             {
             case -1:
                 log_write(config, LOG_ERR, "fork() failed");
-                return config->daemon_activated = disabled;
+                config->daemon_activated = disabled;
+                return failed;
             case 0:
                 break;
             default:
@@ -23,12 +24,14 @@ activated daemond(config_t *config)
             if ((chdir("/")) < 0)
             {
                 log_write(config, LOG_ERR, "could change to root dir");
-                return config->daemon_activated = disabled;
+                config->daemon_activated = disabled;
+                return failed;
             }
             if (setsid() == -1)
             {
                 log_write(config, LOG_ERR, "\t\tsetsid() failed");
-                return config->daemon_activated = disabled;
+                config->daemon_activated = disabled;
+                return failed;
             }
             umask(0);
 
@@ -36,30 +39,35 @@ activated daemond(config_t *config)
             if (fd == -1)
             {
                 log_write(config, LOG_ERR, "open(\"/dev/null\") failed");
-                return config->daemon_activated = disabled;
+                config->daemon_activated = disabled;
+                return failed;
             }
 
             if (dup2(fd, STDIN_FILENO) == -1)
             {
                 log_write(config, LOG_ERR, "dup2(STDIN) failed");
-                return config->daemon_activated = disabled;
+                config->daemon_activated = disabled;
+                return failed;
             }
 
             if (dup2(fd, STDOUT_FILENO) == -1)
             {
                 log_write(config, LOG_ERR, "dup2(STDOUT) failed");
-                return config->daemon_activated = disabled;
+                config->daemon_activated = disabled;
+                return failed;
             }
             if (fd > STDERR_FILENO)
             {
                 if (close(fd) == -1)
                 {
                     log_write(config, LOG_ERR, "close() failed");
-                    return config->daemon_activated = disabled;
+                    config->daemon_activated = disabled;
+                    return failed;
                 }
             }
-            return config->daemon_activated = enabled;
+            config->daemon_activated = enabled;
+            return ok;
         }
     }
-    return  disabled;
+    return failed;
 }

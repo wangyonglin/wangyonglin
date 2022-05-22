@@ -15,7 +15,7 @@
 #define LOG_INTERNAL 0x80000000U
 #define LOG_ALL 0xFFFFFFFFU
 
-activated log_loader_config(config_t *config);
+ok_t log_init(config_t *config);
 int log_write(config_t *config, unsigned int priority, const char *fmt, ...) __attribute__((format(printf, 3, 4)));
 
 #endif //!__LOG__H__

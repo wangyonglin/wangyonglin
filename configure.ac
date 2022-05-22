@@ -4,7 +4,7 @@
 AC_PREREQ([2.69])
 AC_INIT(wangyonglin, 1.0,admin@wangyonglin.com)
 AM_INIT_AUTOMAKE
-AC_CONFIG_SRCDIR([test.c])
+AC_CONFIG_SRCDIR([application.c])
 AC_CONFIG_HEADERS([config.h])
 LIBTOOL
 LT_INIT

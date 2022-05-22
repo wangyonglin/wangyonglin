@@ -1,13 +1,13 @@
 AUTOMAKE_OPTIONS=foreign
 AM_CPPFLAGS= -I  $(top_srcdir)/include/
-bin_PROGRAMS=test
-test_SOURCES=test.c 
+bin_PROGRAMS=wangyonglin
+wangyonglin_SOURCES=application.c 
 SUBDIRS =\
     src/core\
     src/json\
     src/https\
     src/encryption
-test_LDADD=\
+wangyonglin_LDADD=\
     $(top_builddir)/src/core/libcore.la \
     $(top_builddir)/src/json/libjson.la \
     $(top_builddir)/src/https/libhttps.la \

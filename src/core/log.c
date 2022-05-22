@@ -4,21 +4,21 @@
 #include <wangyonglin/string.h>
 int log_vprintf(const char *filename, tags_t tag, unsigned int priority, const char *fmt, va_list va);
 
-activated log_loader_config(config_t *config)
+ok_t log_init(config_t *config)
 {
 
     if (config && config->conf->handler)
     {
-        config->log_filename = conf_get_string(config->conf, "LOG", "log_filename");
-        config->log_tags = conf_get_tags(config->conf, "LOG", "log_filewrite");
+        config->log_filename = conf_get_string(config->conf,NULL, "log_filename");
+        config->log_tags = conf_get_tags(config->conf, NULL, "log_filewrite");
         if (config->log_filename && (config->log_tags != None))
         {
             config->log_activated =enabled;
-            return enabled;
+            return ok;
         }
     }
     config->log_activated=disabled;
-    return disabled;
+    return failed;
 }
 int log_write(config_t *config, unsigned int priority, const char *fmt, ...)
 {

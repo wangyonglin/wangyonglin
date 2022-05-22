@@ -75,14 +75,10 @@ char *conf_get_string(conf_t *conf, const char *group, const char *name)
     if (conf->handler)
     {
         char *out = NCONF_get_string(conf->handler, group, name);
-        if (out)
+        int len = strlen(out);
+        if (out && len > 0 && len < 250)
         {
-            int len = strlen(out);
-            if (len > 0 && len < 250)
-            {
-                return out;
-            }
-            free(out);
+            return out;
         }
     }
 

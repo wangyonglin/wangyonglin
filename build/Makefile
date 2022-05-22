@@ -89,7 +89,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
 host_triplet = x86_64-pc-linux-gnu
-bin_PROGRAMS = test$(EXEEXT)
+bin_PROGRAMS = wangyonglin$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -106,9 +106,9 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(confdir)" \
 	"$(DESTDIR)$(pkgincludedir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_test_OBJECTS = test.$(OBJEXT)
-test_OBJECTS = $(am_test_OBJECTS)
-test_DEPENDENCIES = $(top_builddir)/src/core/libcore.la \
+am_wangyonglin_OBJECTS = application.$(OBJEXT)
+wangyonglin_OBJECTS = $(am_wangyonglin_OBJECTS)
+wangyonglin_DEPENDENCIES = $(top_builddir)/src/core/libcore.la \
 	$(top_builddir)/src/json/libjson.la \
 	$(top_builddir)/src/https/libhttps.la \
 	$(top_builddir)/src/encryption/libencryption.la
@@ -131,7 +131,7 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(srcdir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/test.Po
+am__depfiles_remade = ./$(DEPDIR)/application.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -151,8 +151,8 @@ AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(test_SOURCES)
-DIST_SOURCES = $(test_SOURCES)
+SOURCES = $(wangyonglin_SOURCES)
+DIST_SOURCES = $(wangyonglin_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive cscopelist-recursive \
 	ctags-recursive dvi-recursive html-recursive info-recursive \
 	install-data-recursive install-dvi-recursive \
@@ -391,14 +391,14 @@ top_builddir = .
 top_srcdir = ..
 AUTOMAKE_OPTIONS = foreign
 AM_CPPFLAGS = -I  $(top_srcdir)/include/
-test_SOURCES = test.c 
+wangyonglin_SOURCES = application.c 
 SUBDIRS = \
     src/core\
     src/json\
     src/https\
     src/encryption
 
-test_LDADD = \
+wangyonglin_LDADD = \
     $(top_builddir)/src/core/libcore.la \
     $(top_builddir)/src/json/libjson.la \
     $(top_builddir)/src/https/libhttps.la \
@@ -516,9 +516,9 @@ clean-binPROGRAMS:
 	echo " rm -f" $$list; \
 	rm -f $$list
 
-test$(EXEEXT): $(test_OBJECTS) $(test_DEPENDENCIES) $(EXTRA_test_DEPENDENCIES) 
-	@rm -f test$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(test_OBJECTS) $(test_LDADD) $(LIBS)
+wangyonglin$(EXEEXT): $(wangyonglin_OBJECTS) $(wangyonglin_DEPENDENCIES) $(EXTRA_wangyonglin_DEPENDENCIES) 
+	@rm -f wangyonglin$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(wangyonglin_OBJECTS) $(wangyonglin_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -526,7 +526,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/test.Po # am--include-marker
+include ./$(DEPDIR)/application.Po # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -947,7 +947,7 @@ clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-		-rm -f ./$(DEPDIR)/test.Po
+		-rm -f ./$(DEPDIR)/application.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-libtool distclean-tags
@@ -995,7 +995,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-		-rm -f ./$(DEPDIR)/test.Po
+		-rm -f ./$(DEPDIR)/application.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

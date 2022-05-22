@@ -8,6 +8,7 @@ typedef int tags_t;
 typedef int ok_t;
 #define ok ((ok_t)1)
 #define failed ((ok_t)0)
+#define none ((ok_t)-1)
 
 typedef int activated;
 #define disabled ((activated)0)

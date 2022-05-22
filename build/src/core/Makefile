@@ -129,7 +129,7 @@ am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libcore_la_LIBADD =
 am_libcore_la_OBJECTS = daemon.lo signal.lo string.lo config.lo pid.lo \
-	log.lo conf.lo
+	log.lo conf.lo main.lo
 libcore_la_OBJECTS = $(am_libcore_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -151,7 +151,8 @@ DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/conf.Plo ./$(DEPDIR)/config.Plo \
-	./$(DEPDIR)/daemon.Plo ./$(DEPDIR)/log.Plo ./$(DEPDIR)/pid.Plo \
+	./$(DEPDIR)/daemon.Plo ./$(DEPDIR)/log.Plo \
+	./$(DEPDIR)/main.Plo ./$(DEPDIR)/pid.Plo \
 	./$(DEPDIR)/signal.Plo ./$(DEPDIR)/string.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -326,7 +327,8 @@ libcore_la_SOURCES = \
     config.c  \
     pid.c   \
     log.c   \
-    conf.c
+    conf.c \
+    main.c
 
 all: all-am
 
@@ -410,6 +412,7 @@ include ./$(DEPDIR)/conf.Plo # am--include-marker
 include ./$(DEPDIR)/config.Plo # am--include-marker
 include ./$(DEPDIR)/daemon.Plo # am--include-marker
 include ./$(DEPDIR)/log.Plo # am--include-marker
+include ./$(DEPDIR)/main.Plo # am--include-marker
 include ./$(DEPDIR)/pid.Plo # am--include-marker
 include ./$(DEPDIR)/signal.Plo # am--include-marker
 include ./$(DEPDIR)/string.Plo # am--include-marker
@@ -579,6 +582,7 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/config.Plo
 	-rm -f ./$(DEPDIR)/daemon.Plo
 	-rm -f ./$(DEPDIR)/log.Plo
+	-rm -f ./$(DEPDIR)/main.Plo
 	-rm -f ./$(DEPDIR)/pid.Plo
 	-rm -f ./$(DEPDIR)/signal.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
@@ -631,6 +635,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/config.Plo
 	-rm -f ./$(DEPDIR)/daemon.Plo
 	-rm -f ./$(DEPDIR)/log.Plo
+	-rm -f ./$(DEPDIR)/main.Plo
 	-rm -f ./$(DEPDIR)/pid.Plo
 	-rm -f ./$(DEPDIR)/signal.Plo
 	-rm -f ./$(DEPDIR)/string.Plo

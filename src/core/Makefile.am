@@ -8,5 +8,6 @@ libcore_la_SOURCES=\
     config.c  \
     pid.c   \
     log.c   \
-    conf.c
+    conf.c \
+    main.c
 
