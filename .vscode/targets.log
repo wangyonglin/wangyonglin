@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri May 13 04:41:45 2022
+# Make data base, printed on Fri Jun  3 13:17:28 2022
 
 # Variables
 
@@ -19,7 +19,7 @@ make: *** No rule to make target 'all'.  Stop.
 # default
 .SHELLFLAGS := -c
 # environment
-VSCODE_AGENT_FOLDER = /root/.vscode-server
+VSCODE_AGENT_FOLDER = /root/.vscode-server-insiders
 # environment
 VSCODE_LOG_NATIVE = false
 # automatic
@@ -35,7 +35,7 @@ CURDIR := /home/wangyonglin/github/wangyonglin
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"42e84e0914b17800d483f69e299e1b00.zh-cn","_translationsConfigFile":"/root/.vscode-server/data/clp/42e84e0914b17800d483f69e299e1b00.zh-cn/tcf.json","_cacheRoot":"/root/.vscode-server/data/clp/42e84e0914b17800d483f69e299e1b00.zh-cn","_resolvedLanguagePackCoreLocation":"/root/.vscode-server/data/clp/42e84e0914b17800d483f69e299e1b00.zh-cn/da15b6fd3ef856477bf6f4fb29ba1b7af717770d","_corruptedFile":"/root/.vscode-server/data/clp/42e84e0914b17800d483f69e299e1b00.zh-cn/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"d7f6db591c7d3a6a923d60f42c6bee7e.zh-cn","_translationsConfigFile":"/root/.vscode-server-insiders/data/clp/d7f6db591c7d3a6a923d60f42c6bee7e.zh-cn/tcf.json","_cacheRoot":"/root/.vscode-server-insiders/data/clp/d7f6db591c7d3a6a923d60f42c6bee7e.zh-cn","_resolvedLanguagePackCoreLocation":"/root/.vscode-server-insiders/data/clp/d7f6db591c7d3a6a923d60f42c6bee7e.zh-cn/6428d0fc7dae5801cdaf2d160ac39a3dfc8f0c06","_corruptedFile":"/root/.vscode-server-insiders/data/clp/d7f6db591c7d3a6a923d60f42c6bee7e.zh-cn/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile
@@ -55,15 +55,15 @@ LESSOPEN = ||/usr/bin/lesspipe.sh %s
 # environment
 VSCODE_CWD = /root
 # environment
-SSH_CONNECTION = 192.168.1.3 62080 192.168.1.2 22
+SSH_CONNECTION = 192.168.1.3 49789 192.168.1.2 22
 # environment
-PATH = /root/.vscode-server/bin/da15b6fd3ef856477bf6f4fb29ba1b7af717770d/bin/remote-cli:/root/esp/xtensa-lx106-elf/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
+PATH = /root/.vscode-server-insiders/bin/6428d0fc7dae5801cdaf2d160ac39a3dfc8f0c06/bin/remote-cli:/root/esp/xtensa-lx106-elf/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
 # environment
 XDG_RUNTIME_DIR = /run/user/0
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /run/user/0/vscode-ipc-436f65de-c975-4093-b073-245b2c62f5e9.sock
+VSCODE_IPC_HOOK_CLI = /run/user/0/vscode-ipc-bb4d84b4-4e0f-4a5d-b22d-fa7e98d35125.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # automatic
@@ -105,7 +105,7 @@ MAKECMDGOALS := all
 # environment
 SHLVL = 5
 # environment
-XDG_SESSION_ID = 24
+XDG_SESSION_ID = 69
 # environment
 USER = root
 # makefile
@@ -123,15 +123,16 @@ MAKEFLAGS = pqrR
 # environment
 MFLAGS = -pqrR
 # environment
-SSH_CLIENT = 192.168.1.3 62080 22
+SSH_CLIENT = 192.168.1.3 49789 22
 # environment
 MAIL = /var/spool/mail/root
 # environment
 IDF_PATH = /root/esp/ESP8266_RTOS_SDK
+ 
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
-BROWSER = /root/.vscode-server/bin/da15b6fd3ef856477bf6f4fb29ba1b7af717770d/bin/helpers/browser.sh
+BROWSER = /root/.vscode-server-insiders/bin/6428d0fc7dae5801cdaf2d160ac39a3dfc8f0c06/bin/helpers/browser.sh
 # environment
 VSCODE_HANDLES_SIGPIPE = true
 # default
@@ -169,9 +170,9 @@ VSCODE_EXTHOST_WILL_SEND_SOCKET = true
 
 # Directories
 
-# . (device 64768, inode 1070499): 28 files, no impossibilities.
+# . (device 64768, inode 1070499): 32 files, no impossibilities.
 
-# 28 files, no impossibilities in 1 directories.
+# 32 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -194,7 +195,6 @@ Makefile:
 #  Failed to be updated.
 
 # Not a target:
- 
 makefile:
 #  Implicit rule search has been done.
 #  File does not exist.
@@ -222,12 +222,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 36 / storage = 329 B / avg = 9 B
-# current buf: size = 8162 B / used = 329 B / count = 36 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 40 / storage = 370 B / avg = 9 B
+# current buf: size = 8162 B / used = 370 B / count = 40 / avg = 9 B
 
-# strcache performance: lookups = 39 / hit rate = 7%
+# strcache performance: lookups = 43 / hit rate = 6%
 # hash-table stats:
-# Load=36/8192=0%, Rehash=0, Collisions=1/39=3%
-# Finished Make data base on Fri May 13 04:41:45 2022
+# Load=40/8192=0%, Rehash=0, Collisions=1/43=2%
+# Finished Make data base on Fri Jun  3 13:17:28 2022
 
  

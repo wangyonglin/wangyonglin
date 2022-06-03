@@ -128,8 +128,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libhttps_la_LIBADD =
-am_libhttps_la_OBJECTS = httpd.lo client.lo hostcheck.lo \
-	openssl_hostname_validation.lo
+am_libhttps_la_OBJECTS = client.lo hostcheck.lo \
+	openssl_hostname_validation.lo conf.lo config.lo
 libhttps_la_OBJECTS = $(am_libhttps_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -150,8 +150,8 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/client.Plo ./$(DEPDIR)/hostcheck.Plo \
-	./$(DEPDIR)/httpd.Plo \
+am__depfiles_remade = ./$(DEPDIR)/client.Plo ./$(DEPDIR)/conf.Plo \
+	./$(DEPDIR)/config.Plo ./$(DEPDIR)/hostcheck.Plo \
 	./$(DEPDIR)/openssl_hostname_validation.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -320,10 +320,11 @@ AUTOMAKE_OPTIONS = foreign
 AM_CPPFLAGS = -I $(top_srcdir)/include/
 lib_LTLIBRARIES = libhttps.la
 libhttps_la_SOURCES = \
-     httpd.c \
      client.c \
      hostcheck.c \
-     openssl_hostname_validation.c 
+     openssl_hostname_validation.c \
+     conf.c \
+     config.c
 
 all: all-am
 
@@ -404,8 +405,9 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/client.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/conf.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/config.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hostcheck.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/httpd.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/openssl_hostname_validation.Plo@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
@@ -570,8 +572,9 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/client.Plo
+	-rm -f ./$(DEPDIR)/conf.Plo
+	-rm -f ./$(DEPDIR)/config.Plo
 	-rm -f ./$(DEPDIR)/hostcheck.Plo
-	-rm -f ./$(DEPDIR)/httpd.Plo
 	-rm -f ./$(DEPDIR)/openssl_hostname_validation.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -619,8 +622,9 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/client.Plo
+	-rm -f ./$(DEPDIR)/conf.Plo
+	-rm -f ./$(DEPDIR)/config.Plo
 	-rm -f ./$(DEPDIR)/hostcheck.Plo
-	-rm -f ./$(DEPDIR)/httpd.Plo
 	-rm -f ./$(DEPDIR)/openssl_hostname_validation.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

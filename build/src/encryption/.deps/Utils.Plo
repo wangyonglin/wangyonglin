@@ -42,8 +42,9 @@ Utils.lo: ../../../src/encryption/Utils.c /usr/include/stdc-predef.h \
  /usr/include/bits/stat.h /usr/include/unistd.h \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h /usr/include/sys/stat.h \
- /usr/include/openssl/aes.h /usr/include/openssl/opensslconf.h \
+ /usr/include/bits/getopt_core.h /usr/include/memory.h \
+ /usr/include/sys/stat.h /usr/include/openssl/aes.h \
+ /usr/include/openssl/opensslconf.h \
  /usr/include/openssl/opensslconf-x86_64.h \
  /usr/include/openssl/opensslv.h /usr/include/openssl/evp.h \
  /usr/include/openssl/ossl_typ.h \
@@ -266,6 +267,8 @@ Utils.lo: ../../../src/encryption/Utils.c /usr/include/stdc-predef.h \
 /usr/include/bits/getopt_posix.h:
 
 /usr/include/bits/getopt_core.h:
+
+/usr/include/memory.h:
 
 /usr/include/sys/stat.h:
 

@@ -3,39 +3,36 @@
 #include <wangyonglin/daemon.h>
 #include <wangyonglin/log.h>
 #include <wangyonglin/pid.h>
+
 int main(int argc, char *argv[])
 {
-    const char *cfname = "/home/wangyonglin/github/wangyonglin/conf/wangyonglin.conf";
 
-    config_t *config = config_new(cfname);
-    if (config)
+    config_t *config = config_crt(argc, argv);
+    if (config && config->conf_filename)
     {
-        if (log_init(config) == ok)
+        if (conf_crt(&(config->conf), config->conf_filename))
         {
-            if (daemond(config) == ok)
-            {
-                log_write(config, LOG_INFO, "daemon ok!");
-            }
-            else
-            {
-                log_write(config, LOG_INFO, "daemon failed!");
-            }
 
-            if (pid_crt(config) == ok)
+            if (log_init(config) == ok)
             {
-                log_write(config, LOG_INFO, "pid create ok!");
-                if (application(config, NULL) == ok)
+
+                if (pid_crt(config) == ok)
                 {
-                    log_write(config, LOG_INFO, "application ok!");
-                }
-                if (pid_del(config) == ok)
-                {
-                    log_write(config, LOG_INFO, "pid delect ok!");
-                    config->pid_activated == disabled;
+                    if (config->daemoned == true)
+                    {
+                        daemond(config);
+                    }
+                    if (application(config, NULL) == ok)
+                    {
+                        log_write(config, LOG_INFO, "application ok!");
+                    }
+                    pid_del(config);
                 }
             }
+            conf_del(config->conf);
         }
-        config_free(config);
+
+        config_del(config);
     }
 
     return 0;

@@ -109,9 +109,10 @@ PROGRAMS = $(bin_PROGRAMS)
 am_wangyonglin_OBJECTS = application.$(OBJEXT)
 wangyonglin_OBJECTS = $(am_wangyonglin_OBJECTS)
 wangyonglin_DEPENDENCIES = $(top_builddir)/src/core/libcore.la \
-	$(top_builddir)/src/json/libjson.la \
+	$(top_builddir)/src/mqtt/libmqtt.la \
+	$(top_builddir)/src/cjson/libcjson.la \
 	$(top_builddir)/src/https/libhttps.la \
-	$(top_builddir)/src/encryption/libencryption.la
+	$(top_builddir)/src/string/libstring.la
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
@@ -225,8 +226,9 @@ ETAGS = etags
 CTAGS = ctags
 CSCOPE = cscope
 DIST_SUBDIRS = $(SUBDIRS)
-am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config.h.in compile \
-	config.guess config.sub depcomp install-sh ltmain.sh missing
+am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config.h.in COPYING \
+	INSTALL compile config.guess config.sub depcomp install-sh \
+	ltmain.sh missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -304,9 +306,10 @@ INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
+
 #需要引用的动态库文件
 LIBS = -lssl -lpthread -lm -levent_openssl -levent -lcurl -lcrypto  -g -O2 -Wall -pedantic -lm -levent -lssl -lcrypto \
-	-lpthread -levent_openssl -lcurl
+	-lpthread -levent_openssl -lcurl -lpaho-mqtt3c -lpaho-mqtt3a
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
@@ -394,15 +397,17 @@ AM_CPPFLAGS = -I  $(top_srcdir)/include/
 wangyonglin_SOURCES = application.c 
 SUBDIRS = \
     src/core\
-    src/json\
+    src/cjson\
+    src/mqtt\
     src/https\
-    src/encryption
+    src/string
 
 wangyonglin_LDADD = \
     $(top_builddir)/src/core/libcore.la \
-    $(top_builddir)/src/json/libjson.la \
+    $(top_builddir)/src/mqtt/libmqtt.la \
+    $(top_builddir)/src/cjson/libcjson.la \
     $(top_builddir)/src/https/libhttps.la \
-    $(top_builddir)/src/encryption/libencryption.la \
+    $(top_builddir)/src/string/libstring.la \
     $(FLIBS) 
 
 

@@ -6,8 +6,10 @@ ok_t pid_crt(config_t *config)
     if (config && config->conf->handler)
     {
         config->pid_values = getpid();
-        config->pid_filename = conf_get_string(config->conf, NULL, PID_FILENAME);
-        config->pid_activated = disabled;
+        if (config_get_string(config, NULL, PID_FILENAME, &config->pid_filename) != ok)
+        {
+            config->pid_filename = strdup("");
+        }
         if (config->pid_filename)
         {
             int pid_fd;
@@ -16,7 +18,6 @@ ok_t pid_crt(config_t *config)
             if (len <= 0)
             {
                 log_write(config, LOG_ERR, "Pid error (%s)", strerror(errno));
-                config->pid_activated = disabled;
                 return failed;
             }
 
@@ -25,13 +26,11 @@ ok_t pid_crt(config_t *config)
             if (pid_fd < 0)
             {
                 log_write(config, LOG_ERR, "unable to set pidfile '%s': %s", config->pid_filename, strerror(errno));
-                config->pid_activated = disabled;
                 return failed;
             }
             if (lockf(pid_fd, F_TLOCK, 0) < 0)
             {
                 log_write(config, LOG_ERR, "unable to lockf file: %s", strerror(errno));
-                config->pid_activated = disabled;
                 return failed;
             }
             ssize_t ret = write(pid_fd, val, (unsigned int)len);
@@ -39,7 +38,6 @@ ok_t pid_crt(config_t *config)
             {
                 log_write(config, LOG_ERR, "unable to write pidfile: %s", strerror(errno));
                 close(pid_fd);
-                config->pid_activated = disabled;
                 return failed;
             }
             else if ((size_t)ret != len)
@@ -48,12 +46,12 @@ ok_t pid_crt(config_t *config)
                                            " %" PRIdMAX " of %" PRIuMAX " bytes.",
                           (intmax_t)ret, (uintmax_t)len);
                 close(pid_fd);
-                config->pid_activated = disabled;
+
                 return failed;
             }
             close(pid_fd);
         }
-        config->pid_activated = enabled;
+
         return ok;
     }
 
@@ -62,11 +60,10 @@ ok_t pid_crt(config_t *config)
 
 ok_t pid_del(config_t *config)
 {
-    if (config && config->pid_filename && config->pid_activated == enabled)
+    if (config && config->pid_filename)
     {
         if (unlink(config->pid_filename) == 0)
         {
-            config->pid_activated==disabled;
             return ok;
         }
         else

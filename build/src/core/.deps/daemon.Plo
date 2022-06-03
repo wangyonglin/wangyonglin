@@ -43,8 +43,20 @@ daemon.lo: ../../../src/core/daemon.c /usr/include/stdc-predef.h \
  /usr/include/bits/stat.h /usr/include/unistd.h \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h /usr/include/sys/stat.h \
- /usr/include/openssl/aes.h /usr/include/openssl/opensslconf.h \
+ /usr/include/bits/getopt_core.h /usr/include/memory.h \
+ /usr/include/sys/stat.h /usr/include/getopt.h \
+ /usr/include/bits/getopt_ext.h /usr/include/signal.h \
+ /usr/include/bits/signum.h /usr/include/bits/signum-generic.h \
+ /usr/include/bits/types/sig_atomic_t.h \
+ /usr/include/bits/types/siginfo_t.h /usr/include/bits/types/__sigval_t.h \
+ /usr/include/bits/siginfo-arch.h /usr/include/bits/siginfo-consts.h \
+ /usr/include/bits/types/sigval_t.h /usr/include/bits/types/sigevent_t.h \
+ /usr/include/bits/sigevent-consts.h /usr/include/bits/sigaction.h \
+ /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
+ /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
+ /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
+ /usr/include/bits/sigthread.h /usr/include/openssl/aes.h \
+ /usr/include/openssl/opensslconf.h \
  /usr/include/openssl/opensslconf-x86_64.h \
  /usr/include/openssl/opensslv.h /usr/include/openssl/evp.h \
  /usr/include/openssl/ossl_typ.h \
@@ -104,6 +116,8 @@ daemon.lo: ../../../src/core/daemon.c /usr/include/stdc-predef.h \
  /usr/include/event2/bufferevent_compat.h /usr/include/event2/tag.h \
  /usr/include/event2/tag_compat.h /usr/include/event2/http_struct.h \
  /usr/include/event2/http_compat.h ../../../include/wangyonglin/core.h \
+ ../../../include/string/string.h ../../../include/string/Base64.h \
+ ../../../include/string/SHA256WithRSA.h \
  ../../../include/wangyonglin/conf.h ../../../include/wangyonglin/log.h
 
 /usr/include/stdc-predef.h:
@@ -270,7 +284,51 @@ daemon.lo: ../../../src/core/daemon.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/getopt_core.h:
 
+/usr/include/memory.h:
+
 /usr/include/sys/stat.h:
+
+/usr/include/getopt.h:
+
+/usr/include/bits/getopt_ext.h:
+
+/usr/include/signal.h:
+
+/usr/include/bits/signum.h:
+
+/usr/include/bits/signum-generic.h:
+
+/usr/include/bits/types/sig_atomic_t.h:
+
+/usr/include/bits/types/siginfo_t.h:
+
+/usr/include/bits/types/__sigval_t.h:
+
+/usr/include/bits/siginfo-arch.h:
+
+/usr/include/bits/siginfo-consts.h:
+
+/usr/include/bits/types/sigval_t.h:
+
+/usr/include/bits/types/sigevent_t.h:
+
+/usr/include/bits/sigevent-consts.h:
+
+/usr/include/bits/sigaction.h:
+
+/usr/include/bits/sigcontext.h:
+
+/usr/include/bits/types/stack_t.h:
+
+/usr/include/sys/ucontext.h:
+
+/usr/include/bits/sigstack.h:
+
+/usr/include/bits/ss_flags.h:
+
+/usr/include/bits/types/struct_sigstack.h:
+
+/usr/include/bits/sigthread.h:
 
 /usr/include/openssl/aes.h:
 
@@ -503,6 +561,12 @@ daemon.lo: ../../../src/core/daemon.c /usr/include/stdc-predef.h \
 /usr/include/event2/http_compat.h:
 
 ../../../include/wangyonglin/core.h:
+
+../../../include/string/string.h:
+
+../../../include/string/Base64.h:
+
+../../../include/string/SHA256WithRSA.h:
 
 ../../../include/wangyonglin/conf.h:
 

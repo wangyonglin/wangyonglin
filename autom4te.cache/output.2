@@ -13584,7 +13584,7 @@ fi
 done
 
 
-ac_config_files="$ac_config_files Makefile src/core/Makefile src/encryption/Makefile src/https/Makefile src/json/Makefile"
+ac_config_files="$ac_config_files Makefile src/core/Makefile src/string/Makefile src/https/Makefile src/mqtt/Makefile src/cjson/Makefile"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -14603,9 +14603,10 @@ do
     "libtool") CONFIG_COMMANDS="$CONFIG_COMMANDS libtool" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "src/core/Makefile") CONFIG_FILES="$CONFIG_FILES src/core/Makefile" ;;
-    "src/encryption/Makefile") CONFIG_FILES="$CONFIG_FILES src/encryption/Makefile" ;;
+    "src/string/Makefile") CONFIG_FILES="$CONFIG_FILES src/string/Makefile" ;;
     "src/https/Makefile") CONFIG_FILES="$CONFIG_FILES src/https/Makefile" ;;
-    "src/json/Makefile") CONFIG_FILES="$CONFIG_FILES src/json/Makefile" ;;
+    "src/mqtt/Makefile") CONFIG_FILES="$CONFIG_FILES src/mqtt/Makefile" ;;
+    "src/cjson/Makefile") CONFIG_FILES="$CONFIG_FILES src/cjson/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac

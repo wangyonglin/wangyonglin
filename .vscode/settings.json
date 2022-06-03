@@ -34,6 +34,10 @@
         "cjson_results.h": "c",
         "istream": "c",
         "ostream": "c",
-        "cmath": "c"
+        "cmath": "c",
+        "mqttclient.h": "c",
+        "unistd.h": "c",
+        "memory.h": "c",
+        "utils.h": "c"
     }
 }

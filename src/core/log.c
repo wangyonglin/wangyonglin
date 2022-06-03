@@ -1,23 +1,24 @@
 #include <wangyonglin/linux.h>
 #include <wangyonglin/config.h>
 #include <wangyonglin/log.h>
-#include <wangyonglin/string.h>
-int log_vprintf(const char *filename, tags_t tag, unsigned int priority, const char *fmt, va_list va);
+int log_vprintf(const char *filename, levels_t tag, unsigned int priority, const char *fmt, va_list va);
 
 ok_t log_init(config_t *config)
 {
+  
 
     if (config && config->conf->handler)
     {
-        config->log_filename = conf_get_string(config->conf,NULL, "log_filename");
-        config->log_tags = conf_get_tags(config->conf, NULL, "log_filewrite");
+        config_get_string(config, NULL, "log_filename", &config->log_filename);
+        config_get_levels(config, NULL, "log_filewrite", &config->log_tags);
+
         if (config->log_filename && (config->log_tags != None))
         {
-            config->log_activated =enabled;
+
             return ok;
         }
     }
-    config->log_activated=disabled;
+
     return failed;
 }
 int log_write(config_t *config, unsigned int priority, const char *fmt, ...)
@@ -30,7 +31,7 @@ int log_write(config_t *config, unsigned int priority, const char *fmt, ...)
     return rc;
 }
 
-int log_vprintf(const char *filename, tags_t tag, unsigned int priority, const char *fmt, va_list va)
+int log_vprintf(const char *filename, levels_t tag, unsigned int priority, const char *fmt, va_list va)
 {
     char log_line[1000];
     size_t log_line_pos;

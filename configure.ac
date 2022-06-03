@@ -47,7 +47,8 @@ AC_CHECK_FUNCS([bzero getpass localeconv memset strcasecmp strchr strdup strerro
 
 AC_CONFIG_FILES([Makefile
                  src/core/Makefile
-                 src/encryption/Makefile
+                 src/string/Makefile
                  src/https/Makefile
-                 src/json/Makefile])
+                 src/mqtt/Makefile
+                 src/cjson/Makefile])
 AC_OUTPUT
