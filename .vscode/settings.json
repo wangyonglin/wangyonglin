@@ -38,6 +38,7 @@
         "mqttclient.h": "c",
         "unistd.h": "c",
         "memory.h": "c",
-        "utils.h": "c"
+        "utils.h": "c",
+        "e_os2.h": "c"
     }
 }
