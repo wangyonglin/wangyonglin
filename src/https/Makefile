@@ -128,7 +128,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libhttps_la_LIBADD =
-am_libhttps_la_OBJECTS = httpd.lo
+am_libhttps_la_OBJECTS = client.lo hostcheck.lo \
+	openssl_hostname_validation.lo conf.lo config.lo
 libhttps_la_OBJECTS = $(am_libhttps_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -149,7 +150,9 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/httpd.Plo
+am__depfiles_remade = ./$(DEPDIR)/client.Plo ./$(DEPDIR)/conf.Plo \
+	./$(DEPDIR)/config.Plo ./$(DEPDIR)/hostcheck.Plo \
+	./$(DEPDIR)/openssl_hostname_validation.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -210,10 +213,6 @@ CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
 CPP = gcc -E
 CPPFLAGS = 
-CXX = g++
-CXXCPP = g++ -E
-CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -235,7 +234,7 @@ INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
-LIBS = -lssl -lpthread -lm -levent_openssl -levent -lcrypto -lcjson 
+LIBS = -lssl -lpthread -lm -levent_openssl -levent -lcurl -lcrypto 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
@@ -258,6 +257,7 @@ PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
 PACKAGE_VERSION = 1.0
 PATH_SEPARATOR = :
+POW_LIB = 
 RANLIB = ranlib
 SED = /usr/bin/sed
 SET_MAKE = 
@@ -270,7 +270,6 @@ abs_top_builddir = /home/wangyonglin/github/wangyonglin
 abs_top_srcdir = /home/wangyonglin/github/wangyonglin
 ac_ct_AR = ar
 ac_ct_CC = gcc
-ac_ct_CXX = g++
 ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .
@@ -306,7 +305,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /usr/local/wangyonglin
+prefix = /usr/local
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
@@ -318,10 +317,14 @@ top_build_prefix = ../../
 top_builddir = ../..
 top_srcdir = ../..
 AUTOMAKE_OPTIONS = foreign
-lib_LTLIBRARIES = libhttps.la
 AM_CPPFLAGS = -I $(top_srcdir)/include/
+lib_LTLIBRARIES = libhttps.la
 libhttps_la_SOURCES = \
-     httpd.c
+     client.c \
+     hostcheck.c \
+     openssl_hostname_validation.c \
+     conf.c \
+     config.c
 
 all: all-am
 
@@ -401,7 +404,11 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/httpd.Plo # am--include-marker
+include ./$(DEPDIR)/client.Plo # am--include-marker
+include ./$(DEPDIR)/conf.Plo # am--include-marker
+include ./$(DEPDIR)/config.Plo # am--include-marker
+include ./$(DEPDIR)/hostcheck.Plo # am--include-marker
+include ./$(DEPDIR)/openssl_hostname_validation.Plo # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -564,7 +571,11 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 	mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/httpd.Plo
+		-rm -f ./$(DEPDIR)/client.Plo
+	-rm -f ./$(DEPDIR)/conf.Plo
+	-rm -f ./$(DEPDIR)/config.Plo
+	-rm -f ./$(DEPDIR)/hostcheck.Plo
+	-rm -f ./$(DEPDIR)/openssl_hostname_validation.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -610,7 +621,11 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/httpd.Plo
+		-rm -f ./$(DEPDIR)/client.Plo
+	-rm -f ./$(DEPDIR)/conf.Plo
+	-rm -f ./$(DEPDIR)/config.Plo
+	-rm -f ./$(DEPDIR)/hostcheck.Plo
+	-rm -f ./$(DEPDIR)/openssl_hostname_validation.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -647,9 +662,6 @@ uninstall-am: uninstall-libLTLIBRARIES
 
 .PRECIOUS: Makefile
 
-     client.c \
-     hostcheck.c \
-     openssl_hostname_validation.c
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

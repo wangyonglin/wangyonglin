@@ -1,0 +1,1 @@
+/usr/local/wangyonglin/bin/wangyonglin -d -c /usr/local/wangyonglin/conf/wangyonglin.conf

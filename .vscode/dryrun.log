@@ -1,6 +1,9 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/wangyonglin/github/wangyonglin'
-make: Leaving directory '/home/wangyonglin/github/wangyonglin'
  
-make: *** No targets specified and no makefile found.  Stop.
+CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing aclocal-1.16 
+ 
+ cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing automake-1.16 --foreign
+ 
+make: *** [Makefile:434: Makefile.in] Interrupt
 

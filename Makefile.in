@@ -15,7 +15,6 @@
 @SET_MAKE@
 
 
-
 VPATH = @srcdir@
 am__is_gnu_make = { \
   if test -z '$(MAKELEVEL)'; then \
@@ -73,6 +72,7 @@ am__make_running_with_option = \
 am__make_dryrun = (target_option=n; $(am__make_running_with_option))
 am__make_keepgoing = (target_option=k; $(am__make_running_with_option))
 pkgdatadir = $(datadir)/@PACKAGE@
+pkgincludedir = $(includedir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
 pkglibexecdir = $(libexecdir)/@PACKAGE@
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
@@ -96,7 +96,7 @@ am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(top_srcdir)/configure \
-	$(am__configure_deps) $(pkginclude_HEADERS) $(am__DIST_COMMON)
+	$(am__configure_deps) $(am__DIST_COMMON)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
@@ -104,7 +104,7 @@ CONFIG_HEADER = config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(confdir)" \
-	"$(DESTDIR)$(pkgincludedir)"
+	"$(DESTDIR)$(logsdir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_wangyonglin_OBJECTS = application.$(OBJEXT)
 wangyonglin_OBJECTS = $(am_wangyonglin_OBJECTS)
@@ -194,8 +194,7 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-DATA = $(conf_DATA)
-HEADERS = $(pkginclude_HEADERS)
+DATA = $(conf_DATA) $(logs_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 am__recursive_targets = \
@@ -271,7 +270,6 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-pkgincludedir = $(prefix)/include/wangyonglin
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
@@ -351,7 +349,6 @@ am__leading_dot = @am__leading_dot@
 am__quote = @am__quote@
 am__tar = @am__tar@
 am__untar = @am__untar@
-#安装的各个目录和文件
 bindir = $(prefix)/bin
 build = @build@
 build_alias = @build_alias@
@@ -370,7 +367,8 @@ host_cpu = @host_cpu@
 host_os = @host_os@
 host_vendor = @host_vendor@
 htmldir = @htmldir@
-includedir = @includedir@
+#安装的各个目录和文件
+includedir = $(prefix)/include
 infodir = @infodir@
 install_sh = @install_sh@
 libdir = $(prefix)/lib
@@ -392,16 +390,11 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+ACLOCAL_AMFLAGS = -I m4
 AUTOMAKE_OPTIONS = foreign
 AM_CPPFLAGS = -I  $(top_srcdir)/include/
 wangyonglin_SOURCES = application.c 
-SUBDIRS = \
-    src/core\
-    src/cjson\
-    src/mqtt\
-    src/https\
-    src/string
-
+SUBDIRS = src/core src/cjson src/mqtt src/https src/string
 wangyonglin_LDADD = \
     $(top_builddir)/src/core/libcore.la \
     $(top_builddir)/src/mqtt/libmqtt.la \
@@ -411,13 +404,19 @@ wangyonglin_LDADD = \
     $(FLIBS) 
 
 
+#if ENABLE_EXAMPLES
+#SUBDIRS            += examples
+#endif
 # Headers to install
 #include_HEADERS= $(top_srcdir)/include/wangyonglin/*.h
 #includedir=$(prefix)/include/wangyonglin
-pkginclude_HEADERS = $(top_srcdir)/include/wangyonglin/*.h
 confdir = $(prefix)/conf
 conf_DATA = $(top_srcdir)/conf/wangyonglin.conf
 logsdir = $(prefix)/logs
+logs_DATA = $(top_srcdir)/logs/error.log
+EXTRA_DIST = README.md $(top_srcdir)/include/* \
+	$(top_srcdir)/conf/wangyonglin.conf \
+	$(top_srcdir)/logs/error.log
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -589,27 +588,27 @@ uninstall-confDATA:
 	@list='$(conf_DATA)'; test -n "$(confdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(confdir)'; $(am__uninstall_files_from_dir)
-install-pkgincludeHEADERS: $(pkginclude_HEADERS)
+install-logsDATA: $(logs_DATA)
 	@$(NORMAL_INSTALL)
-	@list='$(pkginclude_HEADERS)'; test -n "$(pkgincludedir)" || list=; \
+	@list='$(logs_DATA)'; test -n "$(logsdir)" || list=; \
 	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(pkgincludedir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(pkgincludedir)" || exit 1; \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(logsdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(logsdir)" || exit 1; \
 	fi; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(pkgincludedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(pkgincludedir)" || exit $$?; \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(logsdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(logsdir)" || exit $$?; \
 	done
 
-uninstall-pkgincludeHEADERS:
+uninstall-logsDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(pkginclude_HEADERS)'; test -n "$(pkgincludedir)" || list=; \
+	@list='$(logs_DATA)'; test -n "$(logsdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(pkgincludedir)'; $(am__uninstall_files_from_dir)
+	dir='$(DESTDIR)$(logsdir)'; $(am__uninstall_files_from_dir)
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run 'make' without going through this Makefile.
@@ -910,10 +909,10 @@ distcleancheck: distclean
 	       exit 1; } >&2
 check-am: all-am
 check: check-recursive
-all-am: Makefile $(PROGRAMS) $(DATA) $(HEADERS) config.h
+all-am: Makefile $(PROGRAMS) $(DATA) config.h
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(confdir)" "$(DESTDIR)$(pkgincludedir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(confdir)" "$(DESTDIR)$(logsdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -969,7 +968,7 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-confDATA install-pkgincludeHEADERS
+install-data-am: install-confDATA install-logsDATA
 
 install-dvi: install-dvi-recursive
 
@@ -1018,7 +1017,7 @@ ps: ps-recursive
 ps-am:
 
 uninstall-am: uninstall-binPROGRAMS uninstall-confDATA \
-	uninstall-pkgincludeHEADERS
+	uninstall-logsDATA
 
 .MAKE: $(am__recursive_targets) all install-am install-strip
 
@@ -1033,14 +1032,14 @@ uninstall-am: uninstall-binPROGRAMS uninstall-confDATA \
 	info-am install install-am install-binPROGRAMS \
 	install-confDATA install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am install-man \
-	install-pdf install-pdf-am install-pkgincludeHEADERS \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs installdirs-am maintainer-clean \
+	install-html-am install-info install-info-am install-logsDATA \
+	install-man install-pdf install-pdf-am install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs installdirs-am maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags tags-am uninstall uninstall-am uninstall-binPROGRAMS \
-	uninstall-confDATA uninstall-pkgincludeHEADERS
+	uninstall-confDATA uninstall-logsDATA
 
 .PRECIOUS: Makefile
 
