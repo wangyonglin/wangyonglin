@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT(wangyonglin, 1.0,admin@wangyonglin.com)
+AC_INIT([tiger],m4_esyscmd([git rev-list --count HEAD | tr -d '\n']),[admin@wangyonglin.com])
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([application.c])
 AC_CONFIG_HEADERS([config.h])
@@ -10,6 +10,13 @@ LIBTOOL
 LT_INIT
 # Checks for programs.
 AC_PROG_CC
+
+## build settings
+#m4_define(PAHO_VERSION_MAJOR,1)
+#m4_define(PAHO_VERSION_MINOR,3)
+#m4_define(PAHO_VERSION_PATCH,10)
+#m4_define([CLIENT_VERSION], [PAHO_VERSION_MAJOR.PAHO_VERSION_MINOR.PAHO_VERSION_PATCH])
+
 
 # Checks for libraries.
 # FIXME: Replace `main' with a function in `-lcrypto':
@@ -44,11 +51,11 @@ AC_FUNC_REALLOC
 #AC_FUNC_STRNLEN
 AC_FUNC_STRTOD
 AC_CHECK_FUNCS([bzero getpass localeconv memset strcasecmp strchr strdup strerror strrchr strspn strstr])
-
-AC_CONFIG_FILES([Makefile
-                 src/core/Makefile
-                 src/string/Makefile
-                 src/https/Makefile
-                 src/mqtt/Makefile
-                 src/cjson/Makefile])
+AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([src/toml/Makefile])
+AC_CONFIG_FILES([src/mbedtls/Makefile])
+AC_CONFIG_FILES([src/unix/Makefile])
+AC_CONFIG_FILES([src/string/Makefile])
+AC_CONFIG_FILES([src/paho_mqtt_c/Makefile])
+AC_CONFIG_FILES([src/cjson/Makefile])
 AC_OUTPUT

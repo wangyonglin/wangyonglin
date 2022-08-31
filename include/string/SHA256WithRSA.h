@@ -1,7 +1,7 @@
 #ifndef __SHA256WITHRSA__H__
 #define __SHA256WITHRSA__H__
 
-#include <wangyonglin/linux.h>
+#include <string/unix.h>
 
 #define SHA256WithRSA RSA
 SHA256WithRSA *SHA256WithRSA_RSAPrivateKey_file(const char *file);

@@ -71,10 +71,10 @@ am__make_running_with_option = \
   test $$has_opt = yes
 am__make_dryrun = (target_option=n; $(am__make_running_with_option))
 am__make_keepgoing = (target_option=k; $(am__make_running_with_option))
-pkgdatadir = $(datadir)/wangyonglin
-pkgincludedir = $(includedir)/wangyonglin
-pkglibdir = $(libdir)/wangyonglin
-pkglibexecdir = $(libexecdir)/wangyonglin
+pkgdatadir = $(datadir)/tiger
+pkgincludedir = $(includedir)/tiger
+pkglibdir = $(libdir)/tiger
+pkglibexecdir = $(libexecdir)/tiger
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
 install_sh_DATA = $(install_sh) -c -m 644
 install_sh_PROGRAM = $(install_sh) -c
@@ -89,7 +89,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
 host_triplet = x86_64-pc-linux-gnu
-bin_PROGRAMS = wangyonglin$(EXEEXT)
+bin_PROGRAMS = tiger$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -103,15 +103,15 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(confdir)" \
-	"$(DESTDIR)$(logsdir)"
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(confdir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_wangyonglin_OBJECTS = application.$(OBJEXT)
-wangyonglin_OBJECTS = $(am_wangyonglin_OBJECTS)
-wangyonglin_DEPENDENCIES = $(top_builddir)/src/core/libcore.la \
-	$(top_builddir)/src/mqtt/libmqtt.la \
+am_tiger_OBJECTS = application.$(OBJEXT)
+tiger_OBJECTS = $(am_tiger_OBJECTS)
+tiger_DEPENDENCIES = $(top_builddir)/src/toml/libtoml.la \
+	$(top_builddir)/src/mbedtls/libmbedtls.la \
+	$(top_builddir)/src/paho_mqtt_c/libpaho_mqtt_c.la \
+	$(top_builddir)/src/unix/libunix.la \
 	$(top_builddir)/src/cjson/libcjson.la \
-	$(top_builddir)/src/https/libhttps.la \
 	$(top_builddir)/src/string/libstring.la
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -152,8 +152,8 @@ AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(wangyonglin_SOURCES)
-DIST_SOURCES = $(wangyonglin_SOURCES)
+SOURCES = $(tiger_SOURCES)
+DIST_SOURCES = $(tiger_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive cscopelist-recursive \
 	ctags-recursive dvi-recursive html-recursive info-recursive \
 	install-data-recursive install-dvi-recursive \
@@ -194,7 +194,7 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-DATA = $(conf_DATA) $(logs_DATA)
+DATA = $(conf_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 am__recursive_targets = \
@@ -322,13 +322,13 @@ OBJDUMP = objdump
 OBJEXT = o
 OTOOL = 
 OTOOL64 = 
-PACKAGE = wangyonglin
+PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
-PACKAGE_NAME = wangyonglin
-PACKAGE_STRING = wangyonglin 1.0
-PACKAGE_TARNAME = wangyonglin
+PACKAGE_NAME = tiger
+PACKAGE_STRING = tiger 15
+PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.0
+PACKAGE_VERSION = 15
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -336,7 +336,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.0
+VERSION = 15
 abs_builddir = /home/wangyonglin/github/wangyonglin
 abs_srcdir = /home/wangyonglin/github/wangyonglin
 abs_top_builddir = /home/wangyonglin/github/wangyonglin
@@ -379,7 +379,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /usr/local
+prefix = /usr/local/wangyonglin
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
@@ -393,13 +393,21 @@ top_srcdir = .
 ACLOCAL_AMFLAGS = -I m4
 AUTOMAKE_OPTIONS = foreign
 AM_CPPFLAGS = -I  $(top_srcdir)/include/
-wangyonglin_SOURCES = application.c 
-SUBDIRS = src/core src/cjson src/mqtt src/https src/string
-wangyonglin_LDADD = \
-    $(top_builddir)/src/core/libcore.la \
-    $(top_builddir)/src/mqtt/libmqtt.la \
+tiger_SOURCES = application.c 
+SUBDIRS = \
+    src/unix   \
+    src/cjson   \
+    src/string  \
+    src/toml    \
+    src/mbedtls \
+    src/paho_mqtt_c
+
+tiger_LDADD = \
+    $(top_builddir)/src/toml/libtoml.la \
+    $(top_builddir)/src/mbedtls/libmbedtls.la \
+    $(top_builddir)/src/paho_mqtt_c/libpaho_mqtt_c.la \
+    $(top_builddir)/src/unix/libunix.la \
     $(top_builddir)/src/cjson/libcjson.la \
-    $(top_builddir)/src/https/libhttps.la \
     $(top_builddir)/src/string/libstring.la \
     $(FLIBS) 
 
@@ -411,12 +419,12 @@ wangyonglin_LDADD = \
 #include_HEADERS= $(top_srcdir)/include/wangyonglin/*.h
 #includedir=$(prefix)/include/wangyonglin
 confdir = $(prefix)/conf
-conf_DATA = $(top_srcdir)/conf/wangyonglin.conf
-logsdir = $(prefix)/logs
-logs_DATA = $(top_srcdir)/logs/error.log
+conf_DATA = $(top_srcdir)/conf/tiger.conf
+
+#logsdir =   $(prefix)/logs
+#logs_DATA = $(top_srcdir)/logs/error.log
 EXTRA_DIST = README.md $(top_srcdir)/include/* \
-	$(top_srcdir)/conf/wangyonglin.conf \
-	$(top_srcdir)/logs/error.log
+	$(top_srcdir)/conf/tiger.conf
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -520,9 +528,9 @@ clean-binPROGRAMS:
 	echo " rm -f" $$list; \
 	rm -f $$list
 
-wangyonglin$(EXEEXT): $(wangyonglin_OBJECTS) $(wangyonglin_DEPENDENCIES) $(EXTRA_wangyonglin_DEPENDENCIES) 
-	@rm -f wangyonglin$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(wangyonglin_OBJECTS) $(wangyonglin_LDADD) $(LIBS)
+tiger$(EXEEXT): $(tiger_OBJECTS) $(tiger_DEPENDENCIES) $(EXTRA_tiger_DEPENDENCIES) 
+	@rm -f tiger$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tiger_OBJECTS) $(tiger_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -588,27 +596,6 @@ uninstall-confDATA:
 	@list='$(conf_DATA)'; test -n "$(confdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(confdir)'; $(am__uninstall_files_from_dir)
-install-logsDATA: $(logs_DATA)
-	@$(NORMAL_INSTALL)
-	@list='$(logs_DATA)'; test -n "$(logsdir)" || list=; \
-	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(logsdir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(logsdir)" || exit 1; \
-	fi; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(logsdir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(logsdir)" || exit $$?; \
-	done
-
-uninstall-logsDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(logs_DATA)'; test -n "$(logsdir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(logsdir)'; $(am__uninstall_files_from_dir)
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run 'make' without going through this Makefile.
@@ -912,7 +899,7 @@ check: check-recursive
 all-am: Makefile $(PROGRAMS) $(DATA) config.h
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(confdir)" "$(DESTDIR)$(logsdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(confdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -968,7 +955,7 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-confDATA install-logsDATA
+install-data-am: install-confDATA
 
 install-dvi: install-dvi-recursive
 
@@ -1016,8 +1003,7 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-binPROGRAMS uninstall-confDATA \
-	uninstall-logsDATA
+uninstall-am: uninstall-binPROGRAMS uninstall-confDATA
 
 .MAKE: $(am__recursive_targets) all install-am install-strip
 
@@ -1032,17 +1018,17 @@ uninstall-am: uninstall-binPROGRAMS uninstall-confDATA \
 	info-am install install-am install-binPROGRAMS \
 	install-confDATA install-data install-data-am install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am install-logsDATA \
-	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs installdirs-am maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags tags-am uninstall uninstall-am uninstall-binPROGRAMS \
-	uninstall-confDATA uninstall-logsDATA
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	installdirs-am maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
+	uninstall-am uninstall-binPROGRAMS uninstall-confDATA
 
 .PRECIOUS: Makefile
 
+#EXTRA_DIST += $(top_srcdir)/logs/error.log
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

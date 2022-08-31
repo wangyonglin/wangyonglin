@@ -1,0 +1,6 @@
+OsWrapper.lo: OsWrapper.c /usr/include/stdc-predef.h \
+ ../../src/paho_mqtt_c/include/OsWrapper.h
+
+/usr/include/stdc-predef.h:
+
+../../src/paho_mqtt_c/include/OsWrapper.h:

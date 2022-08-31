@@ -70,10 +70,10 @@ am__make_running_with_option = \
   test $$has_opt = yes
 am__make_dryrun = (target_option=n; $(am__make_running_with_option))
 am__make_keepgoing = (target_option=k; $(am__make_running_with_option))
-pkgdatadir = $(datadir)/wangyonglin
-pkgincludedir = $(includedir)/wangyonglin
-pkglibdir = $(libdir)/wangyonglin
-pkglibexecdir = $(libexecdir)/wangyonglin
+pkgdatadir = $(datadir)/tiger
+pkgincludedir = $(includedir)/tiger
+pkglibdir = $(libdir)/tiger
+pkglibexecdir = $(libexecdir)/tiger
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
 install_sh_DATA = $(install_sh) -c -m 644
 install_sh_PROGRAM = $(install_sh) -c
@@ -128,7 +128,7 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libstring_la_LIBADD =
-am_libstring_la_OBJECTS = Base64.lo SHA256WithRSA.lo string.lo
+am_libstring_la_OBJECTS = SHA256WithRSA.lo string.lo
 libstring_la_OBJECTS = $(am_libstring_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -149,8 +149,8 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/Base64.Plo \
-	./$(DEPDIR)/SHA256WithRSA.Plo ./$(DEPDIR)/string.Plo
+am__depfiles_remade = ./$(DEPDIR)/SHA256WithRSA.Plo \
+	./$(DEPDIR)/string.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -247,13 +247,13 @@ OBJDUMP = objdump
 OBJEXT = o
 OTOOL = 
 OTOOL64 = 
-PACKAGE = wangyonglin
+PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
-PACKAGE_NAME = wangyonglin
-PACKAGE_STRING = wangyonglin 1.0
-PACKAGE_TARNAME = wangyonglin
+PACKAGE_NAME = tiger
+PACKAGE_STRING = tiger 15
+PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.0
+PACKAGE_VERSION = 15
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -261,7 +261,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.0
+VERSION = 15
 abs_builddir = /home/wangyonglin/github/wangyonglin/src/string
 abs_srcdir = /home/wangyonglin/github/wangyonglin/src/string
 abs_top_builddir = /home/wangyonglin/github/wangyonglin
@@ -303,7 +303,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /usr/local
+prefix = /usr/local/wangyonglin
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
@@ -318,9 +318,8 @@ AUTOMAKE_OPTIONS = foreign
 lib_LTLIBRARIES = libstring.la
 AM_CPPFLAGS = -I $(top_srcdir)/include/
 libstring_la_SOURCES = \
-     Base64.c \
      SHA256WithRSA.c \
-     string.c
+     string.c 
 
 all: all-am
 
@@ -400,7 +399,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/Base64.Plo # am--include-marker
 include ./$(DEPDIR)/SHA256WithRSA.Plo # am--include-marker
 include ./$(DEPDIR)/string.Plo # am--include-marker
 
@@ -565,8 +563,7 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 	mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/Base64.Plo
-	-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
+		-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -613,8 +610,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/Base64.Plo
-	-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
+		-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

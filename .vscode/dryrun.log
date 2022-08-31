@@ -1,9 +1,2107 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/wangyonglin/github/wangyonglin'
  
-CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing aclocal-1.16 
+CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing aclocal-1.16 -I m4
  
+aclocal-1.16: warning: couldn't open directory 'm4': No such file or directory
+
  cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing automake-1.16 --foreign
  
-make: *** [Makefile:434: Makefile.in] Interrupt
+CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing autoconf
+ 
+/bin/sh ./config.status --recheck
+ 
+running CONFIG_SHELL=/bin/sh /bin/sh ./configure --prefix=/usr/local/wangyonglin --no-create --no-recursion
+ 
+checking for a BSD-compatible install...  
+/usr/bin/install -c
+checking whether build environment is sane...  
+yes
+ 
+checking for a thread-safe mkdir -p...  
+/usr/bin/mkdir -p
+ 
+checking for gawk...  
+gawk
+checking whether make sets $(MAKE)...  
+yes
+ 
+checking whether make supports nested variables...  
+yes
+ 
+./configure: line 3009: LIBTOOL: command not found
+
+checking build system type...  
+x86_64-pc-linux-gnu
+ 
+checking host system type...  
+x86_64-pc-linux-gnu
+ 
+checking how to print strings...  
+printf
+ 
+checking whether make supports the include directive...  
+yes (GNU style)
+ 
+checking for gcc...  
+gcc
+ 
+checking whether the C compiler works...  
+yes
+checking for C compiler default output file name...  
+a.out
+ 
+checking for suffix of executables...  
+
+ 
+checking whether we are cross compiling...  
+no
+ 
+checking for suffix of object files...  
+o
+checking whether we are using the GNU C compiler...  
+yes
+ 
+checking whether gcc accepts -g...  
+yes
+ 
+checking for gcc option to accept ISO C89...  
+none needed
+ 
+checking whether gcc understands -c and -o together...  
+yes
+ 
+checking dependency style of gcc...  
+gcc3
+ 
+checking for a sed that does not truncate output...  
+/usr/bin/sed
+ 
+checking for grep that handles long lines and -e...  
+/usr/bin/grep
+ 
+checking for egrep...  
+/usr/bin/grep -E
+ 
+checking for fgrep...  
+/usr/bin/grep -F
+ 
+checking for ld used by gcc...  
+/usr/bin/ld
+ 
+checking if the linker (/usr/bin/ld) is GNU ld...  
+yes
+ 
+checking for BSD- or MS-compatible name lister (nm)...  
+/usr/bin/nm -B
+ 
+checking the name lister (/usr/bin/nm -B) interface...  
+BSD nm
+ 
+checking whether ln -s works... yes
+ 
+checking the maximum length of command line arguments...  
+1572864
+ 
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format...  
+func_convert_file_noop
+ 
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format...  
+func_convert_file_noop
+ 
+checking for /usr/bin/ld option to reload object files...  
+-r
+ 
+checking for objdump...  
+objdump
+ 
+checking how to recognize dependent libraries...  
+pass_all
+ 
+checking for dlltool...  
+no
+ 
+checking how to associate runtime and link libraries...  
+printf %s\n
+ 
+checking for ar...  
+ar
+ 
+checking for archiver @FILE support...  
+@
+ 
+checking for strip...  
+strip
+ 
+checking for ranlib...  
+ranlib
+ 
+checking command to parse /usr/bin/nm -B output from gcc object...  
+ok
+ 
+checking for sysroot...  
+no
+checking for a working dd...  
+/usr/bin/dd
+ 
+checking how to truncate binary pipes...  
+/usr/bin/dd bs=4096 count=1
+ 
+checking for mt... no
+checking if : is a manifest tool...  
+no
+ 
+checking how to run the C preprocessor...  
+gcc -E
+ 
+checking for ANSI C header files...  
+yes
+checking for sys/types.h... yes
+checking for sys/stat.h...  
+yes
+ 
+checking for stdlib.h...  
+yes
+ 
+checking for string.h...  
+yes
+ 
+checking for memory.h...  
+yes
+ 
+checking for strings.h...  
+yes
+ 
+checking for inttypes.h...  
+yes
+ 
+checking for stdint.h...  
+yes
+ 
+checking for unistd.h...  
+yes
+ 
+checking for dlfcn.h...  
+yes
+ 
+checking for objdir...  
+.libs
+ 
+checking if gcc supports -fno-rtti -fno-exceptions...  
+no
+ 
+checking for gcc option to produce PIC... -fPIC -DPIC
+ 
+checking if gcc PIC flag -fPIC -DPIC works...  
+yes
+ 
+checking if gcc static flag -static works...  
+no
+ 
+checking if gcc supports -c -o file.o...  
+yes
+checking if gcc supports -c -o file.o...  
+(cached) yes
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries...  
+yes
+ 
+checking whether -lc should be explicitly linked in...  
+no
+checking dynamic linker characteristics...  
+GNU/Linux ld.so
+ 
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible...  
+yes
+checking if libtool supports shared libraries...  
+yes
+checking whether to build shared libraries... yes
+ 
+checking whether to build static libraries... yes
+ 
+checking for gcc... (cached)  
+gcc
+ 
+checking whether we are using the GNU C compiler...  
+(cached) yes
+ 
+checking whether gcc accepts -g...  
+(cached) yes
+ 
+checking for gcc option to accept ISO C89...  
+(cached)  
+none needed
+ 
+checking whether gcc understands -c and -o together...  
+(cached)  
+yes
+ 
+checking dependency style of gcc...  
+(cached)  
+gcc3
+ 
+checking for main in -lcrypto...  
+yes
+ 
+checking for main in -lcurl...  
+yes
+ 
+checking for main in -levent...  
+yes
+ 
+checking for main in -levent_openssl...  
+yes
+ 
+checking for main in -lm...  
+yes
+ 
+checking for main in -lpthread...  
+yes
+ 
+checking for main in -lssl...  
+yes
+ 
+checking float.h usability...  
+yes
+checking float.h presence...  
+yes
+ 
+checking for float.h... yes
+ 
+checking limits.h usability...  
+yes
+ 
+checking limits.h presence...  
+yes
+ 
+checking for limits.h...  
+yes
+ 
+checking locale.h usability...  
+yes
+ 
+checking locale.h presence...  
+yes
+ 
+checking for locale.h... yes
+ 
+checking netinet/in.h usability...  
+yes
+ 
+checking netinet/in.h presence...  
+yes
+checking for netinet/in.h...  
+yes
+ 
+checking stddef.h usability...  
+yes
+checking stddef.h presence...  
+yes
+ 
+checking for stddef.h...  
+yes
+ 
+checking for stdint.h...  
+(cached) yes
+ 
+checking for stdlib.h...  
+(cached) yes
+ 
+checking for string.h... (cached) yes
+ 
+checking sys/socket.h usability...  
+yes
+ 
+checking sys/socket.h presence...  
+yes
+ 
+checking for sys/socket.h...  
+yes
+ 
+checking for unistd.h... (cached)  
+yes
+ 
+checking for stdbool.h that conforms to C99...  
+yes
+ 
+checking for _Bool...  
+yes
+ 
+checking for inline...  
+inline
+checking for int64_t...  
+yes
+ 
+checking for size_t...  
+yes
+ 
+checking for uint16_t...  
+yes
+ 
+checking for uint32_t...  
+yes
+ 
+checking for stdlib.h... (cached)  
+yes
+ 
+checking for GNU libc compatible malloc...  
+yes
+ 
+checking for stdlib.h...  
+(cached) yes
+ 
+checking for GNU libc compatible realloc...  
+yes
+ 
+checking for working strtod...  
+yes
+ 
+checking for bzero...  
+yes
+ 
+checking for getpass...  
+yes
+ 
+checking for localeconv...  
+yes
+ 
+checking for memset...  
+yes
+ 
+checking for strcasecmp...  
+yes
+ 
+checking for strchr...  
+yes
+ 
+checking for strdup...  
+yes
+ 
+checking for strerror...  
+yes
+ 
+checking for strrchr...  
+yes
+ 
+checking for strspn...  
+yes
+ 
+checking for strstr...  
+yes
+ 
+checking that generated files are newer than configure...  
+done
+ 
+configure: creating ./config.status
+ 
+ /bin/sh ./config.status
+ 
+config.status: creating Makefile
+ 
+config.status: creating src/toml/Makefile
+ 
+config.status: creating src/tiger/Makefile
+ 
+config.status: creating src/string/Makefile
+ 
+config.status: creating src/cjson/Makefile
+ 
+config.status: creating config.h
+ 
+config.status: config.h is unchanged
+ 
+config.status: executing depfiles commands
+ 
+config.status: executing libtool commands
+ 
+(CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing autoheader)
+rm -f stamp-h1
+touch config.h.in
+rm -f stamp-h1
+cd . && /bin/sh ./config.status config.h
+ 
+test -f config.h || rm -f stamp-h1
+test -f config.h || make  stamp-h1
+ 
+make  all-recursive
+ 
+make[1]: Entering directory '/home/wangyonglin/github/wangyonglin'
+ 
+CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing aclocal-1.16 -I m4
+ 
+aclocal-1.16: warning: couldn't open directory 'm4': No such file or directory
+
+ cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing automake-1.16 --foreign
+ 
+CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing autoconf
+ 
+/bin/sh ./config.status --recheck
+ 
+running CONFIG_SHELL=/bin/sh /bin/sh ./configure --prefix=/usr/local/wangyonglin --no-create --no-recursion
+ 
+checking for a BSD-compatible install...  
+/usr/bin/install -c
+checking whether build environment is sane...  
+yes
+ 
+checking for a thread-safe mkdir -p...  
+/usr/bin/mkdir -p
+ 
+checking for gawk...  
+gawk
+ 
+checking whether make sets $(MAKE)...  
+yes
+ 
+checking whether make supports nested variables...  
+yes
+ 
+./configure: line 3009: LIBTOOL: command not found
+
+checking build system type...  
+x86_64-pc-linux-gnu
+ 
+checking host system type...  
+x86_64-pc-linux-gnu
+ 
+checking how to print strings...  
+printf
+ 
+checking whether make supports the include directive...  
+yes (GNU style)
+ 
+checking for gcc...  
+gcc
+ 
+checking whether the C compiler works...  
+yes
+ 
+checking for C compiler default output file name... a.out
+ 
+checking for suffix of executables...  
+
+ 
+checking whether we are cross compiling...  
+no
+ 
+checking for suffix of object files...  
+o
+checking whether we are using the GNU C compiler...  
+yes
+ 
+checking whether gcc accepts -g...  
+yes
+ 
+checking for gcc option to accept ISO C89...  
+none needed
+ 
+checking whether gcc understands -c and -o together...  
+yes
+ 
+checking dependency style of gcc...  
+gcc3
+ 
+checking for a sed that does not truncate output...  
+/usr/bin/sed
+ 
+checking for grep that handles long lines and -e...  
+/usr/bin/grep
+ 
+checking for egrep...  
+/usr/bin/grep -E
+ 
+checking for fgrep...  
+/usr/bin/grep -F
+ 
+checking for ld used by gcc...  
+/usr/bin/ld
+ 
+checking if the linker (/usr/bin/ld) is GNU ld...  
+yes
+ 
+checking for BSD- or MS-compatible name lister (nm)...  
+/usr/bin/nm -B
+ 
+checking the name lister (/usr/bin/nm -B) interface...  
+BSD nm
+ 
+checking whether ln -s works... yes
+ 
+checking the maximum length of command line arguments...  
+1572864
+ 
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format...  
+func_convert_file_noop
+ 
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format...  
+func_convert_file_noop
+ 
+checking for /usr/bin/ld option to reload object files...  
+-r
+ 
+checking for objdump...  
+objdump
+ 
+checking how to recognize dependent libraries...  
+pass_all
+ 
+checking for dlltool...  
+no
+ 
+checking how to associate runtime and link libraries...  
+printf %s\n
+ 
+checking for ar...  
+ar
+ 
+checking for archiver @FILE support...  
+@
+ 
+checking for strip...  
+strip
+ 
+checking for ranlib...  
+ranlib
+ 
+checking command to parse /usr/bin/nm -B output from gcc object...  
+ok
+ 
+checking for sysroot...  
+no
+checking for a working dd...  
+/usr/bin/dd
+ 
+checking how to truncate binary pipes...  
+/usr/bin/dd bs=4096 count=1
+ 
+checking for mt...  
+no
+ 
+checking if : is a manifest tool...  
+no
+ 
+checking how to run the C preprocessor...  
+gcc -E
+ 
+checking for ANSI C header files...  
+yes
+checking for sys/types.h... yes
+checking for sys/stat.h...  
+yes
+ 
+checking for stdlib.h...  
+yes
+ 
+checking for string.h...  
+yes
+ 
+checking for memory.h...  
+yes
+ 
+checking for strings.h...  
+yes
+ 
+checking for inttypes.h...  
+yes
+ 
+checking for stdint.h...  
+yes
+ 
+checking for unistd.h...  
+yes
+ 
+checking for dlfcn.h...  
+yes
+ 
+checking for objdir...  
+.libs
+ 
+checking if gcc supports -fno-rtti -fno-exceptions...  
+no
+ 
+checking for gcc option to produce PIC... -fPIC -DPIC
+ 
+checking if gcc PIC flag -fPIC -DPIC works...  
+yes
+ 
+checking if gcc static flag -static works...  
+no
+checking if gcc supports -c -o file.o...  
+yes
+ 
+checking if gcc supports -c -o file.o... (cached) yes
+ 
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries...  
+yes
+ 
+checking whether -lc should be explicitly linked in...  
+no
+ 
+checking dynamic linker characteristics...  
+GNU/Linux ld.so
+ 
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible...  
+yes
+checking if libtool supports shared libraries...  
+yes
+checking whether to build shared libraries...  
+yes
+checking whether to build static libraries...  
+yes
+ 
+checking for gcc... (cached)  
+gcc
+ 
+checking whether we are using the GNU C compiler... (cached) yes
+ 
+checking whether gcc accepts -g...  
+(cached)  
+yes
+ 
+checking for gcc option to accept ISO C89...  
+(cached) none needed
+ 
+checking whether gcc understands -c and -o together...  
+(cached) yes
+ 
+checking dependency style of gcc...  
+(cached) gcc3
+ 
+checking for main in -lcrypto...  
+yes
+ 
+checking for main in -lcurl...  
+yes
+ 
+checking for main in -levent...  
+yes
+ 
+checking for main in -levent_openssl...  
+yes
+ 
+checking for main in -lm...  
+yes
+ 
+checking for main in -lpthread...  
+yes
+ 
+checking for main in -lssl...  
+yes
+ 
+checking float.h usability...  
+yes
+ 
+checking float.h presence...  
+yes
+checking for float.h...  
+yes
+ 
+checking limits.h usability...  
+yes
+ 
+checking limits.h presence...  
+yes
+checking for limits.h... yes
+ 
+checking locale.h usability...  
+yes
+ 
+checking locale.h presence...  
+yes
+checking for locale.h... yes
+ 
+checking netinet/in.h usability...  
+yes
+ 
+checking netinet/in.h presence...  
+yes
+ 
+checking for netinet/in.h... yes
+ 
+checking stddef.h usability...  
+yes
+checking stddef.h presence...  
+yes
+checking for stddef.h...  
+yes
+ 
+checking for stdint.h...  
+(cached) yes
+ 
+checking for stdlib.h...  
+(cached) yes
+ 
+checking for string.h... (cached) yes
+ 
+checking sys/socket.h usability...  
+yes
+checking sys/socket.h presence...  
+yes
+ 
+checking for sys/socket.h... yes
+ 
+checking for unistd.h... (cached)  
+yes
+ 
+checking for stdbool.h that conforms to C99...  
+yes
+ 
+checking for _Bool...  
+yes
+ 
+checking for inline...  
+inline
+ 
+checking for int64_t...  
+yes
+ 
+checking for size_t...  
+yes
+ 
+checking for uint16_t...  
+yes
+ 
+checking for uint32_t...  
+yes
+ 
+checking for stdlib.h...  
+(cached) yes
+ 
+checking for GNU libc compatible malloc...  
+yes
+ 
+checking for stdlib.h...  
+(cached) yes
+ 
+checking for GNU libc compatible realloc...  
+yes
+ 
+checking for working strtod...  
+yes
+ 
+checking for bzero...  
+yes
+ 
+checking for getpass...  
+yes
+ 
+checking for localeconv...  
+yes
+ 
+checking for memset...  
+yes
+ 
+checking for strcasecmp...  
+yes
+ 
+checking for strchr...  
+yes
+ 
+checking for strdup...  
+yes
+ 
+checking for strerror...  
+yes
+ 
+checking for strrchr...  
+yes
+ 
+checking for strspn...  
+yes
+ 
+checking for strstr...  
+yes
+ 
+checking that generated files are newer than configure...  
+done
+ 
+configure: creating ./config.status
+ 
+ /bin/sh ./config.status
+ 
+config.status: creating Makefile
+ 
+config.status: creating src/toml/Makefile
+ 
+config.status: creating src/tiger/Makefile
+ 
+config.status: creating src/string/Makefile
+ 
+config.status: creating src/cjson/Makefile
+ 
+config.status: creating config.h
+ 
+config.status: config.h is unchanged
+ 
+config.status: executing depfiles commands
+ 
+config.status: executing libtool commands
+ 
+fail=; \
+if (target_option=k; case ${target_option-} in ?) ;; *) echo "am__make_running_with_option: internal error: invalid" "target option '${target_option-}' specified" >&2; exit 1;; esac; has_opt=no; sane_makeflags=$MAKEFLAGS; if { if test -z '1'; then false; elif test -n 'x86_64-redhat-linux-gnu'; then true; elif test -n '4.2.1' && test -n '/home/wangyonglin/github/wangyonglin'; then true; else false; fi; }; then sane_makeflags=$MFLAGS; else case $MAKEFLAGS in *\\[\ \	]*) bs=\\; sane_makeflags=`printf '%s\n' "$MAKEFLAGS" | sed "s/$bs$bs[$bs $bs	]*//g"`;; esac; fi; skip_next=no; strip_trailopt () { flg=`printf '%s\n' "$flg" | sed "s/$1.*$//"`; }; for flg in $sane_makeflags; do test $skip_next = yes && { skip_next=no; continue; }; case $flg in *=*|--*) continue;; -*I) strip_trailopt 'I'; skip_next=yes;; -*I?*) strip_trailopt 'I';; -*O) strip_trailopt 'O'; skip_next=yes;; -*O?*) strip_trailopt 'O';; -*l) strip_trailopt 'l'; skip_next=yes;; -*l?*) strip_trailopt 'l';; -[dEDm]) skip_next=yes;; -[JT]) skip_next=yes;; esac; case $flg in *$target_option*) has_opt=yes; break;; esac; done; test $has_opt = yes); then \
+  failcom='fail=yes'; \
+else \
+  failcom='exit 1'; \
+fi; \
+dot_seen=no; \
+target=`echo all-recursive | sed s/-recursive//`; \
+case "all-recursive" in \
+  distclean-* | maintainer-clean-*) list='src/tiger src/cjson   src/string src/toml' ;; \
+  *) list='src/tiger src/cjson   src/string src/toml' ;; \
+esac; \
+for subdir in $list; do \
+  echo "Making $target in $subdir"; \
+  if test "$subdir" = "."; then \
+    dot_seen=yes; \
+    local_target="$target-am"; \
+  else \
+    local_target="$target"; \
+  fi; \
+  (CDPATH="${ZSH_VERSION+.}:" && cd $subdir && make  $local_target) \
+  || eval $failcom; \
+done; \
+if test "$dot_seen" = "no"; then \
+  make  "$target-am" || exit 1; \
+fi; test -z "$fail"
+ 
+Making all in src/tiger
+ 
+make[2]: Entering directory '/home/wangyonglin/github/wangyonglin/src/tiger'
+ 
+cd ../.. && make  am--refresh
+ 
+make[3]: Entering directory '/home/wangyonglin/github/wangyonglin'
+ 
+CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing aclocal-1.16 -I m4
+ 
+aclocal-1.16: warning: couldn't open directory 'm4': No such file or directory
+
+ cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing automake-1.16 --foreign
+ 
+CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing autoconf
+ 
+/bin/sh ./config.status --recheck
+ 
+running CONFIG_SHELL=/bin/sh /bin/sh ./configure --prefix=/usr/local/wangyonglin --no-create --no-recursion
+ 
+checking for a BSD-compatible install...  
+/usr/bin/install -c
+ 
+checking whether build environment is sane...  
+yes
+ 
+checking for a thread-safe mkdir -p...  
+/usr/bin/mkdir -p
+ 
+checking for gawk...  
+gawk
+checking whether make sets $(MAKE)...  
+yes
+ 
+checking whether make supports nested variables...  
+yes
+ 
+./configure: line 3009: LIBTOOL: command not found
+
+checking build system type...  
+x86_64-pc-linux-gnu
+ 
+checking host system type... x86_64-pc-linux-gnu
+ 
+checking how to print strings...  
+printf
+ 
+checking whether make supports the include directive...  
+yes (GNU style)
+ 
+checking for gcc...  
+gcc
+ 
+checking whether the C compiler works...  
+yes
+checking for C compiler default output file name...  
+a.out
+ 
+checking for suffix of executables...  
+
+ 
+checking whether we are cross compiling...  
+no
+ 
+checking for suffix of object files...  
+o
+ 
+checking whether we are using the GNU C compiler...  
+yes
+checking whether gcc accepts -g...  
+yes
+ 
+checking for gcc option to accept ISO C89...  
+none needed
+ 
+checking whether gcc understands -c and -o together...  
+yes
+ 
+checking dependency style of gcc...  
+gcc3
+ 
+checking for a sed that does not truncate output...  
+/usr/bin/sed
+ 
+checking for grep that handles long lines and -e...  
+/usr/bin/grep
+checking for egrep...  
+/usr/bin/grep -E
+ 
+checking for fgrep...  
+/usr/bin/grep -F
+ 
+checking for ld used by gcc...  
+/usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld...  
+yes
+checking for BSD- or MS-compatible name lister (nm)...  
+/usr/bin/nm -B
+ 
+checking the name lister (/usr/bin/nm -B) interface...  
+BSD nm
+ 
+checking whether ln -s works... yes
+ 
+checking the maximum length of command line arguments...  
+1572864
+ 
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format...  
+func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format...  
+func_convert_file_noop
+ 
+checking for /usr/bin/ld option to reload object files...  
+-r
+ 
+checking for objdump...  
+objdump
+ 
+checking how to recognize dependent libraries...  
+pass_all
+ 
+checking for dlltool...  
+no
+ 
+checking how to associate runtime and link libraries...  
+printf %s\n
+ 
+checking for ar...  
+ar
+ 
+checking for archiver @FILE support...  
+@
+ 
+checking for strip...  
+strip
+ 
+checking for ranlib...  
+ranlib
+ 
+checking command to parse /usr/bin/nm -B output from gcc object...  
+ok
+ 
+checking for sysroot... no
+checking for a working dd...  
+/usr/bin/dd
+checking how to truncate binary pipes...  
+/usr/bin/dd bs=4096 count=1
+ 
+checking for mt...  
+no
+ 
+checking if : is a manifest tool...  
+no
+ 
+checking how to run the C preprocessor...  
+gcc -E
+ 
+checking for ANSI C header files...  
+yes
+checking for sys/types.h... yes
+ 
+checking for sys/stat.h...  
+yes
+ 
+checking for stdlib.h...  
+yes
+ 
+checking for string.h...  
+yes
+ 
+checking for memory.h...  
+yes
+ 
+checking for strings.h...  
+yes
+ 
+checking for inttypes.h...  
+yes
+ 
+checking for stdint.h...  
+yes
+ 
+checking for unistd.h...  
+yes
+ 
+checking for dlfcn.h...  
+yes
+ 
+checking for objdir...  
+.libs
+ 
+checking if gcc supports -fno-rtti -fno-exceptions...  
+no
+ 
+checking for gcc option to produce PIC... -fPIC -DPIC
+ 
+checking if gcc PIC flag -fPIC -DPIC works...  
+yes
+ 
+checking if gcc static flag -static works...  
+no
+ 
+checking if gcc supports -c -o file.o...  
+yes
+checking if gcc supports -c -o file.o...  
+(cached) yes
+ 
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries...  
+yes
+ 
+checking whether -lc should be explicitly linked in...  
+no
+ 
+checking dynamic linker characteristics...  
+GNU/Linux ld.so
+ 
+checking how to hardcode library paths into programs... immediate
+ 
+checking whether stripping libraries is possible...  
+yes
+ 
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries...  
+yes
+checking whether to build static libraries...  
+yes
+ 
+checking for gcc... (cached)  
+gcc
+ 
+checking whether we are using the GNU C compiler...  
+(cached) yes
+ 
+checking whether gcc accepts -g...  
+(cached)  
+yes
+ 
+checking for gcc option to accept ISO C89...  
+(cached) none needed
+ 
+checking whether gcc understands -c and -o together... (cached)  
+yes
+ 
+checking dependency style of gcc...  
+(cached)  
+gcc3
+ 
+checking for main in -lcrypto...  
+yes
+ 
+checking for main in -lcurl...  
+yes
+ 
+checking for main in -levent...  
+yes
+ 
+checking for main in -levent_openssl...  
+yes
+ 
+checking for main in -lm...  
+yes
+ 
+checking for main in -lpthread...  
+yes
+ 
+checking for main in -lssl...  
+yes
+ 
+checking float.h usability...  
+yes
+checking float.h presence...  
+yes
+checking for float.h...  
+yes
+ 
+checking limits.h usability...  
+yes
+ 
+checking limits.h presence...  
+yes
+checking for limits.h...  
+yes
+ 
+checking locale.h usability...  
+yes
+ 
+checking locale.h presence...  
+yes
+checking for locale.h... yes
+ 
+checking netinet/in.h usability...  
+yes
+ 
+checking netinet/in.h presence...  
+yes
+ 
+checking for netinet/in.h... yes
+ 
+checking stddef.h usability...  
+yes
+checking stddef.h presence...  
+yes
+ 
+checking for stddef.h...  
+yes
+ 
+checking for stdint.h...  
+(cached) yes
+ 
+checking for stdlib.h... (cached)  
+yes
+ 
+checking for string.h...  
+(cached) yes
+ 
+checking sys/socket.h usability...  
+yes
+ 
+checking sys/socket.h presence...  
+yes
+checking for sys/socket.h...  
+yes
+ 
+checking for unistd.h...  
+(cached) yes
+ 
+checking for stdbool.h that conforms to C99...  
+yes
+checking for _Bool...  
+yes
+ 
+checking for inline...  
+inline
+ 
+checking for int64_t...  
+yes
+ 
+checking for size_t...  
+yes
+ 
+checking for uint16_t...  
+yes
+ 
+checking for uint32_t...  
+yes
+ 
+checking for stdlib.h...  
+(cached) yes
+ 
+checking for GNU libc compatible malloc...  
+yes
+ 
+checking for stdlib.h...  
+(cached) yes
+ 
+checking for GNU libc compatible realloc...  
+yes
+ 
+checking for working strtod...  
+yes
+ 
+checking for bzero...  
+yes
+ 
+checking for getpass...  
+yes
+ 
+checking for localeconv...  
+yes
+ 
+checking for memset...  
+yes
+ 
+checking for strcasecmp...  
+yes
+ 
+checking for strchr...  
+yes
+ 
+checking for strdup...  
+yes
+ 
+checking for strerror...  
+yes
+ 
+checking for strrchr...  
+yes
+ 
+checking for strspn...  
+yes
+ 
+checking for strstr...  
+yes
+ 
+checking that generated files are newer than configure...  
+done
+ 
+configure: creating ./config.status
+ 
+ /bin/sh ./config.status
+ 
+config.status: creating Makefile
+ 
+config.status: creating src/toml/Makefile
+ 
+config.status: creating src/tiger/Makefile
+ 
+config.status: creating src/string/Makefile
+ 
+config.status: creating src/cjson/Makefile
+ 
+config.status: creating config.h
+ 
+config.status: config.h is unchanged
+ 
+config.status: executing depfiles commands
+ 
+config.status: executing libtool commands
+ 
+make[3]: Leaving directory '/home/wangyonglin/github/wangyonglin'
+ 
+make[3]: Entering directory '/home/wangyonglin/github/wangyonglin'
+ 
+CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing aclocal-1.16 -I m4
+ 
+aclocal-1.16: warning: couldn't open directory 'm4': No such file or directory
+
+ cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing automake-1.16 --foreign
+ 
+CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing autoconf
+ 
+/bin/sh ./config.status --recheck
+ 
+running CONFIG_SHELL=/bin/sh /bin/sh ./configure --prefix=/usr/local/wangyonglin --no-create --no-recursion
+ 
+checking for a BSD-compatible install...  
+/usr/bin/install -c
+ 
+checking whether build environment is sane...  
+yes
+ 
+checking for a thread-safe mkdir -p...  
+/usr/bin/mkdir -p
+ 
+checking for gawk...  
+gawk
+checking whether make sets $(MAKE)...  
+yes
+ 
+checking whether make supports nested variables...  
+yes
+ 
+./configure: line 3009: LIBTOOL: command not found
+
+checking build system type...  
+x86_64-pc-linux-gnu
+ 
+checking host system type... x86_64-pc-linux-gnu
+ 
+checking how to print strings...  
+printf
+ 
+checking whether make supports the include directive...  
+yes (GNU style)
+ 
+checking for gcc...  
+gcc
+ 
+checking whether the C compiler works...  
+yes
+ 
+checking for C compiler default output file name... a.out
+ 
+checking for suffix of executables...  
+
+ 
+checking whether we are cross compiling...  
+no
+ 
+checking for suffix of object files...  
+o
+checking whether we are using the GNU C compiler...  
+yes
+ 
+checking whether gcc accepts -g...  
+yes
+ 
+checking for gcc option to accept ISO C89...  
+none needed
+checking whether gcc understands -c and -o together...  
+yes
+ 
+checking dependency style of gcc...  
+gcc3
+ 
+checking for a sed that does not truncate output...  
+/usr/bin/sed
+ 
+checking for grep that handles long lines and -e...  
+/usr/bin/grep
+checking for egrep...  
+/usr/bin/grep -E
+ 
+checking for fgrep...  
+/usr/bin/grep -F
+ 
+checking for ld used by gcc...  
+/usr/bin/ld
+ 
+checking if the linker (/usr/bin/ld) is GNU ld...  
+yes
+ 
+checking for BSD- or MS-compatible name lister (nm)...  
+/usr/bin/nm -B
+ 
+checking the name lister (/usr/bin/nm -B) interface...  
+BSD nm
+ 
+checking whether ln -s works...  
+yes
+checking the maximum length of command line arguments...  
+1572864
+ 
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format...  
+func_convert_file_noop
+ 
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format...  
+func_convert_file_noop
+ 
+checking for /usr/bin/ld option to reload object files...  
+-r
+ 
+checking for objdump...  
+objdump
+ 
+checking how to recognize dependent libraries...  
+pass_all
+ 
+checking for dlltool...  
+no
+ 
+checking how to associate runtime and link libraries...  
+printf %s\n
+ 
+checking for ar...  
+ar
+checking for archiver @FILE support...  
+@
+ 
+checking for strip...  
+strip
+ 
+checking for ranlib...  
+ranlib
+ 
+checking command to parse /usr/bin/nm -B output from gcc object...  
+ok
+ 
+checking for sysroot... no
+checking for a working dd...  
+/usr/bin/dd
+ 
+checking how to truncate binary pipes...  
+/usr/bin/dd bs=4096 count=1
+ 
+checking for mt...  
+no
+ 
+checking if : is a manifest tool...  
+no
+ 
+checking how to run the C preprocessor...  
+gcc -E
+ 
+checking for ANSI C header files...  
+yes
+checking for sys/types.h...  
+yes
+ 
+checking for sys/stat.h...  
+yes
+ 
+checking for stdlib.h...  
+yes
+ 
+checking for string.h...  
+yes
+ 
+checking for memory.h...  
+yes
+checking for strings.h...  
+yes
+ 
+checking for inttypes.h...  
+yes
+ 
+checking for stdint.h...  
+yes
+ 
+checking for unistd.h...  
+yes
+ 
+checking for dlfcn.h...  
+yes
+ 
+checking for objdir...  
+.libs
+ 
+checking if gcc supports -fno-rtti -fno-exceptions...  
+no
+ 
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works...  
+yes
+ 
+checking if gcc static flag -static works...  
+no
+ 
+checking if gcc supports -c -o file.o...  
+yes
+ 
+checking if gcc supports -c -o file.o... (cached) yes
+ 
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries...  
+yes
+ 
+checking whether -lc should be explicitly linked in...  
+no
+ 
+checking dynamic linker characteristics...  
+GNU/Linux ld.so
+ 
+checking how to hardcode library paths into programs... immediate
+ 
+checking whether stripping libraries is possible...  
+yes
+ 
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries...  
+yes
+checking whether to build static libraries...  
+yes
+ 
+checking for gcc... (cached)  
+gcc
+ 
+checking whether we are using the GNU C compiler...  
+(cached) yes
+ 
+checking whether gcc accepts -g...  
+(cached)  
+yes
+ 
+checking for gcc option to accept ISO C89...  
+(cached) none needed
+ 
+checking whether gcc understands -c and -o together...  
+(cached) yes
+ 
+checking dependency style of gcc...  
+(cached)  
+gcc3
+ 
+checking for main in -lcrypto...  
+yes
+ 
+checking for main in -lcurl...  
+yes
+ 
+checking for main in -levent...  
+yes
+ 
+checking for main in -levent_openssl...  
+yes
+ 
+checking for main in -lm...  
+yes
+ 
+checking for main in -lpthread...  
+yes
+checking for main in -lssl...  
+yes
+ 
+checking float.h usability...  
+yes
+ 
+checking float.h presence...  
+yes
+ 
+checking for float.h...  
+yes
+ 
+checking limits.h usability...  
+yes
+checking limits.h presence...  
+yes
+ 
+checking for limits.h...  
+yes
+ 
+checking locale.h usability...  
+yes
+ 
+checking locale.h presence...  
+yes
+ 
+checking for locale.h...  
+yes
+ 
+checking netinet/in.h usability...  
+yes
+ 
+checking netinet/in.h presence...  
+yes
+checking for netinet/in.h...  
+yes
+ 
+checking stddef.h usability...  
+yes
+ 
+checking stddef.h presence...  
+yes
+ 
+checking for stddef.h... yes
+ 
+checking for stdint.h...  
+(cached) yes
+ 
+checking for stdlib.h... (cached) yes
+ 
+checking for string.h... (cached)  
+yes
+ 
+checking sys/socket.h usability...  
+yes
+ 
+checking sys/socket.h presence...  
+yes
+checking for sys/socket.h...  
+yes
+ 
+checking for unistd.h...  
+(cached) yes
+ 
+checking for stdbool.h that conforms to C99...  
+yes
+checking for _Bool...  
+yes
+ 
+checking for inline...  
+inline
+ 
+checking for int64_t...  
+yes
+ 
+checking for size_t...  
+yes
+ 
+checking for uint16_t...  
+yes
+ 
+checking for uint32_t...  
+yes
+checking for stdlib.h... (cached)  
+yes
+ 
+checking for GNU libc compatible malloc...  
+yes
+ 
+checking for stdlib.h... (cached)  
+yes
+ 
+checking for GNU libc compatible realloc...  
+yes
+ 
+checking for working strtod...  
+yes
+ 
+checking for bzero...  
+yes
+ 
+checking for getpass...  
+yes
+ 
+checking for localeconv...  
+yes
+ 
+checking for memset...  
+yes
+ 
+checking for strcasecmp...  
+yes
+ 
+checking for strchr...  
+yes
+ 
+checking for strdup...  
+yes
+ 
+checking for strerror...  
+yes
+ 
+checking for strrchr...  
+yes
+ 
+checking for strspn...  
+yes
+ 
+checking for strstr...  
+yes
+ 
+checking that generated files are newer than configure...  
+done
+ 
+configure: creating ./config.status
+ 
+ /bin/sh ./config.status
+ 
+config.status: creating Makefile
+ 
+config.status: creating src/toml/Makefile
+ 
+config.status: creating src/tiger/Makefile
+ 
+config.status: creating src/string/Makefile
+ 
+config.status: creating src/cjson/Makefile
+ 
+config.status: creating config.h
+ 
+config.status: config.h is unchanged
+ 
+config.status: executing depfiles commands
+ 
+config.status: executing libtool commands
+ 
+make[3]: Leaving directory '/home/wangyonglin/github/wangyonglin'
+ 
+cd ../.. && make  am--refresh
+ 
+make[3]: Entering directory '/home/wangyonglin/github/wangyonglin'
+ 
+CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing aclocal-1.16 -I m4
+ 
+aclocal-1.16: warning: couldn't open directory 'm4': No such file or directory
+
+ cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing automake-1.16 --foreign
+ 
+CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/sh /home/wangyonglin/github/wangyonglin/missing autoconf
+ 
+/bin/sh ./config.status --recheck
+ 
+running CONFIG_SHELL=/bin/sh /bin/sh ./configure --prefix=/usr/local/wangyonglin --no-create --no-recursion
+ 
+checking for a BSD-compatible install...  
+/usr/bin/install -c
+ 
+checking whether build environment is sane...  
+yes
+ 
+checking for a thread-safe mkdir -p...  
+/usr/bin/mkdir -p
+ 
+checking for gawk...  
+gawk
+ 
+checking whether make sets $(MAKE)...  
+yes
+ 
+checking whether make supports nested variables...  
+yes
+ 
+./configure: line 3009: LIBTOOL: command not found
+
+checking build system type...  
+x86_64-pc-linux-gnu
+ 
+checking host system type... x86_64-pc-linux-gnu
+ 
+checking how to print strings...  
+printf
+ 
+checking whether make supports the include directive...  
+yes (GNU style)
+ 
+checking for gcc...  
+gcc
+ 
+checking whether the C compiler works...  
+yes
+checking for C compiler default output file name... a.out
+ 
+checking for suffix of executables...  
+
+ 
+checking whether we are cross compiling...  
+no
+ 
+checking for suffix of object files...  
+o
+ 
+checking whether we are using the GNU C compiler...  
+yes
+checking whether gcc accepts -g...  
+yes
+ 
+checking for gcc option to accept ISO C89...  
+none needed
+ 
+checking whether gcc understands -c and -o together...  
+yes
+ 
+checking dependency style of gcc...  
+gcc3
+ 
+checking for a sed that does not truncate output...  
+/usr/bin/sed
+ 
+checking for grep that handles long lines and -e...  
+/usr/bin/grep
+ 
+checking for egrep...  
+/usr/bin/grep -E
+ 
+checking for fgrep...  
+/usr/bin/grep -F
+ 
+checking for ld used by gcc...  
+/usr/bin/ld
+ 
+checking if the linker (/usr/bin/ld) is GNU ld...  
+yes
+ 
+checking for BSD- or MS-compatible name lister (nm)...  
+/usr/bin/nm -B
+ 
+checking the name lister (/usr/bin/nm -B) interface...  
+BSD nm
+checking whether ln -s works... yes
+ 
+checking the maximum length of command line arguments...  
+1572864
+ 
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format...  
+func_convert_file_noop
+ 
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format...  
+func_convert_file_noop
+ 
+checking for /usr/bin/ld option to reload object files...  
+-r
+ 
+checking for objdump...  
+objdump
+ 
+checking how to recognize dependent libraries...  
+pass_all
+ 
+checking for dlltool...  
+no
+ 
+checking how to associate runtime and link libraries...  
+printf %s\n
+ 
+checking for ar...  
+ar
+ 
+checking for archiver @FILE support...  
+@
+ 
+checking for strip...  
+strip
+ 
+checking for ranlib...  
+ranlib
+ 
+checking command to parse /usr/bin/nm -B output from gcc object...  
+ok
+ 
+checking for sysroot... no
+ 
+checking for a working dd...  
+/usr/bin/dd
+ 
+checking how to truncate binary pipes...  
+/usr/bin/dd bs=4096 count=1
+ 
+checking for mt...  
+no
+ 
+checking if : is a manifest tool...  
+no
+ 
+checking how to run the C preprocessor...  
+gcc -E
+ 
+checking for ANSI C header files...  
+yes
+checking for sys/types.h... yes
+ 
+checking for sys/stat.h...  
+yes
+ 
+checking for stdlib.h...  
+yes
+ 
+checking for string.h...  
+yes
+ 
+checking for memory.h...  
+yes
+ 
+checking for strings.h...  
+yes
+ 
+checking for inttypes.h...  
+yes
+ 
+checking for stdint.h...  
+yes
+ 
+checking for unistd.h...  
+yes
+ 
+checking for dlfcn.h...  
+yes
+ 
+checking for objdir...  
+.libs
+ 
+checking if gcc supports -fno-rtti -fno-exceptions...  
+no
+checking for gcc option to produce PIC...  
+-fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works...  
+yes
+ 
+checking if gcc static flag -static works...  
+no
+ 
+checking if gcc supports -c -o file.o...  
+yes
+ 
+checking if gcc supports -c -o file.o... (cached) yes
+ 
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries...  
+yes
+ 
+checking whether -lc should be explicitly linked in...  
+no
+ 
+checking dynamic linker characteristics...  
+GNU/Linux ld.so
+ 
+checking how to hardcode library paths into programs... immediate
+ 
+checking whether stripping libraries is possible...  
+yes
+ 
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries...  
+yes
+ 
+checking whether to build static libraries... yes
+ 
+checking for gcc... (cached)  
+gcc
+ 
+checking whether we are using the GNU C compiler... (cached)  
+yes
+checking whether gcc accepts -g...  
+(cached)  
+yes
+ 
+checking for gcc option to accept ISO C89...  
+(cached)  
+none needed
+ 
+checking whether gcc understands -c and -o together...  
+(cached)  
+yes
+ 
+checking dependency style of gcc...  
+(cached) gcc3
+ 
+checking for main in -lcrypto...  
+yes
+ 
+checking for main in -lcurl...  
+yes
+ 
+checking for main in -levent...  
+yes
+ 
+checking for main in -levent_openssl...  
+yes
+ 
+checking for main in -lm...  
+yes
+ 
+checking for main in -lpthread...  
+yes
+ 
+checking for main in -lssl...  
+yes
+ 
+checking float.h usability...  
+yes
+ 
+checking float.h presence...  
+yes
+ 
+checking for float.h...  
+yes
+ 
+checking limits.h usability...  
+yes
+checking limits.h presence...  
+yes
+ 
+checking for limits.h...  
+yes
+ 
+checking locale.h usability...  
+yes
+ 
+checking locale.h presence...  
+yes
+ 
+checking for locale.h...  
+yes
+ 
+checking netinet/in.h usability...  
+yes
+ 
+checking netinet/in.h presence...  
+yes
+ 
+checking for netinet/in.h...  
+yes
+ 
+checking stddef.h usability...  
+yes
+ 
+checking stddef.h presence...  
+yes
+ 
+checking for stddef.h... yes
+ 
+checking for stdint.h...  
+(cached) yes
+ 
+checking for stdlib.h...  
+(cached) yes
+ 
+checking for string.h... (cached) yes
+ 
+checking sys/socket.h usability...  
+yes
+ 
+checking sys/socket.h presence...  
+yes
+checking for sys/socket.h...  
+yes
+ 
+checking for unistd.h... (cached)  
+yes
+ 
+checking for stdbool.h that conforms to C99...  
+yes
+ 
+checking for _Bool...  
+yes
+ 
+checking for inline...  
+inline
+ 
+checking for int64_t...  
+yes
+ 
+checking for size_t...  
+yes
+ 
+checking for uint16_t...  
+yes
+ 
+checking for uint32_t...  
+yes
+ 
+checking for stdlib.h... (cached)  
+yes
+ 
+checking for GNU libc compatible malloc...  
+yes
+ 
+checking for stdlib.h...  
+(cached) yes
+ 
+checking for GNU libc compatible realloc...  
+yes
+ 
+checking for working strtod...  
+yes
+ 
+checking for bzero...  
+yes
+ 
+checking for getpass...  
+yes
+ 
+checking for localeconv...  
+yes
+ 
+checking for memset...  
+yes
+ 
+checking for strcasecmp...  
+yes
+ 
+checking for strchr...  
+yes
+ 
+checking for strdup...  
+yes
+ 
+checking for strerror...  
+yes
+ 
+checking for strrchr...  
+yes
+ 
+checking for strspn...  
+yes
+ 
+make[3]: *** [Makefile:448: config.status] Error 1
+make[2]: *** [Makefile:356: ../../configure] Interrupt
+make[1]: *** [Makefile:596: all-recursive] Interrupt
+
+make: *** [Makefile:418: all] Interrupt
 

@@ -1,14 +1,21 @@
 ACLOCAL_AMFLAGS     = -I m4
 AUTOMAKE_OPTIONS=foreign
 AM_CPPFLAGS= -I  $(top_srcdir)/include/
-bin_PROGRAMS=wangyonglin
-wangyonglin_SOURCES=application.c 
-SUBDIRS = src/core src/cjson src/mqtt src/https src/string
-wangyonglin_LDADD=\
-    $(top_builddir)/src/core/libcore.la \
-    $(top_builddir)/src/mqtt/libmqtt.la \
+bin_PROGRAMS=tiger
+tiger_SOURCES=application.c 
+SUBDIRS = \
+    src/unix   \
+    src/cjson   \
+    src/string  \
+    src/toml    \
+    src/mbedtls \
+    src/paho_mqtt_c
+tiger_LDADD=\
+    $(top_builddir)/src/toml/libtoml.la \
+    $(top_builddir)/src/mbedtls/libmbedtls.la \
+    $(top_builddir)/src/paho_mqtt_c/libpaho_mqtt_c.la \
+    $(top_builddir)/src/unix/libunix.la \
     $(top_builddir)/src/cjson/libcjson.la \
-    $(top_builddir)/src/https/libhttps.la \
     $(top_builddir)/src/string/libstring.la \
     $(FLIBS) 
 
@@ -32,12 +39,12 @@ sysconfdir= $(prefix)/etc
 
 
 confdir =   $(prefix)/conf
-conf_DATA = $(top_srcdir)/conf/wangyonglin.conf
+conf_DATA = $(top_srcdir)/conf/tiger.conf
 
-logsdir =   $(prefix)/logs
-logs_DATA = $(top_srcdir)/logs/error.log
+#logsdir =   $(prefix)/logs
+#logs_DATA = $(top_srcdir)/logs/error.log
 
 EXTRA_DIST  = README.md
 EXTRA_DIST += $(top_srcdir)/include/*
-EXTRA_DIST += $(top_srcdir)/conf/wangyonglin.conf
-EXTRA_DIST += $(top_srcdir)/logs/error.log
+EXTRA_DIST += $(top_srcdir)/conf/tiger.conf
+#EXTRA_DIST += $(top_srcdir)/logs/error.log

@@ -1,6 +1,8 @@
 #include <cjson/cJSON_Response.h>
-#include <wangyonglin/linux.h>
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdarg.h>
 cJSON_Response_t *cJSON_Response(cJSON_Response_t **result, int errcode, const char *fmt, ...)
 {
     char reason[1024] = {0};

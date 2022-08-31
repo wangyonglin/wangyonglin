@@ -1,5 +1,4 @@
-#include <wangyonglin/linux.h>
-
+/*
 #include <string/SHA256WithRSA.h>
 #include <string/Base64.h>
 SHA256WithRSA *SHA256WithRSA_RSAPrivateKey_file(const char *file)
@@ -120,7 +119,7 @@ char *SHA256WithRSA_Signature_RSAPrivateKey_file(const char *file, char *plainte
         size_t encMessageLength;
         if (SHA256withRSA_Signature(privateRSA, (unsigned char *)plaintext, plainlenth, &encMessage, &encMessageLength))
         {
-            string_base64_encode(encMessage, encMessageLength, &base64Text);
+           // string_base64_encode(encMessage, encMessageLength, &base64Text);
             free(encMessage);
             return base64Text;
         }
@@ -136,7 +135,7 @@ char *signMessage(char *privateKey, char *plaintext, int plainlenth)
     char *base64Text;
     size_t encMessageLength;
     SHA256withRSA_Signature(privateRSA, (unsigned char *)plaintext, plainlenth, &encMessage, &encMessageLength);
-    string_base64_encode(encMessage, encMessageLength, &base64Text);
+   // Base64Encode(encMessage, encMessageLength, &base64Text);
     free(encMessage);
     return base64Text;
 }
@@ -147,7 +146,8 @@ bool verifySignature(char *publicKey, char *plaintext, int plainlenth, char *sig
     unsigned char *encMessage;
     size_t encMessageLength;
     bool authentic;
-    string_base64_decode(signatureBase64, &encMessage, &encMessageLength);
+    Base64Decode(signatureBase64, &encMessage, &encMessageLength);
     bool result = SHA256withRSA_Verify(publicRSA, encMessage, encMessageLength, plaintext, plainlenth, &authentic);
     return result & authentic;
 }
+*/

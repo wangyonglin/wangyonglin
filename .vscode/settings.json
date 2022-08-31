@@ -39,6 +39,19 @@
         "unistd.h": "c",
         "memory.h": "c",
         "utils.h": "c",
-        "e_os2.h": "c"
+        "e_os2.h": "c",
+        "err.h": "c",
+        "cjson_response.h": "c",
+        "unix.h": "c",
+        "stdlib.h": "c",
+        "alloc.h": "c",
+        "toml.h": "c",
+        "aesni.h": "c",
+        "stdarg.h": "c",
+        "build_info.h": "c",
+        "aes.h": "c",
+        "check_config.h": "c",
+        "mbedtls_config.h": "c",
+        "*.in": "cpp"
     }
 }
