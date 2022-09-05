@@ -1,5 +1,5 @@
 #include <unix/conf.h>
-#include <string/string.h>
+
 /*设置输出颜色*/
 #define red_color "\E[1;31m"
 #define color_suffix "\E[0m"
@@ -14,7 +14,7 @@
 conf_t *conf_crt(conf_t **conf, const char *filename)
 {
 
-    if ((*conf) = (conf_t *)global_hooks.allocate(sizeof(conf_t)))
+    if ((*conf) = (conf_t *)malloc(sizeof(conf_t)))
     {
         memset((*conf), 0x00, sizeof(sizeof(conf_t)));
         FILE *fp;
@@ -37,7 +37,7 @@ conf_t *conf_crt(conf_t **conf, const char *filename)
         {
             fprintf(stderr, "ERROR:cannot open %s - ", filename, strerror(errno));
         }
-        global_hooks.deallocate(*conf);
+        free(*conf);
     }
     return NULL;
 }
@@ -54,7 +54,7 @@ void conf_del(conf_t *conf)
         {
             toml_free(conf->conf);
         }
-        global_hooks.deallocate(conf);
+        free(conf);
     }
 }
 

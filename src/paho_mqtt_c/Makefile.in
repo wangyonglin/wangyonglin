@@ -130,14 +130,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libpaho_mqtt_c_la_LIBADD =
-am_libpaho_mqtt_c_la_OBJECTS = Base64.lo Clients.lo Heap.lo \
-	LinkedList.lo Log.lo Messages.lo MQTTAsync.lo \
-	MQTTAsyncUtils.lo MQTTClient.lo MQTTPacket.lo MQTTPacketOut.lo \
-	MQTTPersistence.lo MQTTPersistenceDefault.lo MQTTProperties.lo \
-	MQTTProtocolClient.lo MQTTProtocolOut.lo MQTTReasonCodes.lo \
-	MQTTTime.lo MQTTVersion.lo OsWrapper.lo Proxy.lo SHA1.lo \
-	SocketBuffer.lo Socket.lo SSLSocket.lo StackTrace.lo Thread.lo \
-	Tree.lo utf-8.lo WebSocket.lo
+am_libpaho_mqtt_c_la_OBJECTS = Tree.lo Base64.lo Clients.lo Heap.lo \
+	LinkedList.lo Log.lo Messages.lo
 libpaho_mqtt_c_la_OBJECTS = $(am_libpaho_mqtt_c_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -160,22 +154,8 @@ depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/Base64.Plo ./$(DEPDIR)/Clients.Plo \
 	./$(DEPDIR)/Heap.Plo ./$(DEPDIR)/LinkedList.Plo \
-	./$(DEPDIR)/Log.Plo ./$(DEPDIR)/MQTTAsync.Plo \
-	./$(DEPDIR)/MQTTAsyncUtils.Plo ./$(DEPDIR)/MQTTClient.Plo \
-	./$(DEPDIR)/MQTTPacket.Plo ./$(DEPDIR)/MQTTPacketOut.Plo \
-	./$(DEPDIR)/MQTTPersistence.Plo \
-	./$(DEPDIR)/MQTTPersistenceDefault.Plo \
-	./$(DEPDIR)/MQTTProperties.Plo \
-	./$(DEPDIR)/MQTTProtocolClient.Plo \
-	./$(DEPDIR)/MQTTProtocolOut.Plo \
-	./$(DEPDIR)/MQTTReasonCodes.Plo ./$(DEPDIR)/MQTTTime.Plo \
-	./$(DEPDIR)/MQTTVersion.Plo ./$(DEPDIR)/Messages.Plo \
-	./$(DEPDIR)/OsWrapper.Plo ./$(DEPDIR)/Proxy.Plo \
-	./$(DEPDIR)/SHA1.Plo ./$(DEPDIR)/SSLSocket.Plo \
-	./$(DEPDIR)/Socket.Plo ./$(DEPDIR)/SocketBuffer.Plo \
-	./$(DEPDIR)/StackTrace.Plo ./$(DEPDIR)/Thread.Plo \
-	./$(DEPDIR)/Tree.Plo ./$(DEPDIR)/WebSocket.Plo \
-	./$(DEPDIR)/utf-8.Plo
+	./$(DEPDIR)/Log.Plo ./$(DEPDIR)/Messages.Plo \
+	./$(DEPDIR)/Tree.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -351,8 +331,8 @@ noinst_HEADERS = \
     include/LinkedList.h \
     include/Log.h \
     include/Messages.h \
-    include/MQTTAsync.h \
-    include/MQTTAsyncUtils.h \
+ #   include/MQTTAsync.h \
+ #   include/MQTTAsyncUtils.h \
     include/MQTTClient.h \
     include/MQTTClientPersistence.h \
     include/MQTTExportDeclarations.h \
@@ -382,14 +362,15 @@ noinst_HEADERS = \
     include/VersionInfo.h
 
 libpaho_mqtt_c_la_SOURCES = \
+    Tree.c \
     Base64.c \
     Clients.c \
     Heap.c \
     LinkedList.c \
     Log.c \
     Messages.c \
-    MQTTAsync.c \
-    MQTTAsyncUtils.c \
+   # MQTTAsync.c \
+   # MQTTAsyncUtils.c \
     MQTTClient.c \
     MQTTPacket.c \
     MQTTPacketOut.c \
@@ -409,7 +390,6 @@ libpaho_mqtt_c_la_SOURCES = \
     SSLSocket.c \
     StackTrace.c \
     Thread.c \
-    Tree.c \
     utf-8.c \
     WebSocket.c
 
@@ -496,31 +476,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Heap.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LinkedList.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Log.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTAsync.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTAsyncUtils.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTClient.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTPacket.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTPacketOut.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTPersistence.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTPersistenceDefault.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTProperties.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTProtocolClient.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTProtocolOut.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTReasonCodes.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTTime.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTVersion.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Messages.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/OsWrapper.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Proxy.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SHA1.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SSLSocket.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Socket.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SocketBuffer.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/StackTrace.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Thread.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Tree.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/WebSocket.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/utf-8.Plo@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -688,31 +645,8 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/Heap.Plo
 	-rm -f ./$(DEPDIR)/LinkedList.Plo
 	-rm -f ./$(DEPDIR)/Log.Plo
-	-rm -f ./$(DEPDIR)/MQTTAsync.Plo
-	-rm -f ./$(DEPDIR)/MQTTAsyncUtils.Plo
-	-rm -f ./$(DEPDIR)/MQTTClient.Plo
-	-rm -f ./$(DEPDIR)/MQTTPacket.Plo
-	-rm -f ./$(DEPDIR)/MQTTPacketOut.Plo
-	-rm -f ./$(DEPDIR)/MQTTPersistence.Plo
-	-rm -f ./$(DEPDIR)/MQTTPersistenceDefault.Plo
-	-rm -f ./$(DEPDIR)/MQTTProperties.Plo
-	-rm -f ./$(DEPDIR)/MQTTProtocolClient.Plo
-	-rm -f ./$(DEPDIR)/MQTTProtocolOut.Plo
-	-rm -f ./$(DEPDIR)/MQTTReasonCodes.Plo
-	-rm -f ./$(DEPDIR)/MQTTTime.Plo
-	-rm -f ./$(DEPDIR)/MQTTVersion.Plo
 	-rm -f ./$(DEPDIR)/Messages.Plo
-	-rm -f ./$(DEPDIR)/OsWrapper.Plo
-	-rm -f ./$(DEPDIR)/Proxy.Plo
-	-rm -f ./$(DEPDIR)/SHA1.Plo
-	-rm -f ./$(DEPDIR)/SSLSocket.Plo
-	-rm -f ./$(DEPDIR)/Socket.Plo
-	-rm -f ./$(DEPDIR)/SocketBuffer.Plo
-	-rm -f ./$(DEPDIR)/StackTrace.Plo
-	-rm -f ./$(DEPDIR)/Thread.Plo
 	-rm -f ./$(DEPDIR)/Tree.Plo
-	-rm -f ./$(DEPDIR)/WebSocket.Plo
-	-rm -f ./$(DEPDIR)/utf-8.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -763,31 +697,8 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/Heap.Plo
 	-rm -f ./$(DEPDIR)/LinkedList.Plo
 	-rm -f ./$(DEPDIR)/Log.Plo
-	-rm -f ./$(DEPDIR)/MQTTAsync.Plo
-	-rm -f ./$(DEPDIR)/MQTTAsyncUtils.Plo
-	-rm -f ./$(DEPDIR)/MQTTClient.Plo
-	-rm -f ./$(DEPDIR)/MQTTPacket.Plo
-	-rm -f ./$(DEPDIR)/MQTTPacketOut.Plo
-	-rm -f ./$(DEPDIR)/MQTTPersistence.Plo
-	-rm -f ./$(DEPDIR)/MQTTPersistenceDefault.Plo
-	-rm -f ./$(DEPDIR)/MQTTProperties.Plo
-	-rm -f ./$(DEPDIR)/MQTTProtocolClient.Plo
-	-rm -f ./$(DEPDIR)/MQTTProtocolOut.Plo
-	-rm -f ./$(DEPDIR)/MQTTReasonCodes.Plo
-	-rm -f ./$(DEPDIR)/MQTTTime.Plo
-	-rm -f ./$(DEPDIR)/MQTTVersion.Plo
 	-rm -f ./$(DEPDIR)/Messages.Plo
-	-rm -f ./$(DEPDIR)/OsWrapper.Plo
-	-rm -f ./$(DEPDIR)/Proxy.Plo
-	-rm -f ./$(DEPDIR)/SHA1.Plo
-	-rm -f ./$(DEPDIR)/SSLSocket.Plo
-	-rm -f ./$(DEPDIR)/Socket.Plo
-	-rm -f ./$(DEPDIR)/SocketBuffer.Plo
-	-rm -f ./$(DEPDIR)/StackTrace.Plo
-	-rm -f ./$(DEPDIR)/Thread.Plo
 	-rm -f ./$(DEPDIR)/Tree.Plo
-	-rm -f ./$(DEPDIR)/WebSocket.Plo
-	-rm -f ./$(DEPDIR)/utf-8.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

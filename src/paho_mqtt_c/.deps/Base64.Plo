@@ -1,6 +1,0 @@
-Base64.lo: Base64.c /usr/include/stdc-predef.h \
- ../../src/paho_mqtt_c/include/Base64.h
-
-/usr/include/stdc-predef.h:
-
-../../src/paho_mqtt_c/include/Base64.h:

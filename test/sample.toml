@@ -1,8 +1,0 @@
-[server]
-    name = "wangyonglin"
-    host = "example.com"
-    port = [ 8080, 8181, 8282 ]
-[ddd]
-    name = "rr"
-    host = "rr.com"
-    port = [ 8080, 8181, 8282 ]

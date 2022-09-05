@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <string/string.h>
+
 
 #define disabled ((int)0)
 #define enabled ((int)1)

@@ -9,8 +9,8 @@ noinst_HEADERS=\
     include/LinkedList.h \
     include/Log.h \
     include/Messages.h \
-    include/MQTTAsync.h \
-    include/MQTTAsyncUtils.h \
+ #   include/MQTTAsync.h \
+ #   include/MQTTAsyncUtils.h \
     include/MQTTClient.h \
     include/MQTTClientPersistence.h \
     include/MQTTExportDeclarations.h \
@@ -39,14 +39,15 @@ noinst_HEADERS=\
     include/WebSocket.h \
     include/VersionInfo.h
 libpaho_mqtt_c_la_SOURCES=\
+    Tree.c \
     Base64.c \
     Clients.c \
     Heap.c \
     LinkedList.c \
     Log.c \
     Messages.c \
-    MQTTAsync.c \
-    MQTTAsyncUtils.c \
+   # MQTTAsync.c \
+   # MQTTAsyncUtils.c \
     MQTTClient.c \
     MQTTPacket.c \
     MQTTPacketOut.c \
@@ -66,6 +67,5 @@ libpaho_mqtt_c_la_SOURCES=\
     SSLSocket.c \
     StackTrace.c \
     Thread.c \
-    Tree.c \
     utf-8.c \
     WebSocket.c

@@ -1,21 +1,20 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
-
 AC_PREREQ([2.69])
-AC_INIT([tiger],m4_esyscmd([git rev-list --count HEAD | tr -d '\n']),[admin@wangyonglin.com])
+## build settings
+m4_define(VERSION_MAJOR,1)
+m4_define(VERSION_MINOR,3)
+m4_define(VERSION_PATCH,m4_esyscmd([git rev-list --count HEAD | tr -d '\n']))
+AC_INIT([tiger], [VERSION_MAJOR.VERSION_MINOR.VERSION_PATCH],[admin@wangyonglin.com])
 AM_INIT_AUTOMAKE
-AC_CONFIG_SRCDIR([application.c])
+AC_CONFIG_SRCDIR([user/main.c])
 AC_CONFIG_HEADERS([config.h])
 LIBTOOL
 LT_INIT
 # Checks for programs.
 AC_PROG_CC
 
-## build settings
-#m4_define(PAHO_VERSION_MAJOR,1)
-#m4_define(PAHO_VERSION_MINOR,3)
-#m4_define(PAHO_VERSION_PATCH,10)
-#m4_define([CLIENT_VERSION], [PAHO_VERSION_MAJOR.PAHO_VERSION_MINOR.PAHO_VERSION_PATCH])
+
 
 
 # Checks for libraries.
@@ -55,7 +54,8 @@ AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([src/toml/Makefile])
 AC_CONFIG_FILES([src/mbedtls/Makefile])
 AC_CONFIG_FILES([src/unix/Makefile])
-AC_CONFIG_FILES([src/string/Makefile])
+AC_CONFIG_FILES([src/wangyonglin/Makefile])
 AC_CONFIG_FILES([src/paho_mqtt_c/Makefile])
 AC_CONFIG_FILES([src/cjson/Makefile])
+AC_CONFIG_FILES([user/Makefile])
 AC_OUTPUT
