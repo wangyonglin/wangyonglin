@@ -128,7 +128,7 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libwangyonglin_la_LIBADD =
-am_libwangyonglin_la_OBJECTS = SHA256WithRSA.lo string.lo
+am_libwangyonglin_la_OBJECTS = SHA256WithRSA.lo
 libwangyonglin_la_OBJECTS = $(am_libwangyonglin_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -149,8 +149,7 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/SHA256WithRSA.Plo \
-	./$(DEPDIR)/string.Plo
+am__depfiles_remade = ./$(DEPDIR)/SHA256WithRSA.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -250,10 +249,10 @@ OTOOL64 =
 PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = tiger
-PACKAGE_STRING = tiger 1.3.16
+PACKAGE_STRING = tiger 1.3.17
 PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.16
+PACKAGE_VERSION = 1.3.17
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -261,7 +260,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.16
+VERSION = 1.3.17
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/src/wangyonglin
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../src/wangyonglin
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -318,8 +317,7 @@ AUTOMAKE_OPTIONS = foreign
 lib_LTLIBRARIES = libwangyonglin.la
 AM_CPPFLAGS = -I $(top_srcdir)/include/
 libwangyonglin_la_SOURCES = \
-     SHA256WithRSA.c \
-     string.c 
+     SHA256WithRSA.c 
 
 all: all-am
 
@@ -400,7 +398,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/SHA256WithRSA.Plo # am--include-marker
-include ./$(DEPDIR)/string.Plo # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -564,7 +561,6 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
-	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -611,7 +607,6 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
-	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

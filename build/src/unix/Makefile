@@ -128,7 +128,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libunix_la_LIBADD =
-am_libunix_la_OBJECTS = daemon.lo pid.lo log.lo conf.lo config.lo
+am_libunix_la_OBJECTS = daemon.lo pid.lo log.lo conf.lo signal.lo \
+	string.lo
 libunix_la_OBJECTS = $(am_libunix_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -149,8 +150,9 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/conf.Plo ./$(DEPDIR)/config.Plo \
-	./$(DEPDIR)/daemon.Plo ./$(DEPDIR)/log.Plo ./$(DEPDIR)/pid.Plo
+am__depfiles_remade = ./$(DEPDIR)/conf.Plo ./$(DEPDIR)/daemon.Plo \
+	./$(DEPDIR)/log.Plo ./$(DEPDIR)/pid.Plo ./$(DEPDIR)/signal.Plo \
+	./$(DEPDIR)/string.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -250,10 +252,10 @@ OTOOL64 =
 PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = tiger
-PACKAGE_STRING = tiger 1.3.16
+PACKAGE_STRING = tiger 1.3.17
 PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.16
+PACKAGE_VERSION = 1.3.17
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -261,7 +263,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.16
+VERSION = 1.3.17
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/src/unix
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../src/unix
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -322,7 +324,8 @@ libunix_la_SOURCES = \
     pid.c   \
     log.c   \
     conf.c \
-    config.c
+    signal.c \
+    string.c
 
 all: all-am
 
@@ -403,10 +406,11 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/conf.Plo # am--include-marker
-include ./$(DEPDIR)/config.Plo # am--include-marker
 include ./$(DEPDIR)/daemon.Plo # am--include-marker
 include ./$(DEPDIR)/log.Plo # am--include-marker
 include ./$(DEPDIR)/pid.Plo # am--include-marker
+include ./$(DEPDIR)/signal.Plo # am--include-marker
+include ./$(DEPDIR)/string.Plo # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -570,10 +574,11 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/conf.Plo
-	-rm -f ./$(DEPDIR)/config.Plo
 	-rm -f ./$(DEPDIR)/daemon.Plo
 	-rm -f ./$(DEPDIR)/log.Plo
 	-rm -f ./$(DEPDIR)/pid.Plo
+	-rm -f ./$(DEPDIR)/signal.Plo
+	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -620,10 +625,11 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/conf.Plo
-	-rm -f ./$(DEPDIR)/config.Plo
 	-rm -f ./$(DEPDIR)/daemon.Plo
 	-rm -f ./$(DEPDIR)/log.Plo
 	-rm -f ./$(DEPDIR)/pid.Plo
+	-rm -f ./$(DEPDIR)/signal.Plo
+	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

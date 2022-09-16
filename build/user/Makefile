@@ -101,7 +101,8 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_tiger_OBJECTS = main.$(OBJEXT)
+am_tiger_OBJECTS = user_main.$(OBJEXT) saltbytes.$(OBJEXT) \
+	user_config.$(OBJEXT)
 tiger_OBJECTS = $(am_tiger_OBJECTS)
 tiger_DEPENDENCIES = $(top_builddir)/src/toml/libtoml.la \
 	$(top_builddir)/src/mbedtls/libmbedtls.la \
@@ -128,7 +129,8 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/main.Po
+am__depfiles_remade = ./$(DEPDIR)/saltbytes.Po \
+	./$(DEPDIR)/user_config.Po ./$(DEPDIR)/user_main.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -231,10 +233,10 @@ OTOOL64 =
 PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = tiger
-PACKAGE_STRING = tiger 1.3.16
+PACKAGE_STRING = tiger 1.3.17
 PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.16
+PACKAGE_VERSION = 1.3.17
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -242,7 +244,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.16
+VERSION = 1.3.17
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/user
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../user
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -297,8 +299,8 @@ top_builddir = ..
 top_srcdir = ../..
 ACLOCAL_AMFLAGS = -I m4
 AUTOMAKE_OPTIONS = foreign
-AM_CPPFLAGS = -I  $(top_srcdir)/include/ -I $(top_srcdir)/user/include/
-tiger_SOURCES = main.c
+AM_CPPFLAGS = -I  $(top_srcdir)/include/ -I $(top_srcdir)/ -I $(top_srcdir)/user/include/
+tiger_SOURCES = user_main.c saltbytes.c user_config.c
 tiger_LDADD = \
     $(top_builddir)/src/toml/libtoml.la \
     $(top_builddir)/src/mbedtls/libmbedtls.la \
@@ -401,7 +403,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/main.Po # am--include-marker
+include ./$(DEPDIR)/saltbytes.Po # am--include-marker
+include ./$(DEPDIR)/user_config.Po # am--include-marker
+include ./$(DEPDIR)/user_main.Po # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -563,7 +567,9 @@ clean: clean-am
 clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/main.Po
+		-rm -f ./$(DEPDIR)/saltbytes.Po
+	-rm -f ./$(DEPDIR)/user_config.Po
+	-rm -f ./$(DEPDIR)/user_main.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -609,7 +615,9 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/main.Po
+		-rm -f ./$(DEPDIR)/saltbytes.Po
+	-rm -f ./$(DEPDIR)/user_config.Po
+	-rm -f ./$(DEPDIR)/user_main.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

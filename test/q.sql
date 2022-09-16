@@ -1,0 +1,1 @@
+insert into `mqtt_user`( `username`,`password`,`salt` ,`is_superuser`) values('wangyonglin','331d7b132d03df19b057ce4d8263b7a7532f4077b4e3c6d6f41801797c91df62','secret',1);

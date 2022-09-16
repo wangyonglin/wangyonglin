@@ -1,5 +1,5 @@
-#if !defined(__CONF_H__)
-#define __CONF_H__
+#if !defined(__UNIX_CONF_H__)
+#define __UNIX_CONF_H__
 #include <toml/toml.h>
 #include <errno.h>
 #include <stdio.h>

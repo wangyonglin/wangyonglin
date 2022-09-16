@@ -1,6 +1,6 @@
-#if !defined(__TIGER_DAEMON_H__)
-#define __TIGER_DAEMON_H__
-#include <unix/unix.h>
+#if !defined(__UNIX_DAEMON_H__)
+#define __UNIX_DAEMON_H__
 
-int daemond();
+
+int daemon_crt();
 #endif

@@ -1,7 +1,8 @@
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include <unix/daemon.h>
-#include <unix/log.h>
-
 void daemonize(void)
 { // come from /redis/server.c/daemonize()
     int fd;
@@ -23,13 +24,13 @@ void daemonize(void)
     }
 }
 
-int daemond()
+int os_daemond()
 {
 
     switch (fork())
     {
     case -1:
-        log_write(LOG_ERR, "fork() failed");
+        fprintf(stderr, "fork() failed");
         return -1;
     case 0:
         break;
@@ -38,14 +39,12 @@ int daemond()
     }
     if ((chdir("/")) < 0)
     {
-        log_write(LOG_ERR, "could change to root dir");
-
+        fprintf(stderr, "could change to root dir");
         return -2;
     }
     if (setsid() == -1)
     {
-        log_write(LOG_ERR, "\t\tsetsid() failed");
-
+        fprintf(stderr, "\t\tsetsid() failed");
         return -3;
     }
     umask(0);
@@ -53,29 +52,26 @@ int daemond()
     int fd = open("/dev/null", O_RDWR);
     if (fd == -1)
     {
-        log_write(LOG_ERR, "open(\"/dev/null\") failed");
-
+        fprintf(stderr, "open(\"/dev/null\") failed");
         return -4;
     }
 
     if (dup2(fd, STDIN_FILENO) == -1)
     {
-        log_write(LOG_ERR, "dup2(STDIN) failed");
-
+        fprintf(stderr, "dup2(STDIN) failed");
         return -5;
     }
 
     if (dup2(fd, STDOUT_FILENO) == -1)
     {
-        log_write(LOG_ERR, "dup2(STDOUT) failed");
-
+        fprintf(stderr, "dup2(STDOUT) failed");
         return -6;
     }
     if (fd > STDERR_FILENO)
     {
         if (close(fd) == -1)
         {
-            log_write(LOG_ERR, "close() failed");
+            fprintf(stderr, "close() failed");
             return -7;
         }
     }

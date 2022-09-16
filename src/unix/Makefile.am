@@ -6,7 +6,8 @@ libunix_la_SOURCES=\
     pid.c   \
     log.c   \
     conf.c \
-    config.c
+    signal.c \
+    string.c
 
 
 

@@ -1,8 +1,8 @@
 ACLOCAL_AMFLAGS     = -I m4
 AUTOMAKE_OPTIONS=foreign
-AM_CPPFLAGS= -I  $(top_srcdir)/include/ -I $(top_srcdir)/user/include/
+AM_CPPFLAGS= -I  $(top_srcdir)/include/ -I $(top_srcdir)/ -I $(top_srcdir)/user/include/
 bin_PROGRAMS=tiger
-tiger_SOURCES=main.c
+tiger_SOURCES=user_main.c saltbytes.c user_config.c
 tiger_LDADD=\
     $(top_builddir)/src/toml/libtoml.la \
     $(top_builddir)/src/mbedtls/libmbedtls.la \

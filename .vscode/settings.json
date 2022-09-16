@@ -52,6 +52,9 @@
         "aes.h": "c",
         "check_config.h": "c",
         "mbedtls_config.h": "c",
-        "*.in": "cpp"
+        "*.in": "cpp",
+        "saltbytes.h": "c",
+        "user_config.h": "c",
+        "signal.h": "c"
     }
 }

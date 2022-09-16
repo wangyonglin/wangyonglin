@@ -1,7 +1,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <time.h>
-#include <wangyonglin/string.h>
+#include <unix/string.h>
 #include <openssl/bn.h>
 
 #define KEY_LENGTH 24
@@ -49,6 +49,11 @@ char *string_rand_crt(char **dest, int bits)
 
     return *dest;
 }
+int string_len(const char *str)
+{
+    return strlen(str);
+}
+
 void string_del(char *str)
 {
     if (str)
@@ -64,7 +69,7 @@ int string_ciphertext(char **dest, char *buffer, int length)
 }
 char *string_crt(char **str, char *dat, int len)
 {
-    if ((*str) = (char *)global_hooks.allocate(len))
+    if ((*str) = (char *)global_hooks.allocate(len+1))
     {
         bzero(*str, len);
         if (memcpy(*str, dat, len))
