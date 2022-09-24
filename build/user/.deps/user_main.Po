@@ -82,8 +82,13 @@ user_main.o: ../../user/user_main.c /usr/include/stdc-predef.h \
  /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
- /usr/include/bits/sigthread.h ../../include/unix/log.h \
- ../../include/unix/pid.h ../../include/unix/signal.h
+ /usr/include/bits/sigthread.h ../../include/dj/file.h \
+ /usr/include/sys/stat.h /usr/include/bits/stat.h /usr/include/fcntl.h \
+ /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
+ ../../include/dj/types.h /usr/include/inttypes.h ../../include/dj/log.h \
+ ../../include/dj/string.h /usr/include/malloc.h \
+ ../../include/dj/config.h ../../include/dj/args.h \
+ ../../include/dj/lock.h ../../include/dj/daemon.h
 
 /usr/include/stdc-predef.h:
 
@@ -391,8 +396,32 @@ user_main.o: ../../user/user_main.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/sigthread.h:
 
-../../include/unix/log.h:
+../../include/dj/file.h:
 
-../../include/unix/pid.h:
+/usr/include/sys/stat.h:
 
-../../include/unix/signal.h:
+/usr/include/bits/stat.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/bits/fcntl.h:
+
+/usr/include/bits/fcntl-linux.h:
+
+../../include/dj/types.h:
+
+/usr/include/inttypes.h:
+
+../../include/dj/log.h:
+
+../../include/dj/string.h:
+
+/usr/include/malloc.h:
+
+../../include/dj/config.h:
+
+../../include/dj/args.h:
+
+../../include/dj/lock.h:
+
+../../include/dj/daemon.h:

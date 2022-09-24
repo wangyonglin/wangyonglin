@@ -55,6 +55,12 @@
         "*.in": "cpp",
         "saltbytes.h": "c",
         "user_config.h": "c",
-        "signal.h": "c"
+        "signal.h": "c",
+        "types.h": "c",
+        "args.h": "c",
+        "lock.h": "c",
+        "inttypes.h": "c",
+        "wait.h": "c",
+        "error.h": "c"
     }
 }

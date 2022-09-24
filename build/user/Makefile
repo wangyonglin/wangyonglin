@@ -107,7 +107,7 @@ tiger_OBJECTS = $(am_tiger_OBJECTS)
 tiger_DEPENDENCIES = $(top_builddir)/src/toml/libtoml.la \
 	$(top_builddir)/src/mbedtls/libmbedtls.la \
 	$(top_builddir)/src/paho_mqtt_c/libpaho_mqtt_c.la \
-	$(top_builddir)/src/unix/libunix.la \
+	$(top_builddir)/src/dj/libdj.la \
 	$(top_builddir)/src/cjson/libcjson.la \
 	$(top_builddir)/src/wangyonglin/libwangyonglin.la
 AM_V_lt = $(am__v_lt_$(V))
@@ -233,10 +233,10 @@ OTOOL64 =
 PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = tiger
-PACKAGE_STRING = tiger 1.3.17
+PACKAGE_STRING = tiger 1.3.18
 PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.17
+PACKAGE_VERSION = 1.3.18
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -244,7 +244,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.17
+VERSION = 1.3.18
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/user
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../user
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -305,7 +305,7 @@ tiger_LDADD = \
     $(top_builddir)/src/toml/libtoml.la \
     $(top_builddir)/src/mbedtls/libmbedtls.la \
     $(top_builddir)/src/paho_mqtt_c/libpaho_mqtt_c.la \
-    $(top_builddir)/src/unix/libunix.la \
+    $(top_builddir)/src/dj/libdj.la \
     $(top_builddir)/src/cjson/libcjson.la \
     $(top_builddir)/src/wangyonglin/libwangyonglin.la \
     $(FLIBS) 

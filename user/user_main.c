@@ -23,8 +23,15 @@
 #include <saltbytes.h>
 #include <user_config.h>
 #include <stdlib.h>
-#include <unix/signal.h>
+
+#include <dj/file.h>
+#include <dj/string.h>
+#include <dj/config.h>
+#include <dj/daemon.h>
 struct evhttp *m_phttpd;
+
+dj_config_t *config;
+
 void login_handler(struct evhttp_request *req, void *arg)
 {
     //获取POST方法的数据
@@ -70,69 +77,30 @@ void login_handler(struct evhttp_request *req, void *arg)
     free(response_str);
 }
 
-saltbytes_t *saltbytes;
-user_config_t *config;
-
 void err_handler(int sig)
 {
 
     if ((SIGINT == sig) | (SIGTERM == sig))
     {
-        user_config_del(config);
+        
+        dj_config_clean(config);
         exit(EXIT_FAILURE);
     }
 }
 
 int main(int argc, char *argv[])
 {
+    signal(SIGINT, err_handler);  // Ctrl + C
+    signal(SIGTERM, err_handler); // kill发出的软件终止
 
-    /**
-      unsigned char ciphertext[512] = {0};
-        if (saltbytes_init(&saltbytes, "W@ng0811") == 0)
-        {
-            printf("\tplaintext %s[%d]\r\n", saltbytes->plaintext, strlen(saltbytes->plaintext));
-            printf("\tsalttext %s[%d]\r\n", saltbytes->salttext, strlen(saltbytes->salttext));
-            saltbytes_sha256(saltbytes, ciphertext);
-
-            printf("SHA256加密后:[%d]", strlen(ciphertext));
-            for (int i = 0; i < strlen(ciphertext); i++)
-            {
-
-                printf("%02x", ciphertext[i]);
-            }
-            printf("\r\n");
-            saltbytes_free(saltbytes);
-        }
-                //初始化event API
-        event_init();
-        //创建一个HTTPserver
-        m_phttpd = evhttp_start("0.0.0.0", 80);
-
-        //设置超时时间15秒
-        evhttp_set_timeout(m_phttpd, 15);
-
-        evhttp_set_cb(m_phttpd, "/v1/login", login_handler, NULL);
-        //循环监听
-        event_dispatch();
-        //实际上不会释放，代码不会运行到这一步
-        evhttp_free(m_phttpd);
-    **/
-    unix_signal_error(err_handler);
-    if (user_config_crt(&config, argc, argv))
+    if (config = dj_config_init(argc, argv))
     {
-        event_init();
-        //创建一个HTTPserver
-        m_phttpd = evhttp_start("0.0.0.0", 80);
-
-        //设置超时时间15秒
-        evhttp_set_timeout(m_phttpd, 15);
-
-        evhttp_set_cb(m_phttpd, "/v1/login", login_handler, NULL);
-        //循环监听
-        event_dispatch();
-        //实际上不会释放，代码不会运行到这一步
-        evhttp_free(m_phttpd);
-        user_config_del(config);
+        dj_log_write(config->log, LOG_INFO, "OK");
+        for (;;)
+        {
+            sleep(100);
+        }
+        dj_config_clean(config);
     }
 
     return EXIT_SUCCESS;

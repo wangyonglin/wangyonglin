@@ -128,8 +128,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libunix_la_LIBADD =
-am_libunix_la_OBJECTS = daemon.lo pid.lo log.lo conf.lo signal.lo \
-	string.lo
+am_libunix_la_OBJECTS = daemon.lo lock.lo log.lo conf.lo string.lo \
+	file.lo config.lo args.lo
 libunix_la_OBJECTS = $(am_libunix_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -150,8 +150,9 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/conf.Plo ./$(DEPDIR)/daemon.Plo \
-	./$(DEPDIR)/log.Plo ./$(DEPDIR)/pid.Plo ./$(DEPDIR)/signal.Plo \
+am__depfiles_remade = ./$(DEPDIR)/args.Plo ./$(DEPDIR)/conf.Plo \
+	./$(DEPDIR)/config.Plo ./$(DEPDIR)/daemon.Plo \
+	./$(DEPDIR)/file.Plo ./$(DEPDIR)/lock.Plo ./$(DEPDIR)/log.Plo \
 	./$(DEPDIR)/string.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -321,11 +322,13 @@ lib_LTLIBRARIES = libunix.la
 AM_CPPFLAGS = -I $(top_srcdir)/include/
 libunix_la_SOURCES = \
     daemon.c    \
-    pid.c   \
+    lock.c   \
     log.c   \
     conf.c \
-    signal.c \
-    string.c
+    string.c \
+    file.c \
+    config.c \
+    args.c
 
 all: all-am
 
@@ -405,11 +408,13 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/args.Plo # am--include-marker
 include ./$(DEPDIR)/conf.Plo # am--include-marker
+include ./$(DEPDIR)/config.Plo # am--include-marker
 include ./$(DEPDIR)/daemon.Plo # am--include-marker
+include ./$(DEPDIR)/file.Plo # am--include-marker
+include ./$(DEPDIR)/lock.Plo # am--include-marker
 include ./$(DEPDIR)/log.Plo # am--include-marker
-include ./$(DEPDIR)/pid.Plo # am--include-marker
-include ./$(DEPDIR)/signal.Plo # am--include-marker
 include ./$(DEPDIR)/string.Plo # am--include-marker
 
 $(am__depfiles_remade):
@@ -573,11 +578,13 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 	mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/conf.Plo
+		-rm -f ./$(DEPDIR)/args.Plo
+	-rm -f ./$(DEPDIR)/conf.Plo
+	-rm -f ./$(DEPDIR)/config.Plo
 	-rm -f ./$(DEPDIR)/daemon.Plo
+	-rm -f ./$(DEPDIR)/file.Plo
+	-rm -f ./$(DEPDIR)/lock.Plo
 	-rm -f ./$(DEPDIR)/log.Plo
-	-rm -f ./$(DEPDIR)/pid.Plo
-	-rm -f ./$(DEPDIR)/signal.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -624,11 +631,13 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/conf.Plo
+		-rm -f ./$(DEPDIR)/args.Plo
+	-rm -f ./$(DEPDIR)/conf.Plo
+	-rm -f ./$(DEPDIR)/config.Plo
 	-rm -f ./$(DEPDIR)/daemon.Plo
+	-rm -f ./$(DEPDIR)/file.Plo
+	-rm -f ./$(DEPDIR)/lock.Plo
 	-rm -f ./$(DEPDIR)/log.Plo
-	-rm -f ./$(DEPDIR)/pid.Plo
-	-rm -f ./$(DEPDIR)/signal.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

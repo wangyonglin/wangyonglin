@@ -53,7 +53,7 @@ AC_CHECK_FUNCS([bzero getpass localeconv memset strcasecmp strchr strdup strerro
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([src/toml/Makefile])
 AC_CONFIG_FILES([src/mbedtls/Makefile])
-AC_CONFIG_FILES([src/unix/Makefile])
+AC_CONFIG_FILES([src/dj/Makefile])
 AC_CONFIG_FILES([src/wangyonglin/Makefile])
 AC_CONFIG_FILES([src/paho_mqtt_c/Makefile])
 AC_CONFIG_FILES([src/cjson/Makefile])

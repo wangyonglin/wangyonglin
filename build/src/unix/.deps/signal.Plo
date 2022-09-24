@@ -37,7 +37,7 @@ signal.lo: ../../../src/unix/signal.c /usr/include/stdc-predef.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
  /usr/include/bits/sigthread.h ../../../include/unix/string.h \
- /usr/include/malloc.h
+ /usr/include/malloc.h ../../../include/unix/types.h
 
 /usr/include/stdc-predef.h:
 
@@ -180,3 +180,5 @@ signal.lo: ../../../src/unix/signal.c /usr/include/stdc-predef.h \
 ../../../include/unix/string.h:
 
 /usr/include/malloc.h:
+
+../../../include/unix/types.h:
