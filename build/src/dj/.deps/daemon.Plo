@@ -30,9 +30,9 @@ daemon.lo: ../../../src/dj/daemon.c /usr/include/stdc-predef.h \
  /usr/include/unistd.h /usr/include/bits/posix_opt.h \
  /usr/include/bits/environments.h /usr/include/bits/confname.h \
  /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
- /usr/include/sys/stat.h ../../../include/dj/daemon.h \
- ../../../include/dj/log.h ../../../include/dj/types.h \
- ../../../include/dj/error.h
+ /usr/include/sys/stat.h ../../../include/system/daemon.h \
+ ../../../include/system/log.h ../../../include/system/types.h \
+ ../../../include/system/error.h
 
 /usr/include/stdc-predef.h:
 
@@ -154,10 +154,10 @@ daemon.lo: ../../../src/dj/daemon.c /usr/include/stdc-predef.h \
 
 /usr/include/sys/stat.h:
 
-../../../include/dj/daemon.h:
+../../../include/system/daemon.h:
 
-../../../include/dj/log.h:
+../../../include/system/log.h:
 
-../../../include/dj/types.h:
+../../../include/system/types.h:
 
-../../../include/dj/error.h:
+../../../include/system/error.h:

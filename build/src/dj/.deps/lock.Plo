@@ -53,10 +53,10 @@ lock.lo: ../../../src/dj/lock.c /usr/include/stdc-predef.h \
  /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
- /usr/include/bits/sigthread.h ../../../include/dj/string.h \
- /usr/include/malloc.h ../../../include/dj/types.h \
- /usr/include/inttypes.h ../../../include/dj/log.h \
- ../../../include/dj/lock.h ../../../include/dj/error.h
+ /usr/include/bits/sigthread.h ../../../include/system/string.h \
+ /usr/include/malloc.h ../../../include/system/types.h \
+ /usr/include/inttypes.h ../../../include/system/log.h \
+ ../../../include/system/lock.h ../../../include/system/error.h
 
 /usr/include/stdc-predef.h:
 
@@ -264,16 +264,16 @@ lock.lo: ../../../src/dj/lock.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/sigthread.h:
 
-../../../include/dj/string.h:
+../../../include/system/string.h:
 
 /usr/include/malloc.h:
 
-../../../include/dj/types.h:
+../../../include/system/types.h:
 
 /usr/include/inttypes.h:
 
-../../../include/dj/log.h:
+../../../include/system/log.h:
 
-../../../include/dj/lock.h:
+../../../include/system/lock.h:
 
-../../../include/dj/error.h:
+../../../include/system/error.h:

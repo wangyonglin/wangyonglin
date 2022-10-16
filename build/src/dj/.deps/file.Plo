@@ -1,11 +1,12 @@
 file.lo: ../../../src/dj/file.c /usr/include/stdc-predef.h \
- ../../../include/dj/file.h /usr/include/errno.h /usr/include/features.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
- /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
- /usr/include/gnu/stubs-64.h /usr/include/bits/errno.h \
- /usr/include/linux/errno.h /usr/include/asm/errno.h \
- /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /usr/include/stdio.h /usr/include/bits/libc-header-start.h \
+ ../../../include/system/file.h /usr/include/errno.h \
+ /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/bits/long-double.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
+ /usr/include/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
+ /usr/include/asm-generic/errno-base.h /usr/include/stdio.h \
+ /usr/include/bits/libc-header-start.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stddef.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdarg.h \
  /usr/include/bits/types.h /usr/include/bits/typesizes.h \
@@ -32,18 +33,19 @@ file.lo: ../../../src/dj/file.c /usr/include/stdc-predef.h \
  /usr/include/bits/types/__locale_t.h /usr/include/strings.h \
  /usr/include/sys/stat.h /usr/include/bits/stat.h /usr/include/fcntl.h \
  /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
- ../../../include/dj/types.h /usr/include/unistd.h \
- /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
- /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h /usr/include/inttypes.h \
+ /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+ /usr/include/bits/environments.h /usr/include/bits/confname.h \
+ /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
+ /usr/include/inttypes.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/wchar.h \
- /usr/include/bits/stdint-uintn.h ../../../include/dj/log.h \
- ../../../include/dj/string.h /usr/include/malloc.h
+ /usr/include/bits/stdint-uintn.h ../../../include/system/log.h \
+ ../../../include/system/types.h ../../../include/system/string.h \
+ /usr/include/malloc.h
 
 /usr/include/stdc-predef.h:
 
-../../../include/dj/file.h:
+../../../include/system/file.h:
 
 /usr/include/errno.h:
 
@@ -171,8 +173,6 @@ file.lo: ../../../src/dj/file.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/fcntl-linux.h:
 
-../../../include/dj/types.h:
-
 /usr/include/unistd.h:
 
 /usr/include/bits/posix_opt.h:
@@ -195,8 +195,10 @@ file.lo: ../../../src/dj/file.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/stdint-uintn.h:
 
-../../../include/dj/log.h:
+../../../include/system/log.h:
 
-../../../include/dj/string.h:
+../../../include/system/types.h:
+
+../../../include/system/string.h:
 
 /usr/include/malloc.h:

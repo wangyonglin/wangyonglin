@@ -102,13 +102,12 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_tiger_OBJECTS = user_main.$(OBJEXT) saltbytes.$(OBJEXT) \
-	user_config.$(OBJEXT)
+	https_server.$(OBJEXT)
 tiger_OBJECTS = $(am_tiger_OBJECTS)
-tiger_DEPENDENCIES = $(top_builddir)/src/toml/libtoml.la \
+tiger_DEPENDENCIES = $(top_builddir)/src/cjson/libcjson.la \
+	$(top_builddir)/src/toml/libtoml.la \
 	$(top_builddir)/src/mbedtls/libmbedtls.la \
-	$(top_builddir)/src/paho_mqtt_c/libpaho_mqtt_c.la \
-	$(top_builddir)/src/dj/libdj.la \
-	$(top_builddir)/src/cjson/libcjson.la \
+	$(top_builddir)/src/system/libsystem.la \
 	$(top_builddir)/src/wangyonglin/libwangyonglin.la
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -129,8 +128,8 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/saltbytes.Po \
-	./$(DEPDIR)/user_config.Po ./$(DEPDIR)/user_main.Po
+am__depfiles_remade = ./$(DEPDIR)/https_server.Po \
+	./$(DEPDIR)/saltbytes.Po ./$(DEPDIR)/user_main.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -215,7 +214,7 @@ LIBOBJS =
 
 #需要引用的动态库文件
 LIBS = -lssl -lpthread -lm -levent_openssl -levent -lcurl -lcrypto  -g -O2 -Wall -pedantic -lm -levent -lssl -lcrypto \
-	-lpthread -levent_openssl -lcurl -lpaho-mqtt3c -lpaho-mqtt3a
+	-lpthread -levent_openssl -lcurl
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
@@ -233,10 +232,10 @@ OTOOL64 =
 PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = tiger
-PACKAGE_STRING = tiger 1.3.18
+PACKAGE_STRING = tiger 1.3.19
 PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.18
+PACKAGE_VERSION = 1.3.19
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -244,7 +243,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.18
+VERSION = 1.3.19
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/user
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../user
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -286,7 +285,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /usr/local/wangyonglin
+prefix = /user/local/wangyonglin
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
@@ -300,13 +299,12 @@ top_srcdir = ../..
 ACLOCAL_AMFLAGS = -I m4
 AUTOMAKE_OPTIONS = foreign
 AM_CPPFLAGS = -I  $(top_srcdir)/include/ -I $(top_srcdir)/ -I $(top_srcdir)/user/include/
-tiger_SOURCES = user_main.c saltbytes.c user_config.c
+tiger_SOURCES = user_main.c saltbytes.c https_server.c
 tiger_LDADD = \
+    $(top_builddir)/src/cjson/libcjson.la \
     $(top_builddir)/src/toml/libtoml.la \
     $(top_builddir)/src/mbedtls/libmbedtls.la \
-    $(top_builddir)/src/paho_mqtt_c/libpaho_mqtt_c.la \
-    $(top_builddir)/src/dj/libdj.la \
-    $(top_builddir)/src/cjson/libcjson.la \
+    $(top_builddir)/src/system/libsystem.la \
     $(top_builddir)/src/wangyonglin/libwangyonglin.la \
     $(FLIBS) 
 
@@ -403,8 +401,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/https_server.Po # am--include-marker
 include ./$(DEPDIR)/saltbytes.Po # am--include-marker
-include ./$(DEPDIR)/user_config.Po # am--include-marker
 include ./$(DEPDIR)/user_main.Po # am--include-marker
 
 $(am__depfiles_remade):
@@ -567,8 +565,8 @@ clean: clean-am
 clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/saltbytes.Po
-	-rm -f ./$(DEPDIR)/user_config.Po
+		-rm -f ./$(DEPDIR)/https_server.Po
+	-rm -f ./$(DEPDIR)/saltbytes.Po
 	-rm -f ./$(DEPDIR)/user_main.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -615,8 +613,8 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/saltbytes.Po
-	-rm -f ./$(DEPDIR)/user_config.Po
+		-rm -f ./$(DEPDIR)/https_server.Po
+	-rm -f ./$(DEPDIR)/saltbytes.Po
 	-rm -f ./$(DEPDIR)/user_main.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

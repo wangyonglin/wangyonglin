@@ -1,5 +1,5 @@
-#if !defined(__DJ_FILE_H__)
-#define __DJ_FILE_H__
+#if !defined(__SYSTEM_FILE_H__)
+#define __SYSTEM_FILE_H__
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,11 +7,11 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <dj/types.h>
+
 #include <unistd.h>
 #include <inttypes.h>
-#include <dj/log.h>
-
+#include <system/log.h>
+#include <system/types.h>
 
 #define DJ_FILE_OK ((dj_int_t)0)
 #define DJ_FILE_ERROR ((dj_int_t)-1)

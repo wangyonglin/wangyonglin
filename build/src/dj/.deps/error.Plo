@@ -10,8 +10,8 @@ error.lo: ../../../src/dj/error.c /usr/include/stdc-predef.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
- /usr/include/bits/stdio.h ../../../include/dj/error.h \
- ../../../include/dj/types.h /usr/include/stdlib.h \
+ /usr/include/bits/stdio.h ../../../include/system/error.h \
+ ../../../include/system/types.h /usr/include/stdlib.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/bits/floatn.h /usr/include/bits/floatn-common.h \
  /usr/include/sys/types.h /usr/include/bits/types/clock_t.h \
@@ -71,9 +71,9 @@ error.lo: ../../../src/dj/error.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/stdio.h:
 
-../../../include/dj/error.h:
+../../../include/system/error.h:
 
-../../../include/dj/types.h:
+../../../include/system/types.h:
 
 /usr/include/stdlib.h:
 

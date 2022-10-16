@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdarg.h>
-#include <dj/error.h>
+#include <system/error.h>
 
-void dj_debug(const char *fmt, ...)
+void err_printf(const char *fmt, ...)
 {
     va_list va;
     va_start(va, fmt);
@@ -12,7 +12,7 @@ void dj_debug(const char *fmt, ...)
     fflush(stderr);
     va_end(va);
 }
-void dj_info(const char *fmt, ...)
+void error_info(const char *fmt, ...)
 {
     va_list va;
     va_start(va, fmt);

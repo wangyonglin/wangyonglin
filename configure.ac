@@ -51,11 +51,11 @@ AC_FUNC_REALLOC
 AC_FUNC_STRTOD
 AC_CHECK_FUNCS([bzero getpass localeconv memset strcasecmp strchr strdup strerror strrchr strspn strstr])
 AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([src/cjson/Makefile])
 AC_CONFIG_FILES([src/toml/Makefile])
 AC_CONFIG_FILES([src/mbedtls/Makefile])
-AC_CONFIG_FILES([src/dj/Makefile])
+AC_CONFIG_FILES([src/system/Makefile])
 AC_CONFIG_FILES([src/wangyonglin/Makefile])
 AC_CONFIG_FILES([src/paho_mqtt_c/Makefile])
-AC_CONFIG_FILES([src/cjson/Makefile])
 AC_CONFIG_FILES([user/Makefile])
 AC_OUTPUT

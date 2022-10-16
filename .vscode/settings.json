@@ -61,6 +61,11 @@
         "lock.h": "c",
         "inttypes.h": "c",
         "wait.h": "c",
-        "error.h": "c"
+        "error.h": "c",
+        "getopt.h": "c",
+        "pidfile.h": "c",
+        "options.h": "c",
+        "event.h": "c",
+        "util.h": "c"
     }
 }

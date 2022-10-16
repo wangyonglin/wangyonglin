@@ -1,16 +1,16 @@
 AUTOMAKE_OPTIONS=foreign
-lib_LTLIBRARIES=libdj.la
+lib_LTLIBRARIES=libsystem.la
 AM_CPPFLAGS=-I $(top_srcdir)/include/
-libdj_la_SOURCES=\
+libsystem_la_SOURCES=\
     error.c \
     daemon.c    \
-    lock.c   \
+    pidfile.c   \
     log.c   \
     conf.c \
     string.c \
     file.c \
     config.c \
-    args.c
+    options.c
 
 
 

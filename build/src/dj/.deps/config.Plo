@@ -1,5 +1,5 @@
 config.lo: ../../../src/dj/config.c /usr/include/stdc-predef.h \
- ../../../include/dj/config.h ../../../include/dj/types.h \
+ ../../../include/system/config.h ../../../include/system/types.h \
  /usr/include/stdio.h /usr/include/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/bits/long-double.h \
@@ -26,17 +26,17 @@ config.lo: ../../../src/dj/config.c /usr/include/stdc-predef.h \
  /usr/include/bits/pthreadtypes.h /usr/include/bits/thread-shared-types.h \
  /usr/include/bits/pthreadtypes-arch.h /usr/include/alloca.h \
  /usr/include/bits/stdlib-bsearch.h /usr/include/bits/stdlib-float.h \
- ../../../include/dj/args.h ../../../include/dj/log.h \
- ../../../include/dj/lock.h ../../../include/dj/string.h \
+ ../../../include/system/args.h ../../../include/system/log.h \
+ ../../../include/system/lock.h ../../../include/system/string.h \
  /usr/include/malloc.h /usr/include/string.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
- /usr/include/strings.h
+ /usr/include/strings.h ../../../include/system/daemon.h
 
 /usr/include/stdc-predef.h:
 
-../../../include/dj/config.h:
+../../../include/system/config.h:
 
-../../../include/dj/types.h:
+../../../include/system/types.h:
 
 /usr/include/stdio.h:
 
@@ -134,13 +134,13 @@ config.lo: ../../../src/dj/config.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/stdlib-float.h:
 
-../../../include/dj/args.h:
+../../../include/system/args.h:
 
-../../../include/dj/log.h:
+../../../include/system/log.h:
 
-../../../include/dj/lock.h:
+../../../include/system/lock.h:
 
-../../../include/dj/string.h:
+../../../include/system/string.h:
 
 /usr/include/malloc.h:
 
@@ -151,3 +151,5 @@ config.lo: ../../../src/dj/config.c /usr/include/stdc-predef.h \
 /usr/include/bits/types/__locale_t.h:
 
 /usr/include/strings.h:
+
+../../../include/system/daemon.h:

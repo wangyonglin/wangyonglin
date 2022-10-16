@@ -1,5 +1,5 @@
 conf.lo: ../../../src/dj/conf.c /usr/include/stdc-predef.h \
- ../../../include/dj/conf.h ../../../include/toml/toml.h \
+ ../../../include/system/conf.h ../../../include/toml/toml.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
@@ -32,11 +32,13 @@ conf.lo: ../../../src/dj/conf.c /usr/include/stdc-predef.h \
  /usr/include/bits/pthreadtypes-arch.h /usr/include/alloca.h \
  /usr/include/bits/stdlib-bsearch.h /usr/include/bits/stdlib-float.h \
  /usr/include/string.h /usr/include/bits/types/locale_t.h \
- /usr/include/bits/types/__locale_t.h /usr/include/strings.h
+ /usr/include/bits/types/__locale_t.h /usr/include/strings.h \
+ ../../../include/system/string.h /usr/include/malloc.h \
+ ../../../include/system/types.h
 
 /usr/include/stdc-predef.h:
 
-../../../include/dj/conf.h:
+../../../include/system/conf.h:
 
 ../../../include/toml/toml.h:
 
@@ -163,3 +165,9 @@ conf.lo: ../../../src/dj/conf.c /usr/include/stdc-predef.h \
 /usr/include/bits/types/__locale_t.h:
 
 /usr/include/strings.h:
+
+../../../include/system/string.h:
+
+/usr/include/malloc.h:
+
+../../../include/system/types.h:

@@ -1,44 +1,42 @@
 #include <string.h>
 #include <stdarg.h>
 #include <time.h>
-#include <dj/log.h>
-#include <dj/string.h>
+#include <system/log.h>
+#include <system/string.h>
 
 #define COLOR_NONE "\033[0m"
 #define FONT_COLOR_WHITE "\033[0;37m"
 #define FONT_COLOR_RED "\033[0;31m"
 #define FONT_COLOR_GREEN "\033[0;32m"
 #define FONT_COLOR_BLUE "\033[1;34m"
-dj_int_t dj_log_init(dj_log_t **log, const char *name, dj_int_t model)
+config_log_t *config_log_allocate(config_log_t **log)
 {
-    if ((*log) = (dj_log_t *)global_hooks.allocate(sizeof(dj_log_t)))
+
+    if (allocate_object((void **)log, sizeof(config_log_t)))
     {
-        if (string_crt(&((*log)->name), name, strlen(name)))
-        {
-            if (model == 0)
-
-                (*log)->print_model = 0;
-
-            else
-                (*log)->print_model = 1;
-
-            return DJ_LOG_OK;
-        }
-        return DJ_LOG_ERROR;
+        allocate_string(&((*log)->name), 512);
     }
-    return DJ_LOG_NULL;
 }
-void dj_log_clean(dj_log_t *log)
+void config_log_deallocate(config_log_t *log)
 {
-
+    deallocate_string(log->name);
+    deallocate_object(log);
+}
+ok_t config_log_initializing(config_log_t *log, const char *name, config_bool_t model)
+{
     if (log)
     {
-        string_del(log->name);
-        log->print_model = 0;
-        global_hooks.deallocate(log);
+        if (setting_string(log->name, name, strlen(name)))
+        {
+            log->print_model=model;
+            return OK_SUCCESS;
+        }
     }
+    return OK_NONE;
 }
-int dj_log_error(dj_log_t *log, const char *fmt, ...)
+
+
+int config_log_error(config_log_t *log, const char *fmt, ...)
 {
     FILE *fptr;
     char log_line[1000] = {0};
@@ -90,7 +88,8 @@ int dj_log_error(dj_log_t *log, const char *fmt, ...)
     return log_line_pos;
 }
 
-int dj_log_info(dj_log_t *log, const char *fmt, ...)
+/*
+int log_info(log_t *log, const char *fmt, ...)
 {
     FILE *fptr;
     char log_line[1000] = {0};
@@ -141,7 +140,7 @@ int dj_log_info(dj_log_t *log, const char *fmt, ...)
 
     return log_line_pos;
 }
-int dj_log_write(dj_log_t *log, log_priority_t priority, const char *fmt, ...)
+int log_write(log_t *log, log_priority_t priority, const char *fmt, ...)
 {
     FILE *fptr;
     char log_line[1000] = {0};
@@ -221,3 +220,4 @@ int dj_log_write(dj_log_t *log, log_priority_t priority, const char *fmt, ...)
 
     return log_line_pos;
 }
+*/

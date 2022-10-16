@@ -1,5 +1,5 @@
 args.lo: ../../../src/dj/args.c /usr/include/stdc-predef.h \
- ../../../include/dj/args.h ../../../include/dj/types.h \
+ ../../../include/system/args.h ../../../include/system/types.h \
  /usr/include/stdio.h /usr/include/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/bits/long-double.h \
@@ -26,14 +26,16 @@ args.lo: ../../../src/dj/args.c /usr/include/stdc-predef.h \
  /usr/include/bits/pthreadtypes.h /usr/include/bits/thread-shared-types.h \
  /usr/include/bits/pthreadtypes-arch.h /usr/include/alloca.h \
  /usr/include/bits/stdlib-bsearch.h /usr/include/bits/stdlib-float.h \
- ../../../include/dj/string.h /usr/include/malloc.h \
- ../../../include/dj/error.h
+ ../../../include/system/string.h /usr/include/malloc.h \
+ ../../../include/system/error.h /usr/include/string.h \
+ /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
+ /usr/include/strings.h
 
 /usr/include/stdc-predef.h:
 
-../../../include/dj/args.h:
+../../../include/system/args.h:
 
-../../../include/dj/types.h:
+../../../include/system/types.h:
 
 /usr/include/stdio.h:
 
@@ -131,8 +133,16 @@ args.lo: ../../../src/dj/args.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/stdlib-float.h:
 
-../../../include/dj/string.h:
+../../../include/system/string.h:
 
 /usr/include/malloc.h:
 
-../../../include/dj/error.h:
+../../../include/system/error.h:
+
+/usr/include/string.h:
+
+/usr/include/bits/types/locale_t.h:
+
+/usr/include/bits/types/__locale_t.h:
+
+/usr/include/strings.h:

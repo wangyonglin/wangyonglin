@@ -1,5 +1,5 @@
 SUBDIRS = \
-    src/dj   \
+    src/system   \
     src/cjson   \
     src/wangyonglin  \
     src/toml    \

@@ -3,16 +3,16 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/stat.h>
-#include <dj/daemon.h>
-#include <dj/error.h>
+#include <system/daemon.h>
+#include <system/error.h>
 
-dj_int_t dj_daemon()
+int config_daemon_start()
 {
 
     switch (fork())
     {
     case -1:
-        dj_debug("fork() failed");
+        err_printf("fork() failed");
         return -1;
     case 0:
         break;
@@ -21,41 +21,41 @@ dj_int_t dj_daemon()
     }
     if ((chdir("/")) < 0)
     {
-        dj_debug("could change to root dir");
-        return -2;
+        err_printf("could change to root dir");
+        return -1;
     }
     if (setsid() == -1)
     {
-        dj_debug("\t\tsetsid() failed");
-        return -3;
+        err_printf("\t\tsetsid() failed");
+        return -1;
     }
     umask(0);
 
     int fd = open("/dev/null", O_RDWR);
     if (fd == -1)
     {
-        dj_debug("open(\"/dev/null\") failed");
-        return -4;
+        err_printf("open(\"/dev/null\") failed");
+        return -1;
     }
 
     if (dup2(fd, STDIN_FILENO) == -1)
     {
-        dj_debug("dup2(STDIN) failed");
-        return -5;
+        err_printf("dup2(STDIN) failed");
+        return -1;
     }
 
     if (dup2(fd, STDOUT_FILENO) == -1)
     {
-        dj_debug("dup2(STDOUT) failed");
-        return -6;
+        err_printf("dup2(STDOUT) failed");
+        return -1;
     }
     if (fd > STDERR_FILENO)
     {
         if (close(fd) == -1)
         {
-            dj_debug("close() failed");
-            return -7;
+            err_printf("close() failed");
+            return -1;
         }
     }
-    return DJ_OK;
+    return 0;
 }
