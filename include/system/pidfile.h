@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <system/log.h>
 #include <system/types.h>
+#include <system/pool.h>
 typedef bool config_lock_flag_t;
 typedef struct
 {
@@ -21,12 +22,11 @@ typedef struct
 } config_pidfile_t;
 
 
-config_pidfile_t *config_pidfile_allocate(config_pidfile_t **pidfile);
-void config_pidfile_deallocate(config_pidfile_t *pidfile);
-ok_t config_pidfile_initializing(config_pidfile_t *pidfile, const char *filename);
-flag_t config_pidfile_listene(config_pidfile_t *pidfile);
+ok_t system_pidfile_initializing(allocate_pool_t *pool, const char *filename, config_pidfile_t **pidfile);
 
-ok_t config_pidfile_crt(config_pidfile_t *pidfile);
-ok_t config_pidfile_del(config_pidfile_t *pidfile);
-void config_pidfile_kill(config_pidfile_t *pidfile);
+flag_t system_pidfile_listene(config_pidfile_t *pidfile);
+
+ok_t system_pidfile_crt(config_pidfile_t *pidfile);
+ok_t system_pidfile_del(config_pidfile_t *pidfile);
+void system_pidfile_kill(config_pidfile_t *pidfile);
 #endif //__TIGER_PID__H__

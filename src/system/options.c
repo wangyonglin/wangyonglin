@@ -5,6 +5,7 @@
 #include <getopt.h> //getopt_long
 #include <string.h>
 #include <system/error.h>
+#define STRINTG_BUFFER_MAX 64
 int opt;
 const char *short_options = "s:c:i:dv";
 int option_index = 0;
@@ -19,6 +20,7 @@ const char *ini_filename = "/home/wangyonglin/github/wangyonglin/conf/tiger.conf
 const char *pid_filename = "/var/run/wangyonglin.pid";
 const char *log_filename = "/home/wangyonglin/github/wangyonglin/logs/error.log";
 #define STRING_MALLOC_MAX 512
+/*
 config_options_t *config_options_allocate(config_options_t **options)
 {
     if (allocate_object((void **)options, sizeof(config_options_t)) == NULL)
@@ -32,7 +34,7 @@ config_options_t *config_options_allocate(config_options_t **options)
         allocate_string(&((*options)->log_filename), STRING_MALLOC_MAX);
         return (*options);
     }
-   
+
     return NULL;
 }
 
@@ -102,4 +104,68 @@ ok_t config_options_initializing(config_options_t *options, int argc, char *argv
         return OK_SUCCESS;
     }
     return OK_ERROR;
+}
+*/
+ok_t system_options_initializing(allocate_pool_t *pool, int argc, char *argv[], system_options_t **options)
+{
+    if (pool)
+    {
+
+        if ((*options) = system_allocate_create(pool, sizeof(system_options_t)))
+        {
+            (*options)->ini_filename = system_allocate_create(pool, STRINTG_BUFFER_MAX);
+            (*options)->pid_filename = system_allocate_create(pool, STRINTG_BUFFER_MAX);
+            (*options)->log_filename = system_allocate_create(pool, STRINTG_BUFFER_MAX);
+            sprintf((*options)->ini_filename, "/home/wangyonglin/github/wangyonglin/conf/tiger.conf");
+            sprintf((*options)->pid_filename, "/var/run/wangyonglin.pid");
+            sprintf((*options)->log_filename, "/home/wangyonglin/github/wangyonglin/logs/error.log");
+            while (-1 != (opt = getopt_long(argc, argv, short_options, long_options, &option_index)))
+            {
+                switch (opt)
+                {
+                case 'c':
+                    bzero((*options)->ini_filename, STRINTG_BUFFER_MAX);
+                    strncpy((*options)->ini_filename, strdup(optarg), strlen(optarg));
+                    break;
+                case 'i':
+                    bzero((*options)->pid_filename, STRINTG_BUFFER_MAX);
+                    strncpy((*options)->pid_filename, strdup(optarg), strlen(optarg));
+                    break;
+                case 's':
+                    if (!strcmp(optarg, "start"))
+                    {
+                        (*options)->started = on_start;
+                    }
+                    else if (!strcmp(optarg, "stop"))
+                    {
+                        (*options)->started = on_stop;
+                    }
+                    else
+                    {
+                        err_printf("starting params error[%s]", optarg);
+                        return ok_err_failure;
+                    }
+                    break;
+                case 'd':
+                    (*options)->deamoned = true;
+                    break;
+                case 'v':
+                    err_printf("v");
+                    return ok_quit;
+                    break;
+                case '?': //未定义参数项
+                    printf("arg err:\r\n");
+                    printf("Try 'getopt_test -h' for more information.\r\n");
+                    return ok_quit;
+                    break;
+                default:
+                    printf("getopt_test: invalid option -- '%c'\r\n", opt);
+                    printf("Try 'getopt_test -h' for more information.\r\n");
+                    return ok_quit;
+                    break;
+                }
+            }
+        }
+        return ok;
+    }
 }

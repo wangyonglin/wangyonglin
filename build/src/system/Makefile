@@ -128,8 +128,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libsystem_la_LIBADD =
-am_libsystem_la_OBJECTS = error.lo daemon.lo pidfile.lo log.lo conf.lo \
-	string.lo file.lo config.lo options.lo
+am_libsystem_la_OBJECTS = pool.lo error.lo daemon.lo pidfile.lo log.lo \
+	conf.lo string.lo file.lo config.lo options.lo
 libsystem_la_OBJECTS = $(am_libsystem_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -154,7 +154,7 @@ am__depfiles_remade = ./$(DEPDIR)/conf.Plo ./$(DEPDIR)/config.Plo \
 	./$(DEPDIR)/daemon.Plo ./$(DEPDIR)/error.Plo \
 	./$(DEPDIR)/file.Plo ./$(DEPDIR)/log.Plo \
 	./$(DEPDIR)/options.Plo ./$(DEPDIR)/pidfile.Plo \
-	./$(DEPDIR)/string.Plo
+	./$(DEPDIR)/pool.Plo ./$(DEPDIR)/string.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -254,10 +254,10 @@ OTOOL64 =
 PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = tiger
-PACKAGE_STRING = tiger 1.3.19
+PACKAGE_STRING = tiger 1.3.20
 PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.19
+PACKAGE_VERSION = 1.3.20
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -265,7 +265,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.19
+VERSION = 1.3.20
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/src/system
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../src/system
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -322,6 +322,7 @@ AUTOMAKE_OPTIONS = foreign
 lib_LTLIBRARIES = libsystem.la
 AM_CPPFLAGS = -I $(top_srcdir)/include/
 libsystem_la_SOURCES = \
+    pool.c  \
     error.c \
     daemon.c    \
     pidfile.c   \
@@ -418,6 +419,7 @@ include ./$(DEPDIR)/file.Plo # am--include-marker
 include ./$(DEPDIR)/log.Plo # am--include-marker
 include ./$(DEPDIR)/options.Plo # am--include-marker
 include ./$(DEPDIR)/pidfile.Plo # am--include-marker
+include ./$(DEPDIR)/pool.Plo # am--include-marker
 include ./$(DEPDIR)/string.Plo # am--include-marker
 
 $(am__depfiles_remade):
@@ -589,6 +591,7 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/log.Plo
 	-rm -f ./$(DEPDIR)/options.Plo
 	-rm -f ./$(DEPDIR)/pidfile.Plo
+	-rm -f ./$(DEPDIR)/pool.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -643,6 +646,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/log.Plo
 	-rm -f ./$(DEPDIR)/options.Plo
 	-rm -f ./$(DEPDIR)/pidfile.Plo
+	-rm -f ./$(DEPDIR)/pool.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

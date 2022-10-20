@@ -2,7 +2,6 @@ SUBDIRS = \
     src/system   \
     src/cjson   \
     src/wangyonglin  \
-    src/toml    \
     src/mbedtls \
     src/paho_mqtt_c \
     user

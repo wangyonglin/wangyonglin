@@ -24,9 +24,9 @@ typedef int config_bool_t;
 
 typedef enum
 {
-    start,
-    stop
-} config_start_t;
+    on_start,
+    on_stop
+} on_starting_t;
 
 typedef int flag_t;
 #define FLAG_TRUE ((ok_t)1)
@@ -34,11 +34,12 @@ typedef int flag_t;
 #define FLAG_ERROR ((ok_t)-1)
 
 typedef int ok_t;
-#define OK_SUCCESS ((ok_t)1)
-#define OK_ERROR ((ok_t)-1)
-#define OK_NONE ((ok_t)0)
-#define OK_QUIT ((ok_t)-2)
-#define OK_LOCK ((ok_t)-3)
+#define ok ((ok_t)1)
+#define ok_err_failure ((ok_t)-1)
+#define ok_err_none ((ok_t)0)
+#define ok_err_exit ((ok_t)-2)
+#define ok_err_onlock ((ok_t)-3)
+#define ok_quit ((ok_t)-4)
 
 typedef int config_fd_t;
 typedef struct

@@ -66,6 +66,7 @@
         "pidfile.h": "c",
         "options.h": "c",
         "event.h": "c",
-        "util.h": "c"
+        "util.h": "c",
+        "pool.h": "c"
     }
 }

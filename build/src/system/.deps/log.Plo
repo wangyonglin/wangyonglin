@@ -42,8 +42,13 @@ log.lo: ../../../src/system/log.c /usr/include/stdc-predef.h \
  /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
- /usr/include/bits/sigthread.h ../../../include/system/string.h \
- /usr/include/malloc.h
+ /usr/include/bits/sigthread.h ../../../include/system/pool.h \
+ /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+ /usr/include/bits/environments.h /usr/include/bits/confname.h \
+ /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
+ /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+ /usr/include/bits/fcntl-linux.h /usr/include/bits/stat.h \
+ ../../../include/system/string.h /usr/include/malloc.h
 
 /usr/include/stdc-predef.h:
 
@@ -202,6 +207,28 @@ log.lo: ../../../src/system/log.c /usr/include/stdc-predef.h \
 /usr/include/bits/types/struct_sigstack.h:
 
 /usr/include/bits/sigthread.h:
+
+../../../include/system/pool.h:
+
+/usr/include/unistd.h:
+
+/usr/include/bits/posix_opt.h:
+
+/usr/include/bits/environments.h:
+
+/usr/include/bits/confname.h:
+
+/usr/include/bits/getopt_posix.h:
+
+/usr/include/bits/getopt_core.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/bits/fcntl.h:
+
+/usr/include/bits/fcntl-linux.h:
+
+/usr/include/bits/stat.h:
 
 ../../../include/system/string.h:
 

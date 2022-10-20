@@ -43,7 +43,10 @@ daemon.lo: ../../../src/system/daemon.c /usr/include/stdc-predef.h \
  /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
- /usr/include/bits/sigthread.h ../../../include/system/error.h
+ /usr/include/bits/sigthread.h ../../../include/system/pool.h \
+ /usr/include/string.h /usr/include/bits/types/locale_t.h \
+ /usr/include/bits/types/__locale_t.h /usr/include/strings.h \
+ ../../../include/system/error.h
 
 /usr/include/stdc-predef.h:
 
@@ -210,5 +213,15 @@ daemon.lo: ../../../src/system/daemon.c /usr/include/stdc-predef.h \
 /usr/include/bits/types/struct_sigstack.h:
 
 /usr/include/bits/sigthread.h:
+
+../../../include/system/pool.h:
+
+/usr/include/string.h:
+
+/usr/include/bits/types/locale_t.h:
+
+/usr/include/bits/types/__locale_t.h:
+
+/usr/include/strings.h:
 
 ../../../include/system/error.h:

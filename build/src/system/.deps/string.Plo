@@ -42,8 +42,14 @@ string.lo: ../../../src/system/string.c /usr/include/stdc-predef.h \
  /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
- /usr/include/bits/sigthread.h /usr/include/openssl/bn.h \
- /usr/include/openssl/e_os2.h /usr/include/openssl/opensslconf.h \
+ /usr/include/bits/sigthread.h ../../../include/system/pool.h \
+ /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+ /usr/include/bits/environments.h /usr/include/bits/confname.h \
+ /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
+ /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+ /usr/include/bits/fcntl-linux.h /usr/include/bits/stat.h \
+ /usr/include/openssl/bn.h /usr/include/openssl/e_os2.h \
+ /usr/include/openssl/opensslconf.h \
  /usr/include/openssl/opensslconf-x86_64.h \
  /usr/include/openssl/opensslv.h /usr/include/inttypes.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h \
@@ -221,6 +227,28 @@ string.lo: ../../../src/system/string.c /usr/include/stdc-predef.h \
 /usr/include/bits/types/struct_sigstack.h:
 
 /usr/include/bits/sigthread.h:
+
+../../../include/system/pool.h:
+
+/usr/include/unistd.h:
+
+/usr/include/bits/posix_opt.h:
+
+/usr/include/bits/environments.h:
+
+/usr/include/bits/confname.h:
+
+/usr/include/bits/getopt_posix.h:
+
+/usr/include/bits/getopt_core.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/bits/fcntl.h:
+
+/usr/include/bits/fcntl-linux.h:
+
+/usr/include/bits/stat.h:
 
 /usr/include/openssl/bn.h:
 

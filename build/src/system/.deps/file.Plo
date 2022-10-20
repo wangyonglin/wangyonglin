@@ -52,8 +52,8 @@ file.lo: ../../../src/system/file.c /usr/include/stdc-predef.h \
  /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
- /usr/include/bits/sigthread.h ../../../include/system/string.h \
- /usr/include/malloc.h
+ /usr/include/bits/sigthread.h ../../../include/system/pool.h \
+ ../../../include/system/string.h /usr/include/malloc.h
 
 /usr/include/stdc-predef.h:
 
@@ -250,6 +250,8 @@ file.lo: ../../../src/system/file.c /usr/include/stdc-predef.h \
 /usr/include/bits/types/struct_sigstack.h:
 
 /usr/include/bits/sigthread.h:
+
+../../../include/system/pool.h:
 
 ../../../include/system/string.h:
 

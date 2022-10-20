@@ -1,6 +1,6 @@
 #if !defined(__SYSTEM_CONF_H__)
 #define __SYSTEM_CONF_H__
-#include <toml/toml.h>
+
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>

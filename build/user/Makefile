@@ -105,7 +105,6 @@ am_tiger_OBJECTS = user_main.$(OBJEXT) saltbytes.$(OBJEXT) \
 	https_server.$(OBJEXT)
 tiger_OBJECTS = $(am_tiger_OBJECTS)
 tiger_DEPENDENCIES = $(top_builddir)/src/cjson/libcjson.la \
-	$(top_builddir)/src/toml/libtoml.la \
 	$(top_builddir)/src/mbedtls/libmbedtls.la \
 	$(top_builddir)/src/system/libsystem.la \
 	$(top_builddir)/src/wangyonglin/libwangyonglin.la
@@ -232,10 +231,10 @@ OTOOL64 =
 PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = tiger
-PACKAGE_STRING = tiger 1.3.19
+PACKAGE_STRING = tiger 1.3.20
 PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.19
+PACKAGE_VERSION = 1.3.20
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -243,7 +242,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.19
+VERSION = 1.3.20
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/user
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../user
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -302,7 +301,6 @@ AM_CPPFLAGS = -I  $(top_srcdir)/include/ -I $(top_srcdir)/ -I $(top_srcdir)/user
 tiger_SOURCES = user_main.c saltbytes.c https_server.c
 tiger_LDADD = \
     $(top_builddir)/src/cjson/libcjson.la \
-    $(top_builddir)/src/toml/libtoml.la \
     $(top_builddir)/src/mbedtls/libmbedtls.la \
     $(top_builddir)/src/system/libsystem.la \
     $(top_builddir)/src/wangyonglin/libwangyonglin.la \

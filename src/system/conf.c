@@ -19,7 +19,7 @@ void config_conf_deallocate(config_conf_t *conf)
     deallocate_string(conf->conffile);
     deallocate_object(conf);
 }
-ok_t config_conf_initializing(config_conf_t *conf, const char *filename)
+ok_t system_conf_initializing(config_conf_t *conf, const char *filename)
 {
     if (conf)
     {
@@ -28,10 +28,10 @@ ok_t config_conf_initializing(config_conf_t *conf, const char *filename)
         {
             if (NCONF_load(conf->conf, conf->conffile, &(conf->errline)) > 0)
             {
-                return OK_SUCCESS;
+                return ok;
             }
             NCONF_free(conf->conf);
         }
     }
-    return OK_ERROR;
+    return ok_err_failure;
 }

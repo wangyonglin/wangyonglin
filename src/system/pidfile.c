@@ -37,35 +37,23 @@ int config_lock_fcntl(int fd)
     return (fcntl(fd, F_SETLK, &fl));
 }
 
-config_pidfile_t *config_pidfile_allocate(config_pidfile_t **pidfile)
-{
 
-    if (allocate_object((void **)pidfile, sizeof(config_pidfile_t)))
-    {
-        allocate_string(&((*pidfile)->name), 512);
-        return (*pidfile);
-    }
-    return NULL;
-}
-void config_pidfile_deallocate(config_pidfile_t *pidfile)
+ok_t system_pidfile_initializing(allocate_pool_t *pool, const char *filename, config_pidfile_t **pidfile)
 {
-    if (pidfile)
+    if (pool)
     {
-        deallocate_string(pidfile->name);
-        deallocate_object(pidfile);
-    }
-}
-ok_t config_pidfile_initializing(config_pidfile_t *pidfile, const char *filename)
-{
-    if (pidfile && pidfile->name)
-    {
-        setting_string(pidfile->name, filename, strlen(filename));
-        return OK_SUCCESS;
-    }
-    return OK_NONE;
-}
 
-flag_t config_pidfile_listene(config_pidfile_t *pidfile)
+        if ((*pidfile) = system_allocate_create(pool, sizeof(config_pidfile_t)))
+        {
+            (*pidfile)->name = system_allocate_create(pool, 64);
+            bzero((*pidfile)->name, 64);
+            sprintf((*pidfile)->name, filename);
+            return ok;
+        }
+    }
+    return ok_err_failure;
+}
+flag_t system_pidfile_listene(config_pidfile_t *pidfile)
 {
     config_fd_t fd;
     if (pidfile->name)
@@ -92,7 +80,7 @@ flag_t config_pidfile_listene(config_pidfile_t *pidfile)
     return FLAG_FALSE;
 }
 
-ok_t config_pidfile_crt(config_pidfile_t *pidfile)
+ok_t system_pidfile_crt(config_pidfile_t *pidfile)
 {
     if (pidfile)
     {
@@ -100,7 +88,7 @@ ok_t config_pidfile_crt(config_pidfile_t *pidfile)
         if ((pidfile->fd = open(pidfile->name, O_RDWR | O_CREAT, 0666)) < 0)
         {
             err_printf("unable to open file '%s': %s", pidfile->name, strerror(errno));
-            return OK_ERROR;
+            return ok_err_failure;
         }
 
         if (config_lock_fcntl(pidfile->fd) < 0)
@@ -109,7 +97,7 @@ ok_t config_pidfile_crt(config_pidfile_t *pidfile)
             {
                 err_printf("alone runnind");
                 pidfile->alone_runnind = TRUE;
-                return OK_LOCK;
+                return ok_err_onlock;
             }
             err_printf("can't lock %s: %s", pidfile->name, strerror(errno));
         }
@@ -117,25 +105,24 @@ ok_t config_pidfile_crt(config_pidfile_t *pidfile)
         ftruncate(pidfile->fd, 0); //设置文件的大小为0
         sprintf(buf, "%ld", (long)getpid());
         write(pidfile->fd, buf, strlen(buf) + 1);
-        return OK_SUCCESS;
+        return ok;
     }
-    return OK_NONE;
+    return ok_err_failure;
 }
 
-ok_t config_pidfile_del(config_pidfile_t *pidfile)
+ok_t system_pidfile_del(config_pidfile_t *pidfile)
 {
     if (pidfile)
-    {
-        string_del(pidfile->name);
+    {       
         if (pidfile->fd != -1)
         {
             close(pidfile->fd);
         }
     }
 }
-void config_pidfile_kill(config_pidfile_t *pidfile)
+void system_pidfile_kill(config_pidfile_t *pidfile)
 {
-    if (pidfile)
+    if (pidfile->name)
     {
         int fd;
         int pid;

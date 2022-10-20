@@ -128,8 +128,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libsystem_la_LIBADD =
-am_libsystem_la_OBJECTS = error.lo daemon.lo pidfile.lo log.lo conf.lo \
-	string.lo file.lo config.lo options.lo
+am_libsystem_la_OBJECTS = pool.lo error.lo daemon.lo pidfile.lo log.lo \
+	conf.lo string.lo file.lo config.lo options.lo
 libsystem_la_OBJECTS = $(am_libsystem_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -154,7 +154,7 @@ am__depfiles_remade = ./$(DEPDIR)/conf.Plo ./$(DEPDIR)/config.Plo \
 	./$(DEPDIR)/daemon.Plo ./$(DEPDIR)/error.Plo \
 	./$(DEPDIR)/file.Plo ./$(DEPDIR)/log.Plo \
 	./$(DEPDIR)/options.Plo ./$(DEPDIR)/pidfile.Plo \
-	./$(DEPDIR)/string.Plo
+	./$(DEPDIR)/pool.Plo ./$(DEPDIR)/string.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -322,6 +322,7 @@ AUTOMAKE_OPTIONS = foreign
 lib_LTLIBRARIES = libsystem.la
 AM_CPPFLAGS = -I $(top_srcdir)/include/
 libsystem_la_SOURCES = \
+    pool.c  \
     error.c \
     daemon.c    \
     pidfile.c   \
@@ -418,6 +419,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/log.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/options.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pidfile.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pool.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/string.Plo@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
@@ -589,6 +591,7 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/log.Plo
 	-rm -f ./$(DEPDIR)/options.Plo
 	-rm -f ./$(DEPDIR)/pidfile.Plo
+	-rm -f ./$(DEPDIR)/pool.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -643,6 +646,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/log.Plo
 	-rm -f ./$(DEPDIR)/options.Plo
 	-rm -f ./$(DEPDIR)/pidfile.Plo
+	-rm -f ./$(DEPDIR)/pool.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

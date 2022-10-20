@@ -5,7 +5,6 @@ bin_PROGRAMS=tiger
 tiger_SOURCES=user_main.c saltbytes.c https_server.c
 tiger_LDADD=\
     $(top_builddir)/src/cjson/libcjson.la \
-    $(top_builddir)/src/toml/libtoml.la \
     $(top_builddir)/src/mbedtls/libmbedtls.la \
     $(top_builddir)/src/system/libsystem.la \
     $(top_builddir)/src/wangyonglin/libwangyonglin.la \

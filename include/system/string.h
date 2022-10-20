@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <system/types.h>
-
+#include <system/pool.h>
 typedef struct
 {
     void *(*allocate)(size_t size);
@@ -27,9 +27,12 @@ void string_del(char *dest);
 void *allocate_object(void **pointer, size_t size);
 void deallocate_object(void *pointer);
 
+void *allocate(void **pointer, size_t size);
+void deallocate(void *pointer);
 
-char *allocate_string(char **pointer, size_t size);
-void deallocate_string(char *pointer);
+
 char *setting_string(char *pointer, const char *data, size_t length);
 int format_string(char *pointer, const char *fmt, ...) __attribute__((format(printf, 2, 3)));
+
+
 #endif //!__WANGYONGLIN_STRING_H__

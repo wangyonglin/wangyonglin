@@ -55,8 +55,9 @@ pidfile.lo: ../../../src/system/pidfile.c /usr/include/stdc-predef.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
  /usr/include/bits/sigthread.h ../../../include/system/string.h \
  /usr/include/malloc.h ../../../include/system/types.h \
- /usr/include/inttypes.h ../../../include/system/log.h \
- ../../../include/system/pidfile.h ../../../include/system/error.h
+ ../../../include/system/pool.h /usr/include/inttypes.h \
+ ../../../include/system/log.h ../../../include/system/pidfile.h \
+ ../../../include/system/error.h
 
 /usr/include/stdc-predef.h:
 
@@ -269,6 +270,8 @@ pidfile.lo: ../../../src/system/pidfile.c /usr/include/stdc-predef.h \
 /usr/include/malloc.h:
 
 ../../../include/system/types.h:
+
+../../../include/system/pool.h:
 
 /usr/include/inttypes.h:
 

@@ -9,19 +9,20 @@
 #include <sys/poll.h>
 #include <fcntl.h>
 #include <errno.h>
-int dj_lock_fcntl(int fd)
+
+typedef struct c
 {
-    struct flock fl;
-    fl.l_type = F_WRLCK;
-    fl.l_start = 0;
-    fl.l_whence = SEEK_SET;
-    fl.l_len = 0;
-    return (fcntl(fd, F_SETLK, &fl));
-}
+  int  cnt;								//数量
+	int  usedcnt;						//使用个数
+	int blocksize;						//内存块大小
+	char* firstaddr;					//起始地址
+	char* lastaddr;						//结束地址
+	MEMBLOCK *firstblock;		//指向下一节点的指针
+
+}palloc_pool_t;
 
 
 int main(int argv, char *args[])
 {
 
-    return dj_kill("/var/run/wangyonglin.pid");
 }

@@ -163,6 +163,30 @@ void deallocate_object(void *pointer)
         pointer = NULL;
     }
 }
+void *allocate(void **pointer, size_t size)
+{
+
+    if (((*pointer) = malloc(size)) == NULL)
+    {
+        perror("allocate 申请对象内存失败");
+        return NULL;
+    }
+
+    if (memset((*pointer), 0x00, size))
+    {
+        return (*pointer);
+    }
+    return NULL;
+}
+void deallocate(void *pointer)
+{
+    if (pointer != NULL)
+    {
+        free(pointer);
+        pointer = NULL;
+    }
+}
+
 
 char *allocate_string(char **pointer, size_t size)
 {
@@ -198,7 +222,7 @@ void deallocate_string(char *pointer)
 
 char *setting_string(char *pointer, const char *data, size_t length)
 {
-   
+
     memset(pointer, 0x00, strlen(pointer));
     return strncpy(pointer, data, length);
 }

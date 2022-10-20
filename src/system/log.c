@@ -9,34 +9,22 @@
 #define FONT_COLOR_RED "\033[0;31m"
 #define FONT_COLOR_GREEN "\033[0;32m"
 #define FONT_COLOR_BLUE "\033[1;34m"
-config_log_t *config_log_allocate(config_log_t **log)
-{
 
-    if (allocate_object((void **)log, sizeof(config_log_t)))
-    {
-        allocate_string(&((*log)->name), 512);
-    }
-}
-void config_log_deallocate(config_log_t *log)
+ok_t system_log_initializing(allocate_pool_t *pool, const char *name, config_bool_t model, config_log_t **log)
 {
-    deallocate_string(log->name);
-    deallocate_object(log);
-}
-ok_t config_log_initializing(config_log_t *log, const char *name, config_bool_t model)
-{
-    if (log)
+    if (pool)
     {
-        if (setting_string(log->name, name, strlen(name)))
+        if ((*log) = system_allocate_create(pool, sizeof(config_log_t)))
         {
-            log->print_model=model;
-            return OK_SUCCESS;
+            (*log)->name = system_allocate_create(pool, 32);
+            sprintf((*log)->name, name);
+            (*log)->print_model = model;
+            return ok;
         }
     }
-    return OK_NONE;
+    return ok_err_failure;
 }
-
-
-int config_log_error(config_log_t *log, const char *fmt, ...)
+int system_log_error(config_log_t *log, const char *fmt, ...)
 {
     FILE *fptr;
     char log_line[1000] = {0};
