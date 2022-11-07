@@ -1,1 +1,155 @@
 
+2022-11-07 07:01:17 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-07 07:01:17 [ERROR]	name:serverURI value:tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883
+2022-11-07 07:01:17 [ERROR]	name:productKey value:a1v3yiXDwzX
+2022-11-07 07:01:17 [ERROR]	name:deviceName value:Administrators
+2022-11-07 07:01:17 [ERROR]	name:deviceSecret value:93ada5d45deb0b85305df9a14b2ac1ff
+2022-11-07 07:01:17 [ERROR]	name:minRetryInterval value:3
+2022-11-07 07:01:17 [ERROR]	name:maxRetryInterval value:60
+2022-11-07 07:01:17 [ERROR]	name:cleansession value:1
+2022-11-07 07:01:17 [ERROR]	name:keepAliveInterval value:60
+2022-11-07 07:01:17 [ERROR]	name:automaticReconnect value:1
+2022-11-07 07:01:17 [ERROR]	name:maxInflight value:10
+2022-11-07 07:13:58 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-07 07:13:58 [ERROR]	name:serverURI value:tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883
+2022-11-07 07:13:58 [ERROR]	name:productKey value:a1v3yiXDwzX
+2022-11-07 07:13:58 [ERROR]	name:deviceName value:Administrators
+2022-11-07 07:13:58 [ERROR]	name:deviceSecret value:93ada5d45deb0b85305df9a14b2ac1ff
+2022-11-07 07:13:58 [ERROR]	name:minRetryInterval value:3
+2022-11-07 07:13:58 [ERROR]	name:maxRetryInterval value:60
+2022-11-07 07:13:58 [ERROR]	name:cleansession value:1
+2022-11-07 07:13:58 [ERROR]	name:keepAliveInterval value:60
+2022-11-07 07:13:58 [ERROR]	name:automaticReconnect value:1
+2022-11-07 07:13:58 [ERROR]	name:maxInflight value:10
+2022-11-07 07:15:08 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-07 07:15:08 [ERROR]	name:serverURI value:tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883
+2022-11-07 07:15:08 [ERROR]	name:productKey value:a1v3yiXDwzX
+2022-11-07 07:15:08 [ERROR]	name:deviceName value:Administrators
+2022-11-07 07:15:08 [ERROR]	name:deviceSecret value:93ada5d45deb0b85305df9a14b2ac1ff
+2022-11-07 07:15:08 [ERROR]	name:minRetryInterval value:3
+2022-11-07 07:15:08 [ERROR]	name:maxRetryInterval value:60
+2022-11-07 07:15:08 [ERROR]	name:cleansession value:1
+2022-11-07 07:15:08 [ERROR]	name:keepAliveInterval value:60
+2022-11-07 07:15:08 [ERROR]	name:automaticReconnect value:1
+2022-11-07 07:15:08 [ERROR]	name:maxInflight value:10
+2022-11-07 07:19:44 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-07 07:19:44 [ERROR]	name:serverURI value:tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883
+2022-11-07 07:19:44 [ERROR]	name:productKey value:a1v3yiXDwzX
+2022-11-07 07:19:44 [ERROR]	name:deviceName value:Administrators
+2022-11-07 07:19:44 [ERROR]	name:deviceSecret value:93ada5d45deb0b85305df9a14b2ac1ff
+2022-11-07 07:19:44 [ERROR]	name:minRetryInterval value:3
+2022-11-07 07:19:44 [ERROR]	name:maxRetryInterval value:60
+2022-11-07 07:19:44 [ERROR]	name:cleansession value:1
+2022-11-07 07:19:44 [ERROR]	name:keepAliveInterval value:60
+2022-11-07 07:19:44 [ERROR]	name:automaticReconnect value:1
+2022-11-07 07:19:44 [ERROR]	name:maxInflight value:10
+2022-11-07 07:24:02 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-07 07:24:02 [ERROR]	name:serverURI value:tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883
+2022-11-07 07:24:02 [ERROR]	name:productKey value:a1v3yiXDwzX
+2022-11-07 07:24:02 [ERROR]	name:deviceName value:Administrators
+2022-11-07 07:24:02 [ERROR]	name:deviceSecret value:93ada5d45deb0b85305df9a14b2ac1ff
+2022-11-07 07:24:02 [ERROR]	name:minRetryInterval value:3
+2022-11-07 07:24:02 [ERROR]	name:maxRetryInterval value:60
+2022-11-07 07:24:02 [ERROR]	name:cleansession value:1
+2022-11-07 07:24:02 [ERROR]	name:keepAliveInterval value:60
+2022-11-07 07:24:02 [ERROR]	name:automaticReconnect value:1
+2022-11-07 07:24:02 [ERROR]	name:maxInflight value:10
+2022-11-07 07:24:08 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-07 07:24:08 [ERROR]	name:serverURI value:tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883
+2022-11-07 07:24:08 [ERROR]	name:productKey value:a1v3yiXDwzX
+2022-11-07 07:24:08 [ERROR]	name:deviceName value:Administrators
+2022-11-07 07:24:08 [ERROR]	name:deviceSecret value:93ada5d45deb0b85305df9a14b2ac1ff
+2022-11-07 07:24:08 [ERROR]	name:minRetryInterval value:3
+2022-11-07 07:24:08 [ERROR]	name:maxRetryInterval value:60
+2022-11-07 07:24:08 [ERROR]	name:cleansession value:1
+2022-11-07 07:24:08 [ERROR]	name:keepAliveInterval value:60
+2022-11-07 07:24:08 [ERROR]	name:automaticReconnect value:1
+2022-11-07 07:24:08 [ERROR]	name:maxInflight value:10
+2022-11-07 07:28:49 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-07 07:28:49 [ERROR]	name:serverURI value:tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883
+2022-11-07 07:28:49 [ERROR]	name:productKey value:a1v3yiXDwzX
+2022-11-07 07:28:49 [ERROR]	name:deviceName value:Administrators
+2022-11-07 07:28:49 [ERROR]	name:deviceSecret value:93ada5d45deb0b85305df9a14b2ac1ff
+2022-11-07 07:28:49 [ERROR]	name:minRetryInterval value:3
+2022-11-07 07:28:49 [ERROR]	name:maxRetryInterval value:60
+2022-11-07 07:28:49 [ERROR]	name:cleansession value:1
+2022-11-07 07:28:49 [ERROR]	name:keepAliveInterval value:60
+2022-11-07 07:28:49 [ERROR]	name:automaticReconnect value:1
+2022-11-07 07:28:49 [ERROR]	name:maxInflight value:10
+2022-11-07 07:41:43 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-07 07:41:43 [ERROR]	name:serverURI value:tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883
+2022-11-07 07:41:43 [ERROR]	name:productKey value:a1v3yiXDwzX
+2022-11-07 07:41:43 [ERROR]	name:deviceName value:Administrators
+2022-11-07 07:41:43 [ERROR]	name:deviceSecret value:93ada5d45deb0b85305df9a14b2ac1ff
+2022-11-07 07:41:43 [ERROR]	name:minRetryInterval value:3
+2022-11-07 07:41:43 [ERROR]	name:maxRetryInterval value:60
+2022-11-07 07:41:43 [ERROR]	name:cleansession value:1
+2022-11-07 07:41:43 [ERROR]	name:keepAliveInterval value:60
+2022-11-07 07:41:43 [ERROR]	name:automaticReconnect value:1
+2022-11-07 07:41:43 [ERROR]	name:maxInflight value:10
+2022-11-07 07:58:28 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-07 07:58:28 [ERROR]	name:serverURI value:tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883
+2022-11-07 07:58:28 [ERROR]	name:productKey value:a1v3yiXDwzX
+2022-11-07 07:58:28 [ERROR]	name:deviceName value:Administrators
+2022-11-07 07:58:28 [ERROR]	name:deviceSecret value:93ada5d45deb0b85305df9a14b2ac1ff
+2022-11-07 07:58:28 [ERROR]	name:minRetryInterval value:3
+2022-11-07 07:58:28 [ERROR]	name:maxRetryInterval value:60
+2022-11-07 07:58:28 [ERROR]	name:cleansession value:1
+2022-11-07 07:58:28 [ERROR]	name:keepAliveInterval value:60
+2022-11-07 07:58:28 [ERROR]	name:automaticReconnect value:1
+2022-11-07 07:58:28 [ERROR]	name:maxInflight value:10
+2022-11-07 07:59:14 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-07 07:59:14 [ERROR]	name:serverURI value:tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883
+2022-11-07 07:59:14 [ERROR]	name:productKey value:a1v3yiXDwzX
+2022-11-07 07:59:14 [ERROR]	name:deviceName value:Administrators
+2022-11-07 07:59:14 [ERROR]	name:deviceSecret value:93ada5d45deb0b85305df9a14b2ac1ff
+2022-11-07 07:59:14 [ERROR]	name:minRetryInterval value:3
+2022-11-07 07:59:14 [ERROR]	name:maxRetryInterval value:60
+2022-11-07 07:59:14 [ERROR]	name:cleansession value:1
+2022-11-07 07:59:14 [ERROR]	name:keepAliveInterval value:60
+2022-11-07 07:59:14 [ERROR]	name:automaticReconnect value:1
+2022-11-07 07:59:14 [ERROR]	name:maxInflight value:10
+2022-11-07 08:00:07 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-07 08:00:07 [ERROR]	name:serverURI value:tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883
+2022-11-07 08:00:07 [ERROR]	name:productKey value:a1v3yiXDwzX
+2022-11-07 08:00:07 [ERROR]	name:deviceName value:Administrators
+2022-11-07 08:00:07 [ERROR]	name:deviceSecret value:93ada5d45deb0b85305df9a14b2ac1ff
+2022-11-07 08:00:07 [ERROR]	name:minRetryInterval value:3
+2022-11-07 08:00:07 [ERROR]	name:maxRetryInterval value:60
+2022-11-07 08:00:07 [ERROR]	name:cleansession value:1
+2022-11-07 08:00:07 [ERROR]	name:keepAliveInterval value:60
+2022-11-07 08:00:07 [ERROR]	name:automaticReconnect value:1
+2022-11-07 08:00:07 [ERROR]	name:maxInflight value:10
+2022-11-07 08:00:17 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-07 08:00:17 [ERROR]	name:serverURI value:tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883
+2022-11-07 08:00:17 [ERROR]	name:productKey value:a1v3yiXDwzX
+2022-11-07 08:00:17 [ERROR]	name:deviceName value:Administrators
+2022-11-07 08:00:17 [ERROR]	name:deviceSecret value:93ada5d45deb0b85305df9a14b2ac1ff
+2022-11-07 08:00:17 [ERROR]	name:minRetryInterval value:3
+2022-11-07 08:00:17 [ERROR]	name:maxRetryInterval value:60
+2022-11-07 08:00:17 [ERROR]	name:cleansession value:1
+2022-11-07 08:00:17 [ERROR]	name:keepAliveInterval value:60
+2022-11-07 08:00:17 [ERROR]	name:automaticReconnect value:1
+2022-11-07 08:00:17 [ERROR]	name:maxInflight value:10
+2022-11-07 08:01:15 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-07 08:01:15 [ERROR]	name:serverURI value:tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883
+2022-11-07 08:01:15 [ERROR]	name:productKey value:a1v3yiXDwzX
+2022-11-07 08:01:15 [ERROR]	name:deviceName value:Administrators
+2022-11-07 08:01:15 [ERROR]	name:deviceSecret value:93ada5d45deb0b85305df9a14b2ac1ff
+2022-11-07 08:01:15 [ERROR]	name:minRetryInterval value:3
+2022-11-07 08:01:15 [ERROR]	name:maxRetryInterval value:60
+2022-11-07 08:01:15 [ERROR]	name:cleansession value:1
+2022-11-07 08:01:15 [ERROR]	name:keepAliveInterval value:60
+2022-11-07 08:01:15 [ERROR]	name:automaticReconnect value:1
+2022-11-07 08:01:15 [ERROR]	name:maxInflight value:10
+2022-11-07 08:06:14 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-07 08:06:14 [ERROR]	name:serverURI value:tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883
+2022-11-07 08:06:14 [ERROR]	name:productKey value:a1v3yiXDwzX
+2022-11-07 08:06:14 [ERROR]	name:deviceName value:Administrators
+2022-11-07 08:06:14 [ERROR]	name:deviceSecret value:93ada5d45deb0b85305df9a14b2ac1ff
+2022-11-07 08:06:14 [ERROR]	name:minRetryInterval value:3
+2022-11-07 08:06:14 [ERROR]	name:maxRetryInterval value:60
+2022-11-07 08:06:14 [ERROR]	name:cleansession value:1
+2022-11-07 08:06:14 [ERROR]	name:keepAliveInterval value:60
+2022-11-07 08:06:14 [ERROR]	name:automaticReconnect value:1
+2022-11-07 08:06:14 [ERROR]	name:maxInflight value:10

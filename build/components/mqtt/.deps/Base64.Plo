@@ -1,0 +1,6 @@
+Base64.lo: ../../../components/mqtt/Base64.c /usr/include/stdc-predef.h \
+ ../../../components/mqtt/include/Base64.h
+
+/usr/include/stdc-predef.h:
+
+../../../components/mqtt/include/Base64.h:

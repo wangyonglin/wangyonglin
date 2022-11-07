@@ -10,19 +10,49 @@
 #include <fcntl.h>
 #include <errno.h>
 
-typedef struct c
+#define NTHREADS 5
+
+typedef struct httpd_info
 {
-  int  cnt;								//数量
-	int  usedcnt;						//使用个数
-	int blocksize;						//内存块大小
-	char* firstaddr;					//起始地址
-	char* lastaddr;						//结束地址
-	MEMBLOCK *firstblock;		//指向下一节点的指针
+	struct event_base *base;
+	struct evhttp *httpd;
+} httpd_info;
 
-}palloc_pool_t;
-
-
+typedef struct
+{
+	pthread_t ths[NTHREADS];
+	httpd_info info_arr[NTHREADS];
+	httpd_info *pinfo;
+} app_pthread_t;
 int main(int argv, char *args[])
 {
 
+	pthread_t ths[NTHREADS];
+	httpd_info info_arr[NTHREADS], *pinfo;
+	int i, ret, opt = 1, server_socket;
+	server_socket = bind_socket();
+
+	for (i = 0; i < NTHREADS; i++)
+	{
+		pinfo = &info_arr[i];
+		pinfo->base = event_base_new();
+		if (pinfo->base == NULL)
+			errx(-1, "ERROR new base\n");
+		pinfo->httpd = evhttp_new(pinfo->base);
+		if (pinfo->httpd == NULL)
+			errx(-1, "ERROR new evhttp\n");
+		ret = evhttp_accept_socket(pinfo->httpd, server_socket);
+		if (ret != 0)
+			errx(-1, "Error evhttp_accept_socket\n");
+
+		evhttp_set_cb(pinfo->httpd, "/testing", testing, 0);
+		evhttp_set_gencb(pinfo->httpd, notfound, 0);
+		ret = pthread_create(&ths[i], NULL, dispatch, pinfo);
+	}
+	for (i = 0; i < NTHREADS; i++)
+	{
+		pthread_join(ths[i], NULL);
+	}
+
+	return EXIT_SUCCESS;
 }

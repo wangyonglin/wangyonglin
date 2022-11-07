@@ -1,10 +1,10 @@
-SUBDIRS = \
-    src/system   \
-    src/cjson   \
-    src/wangyonglin  \
-    src/mbedtls \
-    src/paho_mqtt_c \
-    user
+SUBDIRS =\
+    components/mqtt \
+    components/string \
+    components/mysql \
+    components/json \
+    src
+
 #安装的各个目录和文件
 includedir= $(prefix)/include
 bindir=     $(prefix)/bin

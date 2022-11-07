@@ -284,10 +284,10 @@ OTOOL64 =
 PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = tiger
-PACKAGE_STRING = tiger 1.3.20
+PACKAGE_STRING = tiger 1.3.21
 PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.20
+PACKAGE_VERSION = 1.3.21
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -295,7 +295,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.20
+VERSION = 1.3.21
 abs_builddir = /home/wangyonglin/github/wangyonglin/build
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/..
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -326,6 +326,7 @@ host_cpu = x86_64
 host_os = linux-gnu
 host_vendor = pc
 htmldir = ${docdir}
+
 #安装的各个目录和文件
 includedir = $(prefix)/include
 infodir = ${datarootdir}/info
@@ -338,7 +339,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /user/local/wangyonglin
+prefix = /usr/local/wangyonglin
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
@@ -350,12 +351,11 @@ top_build_prefix =
 top_builddir = .
 top_srcdir = ..
 SUBDIRS = \
-    src/system   \
-    src/cjson   \
-    src/wangyonglin  \
-    src/mbedtls \
-    src/paho_mqtt_c \
-    user
+    components/mqtt \
+    components/string \
+    components/mysql \
+    components/json \
+    src
 
 
 #if ENABLE_EXAMPLES

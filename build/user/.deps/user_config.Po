@@ -1,3 +1,0 @@
-user_config.o: ../../user/user_config.c /usr/include/stdc-predef.h
-
-/usr/include/stdc-predef.h:

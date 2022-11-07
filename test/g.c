@@ -11,11 +11,6 @@
 
 int main(int argc, char **argv)
 {
-    char *strbuffer;
-    int len =sizeof(char) ;
-    strbuffer = (char *)malloc(len * 10);
-    memset(strbuffer, 0x00, sizeof(strbuffer));
-    strncpy(strbuffer,"wangyonglin1111111wangyonglin1111111wangyonglin1111111",21);
-    printf("%d -> %s -> %d -> %d\n", len,strbuffer,sizeof(strbuffer), strlen(strbuffer));
+   
     return 0;
 }
