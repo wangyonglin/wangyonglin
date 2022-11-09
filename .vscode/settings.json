@@ -98,6 +98,11 @@
         "systemstring.h": "c",
         "systempool.h": "c",
         "systempidfile.h": "c",
-        "systemconf.h": "c"
+        "systemconf.h": "c",
+        "systemconfig.h": "c",
+        "systemlog.h": "c",
+        "systemallocate.h": "c",
+        "systemoptions.h": "c",
+        "mqttdriver.h": "c"
     }
 }

@@ -55,7 +55,7 @@ MQTTManager.o: ../../src/MQTTManager.c /usr/include/stdc-predef.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
  /usr/include/bits/sigthread.h ../../include/MQTTAliyunConfig.h \
  ../../include/SystemConfig.h ../../include/SystemLog.h \
- ../../include/SystemPool.h /usr/include/fcntl.h \
+ ../../include/SystemAllocate.h /usr/include/fcntl.h \
  /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
  /usr/include/bits/stat.h ../../include/SystemPidfile.h \
  ../../include/SystemConf.h /usr/include/errno.h \
@@ -99,7 +99,9 @@ MQTTManager.o: ../../src/MQTTManager.c /usr/include/stdc-predef.h \
  /usr/include/openssl/ssl3.h /usr/include/openssl/tls1.h \
  /usr/include/openssl/dtls1.h /usr/include/openssl/srtp.h \
  /usr/include/openssl/conf.h /usr/include/openssl/conferr.h \
- ../../include/SystemOptions.h
+ ../../include/SystemOptions.h ../../include/MQTTDriver.h \
+ ../../include/SystemString.h /usr/include/malloc.h \
+ ../../include/SystemTime.h
 
 /usr/include/stdc-predef.h:
 
@@ -297,7 +299,7 @@ MQTTManager.o: ../../src/MQTTManager.c /usr/include/stdc-predef.h \
 
 ../../include/SystemLog.h:
 
-../../include/SystemPool.h:
+../../include/SystemAllocate.h:
 
 /usr/include/fcntl.h:
 
@@ -466,3 +468,11 @@ MQTTManager.o: ../../src/MQTTManager.c /usr/include/stdc-predef.h \
 /usr/include/openssl/conferr.h:
 
 ../../include/SystemOptions.h:
+
+../../include/MQTTDriver.h:
+
+../../include/SystemString.h:
+
+/usr/include/malloc.h:
+
+../../include/SystemTime.h:

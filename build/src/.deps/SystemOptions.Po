@@ -37,7 +37,7 @@ SystemOptions.o: ../../src/SystemOptions.c /usr/include/stdc-predef.h \
  /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
- /usr/include/bits/sigthread.h ../../include/SystemPool.h \
+ /usr/include/bits/sigthread.h ../../include/SystemAllocate.h \
  /usr/include/string.h /usr/include/bits/types/locale_t.h \
  /usr/include/bits/types/__locale_t.h /usr/include/strings.h \
  /usr/include/unistd.h /usr/include/bits/posix_opt.h \
@@ -190,7 +190,7 @@ SystemOptions.o: ../../src/SystemOptions.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/sigthread.h:
 
-../../include/SystemPool.h:
+../../include/SystemAllocate.h:
 
 /usr/include/string.h:
 

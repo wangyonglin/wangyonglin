@@ -101,14 +101,15 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_tiger_OBJECTS = SystemPool.$(OBJEXT) SystemError.$(OBJEXT) \
+am_tiger_OBJECTS = SystemAllocate.$(OBJEXT) SystemError.$(OBJEXT) \
 	SystemDaemon.$(OBJEXT) SystemPidfile.$(OBJEXT) \
 	SystemLog.$(OBJEXT) SystemConf.$(OBJEXT) \
 	SystemString.$(OBJEXT) SystemFile.$(OBJEXT) \
 	SystemConfig.$(OBJEXT) SystemOptions.$(OBJEXT) main.$(OBJEXT) \
 	HTTPSServer.$(OBJEXT) HTTPSHandler.$(OBJEXT) \
 	MQTTManager.$(OBJEXT) MQTTAliyunConfig.$(OBJEXT) \
-	SystemSignal.$(OBJEXT)
+	SystemSignal.$(OBJEXT) SystemTime.$(OBJEXT) \
+	MQTTDriver.$(OBJEXT)
 tiger_OBJECTS = $(am_tiger_OBJECTS)
 tiger_DEPENDENCIES =  \
 	$(top_builddir)/components/mqtt/libcomponent_mqtt.la \
@@ -136,12 +137,13 @@ depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/HTTPSHandler.Po \
 	./$(DEPDIR)/HTTPSServer.Po ./$(DEPDIR)/MQTTAliyunConfig.Po \
-	./$(DEPDIR)/MQTTManager.Po ./$(DEPDIR)/SystemConf.Po \
+	./$(DEPDIR)/MQTTDriver.Po ./$(DEPDIR)/MQTTManager.Po \
+	./$(DEPDIR)/SystemAllocate.Po ./$(DEPDIR)/SystemConf.Po \
 	./$(DEPDIR)/SystemConfig.Po ./$(DEPDIR)/SystemDaemon.Po \
 	./$(DEPDIR)/SystemError.Po ./$(DEPDIR)/SystemFile.Po \
 	./$(DEPDIR)/SystemLog.Po ./$(DEPDIR)/SystemOptions.Po \
-	./$(DEPDIR)/SystemPidfile.Po ./$(DEPDIR)/SystemPool.Po \
-	./$(DEPDIR)/SystemSignal.Po ./$(DEPDIR)/SystemString.Po \
+	./$(DEPDIR)/SystemPidfile.Po ./$(DEPDIR)/SystemSignal.Po \
+	./$(DEPDIR)/SystemString.Po ./$(DEPDIR)/SystemTime.Po \
 	./$(DEPDIR)/main.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -319,7 +321,7 @@ AM_CPPFLAGS = \
     -I $(top_srcdir)/components/json/include/
 
 tiger_SOURCES = \
-    SystemPool.c  \
+    SystemAllocate.c  \
     SystemError.c \
     SystemDaemon.c    \
     SystemPidfile.c   \
@@ -334,7 +336,9 @@ tiger_SOURCES = \
     HTTPSHandler.c \
     MQTTManager.c   \
     MQTTAliyunConfig.c \
-    SystemSignal.c
+    SystemSignal.c \
+    SystemTime.c \
+    MQTTDriver.c
 
 tiger_LDADD = \
     $(top_builddir)/components/mqtt/libcomponent_mqtt.la \
@@ -439,7 +443,9 @@ distclean-compile:
 include ./$(DEPDIR)/HTTPSHandler.Po # am--include-marker
 include ./$(DEPDIR)/HTTPSServer.Po # am--include-marker
 include ./$(DEPDIR)/MQTTAliyunConfig.Po # am--include-marker
+include ./$(DEPDIR)/MQTTDriver.Po # am--include-marker
 include ./$(DEPDIR)/MQTTManager.Po # am--include-marker
+include ./$(DEPDIR)/SystemAllocate.Po # am--include-marker
 include ./$(DEPDIR)/SystemConf.Po # am--include-marker
 include ./$(DEPDIR)/SystemConfig.Po # am--include-marker
 include ./$(DEPDIR)/SystemDaemon.Po # am--include-marker
@@ -448,9 +454,9 @@ include ./$(DEPDIR)/SystemFile.Po # am--include-marker
 include ./$(DEPDIR)/SystemLog.Po # am--include-marker
 include ./$(DEPDIR)/SystemOptions.Po # am--include-marker
 include ./$(DEPDIR)/SystemPidfile.Po # am--include-marker
-include ./$(DEPDIR)/SystemPool.Po # am--include-marker
 include ./$(DEPDIR)/SystemSignal.Po # am--include-marker
 include ./$(DEPDIR)/SystemString.Po # am--include-marker
+include ./$(DEPDIR)/SystemTime.Po # am--include-marker
 include ./$(DEPDIR)/main.Po # am--include-marker
 
 $(am__depfiles_remade):
@@ -616,7 +622,9 @@ distclean: distclean-am
 		-rm -f ./$(DEPDIR)/HTTPSHandler.Po
 	-rm -f ./$(DEPDIR)/HTTPSServer.Po
 	-rm -f ./$(DEPDIR)/MQTTAliyunConfig.Po
+	-rm -f ./$(DEPDIR)/MQTTDriver.Po
 	-rm -f ./$(DEPDIR)/MQTTManager.Po
+	-rm -f ./$(DEPDIR)/SystemAllocate.Po
 	-rm -f ./$(DEPDIR)/SystemConf.Po
 	-rm -f ./$(DEPDIR)/SystemConfig.Po
 	-rm -f ./$(DEPDIR)/SystemDaemon.Po
@@ -625,9 +633,9 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/SystemLog.Po
 	-rm -f ./$(DEPDIR)/SystemOptions.Po
 	-rm -f ./$(DEPDIR)/SystemPidfile.Po
-	-rm -f ./$(DEPDIR)/SystemPool.Po
 	-rm -f ./$(DEPDIR)/SystemSignal.Po
 	-rm -f ./$(DEPDIR)/SystemString.Po
+	-rm -f ./$(DEPDIR)/SystemTime.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -677,7 +685,9 @@ maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/HTTPSHandler.Po
 	-rm -f ./$(DEPDIR)/HTTPSServer.Po
 	-rm -f ./$(DEPDIR)/MQTTAliyunConfig.Po
+	-rm -f ./$(DEPDIR)/MQTTDriver.Po
 	-rm -f ./$(DEPDIR)/MQTTManager.Po
+	-rm -f ./$(DEPDIR)/SystemAllocate.Po
 	-rm -f ./$(DEPDIR)/SystemConf.Po
 	-rm -f ./$(DEPDIR)/SystemConfig.Po
 	-rm -f ./$(DEPDIR)/SystemDaemon.Po
@@ -686,9 +696,9 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/SystemLog.Po
 	-rm -f ./$(DEPDIR)/SystemOptions.Po
 	-rm -f ./$(DEPDIR)/SystemPidfile.Po
-	-rm -f ./$(DEPDIR)/SystemPool.Po
 	-rm -f ./$(DEPDIR)/SystemSignal.Po
 	-rm -f ./$(DEPDIR)/SystemString.Po
+	-rm -f ./$(DEPDIR)/SystemTime.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

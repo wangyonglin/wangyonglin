@@ -10,28 +10,38 @@
 #define FONT_COLOR_GREEN "\033[0;32m"
 #define FONT_COLOR_BLUE "\033[1;34m"
 
-ok_t SystemLog_initializing(SystemLog_t **SystemLog, allocate_pool_t *SystemAllocate, const char *name, bool model)
+ok_t SystemLog_initializing(SystemLog_t **SystemLog,SystemAllocate_t *SystemAllocate, const char *name, bool model)
 {
-    if (SystemAllocate)
+    if (!SystemAllocate && name)
     {
-        int len = strlen(name);
-        if (((*SystemLog) = SystemAllocate_create(SystemAllocate, sizeof(SystemLog_t))) == NULL)
-        {
-            return NullPointerException;
-        }
-        if ((SystemString_Pool_initializing(&((*SystemLog)->name), SystemAllocate, strdup(name), strlen(name))) != OK)
-        {
-            return ArgumentException;
-        }
-        (*SystemLog)->print_model = model;
-        return OK;
+        return ArgumentException;
     }
+
+    int len = strlen(name);
+    if (((*SystemLog) = SystemAllocate_Create(SystemAllocate, sizeof(SystemLog_t))) == NULL)
+    {
+        return NullPointerException;
+    }
+
+    if ((SystemAllocate_String(&((*SystemLog)->name), SystemAllocate, strdup(name), strlen(name))) != OK)
+    {
+        return NullPointerException;
+    }
+    (*SystemLog)->model = model;
+    return OK;
+
     return ErrorException;
 }
-int SystemLog_error(SystemLog_t *log, const char *fmt, ...)
+
+void SystemLog_clean(){
+
+
+}
+int SystemLog_error(SystemLog_t *SystemLog,const char *fmt, ...)
 {
-    if(!log){
-        return NullPointerException;
+    if (!SystemLog)
+    {
+        return ErrorException;
     }
     FILE *fptr;
     char log_line[1000] = {0};
@@ -42,21 +52,21 @@ int SystemLog_error(SystemLog_t *log, const char *fmt, ...)
     info = localtime(&rawtime);
     log_line_pos = strftime(log_line, sizeof(log_line), "%Y-%m-%d %H:%M:%S", info);
 
-    if (log)
+    if (SystemLog)
     {
-        if (log->print_model == 0)
+        if (SystemLog->model == 0)
         {
             fptr = stderr;
         }
         else
         {
-            fptr = fopen(log->name, "a+");
+            fptr = fopen(SystemLog->name, "a+");
         }
 
         if (fptr)
         {
 
-            if (log->print_model == 0)
+            if (SystemLog->model == 0)
             {
                 fprintf(fptr, FONT_COLOR_RED);
             }
@@ -68,7 +78,7 @@ int SystemLog_error(SystemLog_t *log, const char *fmt, ...)
             va_start(va, fmt);
             vfprintf(fptr, fmt, va);
 
-            if (log->print_model == 0)
+            if (SystemLog->model == 0)
             {
                 fprintf(fptr, COLOR_NONE);
             }

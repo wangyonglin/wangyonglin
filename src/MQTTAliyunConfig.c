@@ -15,54 +15,61 @@ static void _hex2str(uint8_t *input, uint16_t input_len, char *output)
     }
 }
 
-ok_t MQTTAliyun_Config_Signature(MQTTAliyun_Config_t *MQTTAliyun_Config)
+ok_t MQTTAliyun_Signature(const char *productKey, const char *deviceName, const char *deviceSecret, char clientID[150], char username[64], char password[65])
 {
-    SystemConfig_t *SystemConfig = MQTTAliyun_Config->SystemConfig;
-    if ((MQTTAliyun_Config == NULL) && (SystemConfig == NULL))
+    /* check parameters */
+    if (productKey == NULL || deviceName == NULL || deviceSecret == NULL ||
+        clientID == NULL || username == NULL || password == NULL)
     {
-        return NullPointerException;
+        return ArgumentException;
     }
-
+    if ((strlen(productKey) > PRODUCTKEY_MAXLEN) || (strlen(deviceName) > DEVICENAME_MAXLEN) ||
+        (strlen(deviceSecret) > DEVICESECRET_MAXLEN))
+    {
+        return ArgumentException;
+    }
+    memset(clientID, 0x00, CLIENTID_MAXLEN);
+    memset(username, 0x00, USERNAME_MAXLEN);
+    memset(password, 0x00, PASSWORD_MAXLEN);
     char deviceId[PRODUCTKEY_MAXLEN + DEVICENAME_MAXLEN + 2] = {0};
     char macSrc[SIGN_SOURCE_MAXLEN] = {0};
+
     uint8_t macRes[32] = {0};
     int res;
 
-    /* check parameters */
-    if (MQTTAliyun_Config->productKey == NULL || MQTTAliyun_Config->deviceName == NULL || MQTTAliyun_Config->deviceSecret == NULL)
-    {
-        return ErrorException;
-    }
-
     /* setup deviceId */
-    memcpy(deviceId, MQTTAliyun_Config->deviceName, strlen(MQTTAliyun_Config->deviceName));
+    memcpy(deviceId, deviceName, strlen(deviceName));
     memcpy(deviceId + strlen(deviceId), "&", strlen("&"));
-    memcpy(deviceId + strlen(deviceId), MQTTAliyun_Config->productKey, strlen(MQTTAliyun_Config->productKey));
+    memcpy(deviceId + strlen(deviceId), productKey, strlen(productKey));
 
     /* setup clientid */
-    memcpy(MQTTAliyun_Config->clientID, deviceId, strlen(deviceId));
-    memcpy(MQTTAliyun_Config->clientID + strlen(deviceId), MQTT_CLINETID_KV, strlen(MQTT_CLINETID_KV));
-    memset(MQTTAliyun_Config->clientID + strlen(deviceId) + strlen(MQTT_CLINETID_KV), 0, 1);
+
+    memcpy(clientID, deviceId, strlen(deviceId));
+    memcpy(clientID + strlen(deviceId), MQTT_CLINETID_KV, strlen(MQTT_CLINETID_KV));
+    memset(clientID + strlen(deviceId) + strlen(MQTT_CLINETID_KV), 0, 1);
 
     /* setup username */
-    memcpy(MQTTAliyun_Config->username, deviceId, strlen(deviceId));
-    memset(MQTTAliyun_Config->username + strlen(deviceId), 0, 1);
+
+    memcpy(username, deviceId, strlen(deviceId));
+    memset(username + strlen(deviceId), 0, 1);
 
     /* setup password */
+
     memcpy(macSrc, "clientId", strlen("clientId"));
     memcpy(macSrc + strlen(macSrc), deviceId, strlen(deviceId));
     memcpy(macSrc + strlen(macSrc), "deviceName", strlen("deviceName"));
-    memcpy(macSrc + strlen(macSrc), MQTTAliyun_Config->deviceName, strlen(MQTTAliyun_Config->deviceName));
+    memcpy(macSrc + strlen(macSrc), deviceName, strlen(deviceName));
     memcpy(macSrc + strlen(macSrc), "productKey", strlen("productKey"));
-    memcpy(macSrc + strlen(macSrc), MQTTAliyun_Config->productKey, strlen(MQTTAliyun_Config->productKey));
+    memcpy(macSrc + strlen(macSrc), productKey, strlen(productKey));
     memcpy(macSrc + strlen(macSrc), "timestamp", strlen("timestamp"));
     memcpy(macSrc + strlen(macSrc), TIMESTAMP_VALUE, strlen(TIMESTAMP_VALUE));
 
-    utils_hmac_sha256((uint8_t *)macSrc, strlen(macSrc), (uint8_t *)MQTTAliyun_Config->deviceSecret,
-                      strlen(MQTTAliyun_Config->deviceSecret), macRes);
+    utils_hmac_sha256((uint8_t *)macSrc, strlen(macSrc), (uint8_t *)deviceSecret,
+                      strlen(deviceSecret), macRes);
 
-    memset(MQTTAliyun_Config->password, 0, PASSWORD_MAXLEN);
-    _hex2str(macRes, sizeof(macRes), MQTTAliyun_Config->password);
+    
+    _hex2str(macRes, sizeof(macRes), password);
+
 
     return OK;
 }
@@ -427,41 +434,3 @@ static void utils_hmac_sha256(const uint8_t *msg, uint32_t msg_len, const uint8_
     utils_sha256_finish(&context, output);                        /* finish up 2nd pass */
 }
 
-ok_t MQTTAliyun_Config_initializing(MQTTAliyun_Config_t **MQTTAliyun_Config, SystemConfig_t *SystemConfig)
-{
-
-    if (((*MQTTAliyun_Config) = (MQTTAliyun_Config_t *)allocate((void **)MQTTAliyun_Config, sizeof(MQTTAliyun_Config_t))) == NULL)
-    {
-        return NullPointerException;
-    }
-    if (SystemConfig)
-    {
-        (*MQTTAliyun_Config)->SystemConfig = SystemConfig;
-    }
-
-    char *serverURI = NCONF_get_string(SystemConfig->SystemConf->conf, "MQTTALIYUN", "serverURI");
-    char *productKey = NCONF_get_string(SystemConfig->SystemConf->conf, "MQTTALIYUN", "productKey");
-    char *deviceName = NCONF_get_string(SystemConfig->SystemConf->conf, "MQTTALIYUN", "deviceName");
-    char *deviceSecret = NCONF_get_string(SystemConfig->SystemConf->conf, "MQTTALIYUN", "deviceSecret");
-    SystemString_initializing(&(*MQTTAliyun_Config)->serverURI, serverURI, strlen(serverURI));
-    SystemString_initializing(&(*MQTTAliyun_Config)->productKey, productKey, strlen(productKey));
-    SystemString_initializing(&(*MQTTAliyun_Config)->deviceName, deviceName, strlen(deviceName));
-    SystemString_initializing(&(*MQTTAliyun_Config)->deviceSecret, deviceSecret, strlen(deviceSecret));
-    NCONF_get_number(SystemConfig->SystemConf->conf, "MQTTALIYUN", "minRetryInterval", &(*MQTTAliyun_Config)->minRetryInterval);
-    NCONF_get_number(SystemConfig->SystemConf->conf, "MQTTALIYUN", "maxRetryInterval", &(*MQTTAliyun_Config)->maxRetryInterval);
-    NCONF_get_number(SystemConfig->SystemConf->conf, "MQTTALIYUN", "cleansession", &(*MQTTAliyun_Config)->cleansession);
-    NCONF_get_number(SystemConfig->SystemConf->conf, "MQTTALIYUN", "keepAliveInterval", &(*MQTTAliyun_Config)->keepAliveInterval);
-    NCONF_get_number(SystemConfig->SystemConf->conf, "MQTTALIYUN", "automaticReconnect", &(*MQTTAliyun_Config)->automaticReconnect);
-    NCONF_get_number(SystemConfig->SystemConf->conf, "MQTTALIYUN", "maxInflight", &(*MQTTAliyun_Config)->maxInflight);
-    return OK;
-}
-
-ok_t MQTTAliyun_Config_Cleanup(MQTTAliyun_Config_t *MQTTAliyun_Config)
-{
-    SystemString_cleanup(MQTTAliyun_Config->serverURI);
-    SystemString_cleanup(MQTTAliyun_Config->productKey);
-    SystemString_cleanup(MQTTAliyun_Config->deviceName);
-    SystemString_cleanup(MQTTAliyun_Config->deviceSecret);
-    deallocate(MQTTAliyun_Config);
-    return OK;
-}

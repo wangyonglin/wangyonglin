@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <SystemLog.h>
 #include <SystemTypes.h>
-#include <SystemPool.h>
+#include <SystemAllocate.h>
 typedef bool config_lock_flag_t;
 typedef struct
 {
@@ -21,12 +21,12 @@ typedef struct
     config_bool_t alone_runnind;
 } SystemPidfile_t;
 
-ok_t SystemPidfile_initializing(SystemPidfile_t **SystemPidfile, allocate_pool_t *pool, const char *filename);
+ok_t SystemPidfile_initializing(SystemPidfile_t ** SystemPidfile,SystemAllocate_t *SystemAllocate, const char *filename);
 
-ok_t SystemPidfile_listene(SystemPidfile_t *SystemPidfile);
-ok_t SystemPidfile_crt(SystemPidfile_t *SystemPidfile);
-ok_t SystemPidfile_del(SystemPidfile_t *SystemPidfile);
-ok_t SystemPidfile_kill(SystemPidfile_t *SystemPidfile);
+ok_t SystemPidfile_listene(SystemPidfile_t * SystemPidfile);
 
+ok_t SystemPidfile_crt(SystemPidfile_t * SystemPidfile);
+ok_t SystemPidfile_del(SystemPidfile_t * SystemPidfile);
+ok_t SystemPidfile_quit(SystemPidfile_t * SystemPidfile);
 
 #endif //__TIGER_PID__H__

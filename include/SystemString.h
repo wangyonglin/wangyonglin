@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <SystemTypes.h>
-#include <SystemPool.h>
+#include <SystemAllocate.h>
 typedef struct
 {
     void *(*allocate)(size_t size);
@@ -30,6 +30,6 @@ void deallocate(void *pointer);
 
 char *setting_string(char *pointer, const char *data, size_t length);
 int format_string(char *pointer, const char *fmt, ...) __attribute__((format(printf, 2, 3)));
-ok_t SystemString_Pool_initializing(char ** pointer,allocate_pool_t *pool,char *data,int length);
+
 
 #endif //!__WANGYONGLIN_STRING_H__

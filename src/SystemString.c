@@ -8,7 +8,7 @@
 #define KEY_LENGTH 24
 #define SEPARATOR "$"
 #define SALTLEN 12
-
+/*
 char *string_timestamp_crt(char **dest)
 {
     char buffer[10] = {0};
@@ -50,10 +50,7 @@ char *string_rand_crt(char **dest, int bits)
 
     return *dest;
 }
-int string_len(const char *str)
-{
-    return strlen(str);
-}
+
 
 int string_ciphertext(char **dest, char *buffer, int length)
 {
@@ -100,7 +97,7 @@ unsigned char *string_hex_bytes(unsigned char **bytes, const char *string, int l
 
     return NULL;
 }
-
+*/
 char *SystemString_initializing(char **pointer, char *data, int length)
 {
     if ((*pointer) = (char *)global_hooks.allocate(length + 1))
@@ -192,15 +189,3 @@ char *setting_string(char *pointer, const char *data, size_t length)
 }
 
 
-ok_t SystemString_Pool_initializing(char ** pointer,allocate_pool_t *pool,char *data,int length){
-	if(((*pointer)=SystemAllocate_create(pool,length+1))==NULL){
-		return NullPointerException;
-	}
-	if(memset((*pointer),0x00,length+1)==NULL){
-        return ArgumentException;
-    }
-    if(memcpy((*pointer),data,length)==NULL){
-        return ArgumentException;
-    }
-    return OK;
-}

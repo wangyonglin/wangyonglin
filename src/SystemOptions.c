@@ -16,10 +16,7 @@ struct option long_options[] = {
     {"pid", optional_argument, 0, 'i'},
     {"version", no_argument, 0, 'v'},
     {0, 0, 0, 0}};
-const char *ini_filename = "/home/wangyonglin/github/wangyonglin/conf/tiger.conf";
-const char *pid_filename = "/var/run/wangyonglin.pid";
-const char *log_filename = "/home/wangyonglin/github/wangyonglin/logs/error.log";
-#define STRING_MALLOC_MAX 512
+
 /*
 config_options_t *config_options_allocate(config_options_t **options)
 {
@@ -106,79 +103,94 @@ ok_t config_options_initializing(config_options_t *options, int argc, char *argv
     return OK_ERROR;
 }
 */
-ok_t SystemOptions_initializing(SystemOptions_t **SystemOptions, allocate_pool_t *pool, int argc, char *argv[])
-{
-    if (pool)
-    {
+const char *ini_filename = "/home/wangyonglin/github/wangyonglin/conf/tiger.conf";
+const char *pid_filename = "/var/run/wangyonglin.pid";
+const char *log_filename = "/home/wangyonglin/github/wangyonglin/logs/error.log";
+#define STRING_MALLOC_MAX 512
 
-        if ((*SystemOptions) = SystemAllocate_create(pool, sizeof(SystemOptions_t)))
-        {
-            (*SystemOptions)->ini_filename = SystemAllocate_create(pool, STRINTG_BUFFER_MAX);
-            (*SystemOptions)->pid_filename = SystemAllocate_create(pool, STRINTG_BUFFER_MAX);
-            (*SystemOptions)->log_filename = SystemAllocate_create(pool, STRINTG_BUFFER_MAX);
-            sprintf((*SystemOptions)->ini_filename, "/home/wangyonglin/github/wangyonglin/conf/tiger.conf");
-            sprintf((*SystemOptions)->pid_filename, "/var/run/wangyonglin.pid");
-            sprintf((*SystemOptions)->log_filename, "/home/wangyonglin/github/wangyonglin/logs/error.log");
-            while (-1 != (opt = getopt_long(argc, argv, short_options, long_options, &option_index)))
-            {
-                switch (opt)
-                {
-                case 'c':
-                    bzero((*SystemOptions)->ini_filename, STRINTG_BUFFER_MAX);
-                    strncpy((*SystemOptions)->ini_filename, strdup(optarg), strlen(optarg));
-                    break;
-                case 'i':
-                    bzero((*SystemOptions)->pid_filename, STRINTG_BUFFER_MAX);
-                    strncpy((*SystemOptions)->pid_filename, strdup(optarg), strlen(optarg));
-                    break;
-                case 's':
-                    if (!strcmp(optarg, "start"))
-                    {
-                        (*SystemOptions)->started = on_start;
-                    }
-                    else if (!strcmp(optarg, "stop"))
-                    {
-                        (*SystemOptions)->started = on_stop;
-                    }
-                    else
-                    {
-                        err_printf("starting params error[%s]", optarg);
-                        return ErrorException;
-                    }
-                    break;
-                case 'd':
-                    (*SystemOptions)->deamoned = true;
-                    break;
-                case 'v':
-                    err_printf("v");
-                    return NoneException;
-                    break;
-                case '?': // 未定义参数项
-                    printf("arg err:\r\n");
-                    printf("Try 'getopt_test -h' for more information.\r\n");
-                    return NoneException;
-                    break;
-                default:
-                    printf("getopt_test: invalid option -- '%c'\r\n", opt);
-                    printf("Try 'getopt_test -h' for more information.\r\n");
-                    return NoneException;
-                    break;
-                }
-            }
-        }
-        return OK;
+char ini_filename_buffer[64] = {0};
+char pid_filename_buffer[64] = {0};
+char log_filename_buffer[64] = {0};
+ok_t SystemOptions_initializing(SystemOptions_t **SystemOptions,SystemAllocate_t *SystemAllocate, int argc, char *argv[])
+{
+    if (!SystemAllocate)
+    {
+        return ArgumentException;
     }
+
+    if (!((*SystemOptions) = SystemAllocate_Create(SystemAllocate, sizeof(SystemOptions_t))))
+    {
+        return NullPointerException;
+    }
+    strncpy(ini_filename_buffer, ini_filename, strlen(ini_filename));
+    strncpy(pid_filename_buffer, pid_filename, strlen(pid_filename));
+    strncpy(log_filename_buffer, log_filename, strlen(log_filename));
+    while (-1 != (opt = getopt_long(argc, argv, short_options, long_options, &option_index)))
+    {
+        switch (opt)
+        {
+        case 'c':
+            bzero(ini_filename_buffer, sizeof(ini_filename_buffer));
+            strncpy(ini_filename_buffer, strdup(optarg), strlen(optarg));
+            break;
+        case 'i':
+            bzero(pid_filename_buffer, sizeof(pid_filename_buffer));
+            strncpy(pid_filename_buffer, strdup(optarg), strlen(optarg));
+            break;
+        case 's':
+            if (!strcmp(optarg, "start"))
+            {
+                (*SystemOptions)->started = on_start;
+            }
+            else if (!strcmp(optarg, "stop"))
+            {
+                (*SystemOptions)->started = on_stop;
+            }
+            else
+            {
+                err_printf("starting params error[%s]", optarg);
+                return ErrorException;
+            }
+            break;
+        case 'd':
+            (*SystemOptions)->deamoned = true;
+            break;
+        case 'v':
+            err_printf("v");
+            return NoneException;
+            break;
+        case '?': // 未定义参数项
+            printf("arg err:\r\n");
+            printf("Try 'getopt_test -h' for more information.\r\n");
+            return NoneException;
+            break;
+        default:
+            printf("getopt_test: invalid option -- '%c'\r\n", opt);
+            printf("Try 'getopt_test -h' for more information.\r\n");
+            return NoneException;
+            break;
+        }
+    }
+
+    if (!(SystemAllocate_String(&(*SystemOptions)->ini_filename, SystemAllocate, strdup(ini_filename_buffer), strlen(ini_filename_buffer))))
+    {
+        return ErrorException;
+    }
+    if (!(SystemAllocate_String(&(*SystemOptions)->pid_filename, SystemAllocate, strdup(pid_filename_buffer), strlen(pid_filename_buffer))))
+    {
+        return ErrorException;
+    }
+    if (!(SystemAllocate_String(&(*SystemOptions)->log_filename, SystemAllocate, strdup(log_filename_buffer), strlen(log_filename_buffer))))
+    {
+        return ErrorException;
+    }
+
+    return OK;
 }
 
-ok_t SystemOptions_cleanup(SystemOptions_t *SystemOptions, allocate_pool_t *pool)
+void SystemOptions_clean()
 {
-
-    if (SystemOptions)
-    {
-
-        SystemAllocate_delect(pool, SystemOptions->ini_filename);
-        SystemAllocate_delect(pool, SystemOptions->pid_filename);
-        SystemAllocate_delect(pool, SystemOptions->log_filename);
-        SystemAllocate_delect(pool, SystemOptions);
-    }
+    bzero(ini_filename_buffer, sizeof(ini_filename_buffer));
+    bzero(pid_filename_buffer, sizeof(pid_filename_buffer));
+    bzero(log_filename_buffer, sizeof(log_filename_buffer));
 }

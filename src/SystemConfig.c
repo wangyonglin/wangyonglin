@@ -6,85 +6,90 @@
 #include <SystemConf.h>
 #include <SystemOptions.h>
 #include <SystemError.h>
-#include <SystemPool.h>
-allocate_pool_t *SystemAllocate = NULL;
-SystemOptions_t *SystemOptions = NULL;
-SystemLog_t *SystemLog = NULL;
-SystemPidfile_t *SystemPidfile = NULL;
-SystemConf_t *SystemConf = NULL;
+#include <SystemAllocate.h>
+SystemAllocate_t *__SystemAllocate = NULL;
+SystemOptions_t *__SystemOptions = NULL;
+SystemLog_t *__SystemLog = NULL;
+SystemPidfile_t *__SystemPidfile = NULL;
+SystemConf_t *__SystemConf = NULL;
 ok_t SystemConfig_initializing(SystemConfig_t **SystemConfig, int argc, char *argv[])
 {
     ok_t rc;
-    if (SystemAllocate_initializing(&SystemAllocate, 4096) == NULL)
+    if (SystemAllocate_initializing(&__SystemAllocate, 4096) == NULL)
     {
         fprintf(stderr, "SystemAllocate_initializing NullPointerException");
         return NullPointerException;
     }
-    if (((*SystemConfig) = SystemAllocate_create(SystemAllocate, sizeof(SystemConfig_t))) == NULL)
+    if (((*SystemConfig) = SystemAllocate_Create(__SystemAllocate, sizeof(SystemConfig_t))) == NULL)
     {
         return NullPointerException;
     }
-    if ((rc = SystemOptions_initializing(&SystemOptions, SystemAllocate, argc, argv)) != OK)
+    if ((rc = SystemOptions_initializing(&__SystemOptions, __SystemAllocate, argc, argv)) != OK)
     {
         return rc;
     }
-    if ((rc = SystemLog_initializing(&SystemLog, SystemAllocate, SystemOptions->log_filename, SystemOptions->deamoned)) != OK)
+    
+    if ((rc = SystemLog_initializing(&__SystemLog, __SystemAllocate, __SystemOptions->log_filename, __SystemOptions->deamoned)) != OK)
     {
         return rc;
     }
-    if ((rc = SystemPidfile_initializing(&SystemPidfile, SystemAllocate, SystemOptions->pid_filename)) != OK)
+    SystemLog_error(__SystemLog,"ok");
+   
+    if ((rc = SystemPidfile_initializing(&__SystemPidfile, __SystemAllocate, __SystemOptions->pid_filename)) != OK)
     {
         return rc;
     }
-    if (SystemOptions->started == on_start)
+     
+    if (__SystemOptions->started == on_start)
     {
-        if (SystemPidfile_listene(SystemPidfile) == NoneException)
+        if (SystemPidfile_listene(__SystemPidfile) == NoneException)
         {
-            SystemDeallocate_cleanup(SystemAllocate);
+            SystemDeallocate_cleanup(__SystemAllocate);
             exit(EXIT_SUCCESS);
         }
-        if (SystemOptions->deamoned == TRUE)
+        if (__SystemOptions->deamoned == TRUE)
         {
             config_daemon_start();
         }
-        if ((rc = SystemPidfile_crt(SystemPidfile)) != OK)
+        if ((rc = SystemPidfile_crt(__SystemPidfile)) != OK)
         {
             return rc;
         }
 
-        if ((rc = SystemConf_initializing(&SystemConf, SystemAllocate, SystemOptions->ini_filename)) != OK)
+        if ((rc = SystemConf_initializing(&__SystemConf,__SystemAllocate, __SystemOptions->ini_filename)) != OK)
         {
             printf("\t%d\r\n", rc);
             return rc;
         }
-        SystemLog_error(SystemLog, SystemOptions->ini_filename);
+        SystemLog_error(__SystemLog, __SystemOptions->ini_filename);
 
-        if ((*SystemConfig) && SystemConf)
+        if ((*SystemConfig) && __SystemConf)
         {
-            (*SystemConfig)->SystemConf = SystemConf;
+            (*SystemConfig)->SystemConf = __SystemConf;
         }
-        if ((*SystemConfig) && SystemLog)
+        if ((*SystemConfig) && __SystemLog)
         {
-            (*SystemConfig)->SystemLog = SystemLog;
+            (*SystemConfig)->SystemLog = __SystemLog;
         }
-        if ((*SystemConfig) && SystemAllocate)
+        if ((*SystemConfig) && __SystemAllocate)
         {
-            (*SystemConfig)->SystemAllocate = SystemAllocate;
+            (*SystemConfig)->SystemAllocate = __SystemAllocate;
         }
-
+ 
         return OK;
     }
-    else if (SystemOptions->started == on_stop)
+    else if (__SystemOptions->started == on_stop)
     {
 
-        SystemPidfile_kill(SystemPidfile);
-        SystemDeallocate_cleanup(SystemAllocate);
+        SystemPidfile_quit(__SystemPidfile);
+        SystemDeallocate_cleanup(__SystemAllocate);
         exit(EXIT_SUCCESS);
     }
+       
     return ErrorException;
 }
 void SystemConfig_cleanup(SystemConfig_t *SystemConfig)
 {
     // SystemPidfile_del(SystemPidfile);
-    SystemDeallocate_cleanup(SystemAllocate);
+    SystemDeallocate_cleanup(__SystemAllocate);
 }

@@ -27,6 +27,7 @@
 #include <SystemPidfile.h>
 #include <SystemError.h>
 
+
 int config_lock_fcntl(int fd)
 {
     struct flock fl;
@@ -37,127 +38,142 @@ int config_lock_fcntl(int fd)
     return (fcntl(fd, F_SETLK, &fl));
 }
 
-ok_t SystemPidfile_initializing(SystemPidfile_t **SystemPidfile, allocate_pool_t *pool, const char *filename)
+ok_t SystemPidfile_initializing(SystemPidfile_t ** SystemPidfile,SystemAllocate_t *SystemAllocate, const char *filename)
 {
-    if (pool)
+
+    if (!SystemAllocate && !filename)
     {
-        int len = strlen(filename);
-        if ((*SystemPidfile) = SystemAllocate_create(pool, sizeof(SystemPidfile_t)))
-        {
-            (*SystemPidfile)->name = SystemAllocate_create(pool, len + 1);
-            bzero((*SystemPidfile)->name, len + 1);
-            sprintf((*SystemPidfile)->name, filename);
-            return OK;
-        }
+        return ArgumentException;
     }
+
+    if (!((*SystemPidfile) = SystemAllocate_Create(SystemAllocate, sizeof(SystemPidfile_t))))
+    {
+        return NullPointerException;
+    }
+
+    if ((SystemAllocate_String(&((*SystemPidfile)->name), SystemAllocate, strdup(filename), strlen(filename))) != OK)
+    {
+        return NullPointerException;
+    }
+    return OK;
+}
+ok_t SystemPidfile_listene(SystemPidfile_t * SystemPidfile)
+{
+    if (!SystemPidfile && SystemPidfile->name)
+    {
+        return ArgumentException;
+    }
+    config_fd_t fd;
+    if ((fd = open(SystemPidfile->name, O_RDWR | O_CREAT, 0666)) < 0)
+    {
+        err_printf("unable to open file '%s': %s", SystemPidfile->name, strerror(errno));
+        return ErrorException;
+    }
+
+    if (config_lock_fcntl(fd) < 0)
+    {
+        if (errno == EACCES || errno == EAGAIN)
+        {
+            close(fd);
+            err_printf("alone runnind");
+            SystemPidfile->alone_runnind = TRUE;
+            return NoneException;
+        }
+        err_printf("can't lock %s: %s", SystemPidfile->name, strerror(errno));
+    }
+    close(fd);
+
+    return OK;
+}
+
+ok_t SystemPidfile_crt(SystemPidfile_t * SystemPidfile)
+{
+    if (!SystemPidfile && SystemPidfile->name)
+    {
+        return ArgumentException;
+    }
+
+    char buf[16];
+    if ((SystemPidfile->fd = open(SystemPidfile->name, O_RDWR | O_CREAT, 0666)) < 0)
+    {
+        err_printf("unable to open file '%s': %s", SystemPidfile->name, strerror(errno));
+        return NullPointerException;
+    }
+
+    if (config_lock_fcntl(SystemPidfile->fd) < 0)
+    {
+        if (errno == EACCES || errno == EAGAIN)
+        {
+            err_printf("alone runnind");
+            SystemPidfile->alone_runnind = TRUE;
+            return NoneException;
+        }
+        err_printf("can't lock %s: %s", SystemPidfile->name, strerror(errno));
+    }
+
+    ftruncate(SystemPidfile->fd, 0); // 设置文件的大小为0
+    sprintf(buf, "%ld", (long)getpid());
+    write(SystemPidfile->fd, buf, strlen(buf) + 1);
+    return OK;
+
     return ErrorException;
 }
-ok_t SystemPidfile_listene(SystemPidfile_t *SystemPidfile)
-{
-    config_fd_t fd;
-    if (SystemPidfile->name)
-    {
-        if ((fd = open(SystemPidfile->name, O_RDWR | O_CREAT, 0666)) < 0)
-        {
-            err_printf("unable to open file '%s': %s", SystemPidfile->name, strerror(errno));
-            return FLAG_ERROR;
-        }
 
-        if (config_lock_fcntl(fd) < 0)
+ok_t SystemPidfile_del(SystemPidfile_t * SystemPidfile)
+{
+    if (!SystemPidfile && !SystemPidfile->name)
+    {
+        return ArgumentException;
+    }
+
+    if (SystemPidfile->fd != -1)
+    {
+        close(SystemPidfile->fd);
+    }
+    if (unlink(SystemPidfile->name) != 0)
+    {
+        err_printf("delect failed:[%s] %s ", SystemPidfile->name, strerror(errno));
+    }
+
+    return OK;
+}
+ok_t SystemPidfile_quit(SystemPidfile_t * SystemPidfile)
+{
+    if (!SystemPidfile && !SystemPidfile->name)
+    {
+        return ArgumentException;
+    }
+    int fd;
+    int pid;
+    char buf[16] = {0};
+    struct flock fl;
+    fl.l_type = F_WRLCK;
+    fl.l_start = 0;
+    fl.l_whence = SEEK_SET;
+    fl.l_len = 0;
+    if ((fd = open(SystemPidfile->name, O_RDWR, 0666)) != -1)
+    {
+        if (fcntl(fd, F_SETLK, &fl) < 0)
         {
             if (errno == EACCES || errno == EAGAIN)
             {
-                close(fd);
-                err_printf("alone runnind");
-                SystemPidfile->alone_runnind = TRUE;
-                return NoneException;
+                if (read(fd, buf, sizeof(buf)) != -1)
+                {
+                    close(fd);
+                    if (kill(atoi(buf), SIGTERM) == 0)
+                    {
+                        if (unlink(SystemPidfile->name) != 0)
+                        {
+                            err_printf("delect failed:[%s] %s ", SystemPidfile->name, strerror(errno));
+                        }
+                    }
+                    return OK;
+                }
             }
-            err_printf("can't lock %s: %s", SystemPidfile->name, strerror(errno));
         }
         close(fd);
     }
-    return OK;
-}
 
-ok_t SystemPidfile_crt(SystemPidfile_t *SystemPidfile)
-{
-    if (SystemPidfile)
-    {
-        char buf[16];
-        if ((SystemPidfile->fd = open(SystemPidfile->name, O_RDWR | O_CREAT, 0666)) < 0)
-        {
-            err_printf("unable to open file '%s': %s", SystemPidfile->name, strerror(errno));
-            return NullPointerException;
-        }
-
-        if (config_lock_fcntl(SystemPidfile->fd) < 0)
-        {
-            if (errno == EACCES || errno == EAGAIN)
-            {
-                err_printf("alone runnind");
-                SystemPidfile->alone_runnind = TRUE;
-                return NoneException;
-            }
-            err_printf("can't lock %s: %s", SystemPidfile->name, strerror(errno));
-        }
-
-        ftruncate(SystemPidfile->fd, 0); // 设置文件的大小为0
-        sprintf(buf, "%ld", (long)getpid());
-        write(SystemPidfile->fd, buf, strlen(buf) + 1);
-        return OK;
-    }
-    return ErrorException;
-}
-
-ok_t SystemPidfile_del(SystemPidfile_t *SystemPidfile)
-{
-    if (SystemPidfile)
-    {
-        if (SystemPidfile->fd != -1)
-        {
-            close(SystemPidfile->fd);
-        }
-        if (unlink(SystemPidfile->name) != 0)
-        {
-            err_printf("delect failed:[%s] %s ", SystemPidfile->name, strerror(errno));
-        }
-    }
-    return OK;
-}
-ok_t SystemPidfile_kill(SystemPidfile_t *SystemPidfile)
-{
-   
-        int fd;
-        int pid;
-        char buf[16] = {0};
-        struct flock fl;
-        fl.l_type = F_WRLCK;
-        fl.l_start = 0;
-        fl.l_whence = SEEK_SET;
-        fl.l_len = 0;
-        if ((fd = open(SystemPidfile->name, O_RDWR, 0666)) != -1)
-        {
-            if (fcntl(fd, F_SETLK, &fl) < 0)
-            {
-                if (errno == EACCES || errno == EAGAIN)
-                {
-                    if (read(fd, buf, sizeof(buf)) != -1)
-                    {
-                        close(fd);
-                        if (kill(atoi(buf), SIGTERM) == 0)
-                        {
-                            if (unlink(SystemPidfile->name) != 0)
-                            {
-                                err_printf("delect failed:[%s] %s ", SystemPidfile->name, strerror(errno));
-                            }
-                        }
-                        return OK;
-                    }
-                }
-            }
-            close(fd);
-        }
-    
     return NoneException;
 }
 /*

@@ -73,10 +73,11 @@ HTTPSServer.o: ../../src/HTTPSServer.c /usr/include/stdc-predef.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
  /usr/include/bits/sigthread.h ../../include/SystemString.h \
- /usr/include/malloc.h ../../include/SystemPool.h /usr/include/fcntl.h \
- /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
- /usr/include/bits/stat.h ../../components/string/include/SnowFlake.h \
- /usr/include/pthread.h /usr/include/sched.h /usr/include/bits/sched.h \
+ /usr/include/malloc.h ../../include/SystemAllocate.h \
+ /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+ /usr/include/bits/fcntl-linux.h /usr/include/bits/stat.h \
+ ../../components/string/include/SnowFlake.h /usr/include/pthread.h \
+ /usr/include/sched.h /usr/include/bits/sched.h \
  /usr/include/bits/types/struct_sched_param.h /usr/include/bits/cpu-set.h \
  /usr/include/bits/setjmp.h /usr/include/linux/unistd.h \
  /usr/include/asm/unistd.h /usr/include/asm/unistd_64.h \
@@ -370,7 +371,7 @@ HTTPSServer.o: ../../src/HTTPSServer.c /usr/include/stdc-predef.h \
 
 /usr/include/malloc.h:
 
-../../include/SystemPool.h:
+../../include/SystemAllocate.h:
 
 /usr/include/fcntl.h:
 

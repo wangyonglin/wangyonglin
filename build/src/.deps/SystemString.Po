@@ -42,7 +42,7 @@ SystemString.o: ../../src/SystemString.c /usr/include/stdc-predef.h \
  /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
- /usr/include/bits/sigthread.h ../../include/SystemPool.h \
+ /usr/include/bits/sigthread.h ../../include/SystemAllocate.h \
  /usr/include/unistd.h /usr/include/bits/posix_opt.h \
  /usr/include/bits/environments.h /usr/include/bits/confname.h \
  /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
@@ -228,7 +228,7 @@ SystemString.o: ../../src/SystemString.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/sigthread.h:
 
-../../include/SystemPool.h:
+../../include/SystemAllocate.h:
 
 /usr/include/unistd.h:
 

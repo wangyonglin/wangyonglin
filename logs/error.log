@@ -153,3 +153,5 @@
 2022-11-07 08:06:14 [ERROR]	name:keepAliveInterval value:60
 2022-11-07 08:06:14 [ERROR]	name:automaticReconnect value:1
 2022-11-07 08:06:14 [ERROR]	name:maxInflight value:10
+2022-11-09 10:54:51 [ERROR]	ok
+2022-11-09 10:54:51 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf

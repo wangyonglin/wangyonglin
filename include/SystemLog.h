@@ -2,8 +2,7 @@
 #define INCLUDE_SYSTEMLOG_H
 
 #include <SystemTypes.h>
-#include <SystemPool.h>
-
+#include <SystemAllocate.h>
 
 typedef enum
 {
@@ -16,10 +15,10 @@ typedef enum
 typedef struct
 {
     char *name;
-    bool print_model;
+    bool model;
 } SystemLog_t;
 
-ok_t SystemLog_initializing(SystemLog_t **SystemLog,allocate_pool_t *pool, const char *name, bool model);
+ok_t SystemLog_initializing(SystemLog_t **SystemLog,SystemAllocate_t *SystemAllocate, const char *name, bool model);
 
-int SystemLog_error(SystemLog_t *log, const char *fmt, ...) __attribute__((format(printf, 2, 3)));
+int SystemLog_error(SystemLog_t *SystemLog,const char *fmt, ...) __attribute__((format(printf, 2, 3)));
 #endif //!__LOG__H__
