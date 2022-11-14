@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <SystemLog.h>
 #include <SystemTypes.h>
-#include <SystemAllocate.h>
+#include <AllocateUtils.h>
 typedef bool config_lock_flag_t;
 typedef struct
 {
@@ -21,7 +21,7 @@ typedef struct
     config_bool_t alone_runnind;
 } SystemPidfile_t;
 
-ok_t SystemPidfile_initializing(SystemPidfile_t ** SystemPidfile,SystemAllocate_t *SystemAllocate, const char *filename);
+ok_t SystemPidfile_initializing(SystemPidfile_t ** SystemPidfile,AllocateUtils_t *AllocateUtils, const char *filename);
 
 ok_t SystemPidfile_listene(SystemPidfile_t * SystemPidfile);
 

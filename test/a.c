@@ -1,54 +1,31 @@
-/***************************************************************************
- *                                  _   _ ____  _
- *  Project                     ___| | | |  _ \| |
- *                             / __| | | | |_) | |
- *                            | (__| |_| |  _ <| |___
- *                             \___|\___/|_| \_\_____|
- *
- * Copyright (C) 1998 - 2022, Daniel Stenberg, <daniel@haxx.se>, et al.
- *
- * This software is licensed as described in the file COPYING, which
- * you should have received as part of this distribution. The terms
- * are also available at https://curl.se/docs/copyright.html.
- *
- * You may opt to use, copy, modify, merge, publish, distribute and/or sell
- * copies of the Software, and permit persons to whom the Software is
- * furnished to do so, under the terms of the COPYING file.
- *
- * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
- * KIND, either express or implied.
- *
- * SPDX-License-Identifier: curl
- *
- ***************************************************************************/
-/* <DESC>
- * Use getinfo to get content-type after completed transfer.
- * </DESC>
- */
 #include <stdio.h>
-#include <curl/curl.h>
-
-int main(void)
+typedef struct 
 {
-  CURL *curl;
-  CURLcode res;
+  char * name;
+  int type;
+}conf_command_t;
 
-  curl = curl_easy_init();
-  if(curl) {
-    curl_easy_setopt(curl, CURLOPT_URL, "https://www.example.com/");
-    res = curl_easy_perform(curl);
+void bubble_sort(conf_command_t commands[], int size)
+{
 
-    if(CURLE_OK == res) {
-      char *ct;
-      /* ask for the content-type */
-      res = curl_easy_getinfo(curl, CURLINFO_CONTENT_TYPE, &ct);
+ 
+  for (int i = 0; i < size ; i++) // 排序要排 元素总个数-1，最后一个元素不用排
+  {
+    printf("\t%s %d \r\n", commands[i].name, commands[i].type);
 
-      if((CURLE_OK == res) && ct)
-        printf("We received Content-Type: %s\n", ct);
-    }
-
-    /* always cleanup */
-    curl_easy_cleanup(curl);
   }
+}
+conf_command_t arr[] = {
+  {"wangyonglin",11},
+  {"wangxiaoli",10},
+  {"wangyujie",9}
+  };
+int main()
+{
+
+  int i = 0;
+
+  bubble_sort(arr,sizeof(arr)/sizeof(arr[0]));
+ 
   return 0;
 }

@@ -4,15 +4,16 @@
 
 #include <SystemLog.h>
 #include <SystemPidfile.h>
-#include <SystemConf.h>
+
 #include <SystemOptions.h>
-#include <SystemAllocate.h>
+#include <AllocateUtils.h>
+#include <ConfUtils.h>
 typedef int config_error_t;
 typedef struct
 {
     SystemLog_t *SystemLog;
-    SystemConf_t *SystemConf;
-    SystemAllocate_t *SystemAllocate;
+    ConfUtils_t *ConfUtils;
+    AllocateUtils_t *AllocateUtils;
 } SystemConfig_t;
 
 SystemConfig_t *config_allocate(SystemConfig_t **config);

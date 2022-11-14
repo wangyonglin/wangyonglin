@@ -43,17 +43,11 @@ MQTTAliyunConfig.o: ../../src/MQTTAliyunConfig.c \
  /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
- /usr/include/bits/sigthread.h ../../include/SystemLog.h \
- ../../include/SystemAllocate.h /usr/include/unistd.h \
+ /usr/include/bits/sigthread.h \
+ ../../components/string/include/PublicUtils.h /usr/include/unistd.h \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h /usr/include/fcntl.h \
- /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
- /usr/include/bits/stat.h ../../include/SystemPidfile.h \
- ../../include/SystemConf.h /usr/include/errno.h \
- /usr/include/bits/errno.h /usr/include/linux/errno.h \
- /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
- /usr/include/asm-generic/errno-base.h /usr/include/openssl/err.h \
+ /usr/include/bits/getopt_core.h /usr/include/openssl/err.h \
  /usr/include/openssl/e_os2.h /usr/include/openssl/opensslconf.h \
  /usr/include/openssl/opensslconf-x86_64.h \
  /usr/include/openssl/opensslv.h /usr/include/inttypes.h \
@@ -71,7 +65,10 @@ MQTTAliyunConfig.o: ../../src/MQTTAliyunConfig.c \
  /usr/include/pthread.h /usr/include/sched.h /usr/include/bits/sched.h \
  /usr/include/bits/types/struct_sched_param.h /usr/include/bits/cpu-set.h \
  /usr/include/bits/setjmp.h /usr/include/openssl/bioerr.h \
- /usr/include/openssl/lhash.h /usr/include/openssl/ssl.h \
+ /usr/include/openssl/lhash.h /usr/include/errno.h \
+ /usr/include/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
+ /usr/include/asm-generic/errno-base.h /usr/include/openssl/ssl.h \
  /usr/include/openssl/comp.h /usr/include/openssl/comperr.h \
  /usr/include/openssl/x509.h /usr/include/openssl/buffer.h \
  /usr/include/openssl/buffererr.h /usr/include/openssl/evp.h \
@@ -93,7 +90,12 @@ MQTTAliyunConfig.o: ../../src/MQTTAliyunConfig.c \
  /usr/include/openssl/ssl3.h /usr/include/openssl/tls1.h \
  /usr/include/openssl/dtls1.h /usr/include/openssl/srtp.h \
  /usr/include/openssl/conf.h /usr/include/openssl/conferr.h \
- ../../include/SystemOptions.h ../../include/MQTTDriver.h \
+ ../../include/SystemLog.h \
+ ../../components/string/include/AllocateUtils.h /usr/include/fcntl.h \
+ /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
+ /usr/include/bits/stat.h ../../include/SystemPidfile.h \
+ ../../include/SystemOptions.h \
+ ../../components/string/include/ConfUtils.h ../../include/MQTTDriver.h \
  ../../components/mqtt/include/MQTTAsync.h \
  ../../components/mqtt/include/MQTTExportDeclarations.h \
  ../../components/mqtt/include/MQTTProperties.h \
@@ -262,9 +264,7 @@ MQTTAliyunConfig.o: ../../src/MQTTAliyunConfig.c \
 
 /usr/include/bits/sigthread.h:
 
-../../include/SystemLog.h:
-
-../../include/SystemAllocate.h:
+../../components/string/include/PublicUtils.h:
 
 /usr/include/unistd.h:
 
@@ -277,30 +277,6 @@ MQTTAliyunConfig.o: ../../src/MQTTAliyunConfig.c \
 /usr/include/bits/getopt_posix.h:
 
 /usr/include/bits/getopt_core.h:
-
-/usr/include/fcntl.h:
-
-/usr/include/bits/fcntl.h:
-
-/usr/include/bits/fcntl-linux.h:
-
-/usr/include/bits/stat.h:
-
-../../include/SystemPidfile.h:
-
-../../include/SystemConf.h:
-
-/usr/include/errno.h:
-
-/usr/include/bits/errno.h:
-
-/usr/include/linux/errno.h:
-
-/usr/include/asm/errno.h:
-
-/usr/include/asm-generic/errno.h:
-
-/usr/include/asm-generic/errno-base.h:
 
 /usr/include/openssl/err.h:
 
@@ -365,6 +341,18 @@ MQTTAliyunConfig.o: ../../src/MQTTAliyunConfig.c \
 /usr/include/openssl/bioerr.h:
 
 /usr/include/openssl/lhash.h:
+
+/usr/include/errno.h:
+
+/usr/include/bits/errno.h:
+
+/usr/include/linux/errno.h:
+
+/usr/include/asm/errno.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/asm-generic/errno-base.h:
 
 /usr/include/openssl/ssl.h:
 
@@ -452,7 +440,23 @@ MQTTAliyunConfig.o: ../../src/MQTTAliyunConfig.c \
 
 /usr/include/openssl/conferr.h:
 
+../../include/SystemLog.h:
+
+../../components/string/include/AllocateUtils.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/bits/fcntl.h:
+
+/usr/include/bits/fcntl-linux.h:
+
+/usr/include/bits/stat.h:
+
+../../include/SystemPidfile.h:
+
 ../../include/SystemOptions.h:
+
+../../components/string/include/ConfUtils.h:
 
 ../../include/MQTTDriver.h:
 

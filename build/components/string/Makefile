@@ -129,7 +129,8 @@ am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libcomponent_string_la_LIBADD =
 am_libcomponent_string_la_OBJECTS = SHA256WithRSA.lo Base64Utils.lo \
-	SnowFlake.lo StringUtils.lo JSONWebToken.lo
+	SnowFlake.lo StringUtils.lo JSONWebToken.lo ConfUtils.lo \
+	AllocateUtils.lo
 libcomponent_string_la_OBJECTS = $(am_libcomponent_string_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -150,7 +151,8 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/Base64Utils.Plo \
+am__depfiles_remade = ./$(DEPDIR)/AllocateUtils.Plo \
+	./$(DEPDIR)/Base64Utils.Plo ./$(DEPDIR)/ConfUtils.Plo \
 	./$(DEPDIR)/JSONWebToken.Plo ./$(DEPDIR)/SHA256WithRSA.Plo \
 	./$(DEPDIR)/SnowFlake.Plo ./$(DEPDIR)/StringUtils.Plo
 am__mv = mv -f
@@ -324,7 +326,9 @@ libcomponent_string_la_SOURCES = \
      Base64Utils.c \
      SnowFlake.c \
      StringUtils.c \
-     JSONWebToken.c
+     JSONWebToken.c \
+     ConfUtils.c \
+     AllocateUtils.c
 
 all: all-am
 
@@ -404,7 +408,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/AllocateUtils.Plo # am--include-marker
 include ./$(DEPDIR)/Base64Utils.Plo # am--include-marker
+include ./$(DEPDIR)/ConfUtils.Plo # am--include-marker
 include ./$(DEPDIR)/JSONWebToken.Plo # am--include-marker
 include ./$(DEPDIR)/SHA256WithRSA.Plo # am--include-marker
 include ./$(DEPDIR)/SnowFlake.Plo # am--include-marker
@@ -571,7 +577,9 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 	mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/Base64Utils.Plo
+		-rm -f ./$(DEPDIR)/AllocateUtils.Plo
+	-rm -f ./$(DEPDIR)/Base64Utils.Plo
+	-rm -f ./$(DEPDIR)/ConfUtils.Plo
 	-rm -f ./$(DEPDIR)/JSONWebToken.Plo
 	-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
 	-rm -f ./$(DEPDIR)/SnowFlake.Plo
@@ -621,7 +629,9 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/Base64Utils.Plo
+		-rm -f ./$(DEPDIR)/AllocateUtils.Plo
+	-rm -f ./$(DEPDIR)/Base64Utils.Plo
+	-rm -f ./$(DEPDIR)/ConfUtils.Plo
 	-rm -f ./$(DEPDIR)/JSONWebToken.Plo
 	-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
 	-rm -f ./$(DEPDIR)/SnowFlake.Plo

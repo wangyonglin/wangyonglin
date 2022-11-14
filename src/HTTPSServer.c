@@ -3,45 +3,55 @@
 #include <SnowFlake.h>
 #include <curl/curl.h>
 #include <cJSON.h>
+ConfUtils_command_t HTTPSServer_commands[] = {
+    {"address", CONFUTILS_TYPE_STRING, offsetof(HTTPSServer_t, address)},
+    {"port", CONFUTILS_TYPE_NUMBER, offsetof(HTTPSServer_t, port)},
+    {"timeout_in_secs", CONFUTILS_TYPE_NUMBER, offsetof(HTTPSServer_t, timeout_in_secs)}};
+int HTTPSServer_commands_size = sizeof(HTTPSServer_commands) / sizeof(HTTPSServer_commands[0]);
 
-
-
-
-
-httpd_config_t *httpd_initializing(httpd_config_t **httpd, const char *address, uint16_t port)
+ok_t HTTPSServer_initializing(HTTPSServer_t **HTTPSServer, SystemConfig_t *SystemConfig)
 {
-    if (allocate((void **)httpd, sizeof(httpd_config_t)))
+    if (!SystemConfig->AllocateUtils && !SystemConfig->ConfUtils)
     {
-        SnowFlake_initializing(100);
-        //初始化event API
-        event_init();
-        //创建一个HTTPserver
-        (*httpd)->httpd = evhttp_start(address, port);
-        //设置超时时间15秒
-        evhttp_set_timeout((*httpd)->httpd, 15);
-
-        return (*httpd);
+        return ArgumentException;
     }
-    return NULL;
-}
-ok_t httpd_router(httpd_config_t *httpd, void *this)
-{
-    if (httpd)
+    (*HTTPSServer) = AllocateUtils_pool(SystemConfig->AllocateUtils, sizeof(HTTPSServer_t));
+    if (!(*HTTPSServer))
     {
-        evhttp_set_cb(httpd->httpd, "/v1/login", login_handler, this);
-        evhttp_set_cb(httpd->httpd, "/v3/pay/transactions/jsapi", v3_pay_transactions_jsapi, this);
-        //循环监听
+        return NullPointerException;
+    }
+
+    ConfUtils_final(SystemConfig->ConfUtils, (void **)HTTPSServer, sizeof(HTTPSServer_t), "HTTPS", HTTPSServer_commands, HTTPSServer_commands_size);
+    SystemLog_info(SystemConfig->SystemLog, "address    {%s}", (*HTTPSServer)->address);
+    SystemLog_info(SystemConfig->SystemLog, "port    {%d}", (*HTTPSServer)->port);
+    SystemLog_info(SystemConfig->SystemLog, "timeout_in_secs    {%d}", (*HTTPSServer)->timeout_in_secs);
+    SnowFlake_initializing(100);
+    // 初始化event API
+    event_init();
+    // 创建一个HTTPserver
+    (*HTTPSServer)->httpd = evhttp_start((*HTTPSServer)->address, (*HTTPSServer)->port);
+    // 设置超时时间15秒
+    evhttp_set_timeout((*HTTPSServer)->httpd, (*HTTPSServer)->timeout_in_secs);
+    (*HTTPSServer)->SystemConfig = SystemConfig;
+    return OK;
+}
+ok_t HTTPSServer_router(HTTPSServer_t *HTTPSServer)
+{
+    if (HTTPSServer)
+    {
+        evhttp_set_cb(HTTPSServer->httpd, "/v1/login", login_handler, HTTPSServer);
+        evhttp_set_cb(HTTPSServer->httpd, "/v3/pay/transactions/jsapi", v3_pay_transactions_jsapi, HTTPSServer);
+        // 循环监听
         event_dispatch();
         return OK;
     }
 
     return ErrorException;
 }
-void httpd_cleanup(httpd_config_t *httpd)
+void HTTPSServer_cleanup(HTTPSServer_t *HTTPSServer)
 {
-    if (httpd)
+    if (HTTPSServer)
     {
-        evhttp_free(httpd->httpd);
-        deallocate(httpd);
+        evhttp_free(HTTPSServer->httpd);
     }
 }

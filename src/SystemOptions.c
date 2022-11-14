@@ -111,14 +111,14 @@ const char *log_filename = "/home/wangyonglin/github/wangyonglin/logs/error.log"
 char ini_filename_buffer[64] = {0};
 char pid_filename_buffer[64] = {0};
 char log_filename_buffer[64] = {0};
-ok_t SystemOptions_initializing(SystemOptions_t **SystemOptions,SystemAllocate_t *SystemAllocate, int argc, char *argv[])
+ok_t SystemOptions_initializing(SystemOptions_t **SystemOptions,AllocateUtils_t *AllocateUtils, int argc, char *argv[])
 {
-    if (!SystemAllocate)
+    if (!AllocateUtils)
     {
         return ArgumentException;
     }
 
-    if (!((*SystemOptions) = SystemAllocate_Create(SystemAllocate, sizeof(SystemOptions_t))))
+    if (!((*SystemOptions) = AllocateUtils_pool(AllocateUtils, sizeof(SystemOptions_t))))
     {
         return NullPointerException;
     }
@@ -172,15 +172,15 @@ ok_t SystemOptions_initializing(SystemOptions_t **SystemOptions,SystemAllocate_t
         }
     }
 
-    if (!(SystemAllocate_String(&(*SystemOptions)->ini_filename, SystemAllocate, strdup(ini_filename_buffer), strlen(ini_filename_buffer))))
+    if (!(AllocateUtils_toString(&(*SystemOptions)->ini_filename, AllocateUtils, strdup(ini_filename_buffer), strlen(ini_filename_buffer))))
     {
         return ErrorException;
     }
-    if (!(SystemAllocate_String(&(*SystemOptions)->pid_filename, SystemAllocate, strdup(pid_filename_buffer), strlen(pid_filename_buffer))))
+    if (!(AllocateUtils_toString(&(*SystemOptions)->pid_filename, AllocateUtils, strdup(pid_filename_buffer), strlen(pid_filename_buffer))))
     {
         return ErrorException;
     }
-    if (!(SystemAllocate_String(&(*SystemOptions)->log_filename, SystemAllocate, strdup(log_filename_buffer), strlen(log_filename_buffer))))
+    if (!(AllocateUtils_toString(&(*SystemOptions)->log_filename, AllocateUtils, strdup(log_filename_buffer), strlen(log_filename_buffer))))
     {
         return ErrorException;
     }

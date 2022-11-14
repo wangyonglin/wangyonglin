@@ -2,7 +2,7 @@
 #define INCLUDE_SYSTEMLOG_H
 
 #include <SystemTypes.h>
-#include <SystemAllocate.h>
+#include <AllocateUtils.h>
 
 typedef enum
 {
@@ -18,7 +18,8 @@ typedef struct
     bool model;
 } SystemLog_t;
 
-ok_t SystemLog_initializing(SystemLog_t **SystemLog,SystemAllocate_t *SystemAllocate, const char *name, bool model);
+ok_t SystemLog_initializing(SystemLog_t **SystemLog,AllocateUtils_t *AllocateUtils, const char *name, bool model);
 
 int SystemLog_error(SystemLog_t *SystemLog,const char *fmt, ...) __attribute__((format(printf, 2, 3)));
+int SystemLog_info(SystemLog_t *SystemLog,const char *fmt, ...) __attribute__((format(printf, 2, 3)));
 #endif //!__LOG__H__

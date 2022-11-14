@@ -9,12 +9,10 @@ AM_CPPFLAGS=\
 
 bin_PROGRAMS=tiger
 tiger_SOURCES=\
-    SystemAllocate.c  \
     SystemError.c \
     SystemDaemon.c    \
     SystemPidfile.c   \
     SystemLog.c   \
-    SystemConf.c \
     SystemString.c \
     SystemFile.c \
     SystemConfig.c \
@@ -23,10 +21,10 @@ tiger_SOURCES=\
     HTTPSServer.c  \
     HTTPSHandler.c \
     MQTTManager.c   \
-    MQTTAliyunConfig.c \
+    MQTTAliyunSignature.c \
     SystemSignal.c \
-    SystemTime.c \
-    MQTTDriver.c
+    SystemTime.c 
+
 tiger_LDADD=\
     $(top_builddir)/components/mqtt/libcomponent_mqtt.la \
     $(top_builddir)/components/string/libcomponent_string.la \

@@ -1,12 +1,11 @@
-#if !defined(INCLUDE_MQTTALIYUNCONFIG_H)
-#define INCLUDE_MQTTALIYUNCONFIG_H
+#if !defined(MQTTAliyunSignature_H)
+#define MQTTAliyunSignature_H
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
 #include <SystemConfig.h>
 #include <SystemTypes.h>
-#include <MQTTDriver.h>
 #define SERVERURI_MAXLEN (150)
 #define PRODUCTKEY_MAXLEN (20)
 #define DEVICENAME_MAXLEN (32)

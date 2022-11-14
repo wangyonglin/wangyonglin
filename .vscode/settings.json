@@ -103,6 +103,9 @@
         "systemlog.h": "c",
         "systemallocate.h": "c",
         "systemoptions.h": "c",
-        "mqttdriver.h": "c"
+        "mqttdriver.h": "c",
+        "confutils.h": "c",
+        "allocateutils.h": "c",
+        "httpsserver.h": "c"
     }
 }

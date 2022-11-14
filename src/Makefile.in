@@ -101,15 +101,13 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_tiger_OBJECTS = SystemAllocate.$(OBJEXT) SystemError.$(OBJEXT) \
-	SystemDaemon.$(OBJEXT) SystemPidfile.$(OBJEXT) \
-	SystemLog.$(OBJEXT) SystemConf.$(OBJEXT) \
+am_tiger_OBJECTS = SystemError.$(OBJEXT) SystemDaemon.$(OBJEXT) \
+	SystemPidfile.$(OBJEXT) SystemLog.$(OBJEXT) \
 	SystemString.$(OBJEXT) SystemFile.$(OBJEXT) \
 	SystemConfig.$(OBJEXT) SystemOptions.$(OBJEXT) main.$(OBJEXT) \
 	HTTPSServer.$(OBJEXT) HTTPSHandler.$(OBJEXT) \
-	MQTTManager.$(OBJEXT) MQTTAliyunConfig.$(OBJEXT) \
-	SystemSignal.$(OBJEXT) SystemTime.$(OBJEXT) \
-	MQTTDriver.$(OBJEXT)
+	MQTTManager.$(OBJEXT) MQTTAliyunSignature.$(OBJEXT) \
+	SystemSignal.$(OBJEXT) SystemTime.$(OBJEXT)
 tiger_OBJECTS = $(am_tiger_OBJECTS)
 tiger_DEPENDENCIES =  \
 	$(top_builddir)/components/mqtt/libcomponent_mqtt.la \
@@ -136,15 +134,13 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/HTTPSHandler.Po \
-	./$(DEPDIR)/HTTPSServer.Po ./$(DEPDIR)/MQTTAliyunConfig.Po \
-	./$(DEPDIR)/MQTTDriver.Po ./$(DEPDIR)/MQTTManager.Po \
-	./$(DEPDIR)/SystemAllocate.Po ./$(DEPDIR)/SystemConf.Po \
-	./$(DEPDIR)/SystemConfig.Po ./$(DEPDIR)/SystemDaemon.Po \
-	./$(DEPDIR)/SystemError.Po ./$(DEPDIR)/SystemFile.Po \
-	./$(DEPDIR)/SystemLog.Po ./$(DEPDIR)/SystemOptions.Po \
-	./$(DEPDIR)/SystemPidfile.Po ./$(DEPDIR)/SystemSignal.Po \
-	./$(DEPDIR)/SystemString.Po ./$(DEPDIR)/SystemTime.Po \
-	./$(DEPDIR)/main.Po
+	./$(DEPDIR)/HTTPSServer.Po ./$(DEPDIR)/MQTTAliyunSignature.Po \
+	./$(DEPDIR)/MQTTManager.Po ./$(DEPDIR)/SystemConfig.Po \
+	./$(DEPDIR)/SystemDaemon.Po ./$(DEPDIR)/SystemError.Po \
+	./$(DEPDIR)/SystemFile.Po ./$(DEPDIR)/SystemLog.Po \
+	./$(DEPDIR)/SystemOptions.Po ./$(DEPDIR)/SystemPidfile.Po \
+	./$(DEPDIR)/SystemSignal.Po ./$(DEPDIR)/SystemString.Po \
+	./$(DEPDIR)/SystemTime.Po ./$(DEPDIR)/main.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -321,12 +317,10 @@ AM_CPPFLAGS = \
     -I $(top_srcdir)/components/json/include/
 
 tiger_SOURCES = \
-    SystemAllocate.c  \
     SystemError.c \
     SystemDaemon.c    \
     SystemPidfile.c   \
     SystemLog.c   \
-    SystemConf.c \
     SystemString.c \
     SystemFile.c \
     SystemConfig.c \
@@ -335,10 +329,9 @@ tiger_SOURCES = \
     HTTPSServer.c  \
     HTTPSHandler.c \
     MQTTManager.c   \
-    MQTTAliyunConfig.c \
+    MQTTAliyunSignature.c \
     SystemSignal.c \
-    SystemTime.c \
-    MQTTDriver.c
+    SystemTime.c 
 
 tiger_LDADD = \
     $(top_builddir)/components/mqtt/libcomponent_mqtt.la \
@@ -442,11 +435,8 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/HTTPSHandler.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/HTTPSServer.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTAliyunConfig.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTDriver.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTAliyunSignature.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/MQTTManager.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SystemAllocate.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SystemConf.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SystemConfig.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SystemDaemon.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SystemError.Po@am__quote@ # am--include-marker
@@ -621,11 +611,8 @@ clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/HTTPSHandler.Po
 	-rm -f ./$(DEPDIR)/HTTPSServer.Po
-	-rm -f ./$(DEPDIR)/MQTTAliyunConfig.Po
-	-rm -f ./$(DEPDIR)/MQTTDriver.Po
+	-rm -f ./$(DEPDIR)/MQTTAliyunSignature.Po
 	-rm -f ./$(DEPDIR)/MQTTManager.Po
-	-rm -f ./$(DEPDIR)/SystemAllocate.Po
-	-rm -f ./$(DEPDIR)/SystemConf.Po
 	-rm -f ./$(DEPDIR)/SystemConfig.Po
 	-rm -f ./$(DEPDIR)/SystemDaemon.Po
 	-rm -f ./$(DEPDIR)/SystemError.Po
@@ -684,11 +671,8 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/HTTPSHandler.Po
 	-rm -f ./$(DEPDIR)/HTTPSServer.Po
-	-rm -f ./$(DEPDIR)/MQTTAliyunConfig.Po
-	-rm -f ./$(DEPDIR)/MQTTDriver.Po
+	-rm -f ./$(DEPDIR)/MQTTAliyunSignature.Po
 	-rm -f ./$(DEPDIR)/MQTTManager.Po
-	-rm -f ./$(DEPDIR)/SystemAllocate.Po
-	-rm -f ./$(DEPDIR)/SystemConf.Po
 	-rm -f ./$(DEPDIR)/SystemConfig.Po
 	-rm -f ./$(DEPDIR)/SystemDaemon.Po
 	-rm -f ./$(DEPDIR)/SystemError.Po

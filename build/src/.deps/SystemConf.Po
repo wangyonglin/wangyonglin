@@ -84,10 +84,11 @@ SystemConf.o: ../../src/SystemConf.c /usr/include/stdc-predef.h \
  /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
- /usr/include/bits/sigthread.h ../../include/SystemAllocate.h \
- /usr/include/unistd.h /usr/include/bits/posix_opt.h \
- /usr/include/bits/environments.h /usr/include/bits/confname.h \
- /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
+ /usr/include/bits/sigthread.h \
+ ../../components/string/include/PublicUtils.h /usr/include/unistd.h \
+ /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+ /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
+ /usr/include/bits/getopt_core.h ../../include/SystemAllocate.h \
  /usr/include/fcntl.h /usr/include/bits/fcntl.h \
  /usr/include/bits/fcntl-linux.h /usr/include/bits/stat.h \
  ../../include/SystemString.h /usr/include/malloc.h \
@@ -415,7 +416,7 @@ SystemConf.o: ../../src/SystemConf.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/sigthread.h:
 
-../../include/SystemAllocate.h:
+../../components/string/include/PublicUtils.h:
 
 /usr/include/unistd.h:
 
@@ -428,6 +429,8 @@ SystemConf.o: ../../src/SystemConf.c /usr/include/stdc-predef.h \
 /usr/include/bits/getopt_posix.h:
 
 /usr/include/bits/getopt_core.h:
+
+../../include/SystemAllocate.h:
 
 /usr/include/fcntl.h:
 

@@ -38,20 +38,20 @@ int config_lock_fcntl(int fd)
     return (fcntl(fd, F_SETLK, &fl));
 }
 
-ok_t SystemPidfile_initializing(SystemPidfile_t ** SystemPidfile,SystemAllocate_t *SystemAllocate, const char *filename)
+ok_t SystemPidfile_initializing(SystemPidfile_t ** SystemPidfile,AllocateUtils_t *AllocateUtils, const char *filename)
 {
 
-    if (!SystemAllocate && !filename)
+    if (!AllocateUtils && !filename)
     {
         return ArgumentException;
     }
 
-    if (!((*SystemPidfile) = SystemAllocate_Create(SystemAllocate, sizeof(SystemPidfile_t))))
+    if (!((*SystemPidfile) = AllocateUtils_pool(AllocateUtils, sizeof(SystemPidfile_t))))
     {
         return NullPointerException;
     }
 
-    if ((SystemAllocate_String(&((*SystemPidfile)->name), SystemAllocate, strdup(filename), strlen(filename))) != OK)
+    if ((AllocateUtils_toString(&((*SystemPidfile)->name), AllocateUtils, strdup(filename), strlen(filename))) != OK)
     {
         return NullPointerException;
     }

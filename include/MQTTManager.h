@@ -9,24 +9,35 @@
 #include <stdbool.h>
 #include "MQTTAsync.h"
 #include <SystemTypes.h>
-#include <MQTTAliyunConfig.h>
+#include <MQTTAliyunSignature.h>
 #include <SystemString.h>
-#include <MQTTDriver.h>
+#include <ConfUtils.h>
+#include <SystemLog.h>
 typedef struct
 {
     // MQTTConfig_t *config;
-
+    
     MQTTAsync client;
     int persistence_type;
     void *persistence_context;
     int finished;
     bool connected;
-    SystemLog_t * SystemLog;
-    MQTTDriver_t *MQTTDriver;
+    char *serverURI;
+    char *clientID;
+    char *productKey;
+    char *deviceName;
+    char *deviceSecret;
+    long minRetryInterval;
+    long maxRetryInterval;
+    long cleansession;
+    long keepAliveInterval;
+    long automaticReconnect;
+    long maxInflight;
+    SystemConfig_t *SystemConfig;
 } MQTTManager_t;
 
-ok_t MQTTManager_initializing(MQTTManager_t **MQTTManager, SystemAllocate_t *SystemAllocate, SystemConf_t *SystemConf, SystemLog_t *SystemLog);
-void MQTTManager_cleanup(MQTTManager_t *MQTTManager);
+ok_t MQTTManager_initializing(MQTTManager_t **MQTTManager, SystemConfig_t *SystemConfig);
+void MQTTManager_cleanup(MQTTManager_t *MQTTManager,AllocateUtils_t *AllocateUtils);
 
 int MQTTManager_application(MQTTManager_t *MQTTManager);
 #endif

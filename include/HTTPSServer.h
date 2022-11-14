@@ -11,15 +11,20 @@
 #include <cJSON.h>
 #include <unistd.h>
 #include <SystemTypes.h>
-
+#include <ConfUtils.h>
+#include <SystemConfig.h>
 typedef struct
 {
     struct evhttp *httpd;
-} httpd_config_t;
+    char * address;
+    long port;
+    long timeout_in_secs;
+    SystemConfig_t *SystemConfig;
+} HTTPSServer_t;
 
-httpd_config_t *httpd_initializing(httpd_config_t **server, const char *address, uint16_t port);
-ok_t httpd_router(httpd_config_t *server, void *this);
-void httpd_cleanup(httpd_config_t *httpd);
+ok_t HTTPSServer_initializing(HTTPSServer_t **HTTPSServer,SystemConfig_t *SystemConfig);
+ok_t HTTPSServer_router(HTTPSServer_t *HTTPSServer);
+void HTTPSServer_cleanup(HTTPSServer_t *HTTPSServer);
 
 void login_handler(struct evhttp_request *req, void *arg);
 void v3_pay_transactions_jsapi(struct evhttp_request *request, void *arg);

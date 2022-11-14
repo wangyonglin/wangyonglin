@@ -155,3 +155,55 @@
 2022-11-07 08:06:14 [ERROR]	name:maxInflight value:10
 2022-11-09 10:54:51 [ERROR]	ok
 2022-11-09 10:54:51 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-09 22:24:21 [ERROR]	ok
+2022-11-09 22:24:21 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-09 22:24:21 [ERROR]	serverURI{tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883}
+2022-11-09 22:24:21 [ERROR]	productKey{a1v3yiXDwzX}
+2022-11-09 22:24:21 [ERROR]	deviceName{Administrators}
+2022-11-09 22:24:21 [ERROR]	deviceSecret{93ada5d45deb0b85305df9a14b2ac1ff}
+2022-11-09 22:24:21 [ERROR]	Successful connection
+2022-11-09 22:24:21 [ERROR]	Successful onConnectCallCBack: connect onSuccess called
+2022-11-09 22:24:23 [ERROR]	ok
+2022-11-09 22:24:24 [ERROR]	ok
+2022-11-09 22:26:40 [ERROR]	ERROR:Connection lost,Cause: (null),Reconnecting...
+2022-11-09 22:26:40 [ERROR]	Failed to start sendMessage, return code -3
+
+2022-11-09 22:26:46 [ERROR]	Successful onConnectCallCBack: automatic reconnect
+2022-11-14 08:03:26 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-14 08:03:26 [INFO]	serverURI   {tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883}
+2022-11-14 08:03:26 [INFO]	productKey  {a1v3yiXDwzX}
+2022-11-14 08:03:26 [INFO]	deviceName  {Administrators}
+2022-11-14 08:03:26 [INFO]	deviceSecret    {93ada5d45deb0b85305df9a14b2ac1ff}
+2022-11-14 08:03:26 [INFO]	minRetryInterval    {3}
+2022-11-14 08:03:26 [INFO]	maxRetryInterval    {60}
+2022-11-14 08:03:26 [INFO]	cleansession    {1}
+2022-11-14 08:03:26 [INFO]	automaticReconnect  {1}
+2022-11-14 08:03:26 [INFO]	keepAliveInterval  {30}
+2022-11-14 08:03:26 [INFO]	maxInflight {10}
+2022-11-14 08:03:26 [INFO]	clientId:   {Administrators&a1v3yiXDwzX|timestamp=2524608000000,_v=paho-c-1.0.0,securemode=3,signmethod=hmacsha256,lan=C|}
+2022-11-14 08:03:26 [INFO]	username:   {Administrators&a1v3yiXDwzX}
+2022-11-14 08:03:26 [INFO]	password:   {EDB48DFECB9DAAE36D9B50AD6CC5F70DD8946D3BF25A185305F6A54ACCC0B934}
+2022-11-14 08:03:26 [ERROR]	MQTTManager_initializing 1
+
+2022-11-14 08:03:26 [INFO]	address    {0.0.0.0}
+2022-11-14 08:03:26 [INFO]	port    {80}
+2022-11-14 08:03:26 [INFO]	timeout_in_secs    {15}
+2022-11-14 08:04:03 [ERROR]	/home/wangyonglin/github/wangyonglin/conf/tiger.conf
+2022-11-14 08:04:03 [INFO]	serverURI   {tcp://a1v3yiXDwzX.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883}
+2022-11-14 08:04:03 [INFO]	productKey  {a1v3yiXDwzX}
+2022-11-14 08:04:03 [INFO]	deviceName  {Administrators}
+2022-11-14 08:04:03 [INFO]	deviceSecret    {93ada5d45deb0b85305df9a14b2ac1ff}
+2022-11-14 08:04:03 [INFO]	minRetryInterval    {3}
+2022-11-14 08:04:03 [INFO]	maxRetryInterval    {60}
+2022-11-14 08:04:03 [INFO]	cleansession    {1}
+2022-11-14 08:04:03 [INFO]	automaticReconnect  {1}
+2022-11-14 08:04:03 [INFO]	keepAliveInterval  {30}
+2022-11-14 08:04:03 [INFO]	maxInflight {10}
+2022-11-14 08:04:03 [INFO]	clientId:   {Administrators&a1v3yiXDwzX|timestamp=2524608000000,_v=paho-c-1.0.0,securemode=3,signmethod=hmacsha256,lan=C|}
+2022-11-14 08:04:03 [INFO]	username:   {Administrators&a1v3yiXDwzX}
+2022-11-14 08:04:03 [INFO]	password:   {EDB48DFECB9DAAE36D9B50AD6CC5F70DD8946D3BF25A185305F6A54ACCC0B934}
+2022-11-14 08:04:03 [ERROR]	MQTTManager_initializing 1
+
+2022-11-14 08:04:03 [INFO]	address    {0.0.0.0}
+2022-11-14 08:04:03 [INFO]	port    {80}
+2022-11-14 08:04:03 [INFO]	timeout_in_secs    {15}

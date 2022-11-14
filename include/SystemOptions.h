@@ -1,7 +1,7 @@
 #if !defined(__SYSTEM_OPTIONS_H__)
 #define __SYSTEM_OPTIONS_H__
 #include <SystemTypes.h>
-#include <SystemAllocate.h>
+#include <AllocateUtils.h>
 
 
 typedef struct
@@ -13,6 +13,6 @@ typedef struct
     on_starting_t started;
 } SystemOptions_t;
 
-ok_t SystemOptions_initializing(SystemOptions_t **SystemOptions,SystemAllocate_t *SystemAllocate, int argc, char *argv[]);
+ok_t SystemOptions_initializing(SystemOptions_t **SystemOptions,AllocateUtils_t *AllocateUtils, int argc, char *argv[]);
 void SystemOptions_clean();
 #endif

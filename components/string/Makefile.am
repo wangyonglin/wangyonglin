@@ -6,7 +6,9 @@ libcomponent_string_la_SOURCES=             \
      Base64Utils.c \
      SnowFlake.c \
      StringUtils.c \
-     JSONWebToken.c
+     JSONWebToken.c \
+     ConfUtils.c \
+     AllocateUtils.c
 
 
 
