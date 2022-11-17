@@ -34,6 +34,7 @@ typedef struct
     long automaticReconnect;
     long maxInflight;
     SystemConfig_t *SystemConfig;
+    bool daemon;
 } MQTTManager_t;
 
 ok_t MQTTManager_initializing(MQTTManager_t **MQTTManager, SystemConfig_t *SystemConfig);

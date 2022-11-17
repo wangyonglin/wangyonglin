@@ -104,10 +104,11 @@ PROGRAMS = $(bin_PROGRAMS)
 am_tiger_OBJECTS = SystemError.$(OBJEXT) SystemDaemon.$(OBJEXT) \
 	SystemPidfile.$(OBJEXT) SystemLog.$(OBJEXT) \
 	SystemString.$(OBJEXT) SystemFile.$(OBJEXT) \
-	SystemConfig.$(OBJEXT) SystemOptions.$(OBJEXT) main.$(OBJEXT) \
-	HTTPSServer.$(OBJEXT) HTTPSHandler.$(OBJEXT) \
-	MQTTManager.$(OBJEXT) MQTTAliyunSignature.$(OBJEXT) \
-	SystemSignal.$(OBJEXT) SystemTime.$(OBJEXT)
+	SystemConfig.$(OBJEXT) SystemOptions.$(OBJEXT) \
+	SystemMain.$(OBJEXT) HTTPSServer.$(OBJEXT) \
+	HTTPSHandler.$(OBJEXT) MQTTManager.$(OBJEXT) \
+	MQTTAliyunSignature.$(OBJEXT) SystemSignal.$(OBJEXT) \
+	SystemTime.$(OBJEXT)
 tiger_OBJECTS = $(am_tiger_OBJECTS)
 tiger_DEPENDENCIES =  \
 	$(top_builddir)/components/mqtt/libcomponent_mqtt.la \
@@ -138,9 +139,9 @@ am__depfiles_remade = ./$(DEPDIR)/HTTPSHandler.Po \
 	./$(DEPDIR)/MQTTManager.Po ./$(DEPDIR)/SystemConfig.Po \
 	./$(DEPDIR)/SystemDaemon.Po ./$(DEPDIR)/SystemError.Po \
 	./$(DEPDIR)/SystemFile.Po ./$(DEPDIR)/SystemLog.Po \
-	./$(DEPDIR)/SystemOptions.Po ./$(DEPDIR)/SystemPidfile.Po \
-	./$(DEPDIR)/SystemSignal.Po ./$(DEPDIR)/SystemString.Po \
-	./$(DEPDIR)/SystemTime.Po ./$(DEPDIR)/main.Po
+	./$(DEPDIR)/SystemMain.Po ./$(DEPDIR)/SystemOptions.Po \
+	./$(DEPDIR)/SystemPidfile.Po ./$(DEPDIR)/SystemSignal.Po \
+	./$(DEPDIR)/SystemString.Po ./$(DEPDIR)/SystemTime.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -243,10 +244,10 @@ OTOOL64 =
 PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = tiger
-PACKAGE_STRING = tiger 1.3.21
+PACKAGE_STRING = tiger 1.3.24
 PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.21
+PACKAGE_VERSION = 1.3.24
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -254,7 +255,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.21
+VERSION = 1.3.24
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/src
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../src
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -325,7 +326,7 @@ tiger_SOURCES = \
     SystemFile.c \
     SystemConfig.c \
     SystemOptions.c \
-    main.c  \
+    SystemMain.c  \
     HTTPSServer.c  \
     HTTPSHandler.c \
     MQTTManager.c   \
@@ -442,12 +443,12 @@ include ./$(DEPDIR)/SystemDaemon.Po # am--include-marker
 include ./$(DEPDIR)/SystemError.Po # am--include-marker
 include ./$(DEPDIR)/SystemFile.Po # am--include-marker
 include ./$(DEPDIR)/SystemLog.Po # am--include-marker
+include ./$(DEPDIR)/SystemMain.Po # am--include-marker
 include ./$(DEPDIR)/SystemOptions.Po # am--include-marker
 include ./$(DEPDIR)/SystemPidfile.Po # am--include-marker
 include ./$(DEPDIR)/SystemSignal.Po # am--include-marker
 include ./$(DEPDIR)/SystemString.Po # am--include-marker
 include ./$(DEPDIR)/SystemTime.Po # am--include-marker
-include ./$(DEPDIR)/main.Po # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -618,12 +619,12 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/SystemError.Po
 	-rm -f ./$(DEPDIR)/SystemFile.Po
 	-rm -f ./$(DEPDIR)/SystemLog.Po
+	-rm -f ./$(DEPDIR)/SystemMain.Po
 	-rm -f ./$(DEPDIR)/SystemOptions.Po
 	-rm -f ./$(DEPDIR)/SystemPidfile.Po
 	-rm -f ./$(DEPDIR)/SystemSignal.Po
 	-rm -f ./$(DEPDIR)/SystemString.Po
 	-rm -f ./$(DEPDIR)/SystemTime.Po
-	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -678,12 +679,12 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/SystemError.Po
 	-rm -f ./$(DEPDIR)/SystemFile.Po
 	-rm -f ./$(DEPDIR)/SystemLog.Po
+	-rm -f ./$(DEPDIR)/SystemMain.Po
 	-rm -f ./$(DEPDIR)/SystemOptions.Po
 	-rm -f ./$(DEPDIR)/SystemPidfile.Po
 	-rm -f ./$(DEPDIR)/SystemSignal.Po
 	-rm -f ./$(DEPDIR)/SystemString.Po
 	-rm -f ./$(DEPDIR)/SystemTime.Po
-	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

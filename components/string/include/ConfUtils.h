@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include <string.h>
+#include <stdbool.h>
 #include <openssl/err.h>
 #include <openssl/ssl.h>
 #include <openssl/conf.h>
@@ -12,25 +13,24 @@
 
 #include <AllocateUtils.h>
 
-#define CONFUTILS_COMMANDS_SIZE (ConfUtils_commands_size) (sizeof(ConfUtils_commands_size) / sizeof(ConfUtils_commands_size[0]))
+#define CONFUTILS_COMMANDS_SIZE(commands) (sizeof(commands) / sizeof(commands[0]))
 
 typedef enum {
-    CONFUTILS_TYPE_STRING,
-    CONFUTILS_TYPE_NUMBER
-}ConfUtils_type_t;
+    string,
+    integer,
+    boolean
+}type_t;
 typedef size_t ConfUtils_offset_t;
 typedef struct
 {
     char *data;
-    ConfUtils_type_t type;
+    type_t type;
     size_t address;
 } ConfUtils_command_t;
 
 typedef struct
 {
-   long errline;
    char * filename;
-   CONF * conf;
    AllocateUtils_t *AllocateUtils;
 } ConfUtils_t;
 ok_t ConfUtils_initializing(ConfUtils_t **ConfUtils, AllocateUtils_t *AllocateUtils, const char *filename);

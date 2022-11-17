@@ -27,13 +27,9 @@ int cleanup(void *arps)
 
 int main(int argc, char *argv[])
 {
-    ok_t ret;
     SystemSignal_initializing(cleanup, NULL);
     SystemConfig_initializing(&__SystemConfig, argc, argv);
-    //  httpd_initializing(&httpd, "0.0.0.0", 80);
-    //  httpd_router(httpd, NULL);
-    ret = MQTTManager_initializing(&__MQTTManager,__SystemConfig);
-    SystemLog_error(__SystemConfig->SystemLog, "MQTTManager_initializing %d\n", ret);
+    MQTTManager_initializing(&__MQTTManager,__SystemConfig);
     HTTPSServer_initializing(&__HTTPSServer,__SystemConfig);
     HTTPSServer_router(__HTTPSServer);
     // MQTTManager_application(__MQTTManager);

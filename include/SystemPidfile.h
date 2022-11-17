@@ -6,6 +6,7 @@
 #include <SystemLog.h>
 #include <SystemTypes.h>
 #include <AllocateUtils.h>
+#include <ConfUtils.h>
 typedef bool config_lock_flag_t;
 typedef struct
 {
@@ -19,9 +20,10 @@ typedef struct
     char *name;
     int fd;
     config_bool_t alone_runnind;
+    AllocateUtils_t *AllocateUtils;
 } SystemPidfile_t;
 
-ok_t SystemPidfile_initializing(SystemPidfile_t ** SystemPidfile,AllocateUtils_t *AllocateUtils, const char *filename);
+ok_t SystemPidfile_initializing(SystemPidfile_t **SystemPidfile, AllocateUtils_t *AllocateUtils,ConfUtils_t * ConfUtils);
 
 ok_t SystemPidfile_listene(SystemPidfile_t * SystemPidfile);
 

@@ -27,6 +27,10 @@
 #include <SystemPidfile.h>
 #include <SystemError.h>
 
+ConfUtils_command_t SystemPidfile_commands[] = {
+    {"pid_file", string, offsetof(SystemPidfile_t, name)}};
+
+int SystemPidfile_commands_size = sizeof(SystemPidfile_commands) / sizeof(SystemPidfile_commands[0]);
 
 int config_lock_fcntl(int fd)
 {
@@ -38,10 +42,10 @@ int config_lock_fcntl(int fd)
     return (fcntl(fd, F_SETLK, &fl));
 }
 
-ok_t SystemPidfile_initializing(SystemPidfile_t ** SystemPidfile,AllocateUtils_t *AllocateUtils, const char *filename)
+ok_t SystemPidfile_initializing(SystemPidfile_t **SystemPidfile, AllocateUtils_t *AllocateUtils, ConfUtils_t *ConfUtils)
 {
 
-    if (!AllocateUtils && !filename)
+    if (!AllocateUtils && !ConfUtils)
     {
         return ArgumentException;
     }
@@ -50,14 +54,11 @@ ok_t SystemPidfile_initializing(SystemPidfile_t ** SystemPidfile,AllocateUtils_t
     {
         return NullPointerException;
     }
-
-    if ((AllocateUtils_toString(&((*SystemPidfile)->name), AllocateUtils, strdup(filename), strlen(filename))) != OK)
-    {
-        return NullPointerException;
-    }
+    ConfUtils_final(ConfUtils, (void **)SystemPidfile, sizeof(SystemPidfile_t), NULL, SystemPidfile_commands, SystemPidfile_commands_size);
+    (*SystemPidfile)->AllocateUtils = AllocateUtils;
     return OK;
 }
-ok_t SystemPidfile_listene(SystemPidfile_t * SystemPidfile)
+ok_t SystemPidfile_listene(SystemPidfile_t *SystemPidfile)
 {
     if (!SystemPidfile && SystemPidfile->name)
     {
@@ -66,7 +67,8 @@ ok_t SystemPidfile_listene(SystemPidfile_t * SystemPidfile)
     config_fd_t fd;
     if ((fd = open(SystemPidfile->name, O_RDWR | O_CREAT, 0666)) < 0)
     {
-        err_printf("unable to open file '%s': %s", SystemPidfile->name, strerror(errno));
+        SystemError_Message("unable to open file '%s': %s", SystemPidfile->name, strerror(errno));
+
         return ErrorException;
     }
 
@@ -75,18 +77,18 @@ ok_t SystemPidfile_listene(SystemPidfile_t * SystemPidfile)
         if (errno == EACCES || errno == EAGAIN)
         {
             close(fd);
-            err_printf("alone runnind");
+            SystemError_Message("alone runnind");
             SystemPidfile->alone_runnind = TRUE;
             return NoneException;
         }
-        err_printf("can't lock %s: %s", SystemPidfile->name, strerror(errno));
+        SystemError_exitMessage(SystemPidfile->AllocateUtils, "can't lock %s: %s", SystemPidfile->name, strerror(errno));
     }
     close(fd);
 
     return OK;
 }
 
-ok_t SystemPidfile_crt(SystemPidfile_t * SystemPidfile)
+ok_t SystemPidfile_crt(SystemPidfile_t *SystemPidfile)
 {
     if (!SystemPidfile && SystemPidfile->name)
     {
@@ -96,7 +98,7 @@ ok_t SystemPidfile_crt(SystemPidfile_t * SystemPidfile)
     char buf[16];
     if ((SystemPidfile->fd = open(SystemPidfile->name, O_RDWR | O_CREAT, 0666)) < 0)
     {
-        err_printf("unable to open file '%s': %s", SystemPidfile->name, strerror(errno));
+        SystemError_exitMessage(SystemPidfile->AllocateUtils, "unable to open file '%s': %s", SystemPidfile->name, strerror(errno));
         return NullPointerException;
     }
 
@@ -104,11 +106,11 @@ ok_t SystemPidfile_crt(SystemPidfile_t * SystemPidfile)
     {
         if (errno == EACCES || errno == EAGAIN)
         {
-            err_printf("alone runnind");
+            SystemError_Message("alone runnind");
             SystemPidfile->alone_runnind = TRUE;
             return NoneException;
         }
-        err_printf("can't lock %s: %s", SystemPidfile->name, strerror(errno));
+        SystemError_exitMessage(SystemPidfile->AllocateUtils, "can't lock %s: %s", SystemPidfile->name, strerror(errno));
     }
 
     ftruncate(SystemPidfile->fd, 0); // 设置文件的大小为0
@@ -119,7 +121,7 @@ ok_t SystemPidfile_crt(SystemPidfile_t * SystemPidfile)
     return ErrorException;
 }
 
-ok_t SystemPidfile_del(SystemPidfile_t * SystemPidfile)
+ok_t SystemPidfile_del(SystemPidfile_t *SystemPidfile)
 {
     if (!SystemPidfile && !SystemPidfile->name)
     {
@@ -132,12 +134,12 @@ ok_t SystemPidfile_del(SystemPidfile_t * SystemPidfile)
     }
     if (unlink(SystemPidfile->name) != 0)
     {
-        err_printf("delect failed:[%s] %s ", SystemPidfile->name, strerror(errno));
+        SystemError_exitMessage(SystemPidfile->AllocateUtils, "delect failed:[%s] %s ", SystemPidfile->name, strerror(errno));
     }
 
     return OK;
 }
-ok_t SystemPidfile_quit(SystemPidfile_t * SystemPidfile)
+ok_t SystemPidfile_quit(SystemPidfile_t *SystemPidfile)
 {
     if (!SystemPidfile && !SystemPidfile->name)
     {
@@ -164,7 +166,7 @@ ok_t SystemPidfile_quit(SystemPidfile_t * SystemPidfile)
                     {
                         if (unlink(SystemPidfile->name) != 0)
                         {
-                            err_printf("delect failed:[%s] %s ", SystemPidfile->name, strerror(errno));
+                            SystemError_exitMessage(SystemPidfile->AllocateUtils, "delect failed:[%s] %s ", SystemPidfile->name, strerror(errno));
                         }
                     }
                     return OK;

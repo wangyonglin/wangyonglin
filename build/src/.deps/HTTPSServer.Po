@@ -116,20 +116,21 @@ HTTPSServer.o: ../../src/HTTPSServer.c /usr/include/stdc-predef.h \
  /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
  /usr/include/bits/stat.h ../../include/SystemConfig.h \
  ../../include/SystemLog.h ../../include/SystemPidfile.h \
- ../../include/SystemOptions.h ../../include/SystemString.h \
- /usr/include/malloc.h ../../components/string/include/SnowFlake.h \
- /usr/include/linux/unistd.h /usr/include/asm/unistd.h \
- /usr/include/asm/unistd_64.h /usr/include/sys/syscall.h \
- /usr/include/bits/syscall.h /usr/include/linux/types.h \
- /usr/include/asm/types.h /usr/include/asm-generic/types.h \
- /usr/include/asm-generic/int-ll64.h /usr/include/asm/bitsperlong.h \
- /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
- /usr/include/linux/stddef.h /usr/include/asm/posix_types.h \
- /usr/include/asm/posix_types_64.h /usr/include/asm-generic/posix_types.h \
- /usr/include/curl/curl.h /usr/include/curl/curlver.h \
- /usr/include/curl/system.h /usr/include/curl/easy.h \
- /usr/include/curl/multi.h /usr/include/curl/curl.h \
- /usr/include/curl/urlapi.h /usr/include/curl/typecheck-gcc.h
+ ../../include/SystemOptions.h ../../include/SystemError.h \
+ ../../include/SystemString.h /usr/include/malloc.h \
+ ../../components/string/include/SnowFlake.h /usr/include/linux/unistd.h \
+ /usr/include/asm/unistd.h /usr/include/asm/unistd_64.h \
+ /usr/include/sys/syscall.h /usr/include/bits/syscall.h \
+ /usr/include/linux/types.h /usr/include/asm/types.h \
+ /usr/include/asm-generic/types.h /usr/include/asm-generic/int-ll64.h \
+ /usr/include/asm/bitsperlong.h /usr/include/asm-generic/bitsperlong.h \
+ /usr/include/linux/posix_types.h /usr/include/linux/stddef.h \
+ /usr/include/asm/posix_types.h /usr/include/asm/posix_types_64.h \
+ /usr/include/asm-generic/posix_types.h /usr/include/curl/curl.h \
+ /usr/include/curl/curlver.h /usr/include/curl/system.h \
+ /usr/include/curl/easy.h /usr/include/curl/multi.h \
+ /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
+ /usr/include/curl/typecheck-gcc.h
 
 /usr/include/stdc-predef.h:
 
@@ -564,6 +565,8 @@ HTTPSServer.o: ../../src/HTTPSServer.c /usr/include/stdc-predef.h \
 ../../include/SystemPidfile.h:
 
 ../../include/SystemOptions.h:
+
+../../include/SystemError.h:
 
 ../../include/SystemString.h:
 

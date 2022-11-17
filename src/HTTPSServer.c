@@ -4,9 +4,10 @@
 #include <curl/curl.h>
 #include <cJSON.h>
 ConfUtils_command_t HTTPSServer_commands[] = {
-    {"address", CONFUTILS_TYPE_STRING, offsetof(HTTPSServer_t, address)},
-    {"port", CONFUTILS_TYPE_NUMBER, offsetof(HTTPSServer_t, port)},
-    {"timeout_in_secs", CONFUTILS_TYPE_NUMBER, offsetof(HTTPSServer_t, timeout_in_secs)}};
+    {"address", string, offsetof(HTTPSServer_t, address)},
+    {"port", integer, offsetof(HTTPSServer_t, port)},
+    {"timeout_in_secs", integer, offsetof(HTTPSServer_t, timeout_in_secs)}};
+    
 int HTTPSServer_commands_size = sizeof(HTTPSServer_commands) / sizeof(HTTPSServer_commands[0]);
 
 ok_t HTTPSServer_initializing(HTTPSServer_t **HTTPSServer, SystemConfig_t *SystemConfig)

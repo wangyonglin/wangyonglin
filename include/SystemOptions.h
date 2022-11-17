@@ -2,15 +2,19 @@
 #define __SYSTEM_OPTIONS_H__
 #include <SystemTypes.h>
 #include <AllocateUtils.h>
-
+#include <SystemError.h>
+typedef enum{
+    onStart,
+    onStop,
+    onStatus
+}onStart_t;
 
 typedef struct
 {
     char *ini_filename;
-    char *pid_filename;
-    char *log_filename;
     bool deamoned;
-    on_starting_t started;
+    onStart_t listener;
+    AllocateUtils_t *AllocateUtils;
 } SystemOptions_t;
 
 ok_t SystemOptions_initializing(SystemOptions_t **SystemOptions,AllocateUtils_t *AllocateUtils, int argc, char *argv[]);

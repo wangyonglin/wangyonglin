@@ -92,7 +92,7 @@ SystemDaemon.o: ../../src/SystemDaemon.c /usr/include/stdc-predef.h \
  /usr/include/openssl/dtls1.h /usr/include/openssl/srtp.h \
  /usr/include/openssl/conf.h /usr/include/openssl/conferr.h \
  ../../components/string/include/AllocateUtils.h \
- ../../include/SystemError.h
+ ../../components/string/include/ConfUtils.h ../../include/SystemError.h
 
 /usr/include/stdc-predef.h:
 
@@ -441,5 +441,7 @@ SystemDaemon.o: ../../src/SystemDaemon.c /usr/include/stdc-predef.h \
 /usr/include/openssl/conferr.h:
 
 ../../components/string/include/AllocateUtils.h:
+
+../../components/string/include/ConfUtils.h:
 
 ../../include/SystemError.h:

@@ -4,40 +4,38 @@
 #include <SystemLog.h>
 #include <SystemString.h>
 
+ConfUtils_command_t SystemLog_commands[] = {
+    {"log_file", string, offsetof(SystemLog_t, log_file)}, {"log_debug", boolean, offsetof(SystemLog_t, log_debug)}};
+
 #define COLOR_NONE "\033[0m"
 #define FONT_COLOR_WHITE "\033[0;37m"
 #define FONT_COLOR_RED "\033[0;31m"
 #define FONT_COLOR_GREEN "\033[0;32m"
 #define FONT_COLOR_BLUE "\033[1;34m"
 
-ok_t SystemLog_initializing(SystemLog_t **SystemLog,AllocateUtils_t *AllocateUtils, const char *name, bool model)
+ok_t SystemLog_initializing(SystemLog_t **SystemLog, AllocateUtils_t *AllocateUtils, ConfUtils_t *ConfUtils)
 {
-    if (!AllocateUtils && name)
+    if (!AllocateUtils && !ConfUtils && !AllocateUtils)
     {
         return ArgumentException;
     }
 
-    int len = strlen(name);
     if (((*SystemLog) = AllocateUtils_pool(AllocateUtils, sizeof(SystemLog_t))) == NULL)
     {
         return NullPointerException;
     }
-
-    if ((AllocateUtils_toString(&((*SystemLog)->name), AllocateUtils, strdup(name), strlen(name))) != OK)
-    {
-        return NullPointerException;
-    }
-    (*SystemLog)->model = model;
+    int SystemLog_commands_size = sizeof(SystemLog_commands) / sizeof(SystemLog_commands[0]);
+    ConfUtils_final(ConfUtils, (void **)SystemLog, sizeof(SystemLog_t), NULL, SystemLog_commands, SystemLog_commands_size);
+    (*SystemLog)->AllocateUtils=AllocateUtils;
     return OK;
 
     return ErrorException;
 }
 
-void SystemLog_clean(){
-
-
+void SystemLog_clean()
+{
 }
-int SystemLog_error(SystemLog_t *SystemLog,const char *fmt, ...)
+int SystemLog_error(SystemLog_t *SystemLog, const char *fmt, ...)
 {
     if (!SystemLog)
     {
@@ -54,19 +52,19 @@ int SystemLog_error(SystemLog_t *SystemLog,const char *fmt, ...)
 
     if (SystemLog)
     {
-        if (SystemLog->model == 0)
+        if (SystemLog->log_debug == false)
         {
             fptr = stderr;
         }
         else
         {
-            fptr = fopen(SystemLog->name, "a+");
+            fptr = fopen(SystemLog->log_file, "a+");
         }
 
         if (fptr)
         {
 
-            if (SystemLog->model == 0)
+            if (SystemLog->log_debug == false)
             {
                 fprintf(fptr, FONT_COLOR_RED);
             }
@@ -78,7 +76,7 @@ int SystemLog_error(SystemLog_t *SystemLog,const char *fmt, ...)
             va_start(va, fmt);
             vfprintf(fptr, fmt, va);
 
-            if (SystemLog->model == 0)
+            if (SystemLog->log_debug == false)
             {
                 fprintf(fptr, COLOR_NONE);
             }
@@ -92,7 +90,7 @@ int SystemLog_error(SystemLog_t *SystemLog,const char *fmt, ...)
 
     return log_line_pos;
 }
-int SystemLog_info(SystemLog_t *SystemLog,const char *fmt, ...)
+int SystemLog_info(SystemLog_t *SystemLog, const char *fmt, ...)
 {
     if (!SystemLog)
     {
@@ -109,19 +107,19 @@ int SystemLog_info(SystemLog_t *SystemLog,const char *fmt, ...)
 
     if (SystemLog)
     {
-        if (SystemLog->model == 0)
+        if (SystemLog->log_debug == false)
         {
             fptr = stderr;
         }
         else
         {
-            fptr = fopen(SystemLog->name, "a+");
+            fptr = fopen(SystemLog->log_file, "a+");
         }
 
         if (fptr)
         {
 
-            if (SystemLog->model == 0)
+            if (SystemLog->log_debug == false)
             {
                 fprintf(fptr, FONT_COLOR_GREEN);
             }
@@ -133,7 +131,7 @@ int SystemLog_info(SystemLog_t *SystemLog,const char *fmt, ...)
             va_start(va, fmt);
             vfprintf(fptr, fmt, va);
 
-            if (SystemLog->model == 0)
+            if (SystemLog->log_debug == false)
             {
                 fprintf(fptr, COLOR_NONE);
             }
@@ -147,6 +145,7 @@ int SystemLog_info(SystemLog_t *SystemLog,const char *fmt, ...)
 
     return log_line_pos;
 }
+
 
 /*
 int log_info(log_t *log, const char *fmt, ...)

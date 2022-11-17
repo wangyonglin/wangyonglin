@@ -11,7 +11,7 @@ SystemError.o: ../../src/SystemError.c /usr/include/stdc-predef.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
  /usr/include/bits/stdio.h ../../include/SystemError.h \
- ../../include/SystemTypes.h /usr/include/stdlib.h \
+ ../../components/string/include/AllocateUtils.h /usr/include/stdlib.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/bits/floatn.h /usr/include/bits/floatn-common.h \
  /usr/include/sys/types.h /usr/include/bits/types/clock_t.h \
@@ -26,24 +26,14 @@ SystemError.o: ../../src/SystemError.c /usr/include/stdc-predef.h \
  /usr/include/bits/pthreadtypes.h /usr/include/bits/thread-shared-types.h \
  /usr/include/bits/pthreadtypes-arch.h /usr/include/alloca.h \
  /usr/include/bits/stdlib-bsearch.h /usr/include/bits/stdlib-float.h \
- /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
- /usr/include/signal.h /usr/include/bits/signum.h \
- /usr/include/bits/signum-generic.h \
- /usr/include/bits/types/sig_atomic_t.h \
- /usr/include/bits/types/siginfo_t.h /usr/include/bits/types/__sigval_t.h \
- /usr/include/bits/siginfo-arch.h /usr/include/bits/siginfo-consts.h \
- /usr/include/bits/types/sigval_t.h /usr/include/bits/types/sigevent_t.h \
- /usr/include/bits/sigevent-consts.h /usr/include/bits/sigaction.h \
- /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
- /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
- /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
- /usr/include/bits/sigthread.h \
- ../../components/string/include/PublicUtils.h /usr/include/unistd.h \
- /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
- /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h /usr/include/string.h \
- /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
- /usr/include/strings.h /usr/include/openssl/err.h \
+ /usr/include/string.h /usr/include/bits/types/locale_t.h \
+ /usr/include/bits/types/__locale_t.h /usr/include/strings.h \
+ /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+ /usr/include/bits/environments.h /usr/include/bits/confname.h \
+ /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
+ /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+ /usr/include/bits/fcntl-linux.h /usr/include/bits/stat.h \
+ ../../components/string/include/PublicUtils.h /usr/include/openssl/err.h \
  /usr/include/openssl/e_os2.h /usr/include/openssl/opensslconf.h \
  /usr/include/openssl/opensslconf-x86_64.h \
  /usr/include/openssl/opensslv.h /usr/include/inttypes.h \
@@ -135,7 +125,7 @@ SystemError.o: ../../src/SystemError.c /usr/include/stdc-predef.h \
 
 ../../include/SystemError.h:
 
-../../include/SystemTypes.h:
+../../components/string/include/AllocateUtils.h:
 
 /usr/include/stdlib.h:
 
@@ -191,47 +181,13 @@ SystemError.o: ../../src/SystemError.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/stdlib-float.h:
 
-/usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
+/usr/include/string.h:
 
-/usr/include/signal.h:
+/usr/include/bits/types/locale_t.h:
 
-/usr/include/bits/signum.h:
+/usr/include/bits/types/__locale_t.h:
 
-/usr/include/bits/signum-generic.h:
-
-/usr/include/bits/types/sig_atomic_t.h:
-
-/usr/include/bits/types/siginfo_t.h:
-
-/usr/include/bits/types/__sigval_t.h:
-
-/usr/include/bits/siginfo-arch.h:
-
-/usr/include/bits/siginfo-consts.h:
-
-/usr/include/bits/types/sigval_t.h:
-
-/usr/include/bits/types/sigevent_t.h:
-
-/usr/include/bits/sigevent-consts.h:
-
-/usr/include/bits/sigaction.h:
-
-/usr/include/bits/sigcontext.h:
-
-/usr/include/bits/types/stack_t.h:
-
-/usr/include/sys/ucontext.h:
-
-/usr/include/bits/sigstack.h:
-
-/usr/include/bits/ss_flags.h:
-
-/usr/include/bits/types/struct_sigstack.h:
-
-/usr/include/bits/sigthread.h:
-
-../../components/string/include/PublicUtils.h:
+/usr/include/strings.h:
 
 /usr/include/unistd.h:
 
@@ -245,13 +201,15 @@ SystemError.o: ../../src/SystemError.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/getopt_core.h:
 
-/usr/include/string.h:
+/usr/include/fcntl.h:
 
-/usr/include/bits/types/locale_t.h:
+/usr/include/bits/fcntl.h:
 
-/usr/include/bits/types/__locale_t.h:
+/usr/include/bits/fcntl-linux.h:
 
-/usr/include/strings.h:
+/usr/include/bits/stat.h:
+
+../../components/string/include/PublicUtils.h:
 
 /usr/include/openssl/err.h:
 

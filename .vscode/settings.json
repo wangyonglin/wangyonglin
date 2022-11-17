@@ -106,6 +106,8 @@
         "mqttdriver.h": "c",
         "confutils.h": "c",
         "allocateutils.h": "c",
-        "httpsserver.h": "c"
+        "httpsserver.h": "c",
+        "systemerror.h": "c",
+        "systemdaemon.h": "c"
     }
 }

@@ -7,7 +7,7 @@ m4_define(VERSION_MINOR,3)
 m4_define(VERSION_PATCH,m4_esyscmd([git rev-list --count HEAD | tr -d '\n']))
 AC_INIT([tiger], [VERSION_MAJOR.VERSION_MINOR.VERSION_PATCH],[admin@wangyonglin.com])
 AM_INIT_AUTOMAKE
-AC_CONFIG_SRCDIR([src/main.c])
+AC_CONFIG_SRCDIR([src/SystemMain.c])
 AC_CONFIG_HEADERS([config.h])
 LIBTOOL
 LT_INIT

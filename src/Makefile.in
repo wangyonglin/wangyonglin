@@ -104,10 +104,11 @@ PROGRAMS = $(bin_PROGRAMS)
 am_tiger_OBJECTS = SystemError.$(OBJEXT) SystemDaemon.$(OBJEXT) \
 	SystemPidfile.$(OBJEXT) SystemLog.$(OBJEXT) \
 	SystemString.$(OBJEXT) SystemFile.$(OBJEXT) \
-	SystemConfig.$(OBJEXT) SystemOptions.$(OBJEXT) main.$(OBJEXT) \
-	HTTPSServer.$(OBJEXT) HTTPSHandler.$(OBJEXT) \
-	MQTTManager.$(OBJEXT) MQTTAliyunSignature.$(OBJEXT) \
-	SystemSignal.$(OBJEXT) SystemTime.$(OBJEXT)
+	SystemConfig.$(OBJEXT) SystemOptions.$(OBJEXT) \
+	SystemMain.$(OBJEXT) HTTPSServer.$(OBJEXT) \
+	HTTPSHandler.$(OBJEXT) MQTTManager.$(OBJEXT) \
+	MQTTAliyunSignature.$(OBJEXT) SystemSignal.$(OBJEXT) \
+	SystemTime.$(OBJEXT)
 tiger_OBJECTS = $(am_tiger_OBJECTS)
 tiger_DEPENDENCIES =  \
 	$(top_builddir)/components/mqtt/libcomponent_mqtt.la \
@@ -138,9 +139,9 @@ am__depfiles_remade = ./$(DEPDIR)/HTTPSHandler.Po \
 	./$(DEPDIR)/MQTTManager.Po ./$(DEPDIR)/SystemConfig.Po \
 	./$(DEPDIR)/SystemDaemon.Po ./$(DEPDIR)/SystemError.Po \
 	./$(DEPDIR)/SystemFile.Po ./$(DEPDIR)/SystemLog.Po \
-	./$(DEPDIR)/SystemOptions.Po ./$(DEPDIR)/SystemPidfile.Po \
-	./$(DEPDIR)/SystemSignal.Po ./$(DEPDIR)/SystemString.Po \
-	./$(DEPDIR)/SystemTime.Po ./$(DEPDIR)/main.Po
+	./$(DEPDIR)/SystemMain.Po ./$(DEPDIR)/SystemOptions.Po \
+	./$(DEPDIR)/SystemPidfile.Po ./$(DEPDIR)/SystemSignal.Po \
+	./$(DEPDIR)/SystemString.Po ./$(DEPDIR)/SystemTime.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -325,7 +326,7 @@ tiger_SOURCES = \
     SystemFile.c \
     SystemConfig.c \
     SystemOptions.c \
-    main.c  \
+    SystemMain.c  \
     HTTPSServer.c  \
     HTTPSHandler.c \
     MQTTManager.c   \
@@ -442,12 +443,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SystemError.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SystemFile.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SystemLog.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SystemMain.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SystemOptions.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SystemPidfile.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SystemSignal.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SystemString.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/SystemTime.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -618,12 +619,12 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/SystemError.Po
 	-rm -f ./$(DEPDIR)/SystemFile.Po
 	-rm -f ./$(DEPDIR)/SystemLog.Po
+	-rm -f ./$(DEPDIR)/SystemMain.Po
 	-rm -f ./$(DEPDIR)/SystemOptions.Po
 	-rm -f ./$(DEPDIR)/SystemPidfile.Po
 	-rm -f ./$(DEPDIR)/SystemSignal.Po
 	-rm -f ./$(DEPDIR)/SystemString.Po
 	-rm -f ./$(DEPDIR)/SystemTime.Po
-	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -678,12 +679,12 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/SystemError.Po
 	-rm -f ./$(DEPDIR)/SystemFile.Po
 	-rm -f ./$(DEPDIR)/SystemLog.Po
+	-rm -f ./$(DEPDIR)/SystemMain.Po
 	-rm -f ./$(DEPDIR)/SystemOptions.Po
 	-rm -f ./$(DEPDIR)/SystemPidfile.Po
 	-rm -f ./$(DEPDIR)/SystemSignal.Po
 	-rm -f ./$(DEPDIR)/SystemString.Po
 	-rm -f ./$(DEPDIR)/SystemTime.Po
-	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

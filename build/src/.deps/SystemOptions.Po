@@ -90,9 +90,9 @@ SystemOptions.o: ../../src/SystemOptions.c /usr/include/stdc-predef.h \
  /usr/include/openssl/conf.h /usr/include/openssl/conferr.h \
  ../../components/string/include/AllocateUtils.h /usr/include/fcntl.h \
  /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
- /usr/include/bits/stat.h ../../include/SystemString.h \
- /usr/include/malloc.h /usr/include/getopt.h \
- /usr/include/bits/getopt_ext.h ../../include/SystemError.h
+ /usr/include/bits/stat.h ../../include/SystemError.h \
+ ../../include/SystemString.h /usr/include/malloc.h /usr/include/getopt.h \
+ /usr/include/bits/getopt_ext.h
 
 /usr/include/stdc-predef.h:
 
@@ -438,6 +438,8 @@ SystemOptions.o: ../../src/SystemOptions.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/stat.h:
 
+../../include/SystemError.h:
+
 ../../include/SystemString.h:
 
 /usr/include/malloc.h:
@@ -445,5 +447,3 @@ SystemOptions.o: ../../src/SystemOptions.c /usr/include/stdc-predef.h \
 /usr/include/getopt.h:
 
 /usr/include/bits/getopt_ext.h:
-
-../../include/SystemError.h:

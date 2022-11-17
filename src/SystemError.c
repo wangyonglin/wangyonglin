@@ -1,24 +1,26 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <SystemError.h>
-
-void err_printf(const char *fmt, ...)
+ok_t SystemError_Message(const char *fmt, ...)
 {
     va_list va;
     va_start(va, fmt);
-    vfprintf(stderr, fmt, va);
-    fputc('\r', stderr);
-    fputc('\n', stderr);
-    fflush(stderr);
+    fprintf(stderr, "\t");
+    fprintf(stderr, fmt, va);
+    fprintf(stderr, "\r\n");
     va_end(va);
+    return OK;
 }
-void error_info(const char *fmt, ...)
+ok_t SystemError_exitMessage(AllocateUtils_t *AllocateUtils, const char *fmt, ...)
 {
+    if (!AllocateUtils)
+    {
+        return ArgumentException;
+    }
     va_list va;
     va_start(va, fmt);
-    vfprintf(stdout, fmt, va);
-    fputc('\r', stdout);
-    fputc('\n', stdout);
-    fflush(stdout);
+    fprintf(stderr, fmt, va);
     va_end(va);
+    AllocateUtils_cleanup(AllocateUtils);
+    exit(EXIT_FAILURE);
 }

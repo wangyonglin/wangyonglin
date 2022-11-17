@@ -92,9 +92,9 @@ main.o: ../../src/main.c /usr/include/stdc-predef.h /usr/include/stdio.h \
  ../../components/string/include/AllocateUtils.h /usr/include/fcntl.h \
  /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
  /usr/include/bits/stat.h ../../include/SystemConfig.h \
- ../../include/SystemLog.h ../../include/SystemPidfile.h \
- ../../include/SystemOptions.h \
- ../../components/string/include/ConfUtils.h ../../include/SystemDaemon.h \
+ ../../include/SystemLog.h ../../components/string/include/ConfUtils.h \
+ ../../include/SystemPidfile.h ../../include/SystemOptions.h \
+ ../../include/SystemError.h ../../include/SystemDaemon.h \
  ../../include/HTTPSServer.h /usr/include/event.h \
  /usr/include/event2/event-config.h /usr/include/event2/event-config-64.h \
  /usr/include/sys/time.h /usr/include/evutil.h /usr/include/event2/util.h \
@@ -485,11 +485,13 @@ main.o: ../../src/main.c /usr/include/stdc-predef.h /usr/include/stdio.h \
 
 ../../include/SystemLog.h:
 
+../../components/string/include/ConfUtils.h:
+
 ../../include/SystemPidfile.h:
 
 ../../include/SystemOptions.h:
 
-../../components/string/include/ConfUtils.h:
+../../include/SystemError.h:
 
 ../../include/SystemDaemon.h:
 

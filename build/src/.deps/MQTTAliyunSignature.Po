@@ -93,9 +93,9 @@ MQTTAliyunSignature.o: ../../src/MQTTAliyunSignature.c \
  ../../include/SystemLog.h \
  ../../components/string/include/AllocateUtils.h /usr/include/fcntl.h \
  /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
- /usr/include/bits/stat.h ../../include/SystemPidfile.h \
- ../../include/SystemOptions.h \
- ../../components/string/include/ConfUtils.h ../../include/SystemString.h \
+ /usr/include/bits/stat.h ../../components/string/include/ConfUtils.h \
+ ../../include/SystemPidfile.h ../../include/SystemOptions.h \
+ ../../include/SystemError.h ../../include/SystemString.h \
  /usr/include/malloc.h
 
 /usr/include/stdc-predef.h:
@@ -446,11 +446,13 @@ MQTTAliyunSignature.o: ../../src/MQTTAliyunSignature.c \
 
 /usr/include/bits/stat.h:
 
+../../components/string/include/ConfUtils.h:
+
 ../../include/SystemPidfile.h:
 
 ../../include/SystemOptions.h:
 
-../../components/string/include/ConfUtils.h:
+../../include/SystemError.h:
 
 ../../include/SystemString.h:
 

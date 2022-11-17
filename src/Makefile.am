@@ -17,7 +17,7 @@ tiger_SOURCES=\
     SystemFile.c \
     SystemConfig.c \
     SystemOptions.c \
-    main.c  \
+    SystemMain.c  \
     HTTPSServer.c  \
     HTTPSHandler.c \
     MQTTManager.c   \

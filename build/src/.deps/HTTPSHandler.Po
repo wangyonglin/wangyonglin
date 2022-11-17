@@ -116,7 +116,7 @@ HTTPSHandler.o: ../../src/HTTPSHandler.c /usr/include/stdc-predef.h \
  /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
  /usr/include/bits/stat.h ../../include/SystemConfig.h \
  ../../include/SystemLog.h ../../include/SystemPidfile.h \
- ../../include/SystemOptions.h \
+ ../../include/SystemOptions.h ../../include/SystemError.h \
  ../../components/string/include/SnowFlake.h /usr/include/linux/unistd.h \
  /usr/include/asm/unistd.h /usr/include/asm/unistd_64.h \
  /usr/include/sys/syscall.h /usr/include/bits/syscall.h \
@@ -560,6 +560,8 @@ HTTPSHandler.o: ../../src/HTTPSHandler.c /usr/include/stdc-predef.h \
 ../../include/SystemPidfile.h:
 
 ../../include/SystemOptions.h:
+
+../../include/SystemError.h:
 
 ../../components/string/include/SnowFlake.h:
 

@@ -4,16 +4,17 @@
 #include <ConfUtils.h>
 
 ConfUtils_command_t __MQTTManager_commands[] = {
-    {"serverURI", CONFUTILS_TYPE_STRING, offsetof(MQTTManager_t, serverURI)},
-    {"productKey", CONFUTILS_TYPE_STRING, offsetof(MQTTManager_t, productKey)},
-    {"deviceName", CONFUTILS_TYPE_STRING, offsetof(MQTTManager_t, deviceName)},
-    {"deviceSecret", CONFUTILS_TYPE_STRING, offsetof(MQTTManager_t, deviceSecret)},
-    {"minRetryInterval", CONFUTILS_TYPE_NUMBER, offsetof(MQTTManager_t, minRetryInterval)},
-    {"maxRetryInterval", CONFUTILS_TYPE_NUMBER, offsetof(MQTTManager_t, maxRetryInterval)},
-    {"cleansession", CONFUTILS_TYPE_NUMBER, offsetof(MQTTManager_t, cleansession)},
-    {"automaticReconnect", CONFUTILS_TYPE_NUMBER, offsetof(MQTTManager_t, automaticReconnect)},
-    {"keepAliveInterval", CONFUTILS_TYPE_NUMBER, offsetof(MQTTManager_t, keepAliveInterval)},
-    {"maxInflight", CONFUTILS_TYPE_NUMBER, offsetof(MQTTManager_t, maxInflight)}};
+    {"serverURI", string, offsetof(MQTTManager_t, serverURI)},
+    {"productKey", string, offsetof(MQTTManager_t, productKey)},
+    {"deviceName", string, offsetof(MQTTManager_t, deviceName)},
+    {"deviceSecret", string, offsetof(MQTTManager_t, deviceSecret)},
+    {"minRetryInterval", integer, offsetof(MQTTManager_t, minRetryInterval)},
+    {"maxRetryInterval", integer, offsetof(MQTTManager_t, maxRetryInterval)},
+    {"cleansession", integer, offsetof(MQTTManager_t, cleansession)},
+    {"automaticReconnect", integer, offsetof(MQTTManager_t, automaticReconnect)},
+    {"keepAliveInterval", integer, offsetof(MQTTManager_t, keepAliveInterval)},
+    {"maxInflight", integer, offsetof(MQTTManager_t, maxInflight)},
+    {"daemon", boolean, offsetof(MQTTManager_t, daemon)}};
 
 int MQTTManager_commands_size=sizeof(__MQTTManager_commands) / sizeof(__MQTTManager_commands[0]);
 
@@ -137,6 +138,7 @@ ok_t MQTTManager_initializing(MQTTManager_t **MQTTManager,SystemConfig_t *System
     SystemLog_info(SystemConfig->SystemLog, "automaticReconnect  {%d}", (*MQTTManager)->automaticReconnect);
     SystemLog_info(SystemConfig->SystemLog, "keepAliveInterval  {%d}", (*MQTTManager)->keepAliveInterval);
     SystemLog_info(SystemConfig->SystemLog, "maxInflight {%d}", (*MQTTManager)->maxInflight);
+    SystemLog_info(SystemConfig->SystemLog, "daemon {%d}", (*MQTTManager)->daemon);
 
     if (OK != (MQTTAliyun_Signature((*MQTTManager)->productKey, (*MQTTManager)->deviceName, (*MQTTManager)->deviceSecret, clientID, username, password)))
     {

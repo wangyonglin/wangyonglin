@@ -94,8 +94,8 @@ SystemPidfile.o: ../../src/SystemPidfile.c /usr/include/stdc-predef.h \
  /usr/include/openssl/dtls1.h /usr/include/openssl/srtp.h \
  /usr/include/openssl/conf.h /usr/include/openssl/conferr.h \
  ../../components/string/include/AllocateUtils.h \
- ../../include/SystemLog.h ../../include/SystemPidfile.h \
- ../../include/SystemError.h
+ ../../include/SystemLog.h ../../components/string/include/ConfUtils.h \
+ ../../include/SystemPidfile.h ../../include/SystemError.h
 
 /usr/include/stdc-predef.h:
 
@@ -456,6 +456,8 @@ SystemPidfile.o: ../../src/SystemPidfile.c /usr/include/stdc-predef.h \
 ../../components/string/include/AllocateUtils.h:
 
 ../../include/SystemLog.h:
+
+../../components/string/include/ConfUtils.h:
 
 ../../include/SystemPidfile.h:
 

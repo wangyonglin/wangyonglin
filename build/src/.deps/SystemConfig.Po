@@ -91,11 +91,10 @@ SystemConfig.o: ../../src/SystemConfig.c /usr/include/stdc-predef.h \
  ../../include/SystemLog.h \
  ../../components/string/include/AllocateUtils.h /usr/include/fcntl.h \
  /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
- /usr/include/bits/stat.h ../../include/SystemPidfile.h \
- ../../include/SystemOptions.h \
- ../../components/string/include/ConfUtils.h ../../include/SystemString.h \
- /usr/include/malloc.h ../../include/SystemDaemon.h \
- ../../include/SystemError.h
+ /usr/include/bits/stat.h ../../components/string/include/ConfUtils.h \
+ ../../include/SystemPidfile.h ../../include/SystemOptions.h \
+ ../../include/SystemError.h ../../include/SystemString.h \
+ /usr/include/malloc.h ../../include/SystemDaemon.h
 
 /usr/include/stdc-predef.h:
 
@@ -443,16 +442,16 @@ SystemConfig.o: ../../src/SystemConfig.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/stat.h:
 
+../../components/string/include/ConfUtils.h:
+
 ../../include/SystemPidfile.h:
 
 ../../include/SystemOptions.h:
 
-../../components/string/include/ConfUtils.h:
+../../include/SystemError.h:
 
 ../../include/SystemString.h:
 
 /usr/include/malloc.h:
 
 ../../include/SystemDaemon.h:
-
-../../include/SystemError.h:
