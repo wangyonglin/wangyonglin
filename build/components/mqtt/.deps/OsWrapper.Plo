@@ -1,6 +1,0 @@
-OsWrapper.lo: ../../../components/mqtt/OsWrapper.c \
- /usr/include/stdc-predef.h ../../../components/mqtt/include/OsWrapper.h
-
-/usr/include/stdc-predef.h:
-
-../../../components/mqtt/include/OsWrapper.h:

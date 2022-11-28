@@ -108,6 +108,24 @@
         "allocateutils.h": "c",
         "httpsserver.h": "c",
         "systemerror.h": "c",
-        "systemdaemon.h": "c"
+        "systemdaemon.h": "c",
+        "publicutils.h": "c",
+        "systemtypes.h": "c",
+        "rand.h": "c",
+        "httpsclient.h": "c",
+        "objectutils.h": "c",
+        "okutils.h": "c",
+        "objectultra.h": "c",
+        "pidutils.h": "c",
+        "daemonutils.h": "c",
+        "configutils.h": "c",
+        "pidfileutils.h": "c",
+        "stdbool.h": "c",
+        "loggerutils.h": "c",
+        "optionutils.h": "c",
+        "signalutils.h": "c",
+        "public.h": "c",
+        "logger.h": "c",
+        "allocate.h": "c"
     }
 }

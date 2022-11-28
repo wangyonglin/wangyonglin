@@ -1,9 +1,9 @@
 SUBDIRS =\
-    components/mqtt \
-    components/string \
-    components/mysql \
-    components/json \
-    src
+    src/developer   \
+    src/components/mqtt \
+    src/components/cjson \
+    src/application
+
 
 #安装的各个目录和文件
 includedir= $(prefix)/include

@@ -7,7 +7,7 @@ m4_define(VERSION_MINOR,3)
 m4_define(VERSION_PATCH,m4_esyscmd([git rev-list --count HEAD | tr -d '\n']))
 AC_INIT([tiger], [VERSION_MAJOR.VERSION_MINOR.VERSION_PATCH],[admin@wangyonglin.com])
 AM_INIT_AUTOMAKE
-AC_CONFIG_SRCDIR([src/SystemMain.c])
+AC_CONFIG_SRCDIR([src/application/main.c])
 AC_CONFIG_HEADERS([config.h])
 LIBTOOL
 LT_INIT
@@ -51,9 +51,8 @@ AC_FUNC_REALLOC
 AC_FUNC_STRTOD
 AC_CHECK_FUNCS([bzero getpass localeconv memset strcasecmp strchr strdup strerror strrchr strspn strstr])
 AC_CONFIG_FILES([Makefile])
-AC_CONFIG_FILES([components/string/Makefile])
-AC_CONFIG_FILES([components/mysql/Makefile])
-AC_CONFIG_FILES([components/json/Makefile])
-AC_CONFIG_FILES([components/mqtt/Makefile])
-AC_CONFIG_FILES([src/Makefile])
+AC_CONFIG_FILES([src/components/cjson/Makefile])
+AC_CONFIG_FILES([src/components/mqtt/Makefile])
+AC_CONFIG_FILES([src/developer/Makefile])
+AC_CONFIG_FILES([src/application/Makefile])
 AC_OUTPUT
