@@ -128,8 +128,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libdeveloper_la_LIBADD =
-am_libdeveloper_la_OBJECTS = kernel.lo allocate.lo daemon.lo \
-	pidfile.lo logger.lo args.lo conf.lo
+am_libdeveloper_la_OBJECTS = program.lo allocate.lo daemon.lo \
+	pidlock.lo logger.lo args.lo conf.lo
 libdeveloper_la_OBJECTS = $(am_libdeveloper_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -152,8 +152,8 @@ depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/allocate.Plo ./$(DEPDIR)/args.Plo \
 	./$(DEPDIR)/conf.Plo ./$(DEPDIR)/daemon.Plo \
-	./$(DEPDIR)/kernel.Plo ./$(DEPDIR)/logger.Plo \
-	./$(DEPDIR)/pidfile.Plo
+	./$(DEPDIR)/logger.Plo ./$(DEPDIR)/pidlock.Plo \
+	./$(DEPDIR)/program.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -322,10 +322,10 @@ AUTOMAKE_OPTIONS = foreign
 lib_LTLIBRARIES = libdeveloper.la
 AM_CPPFLAGS = -I $(top_srcdir)/src/developer/include/
 libdeveloper_la_SOURCES = \
-    kernel.c \
+    program.c \
     allocate.c  \
     daemon.c    \
-    pidfile.c   \
+    pidlock.c   \
     logger.c    \
     args.c  \
     conf.c
@@ -412,9 +412,9 @@ include ./$(DEPDIR)/allocate.Plo # am--include-marker
 include ./$(DEPDIR)/args.Plo # am--include-marker
 include ./$(DEPDIR)/conf.Plo # am--include-marker
 include ./$(DEPDIR)/daemon.Plo # am--include-marker
-include ./$(DEPDIR)/kernel.Plo # am--include-marker
 include ./$(DEPDIR)/logger.Plo # am--include-marker
-include ./$(DEPDIR)/pidfile.Plo # am--include-marker
+include ./$(DEPDIR)/pidlock.Plo # am--include-marker
+include ./$(DEPDIR)/program.Plo # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -581,9 +581,9 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/args.Plo
 	-rm -f ./$(DEPDIR)/conf.Plo
 	-rm -f ./$(DEPDIR)/daemon.Plo
-	-rm -f ./$(DEPDIR)/kernel.Plo
 	-rm -f ./$(DEPDIR)/logger.Plo
-	-rm -f ./$(DEPDIR)/pidfile.Plo
+	-rm -f ./$(DEPDIR)/pidlock.Plo
+	-rm -f ./$(DEPDIR)/program.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -633,9 +633,9 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/args.Plo
 	-rm -f ./$(DEPDIR)/conf.Plo
 	-rm -f ./$(DEPDIR)/daemon.Plo
-	-rm -f ./$(DEPDIR)/kernel.Plo
 	-rm -f ./$(DEPDIR)/logger.Plo
-	-rm -f ./$(DEPDIR)/pidfile.Plo
+	-rm -f ./$(DEPDIR)/pidlock.Plo
+	-rm -f ./$(DEPDIR)/program.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

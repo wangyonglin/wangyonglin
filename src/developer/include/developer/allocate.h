@@ -57,8 +57,8 @@ void *allocate_create(allocate_t *pool, size_t size);
 int allocate_delect(allocate_t *pool, void *pointer);
 
 
-ok_t string_crt(allocate_t *allocate,char **pointer, char *data, size_t data_size);
-void string_del(allocate_t *allocate,char *pointer);
-ok_t object_crt(allocate_t *allocate,void **object, size_t object_size);
-void object_del(allocate_t *allocate,void *object);
+ok_t string_create(allocate_t *allocate,char **pointer, char *data, size_t data_size);
+void string_delect(allocate_t *allocate,char *pointer);
+ok_t object_create(allocate_t *allocate,void **object, size_t object_size);
+void object_delect(allocate_t *allocate,void *object);
 #endif

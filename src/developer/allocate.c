@@ -386,7 +386,7 @@ int allocate_delect(allocate_t *allocate, void *pointer)
 /**wangyonglin*/
 
 
-ok_t string_crt(allocate_t *allocate,char **pointer, char *data, size_t data_size)
+ok_t string_create(allocate_t *allocate,char **pointer, char *data, size_t data_size)
 {
     if (!allocate)
     {
@@ -400,7 +400,7 @@ ok_t string_crt(allocate_t *allocate,char **pointer, char *data, size_t data_siz
     memcpy((*pointer), data, data_size);
     return Ok;
 }
-void string_del(allocate_t *allocate,char *pointer)
+void string_delect(allocate_t *allocate,char *pointer)
 {
     if (!allocate && !pointer)
     {
@@ -408,7 +408,7 @@ void string_del(allocate_t *allocate,char *pointer)
     }
     allocate_delect(allocate, pointer);
 }
-ok_t object_crt(allocate_t *allocate,void **object, size_t object_size)
+ok_t object_create(allocate_t *allocate,void **object, size_t object_size)
 {
     if (!allocate)
     {
@@ -421,7 +421,7 @@ ok_t object_crt(allocate_t *allocate,void **object, size_t object_size)
     memset((*object), 0x00, object_size);
     return Ok;
 }
-void object_del(allocate_t *allocate,void *object)
+void object_delect(allocate_t *allocate,void *object)
 {
     if (!allocate && !object)
     {

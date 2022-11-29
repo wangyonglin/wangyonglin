@@ -9,12 +9,12 @@ ok_t conf_initializing(conf_t **conf, allocate_t *allocate, const char *filename
     {
         return ArgumentException;
     }
-    if (object_crt(allocate, (void **)conf, sizeof(conf_t)) != Ok)
+    if (object_create(allocate, (void **)conf, sizeof(conf_t)) != Ok)
     {
         return ErrorException;
     }
     printf("\tfilename %s\r\n", filename);
-    if (string_crt(allocate, &((*conf)->filename), strdup(filename), strlen(filename)) != Ok)
+    if (string_create(allocate, &((*conf)->filename), strdup(filename), strlen(filename)) != Ok)
     {
         return ErrorException;
     }
@@ -42,7 +42,7 @@ ok_t conf_mapping(conf_t *conf, void **pointer, int pointer_size, const char *gr
 
     if (!(*pointer))
     {
-        if (object_crt(conf->allocate, (void **)pointer, pointer_size) != Ok)
+        if (object_create(conf->allocate, (void **)pointer, pointer_size) != Ok)
         {
             return ErrorException;
         }

@@ -12,12 +12,12 @@ ok_t logger_initializing(logger_t **logger, allocate_t *allocate, const char *fi
     {
         return ArgumentException;
     }
-    if (object_crt(allocate, logger, sizeof(logger_t) != Ok))
+    if (object_create(allocate, logger, sizeof(logger_t) != Ok))
     {
         return ErrorException;
     }
 
-    if ((string_crt(allocate, &(*logger)->filename, strdup(filename), strlen(filename))) != Ok)
+    if ((string_create(allocate, &(*logger)->filename, strdup(filename), strlen(filename))) != Ok)
     {
         return ErrorException;
     }

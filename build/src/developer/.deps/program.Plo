@@ -1,5 +1,5 @@
-kernel.lo: ../../../src/developer/kernel.c /usr/include/stdc-predef.h \
- ../../../src/developer/include/developer/kernel.h /usr/include/stdio.h \
+program.lo: ../../../src/developer/program.c /usr/include/stdc-predef.h \
+ ../../../src/developer/include/developer/program.h /usr/include/stdio.h \
  /usr/include/bits/libc-header-start.h /usr/include/features.h \
  /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
@@ -94,13 +94,13 @@ kernel.lo: ../../../src/developer/kernel.c /usr/include/stdc-predef.h \
  /usr/include/openssl/conf.h /usr/include/openssl/conferr.h \
  ../../../src/developer/include/developer/args.h /usr/include/getopt.h \
  /usr/include/bits/getopt_ext.h \
- ../../../src/developer/include/developer/pidfile.h \
+ ../../../src/developer/include/developer/pidlock.h \
  ../../../src/developer/include/developer/daemon.h \
  /usr/include/sys/stat.h
 
 /usr/include/stdc-predef.h:
 
-../../../src/developer/include/developer/kernel.h:
+../../../src/developer/include/developer/program.h:
 
 /usr/include/stdio.h:
 
@@ -446,7 +446,7 @@ kernel.lo: ../../../src/developer/kernel.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/getopt_ext.h:
 
-../../../src/developer/include/developer/pidfile.h:
+../../../src/developer/include/developer/pidlock.h:
 
 ../../../src/developer/include/developer/daemon.h:
 

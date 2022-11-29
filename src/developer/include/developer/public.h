@@ -12,4 +12,8 @@ typedef int ok_t;
 typedef int boolean;
 #define enabled ((boolean)1)
 #define disabled ((boolean)0)
+
+#define onstart ((boolean)1)
+#define onstop ((boolean)0)
+#define onstatus ((boolean)-1)
 #endif

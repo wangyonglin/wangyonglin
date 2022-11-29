@@ -2,10 +2,10 @@ AUTOMAKE_OPTIONS=foreign
 lib_LTLIBRARIES=libdeveloper.la
 AM_CPPFLAGS=-I $(top_srcdir)/src/developer/include/
 libdeveloper_la_SOURCES=   \
-    kernel.c \
+    program.c \
     allocate.c  \
     daemon.c    \
-    pidfile.c   \
+    pidlock.c   \
     logger.c    \
     args.c  \
     conf.c

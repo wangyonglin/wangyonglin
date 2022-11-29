@@ -24,18 +24,18 @@ ok_t args_initializing(args_t **args, allocate_t *allocate, int argc, char *argv
         return ArgumentException;
     }
 
-    if (object_crt(allocate, (void**)args, sizeof(args_t) != Ok))
+    if (object_create(allocate, (void **)args, sizeof(args_t) != Ok))
     {
         return ErrorException;
     }
-    (*args)->daemoned=disabled;
-    (*args)->started=enabled;
+    (*args)->daemoned = disabled;
+    (*args)->started = onstart;
     while (-1 != (opt = getopt_long(argc, argv, short_options, long_options, &option_index)))
     {
         switch (opt)
         {
         case 'c':
-            string_crt(allocate, &(*args)->ini_filename, strdup(optarg), strlen(optarg));
+            string_create(allocate, &(*args)->ini_filename, strdup(optarg), strlen(optarg));
             break;
         case 'i':
 
@@ -43,11 +43,15 @@ ok_t args_initializing(args_t **args, allocate_t *allocate, int argc, char *argv
         case 's':
             if (!strcmp(optarg, "start"))
             {
-                (*args)->started = enabled;
+                (*args)->started = onstart;
             }
             else if (!strcmp(optarg, "stop"))
             {
-                (*args)->started = disabled;
+                (*args)->started = onstop;
+            }
+            else if (!strcmp(optarg, "status"))
+            {
+                (*args)->started = onstatus;
             }
             else
             {
@@ -76,7 +80,7 @@ ok_t args_initializing(args_t **args, allocate_t *allocate, int argc, char *argv
     }
     if (!(*args)->ini_filename)
     {
-        string_crt(allocate, &(*args)->ini_filename, strdup(ini_filename), strlen(ini_filename));
+        string_create(allocate, &(*args)->ini_filename, strdup(ini_filename), strlen(ini_filename));
     }
     return Ok;
 }
