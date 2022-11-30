@@ -59,7 +59,7 @@ ok_t pidlock_initializing(pidlock_t **pidlock, allocate_t *allocate, conf_t *con
         return ErrorException;
     }
     conf_command_t commands[] = {
-        {"pid_filename", STRING, offsetof(pidlock_t, filename)}};
+        {"pid_filename", String, offsetof(pidlock_t, filename)}};
     int commands_size = sizeof(commands) / sizeof(commands[0]);
     if (conf_mapping(conf, (void **)pidlock, sizeof(pidlock_t), NULL, commands, commands_size) == Ok)
     {
@@ -130,8 +130,6 @@ ok_t pidlock_locking(pidlock_t *pidlock)
     sprintf(buf, "%ld", (long)getpid());
     write(pidlock->lockfd, buf, strlen(buf) + 1);
     return Ok;
-
-    return ErrorException;
 }
 
 ok_t pidlock_unlocking(pidlock_t *pidlock)

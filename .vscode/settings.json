@@ -126,6 +126,8 @@
         "signalutils.h": "c",
         "public.h": "c",
         "logger.h": "c",
-        "allocate.h": "c"
+        "allocate.h": "c",
+        "program.h": "c",
+        "aliiot.h": "c"
     }
 }

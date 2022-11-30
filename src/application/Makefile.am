@@ -8,7 +8,9 @@ AM_CPPFLAGS=\
 
 bin_PROGRAMS=tiger
 tiger_SOURCES=\
-    main.c
+    main.c \
+    aliiot_signature.c \
+    aliiot.c
 tiger_LDADD=\
     $(top_builddir)/src/components/mqtt/libcomponent_mqtt.la \
     $(top_builddir)/src/components/cjson/libcomponent_cjson.la \

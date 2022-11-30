@@ -13,9 +13,9 @@
 #include <developer/allocate.h>
 typedef enum
 {
-    STRING,
-    NUMBER,
-    BOOLEAN
+    String,
+    Integer,
+    Boolean
 } conf_type_t;
 
 typedef struct
@@ -27,10 +27,11 @@ typedef struct
 
 typedef struct
 {
-    char *filename;
+    unsigned char *filename;
     allocate_t *allocate;
 } conf_t;
 
 ok_t conf_initializing(conf_t **conf, allocate_t *allocate, const char *filename);
 ok_t conf_mapping(conf_t *conf, void **pointer, int pointer_size, const char *group, conf_command_t conf_commands[], int conf_commands_size);
+size_t conf_commands_size(conf_command_t commands[]);
 #endif

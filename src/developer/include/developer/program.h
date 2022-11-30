@@ -10,6 +10,7 @@
 #include <developer/args.h>
 #include <developer/pidlock.h>
 #include <developer/daemon.h>
+#include <developer/logger.h>
 
 typedef struct
 {
@@ -17,9 +18,7 @@ typedef struct
     allocate_t *allocate;
     args_t *args;
     conf_t *conf;
-    char *serverURI;
-    boolean error_log_printf;
-    long maxInflight; 
+    logger_t *logger;
 } program_t;
 
 ok_t program_initializing(program_t **program, size_t allocate_max_size, int argc, char *argv[]);

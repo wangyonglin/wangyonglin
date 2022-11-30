@@ -6,27 +6,30 @@
 #define FONT_COLOR_GREEN "\033[0;32m"
 #define FONT_COLOR_BLUE "\033[1;34m"
 
-ok_t logger_initializing(logger_t **logger, allocate_t *allocate, const char *filename, boolean model)
+conf_command_t logger_conf_commands[] = {
+    {"logger_filename", String, offsetof(logger_t, logger_filename)}};
+
+ok_t logger_initializing(logger_t **logger, allocate_t *allocate, conf_t *conf, boolean model)
 {
-    if (!allocate && !filename)
+    if (!allocate && !conf)
     {
         return ArgumentException;
     }
-    if (object_create(allocate, logger, sizeof(logger_t) != Ok))
+
+    if (object_create(allocate, (void**)logger, sizeof(logger_t) != Ok))
     {
         return ErrorException;
     }
+    int logger_conf_commands_size = sizeof(logger_conf_commands) / sizeof(logger_conf_commands[0]);
 
-    if ((string_create(allocate, &(*logger)->filename, strdup(filename), strlen(filename))) != Ok)
+    if (conf_mapping(conf, (void **)logger, sizeof(logger_t), NULL, logger_conf_commands, logger_conf_commands_size) == Ok)
     {
-        return ErrorException;
+        (*logger)->allocate = allocate;
+        (*logger)->logger_model = model;
+        return Ok;
     }
-    (*logger)->allocate = allocate;
-    (*logger)->model = model;
-    return Ok;
-
+    return ErrorException;
 }
-
 
 int logerr(logger_t *logger, const char *fmt, ...)
 {
@@ -45,19 +48,19 @@ int logerr(logger_t *logger, const char *fmt, ...)
 
     if (logger)
     {
-        if (logger->model == disabled)
+        if (logger->logger_model == disabled)
         {
             fptr = stderr;
         }
         else
         {
-            fptr = fopen(logger->filename, "a+");
+            fptr = fopen(logger->logger_filename, "a+");
         }
 
         if (fptr)
         {
 
-            if (logger->model == disabled)
+            if (logger->logger_model == disabled)
             {
                 fprintf(fptr, FONT_COLOR_RED);
             }
@@ -69,7 +72,7 @@ int logerr(logger_t *logger, const char *fmt, ...)
             va_start(va, fmt);
             vfprintf(fptr, fmt, va);
 
-            if (logger->model == disabled)
+            if (logger->logger_model == disabled)
             {
                 fprintf(fptr, COLOR_NONE);
             }
@@ -100,19 +103,19 @@ int loginfo(logger_t *logger, const char *fmt, ...)
 
     if (logger)
     {
-        if (logger->model == disabled)
+        if (logger->logger_model == disabled)
         {
             fptr = stderr;
         }
         else
         {
-            fptr = fopen(logger->filename, "a+");
+            fptr = fopen(logger->logger_filename, "a+");
         }
 
         if (fptr)
         {
 
-            if (logger->model == disabled)
+            if (logger->logger_model == disabled)
             {
                 fprintf(fptr, FONT_COLOR_GREEN);
             }
@@ -124,7 +127,7 @@ int loginfo(logger_t *logger, const char *fmt, ...)
             va_start(va, fmt);
             vfprintf(fptr, fmt, va);
 
-            if (logger->model == disabled)
+            if (logger->logger_model == disabled)
             {
                 fprintf(fptr, COLOR_NONE);
             }

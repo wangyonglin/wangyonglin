@@ -96,7 +96,16 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
  /usr/include/bits/getopt_ext.h \
  ../../../src/developer/include/developer/pidlock.h \
  ../../../src/developer/include/developer/daemon.h \
- /usr/include/sys/stat.h
+ /usr/include/sys/stat.h \
+ ../../../src/developer/include/developer/logger.h \
+ ../../../include/aliiot.h \
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
+ ../../../src/components/mqtt/include/MQTTAsync.h \
+ ../../../src/components/mqtt/include/MQTTExportDeclarations.h \
+ ../../../src/components/mqtt/include/MQTTProperties.h \
+ ../../../src/components/mqtt/include/MQTTReasonCodes.h \
+ ../../../src/components/mqtt/include/MQTTSubscribeOpts.h \
+ ../../../src/components/mqtt/include/MQTTClientPersistence.h
 
 /usr/include/stdc-predef.h:
 
@@ -451,3 +460,21 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 ../../../src/developer/include/developer/daemon.h:
 
 /usr/include/sys/stat.h:
+
+../../../src/developer/include/developer/logger.h:
+
+../../../include/aliiot.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
+
+../../../src/components/mqtt/include/MQTTAsync.h:
+
+../../../src/components/mqtt/include/MQTTExportDeclarations.h:
+
+../../../src/components/mqtt/include/MQTTProperties.h:
+
+../../../src/components/mqtt/include/MQTTReasonCodes.h:
+
+../../../src/components/mqtt/include/MQTTSubscribeOpts.h:
+
+../../../src/components/mqtt/include/MQTTClientPersistence.h:

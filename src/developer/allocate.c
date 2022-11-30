@@ -1,19 +1,18 @@
 #include <developer/allocate.h>
 
-
-//重新申请内存块，申请大内存
+// 重新申请内存块，申请大内存
 static void *allocate_alloc_block(allocate_t *pool, size_t size);
 static void *allocate_alloc_large(allocate_t *pool, size_t size);
 
-//按照字节对齐申请大块内存
+// 按照字节对齐申请大块内存
 void *allocate_memalign(allocate_t *pool, size_t size, size_t alignment);
 
-//总接口，申请大内存或者小内存，默认字节对齐方式
+// 总接口，申请大内存或者小内存，默认字节对齐方式
 void *allocate_alloc(allocate_t *pool, size_t size);
 
-//申请内存，但是不做字节对齐处理
+// 申请内存，但是不做字节对齐处理
 void *allocate_nalloc(allocate_t *pool, size_t size);
-//申请内存并重置为0
+// 申请内存并重置为0
 void *allocate_calloc(allocate_t *pool, size_t size);
 int allocate_free(allocate_t *pool, void *p);
 
@@ -73,7 +72,6 @@ void allocate_reset_pool(allocate_t *pool);
 // 	free(pool);
 // }
 
-
 allocate_t *allocate_initializing(allocate_t **pool, size_t size)
 {
     // allocate_t *pool;
@@ -96,7 +94,6 @@ allocate_t *allocate_initializing(allocate_t **pool, size_t size)
     (*pool)->head->failed = 0;
     return (*pool);
 }
-
 
 void allocate_cleanup(allocate_t *pool)
 {
@@ -124,7 +121,6 @@ void allocate_cleanup(allocate_t *pool)
     }
     free(pool);
 }
-
 
 // 销毁大内存的申请 小块内存的重新指向
 void allocate_reset_pool(allocate_t *pool)
@@ -292,27 +288,27 @@ void *allocate_nalloc(allocate_t *pool, size_t size)
 // 在内存池中申请内存
 void *allocate_alloc(allocate_t *pool, size_t size)
 {
-	unsigned char *temp;
-	// 从当前节点开始  计算可用池子，申请内存
-	allocate_node_t *p;
-	if (size <= pool->max)
-	{
-		p = pool->current;
-		do
-		{
-			temp = allocate_align_ptr(p->last, ALLOCATE_ALIGNMENT);
-			if ((size_t)(p->end - temp) >= size)
-			{
-				p->last = temp + size;
-				return temp;
-			}
-			p = p->next;
-		} while (p);
-		// 内存不够的情况下  需要重新申请内存块
-		return allocate_alloc_block(pool, size);
-	}
-	// 申请大块内存
-	return allocate_alloc_large(pool, size);
+    unsigned char *temp;
+    // 从当前节点开始  计算可用池子，申请内存
+    allocate_node_t *p;
+    if (size <= pool->max)
+    {
+        p = pool->current;
+        do
+        {
+            temp = allocate_align_ptr(p->last, ALLOCATE_ALIGNMENT);
+            if ((size_t)(p->end - temp) >= size)
+            {
+                p->last = temp + size;
+                return temp;
+            }
+            p = p->next;
+        } while (p);
+        // 内存不够的情况下  需要重新申请内存块
+        return allocate_alloc_block(pool, size);
+    }
+    // 申请大块内存
+    return allocate_alloc_large(pool, size);
 }
 // 申请内存并重置为0
 void *allocate_calloc(allocate_t *pool, size_t size)
@@ -381,34 +377,32 @@ int allocate_delect(allocate_t *allocate, void *pointer)
     return -1;
 }
 
-
-
 /**wangyonglin*/
 
-
-ok_t string_create(allocate_t *allocate,char **pointer, char *data, size_t data_size)
+ok_t string_create(allocate_t *allocate, unsigned char **pointer, char *data, size_t data_size)
 {
     if (!allocate)
     {
         return ArgumentException;
     }
-    if (!((*pointer) = allocate_create(allocate, sizeof(char)*data_size + 1)))
+    if (!((*pointer) = allocate_create(allocate, sizeof(char) * data_size + 1)))
     {
         return NullPointerException;
     }
-    memset((*pointer), 0x00, sizeof(char)*data_size + 1);
+    memset((*pointer), 0x00, sizeof(char) * data_size + 1);
     memcpy((*pointer), data, data_size);
     return Ok;
 }
-void string_delect(allocate_t *allocate,char *pointer)
+ok_t string_delect(allocate_t *allocate, unsigned char *pointer)
 {
     if (!allocate && !pointer)
     {
         return ArgumentException;
     }
     allocate_delect(allocate, pointer);
+    return Ok;
 }
-ok_t object_create(allocate_t *allocate,void **object, size_t object_size)
+ok_t object_create(allocate_t *allocate, void **object, size_t object_size)
 {
     if (!allocate)
     {
@@ -421,7 +415,7 @@ ok_t object_create(allocate_t *allocate,void **object, size_t object_size)
     memset((*object), 0x00, object_size);
     return Ok;
 }
-void object_delect(allocate_t *allocate,void *object)
+ok_t object_delect(allocate_t *allocate, void *object)
 {
     if (!allocate && !object)
     {
@@ -430,4 +424,18 @@ void object_delect(allocate_t *allocate,void *object)
 
     allocate_delect(allocate, object);
     return Ok;
+}
+
+void boolean_create(unsigned char **pointer, boolean value)
+{
+    *pointer = (unsigned char *)value;
+}
+void number_create(unsigned char **pointer, long value)
+{
+    *pointer = (unsigned char *)value;
+}
+
+unsigned char **touchar(void **pointer)
+{
+    return (unsigned char **)pointer;
 }

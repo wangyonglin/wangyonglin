@@ -1,5 +1,6 @@
 #if !defined(DEVELOPER_PUBLIC_H)
 #define DEVELOPER_PUBLIC_H
+
 typedef int ok_t;
 #define Ok ((ok_t)0)
 #define DoneException ((ok_t)1)

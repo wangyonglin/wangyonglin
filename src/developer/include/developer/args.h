@@ -5,11 +5,12 @@
 #include <getopt.h> //getopt_long
 #include <string.h>
 #include <developer/allocate.h>
-typedef struct{
-    char * ini_filename;
+typedef struct
+{
+    unsigned char *ini_filename;
     boolean started;
     boolean daemoned;
-}args_t;
+} args_t;
 
 ok_t args_initializing(args_t **args, allocate_t *allocate, int argc, char *argv[]);
 #endif

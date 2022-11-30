@@ -96,7 +96,8 @@ program.lo: ../../../src/developer/program.c /usr/include/stdc-predef.h \
  /usr/include/bits/getopt_ext.h \
  ../../../src/developer/include/developer/pidlock.h \
  ../../../src/developer/include/developer/daemon.h \
- /usr/include/sys/stat.h
+ /usr/include/sys/stat.h \
+ ../../../src/developer/include/developer/logger.h
 
 /usr/include/stdc-predef.h:
 
@@ -451,3 +452,5 @@ program.lo: ../../../src/developer/program.c /usr/include/stdc-predef.h \
 ../../../src/developer/include/developer/daemon.h:
 
 /usr/include/sys/stat.h:
+
+../../../src/developer/include/developer/logger.h:
