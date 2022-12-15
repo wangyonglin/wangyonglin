@@ -128,8 +128,9 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libdeveloper_la_LIBADD =
-am_libdeveloper_la_OBJECTS = program.lo allocate.lo daemon.lo \
-	pidlock.lo logger.lo args.lo conf.lo
+am_libdeveloper_la_OBJECTS = config.lo allocate.lo daemon.lo \
+	pidlock.lo log.lo args.lo conf.lo message.lo file.lo string.lo \
+	mapping.lo elements.lo
 libdeveloper_la_OBJECTS = $(am_libdeveloper_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -151,9 +152,11 @@ DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/allocate.Plo ./$(DEPDIR)/args.Plo \
-	./$(DEPDIR)/conf.Plo ./$(DEPDIR)/daemon.Plo \
-	./$(DEPDIR)/logger.Plo ./$(DEPDIR)/pidlock.Plo \
-	./$(DEPDIR)/program.Plo
+	./$(DEPDIR)/conf.Plo ./$(DEPDIR)/config.Plo \
+	./$(DEPDIR)/daemon.Plo ./$(DEPDIR)/elements.Plo \
+	./$(DEPDIR)/file.Plo ./$(DEPDIR)/log.Plo \
+	./$(DEPDIR)/mapping.Plo ./$(DEPDIR)/message.Plo \
+	./$(DEPDIR)/pidlock.Plo ./$(DEPDIR)/string.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -254,10 +257,10 @@ OTOOL64 =
 PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = tiger
-PACKAGE_STRING = tiger 1.3.25
+PACKAGE_STRING = tiger 1.3.28
 PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.25
+PACKAGE_VERSION = 1.3.28
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -265,7 +268,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.25
+VERSION = 1.3.28
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/src/developer
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../src/developer
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -322,13 +325,18 @@ AUTOMAKE_OPTIONS = foreign
 lib_LTLIBRARIES = libdeveloper.la
 AM_CPPFLAGS = -I $(top_srcdir)/src/developer/include/
 libdeveloper_la_SOURCES = \
-    program.c \
+    config.c \
     allocate.c  \
     daemon.c    \
     pidlock.c   \
-    logger.c    \
+    log.c    \
     args.c  \
-    conf.c
+    conf.c  \
+    message.c   \
+    file.c \
+    string.c \
+    mapping.c \
+    elements.c
 
 all: all-am
 
@@ -411,10 +419,15 @@ distclean-compile:
 include ./$(DEPDIR)/allocate.Plo # am--include-marker
 include ./$(DEPDIR)/args.Plo # am--include-marker
 include ./$(DEPDIR)/conf.Plo # am--include-marker
+include ./$(DEPDIR)/config.Plo # am--include-marker
 include ./$(DEPDIR)/daemon.Plo # am--include-marker
-include ./$(DEPDIR)/logger.Plo # am--include-marker
+include ./$(DEPDIR)/elements.Plo # am--include-marker
+include ./$(DEPDIR)/file.Plo # am--include-marker
+include ./$(DEPDIR)/log.Plo # am--include-marker
+include ./$(DEPDIR)/mapping.Plo # am--include-marker
+include ./$(DEPDIR)/message.Plo # am--include-marker
 include ./$(DEPDIR)/pidlock.Plo # am--include-marker
-include ./$(DEPDIR)/program.Plo # am--include-marker
+include ./$(DEPDIR)/string.Plo # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -580,10 +593,15 @@ distclean: distclean-am
 		-rm -f ./$(DEPDIR)/allocate.Plo
 	-rm -f ./$(DEPDIR)/args.Plo
 	-rm -f ./$(DEPDIR)/conf.Plo
+	-rm -f ./$(DEPDIR)/config.Plo
 	-rm -f ./$(DEPDIR)/daemon.Plo
-	-rm -f ./$(DEPDIR)/logger.Plo
+	-rm -f ./$(DEPDIR)/elements.Plo
+	-rm -f ./$(DEPDIR)/file.Plo
+	-rm -f ./$(DEPDIR)/log.Plo
+	-rm -f ./$(DEPDIR)/mapping.Plo
+	-rm -f ./$(DEPDIR)/message.Plo
 	-rm -f ./$(DEPDIR)/pidlock.Plo
-	-rm -f ./$(DEPDIR)/program.Plo
+	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -632,10 +650,15 @@ maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/allocate.Plo
 	-rm -f ./$(DEPDIR)/args.Plo
 	-rm -f ./$(DEPDIR)/conf.Plo
+	-rm -f ./$(DEPDIR)/config.Plo
 	-rm -f ./$(DEPDIR)/daemon.Plo
-	-rm -f ./$(DEPDIR)/logger.Plo
+	-rm -f ./$(DEPDIR)/elements.Plo
+	-rm -f ./$(DEPDIR)/file.Plo
+	-rm -f ./$(DEPDIR)/log.Plo
+	-rm -f ./$(DEPDIR)/mapping.Plo
+	-rm -f ./$(DEPDIR)/message.Plo
 	-rm -f ./$(DEPDIR)/pidlock.Plo
-	-rm -f ./$(DEPDIR)/program.Plo
+	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

@@ -362,7 +362,7 @@ void *allocate_create(allocate_t *allocate, size_t size)
     // 申请大块内存
     return allocate_alloc_large(allocate, size);
 }
-int allocate_delect(allocate_t *allocate, void *pointer)
+int allocate_delete(allocate_t *allocate, void *pointer)
 {
     allocate_large_t *large;
     for (large = allocate->large; large; large = large->next)
@@ -393,13 +393,13 @@ ok_t string_create(allocate_t *allocate, unsigned char **pointer, char *data, si
     memcpy((*pointer), data, data_size);
     return Ok;
 }
-ok_t string_delect(allocate_t *allocate, unsigned char *pointer)
+ok_t string_delete(allocate_t *allocate, unsigned char *pointer)
 {
     if (!allocate && !pointer)
     {
         return ArgumentException;
     }
-    allocate_delect(allocate, pointer);
+    allocate_delete(allocate, pointer);
     return Ok;
 }
 ok_t object_create(allocate_t *allocate, void **object, size_t object_size)
@@ -415,20 +415,22 @@ ok_t object_create(allocate_t *allocate, void **object, size_t object_size)
     memset((*object), 0x00, object_size);
     return Ok;
 }
-ok_t object_delect(allocate_t *allocate, void *object)
+ok_t object_delete(allocate_t *allocate, void *object)
 {
     if (!allocate && !object)
     {
         return ArgumentException;
     }
 
-    allocate_delect(allocate, object);
+    allocate_delete(allocate, object);
     return Ok;
 }
 
 void boolean_create(unsigned char **pointer, boolean value)
 {
-    *pointer = (unsigned char *)value;
+    *pointer = value;
+
+  
 }
 void number_create(unsigned char **pointer, long value)
 {

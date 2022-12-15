@@ -39,3 +39,16 @@ libmbedtls_la_SOURCES=\
  aclocal && autoconf && autoheader && automake --add-missing
   ../configure --prefix=/usr/local/wangyonglin/
   /usr/bin/time -f "Total number of CPU-seconds consumed directly from each of the CPU cores: %U\nElapsed real wall clock time used by the process: %E" ./jwtcrack eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiYWRtaW4ifQ.RnWtv7Rjggm8LdMU3yLnz4ejgGAkIxoZwsCMuJlHMwTh7CJODDZWR8sVuNvo2ws25cbH9HWcp2n5WxpIZ9_v0g adimnps 9 sha512
+
+
+
+     char sec_key[] = "asdfgh";
+    char data[] = "jkluiop";
+    char encMessage[256] = {0};
+    int encMessageLength = sizeof(encMessage);
+    char *base64Text;
+    hmac_sha1(sec_key, strlen(sec_key), data, strlen(data), encMessage, &encMessageLength);
+    char *out = base64encode(encMessage, encMessageLength);
+    printf("\t%s\r\n", out);
+    printf("len: %d\n", strlen(out));
+    free(out);

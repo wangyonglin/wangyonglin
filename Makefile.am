@@ -1,5 +1,7 @@
 SUBDIRS =\
     src/developer   \
+    src/components/openssl    \
+    src/components/snowflake    \
     src/components/mqtt \
     src/components/cjson \
     src/application

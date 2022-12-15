@@ -1,5 +1,5 @@
-#if !defined(MQTTAliyunSignature_H)
-#define MQTTAliyunSignature_H
+#if !defined(INCLUDE_ALIYUN_SIGNATURE_H)
+#define INCLUDE_ALIYUN_SIGNATURE_H
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

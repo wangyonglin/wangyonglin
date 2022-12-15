@@ -1,7 +1,7 @@
 #include <developer/conf.h>
 
 
-ok_t conf_initializing(conf_t **conf, allocate_t *allocate, const char *filename)
+ok_t conf_create(conf_t **conf, allocate_t *allocate, const char *filename)
 {
     if (!allocate && !filename)
     {
@@ -75,11 +75,11 @@ ok_t conf_mapping(conf_t *conf, void **pointer, int pointer_size, const char *gr
                 if ((strcmp(buffer, "on") == 0) || (strcmp(buffer, "ON") == 0) || strcmp(buffer, "On") == 0)
                 {
 
-                    boolean_create(touchar(&(**pointer) + conf_commands[i].address), enabled);
+                    boolean_create(touchar(&(**pointer) + conf_commands[i].address), ENABLED);
                 }
                 else if ((strcmp(buffer, "off") == 0) || (strcmp(buffer, "OFF") == 0) || (strcmp(buffer, "Off") == 0))
                 {
-                    boolean_create(touchar(&(**pointer) + conf_commands[i].address), disabled);
+                    boolean_create(touchar(&(**pointer) + conf_commands[i].address), DISABLED);
                 }
             }
         }
@@ -87,5 +87,3 @@ ok_t conf_mapping(conf_t *conf, void **pointer, int pointer_size, const char *gr
     NCONF_free(openssl_conf);
     return Ok;
 }
-
-size_t conf_commands_size(conf_command_t commands[]);

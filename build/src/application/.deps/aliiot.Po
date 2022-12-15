@@ -43,7 +43,7 @@ aliiot.o: ../../../src/application/aliiot.c /usr/include/stdc-predef.h \
  ../../../src/components/mqtt/include/MQTTReasonCodes.h \
  ../../../src/components/mqtt/include/MQTTSubscribeOpts.h \
  ../../../src/components/mqtt/include/MQTTClientPersistence.h \
- ../../../src/developer/include/developer/program.h /usr/include/signal.h \
+ ../../../src/developer/include/developer/config.h /usr/include/signal.h \
  /usr/include/bits/signum.h /usr/include/bits/signum-generic.h \
  /usr/include/bits/types/sig_atomic_t.h \
  /usr/include/bits/types/siginfo_t.h /usr/include/bits/types/__sigval_t.h \
@@ -257,7 +257,7 @@ aliiot.o: ../../../src/application/aliiot.c /usr/include/stdc-predef.h \
 
 ../../../src/components/mqtt/include/MQTTClientPersistence.h:
 
-../../../src/developer/include/developer/program.h:
+../../../src/developer/include/developer/config.h:
 
 /usr/include/signal.h:
 

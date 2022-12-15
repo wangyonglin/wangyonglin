@@ -101,12 +101,14 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_tiger_OBJECTS = main.$(OBJEXT) aliiot_signature.$(OBJEXT) \
-	aliiot.$(OBJEXT)
+am_tiger_OBJECTS = main.$(OBJEXT) aliyun_signature.$(OBJEXT) \
+	httpd_start.$(OBJEXT) httpd_router.$(OBJEXT) \
+	aliyun_iot_api.$(OBJEXT)
 tiger_OBJECTS = $(am_tiger_OBJECTS)
-tiger_DEPENDENCIES =  \
+tiger_DEPENDENCIES = $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
 	$(top_builddir)/src/components/mqtt/libcomponent_mqtt.la \
 	$(top_builddir)/src/components/cjson/libcomponent_cjson.la \
+	$(top_builddir)/src/components/openssl/libcomponent_openssl.la \
 	$(top_builddir)/src/developer/libdeveloper.la
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -127,8 +129,9 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/aliiot.Po \
-	./$(DEPDIR)/aliiot_signature.Po ./$(DEPDIR)/main.Po
+am__depfiles_remade = ./$(DEPDIR)/aliyun_iot_api.Po \
+	./$(DEPDIR)/aliyun_signature.Po ./$(DEPDIR)/httpd_router.Po \
+	./$(DEPDIR)/httpd_start.Po ./$(DEPDIR)/main.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -231,10 +234,10 @@ OTOOL64 =
 PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = tiger
-PACKAGE_STRING = tiger 1.3.25
+PACKAGE_STRING = tiger 1.3.28
 PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.25
+PACKAGE_VERSION = 1.3.28
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -242,7 +245,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.25
+VERSION = 1.3.28
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/src/application
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../src/application
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -300,17 +303,23 @@ AUTOMAKE_OPTIONS = foreign
 AM_CPPFLAGS = \
     -I $(top_srcdir)/include/  \
     -I $(top_srcdir)/src/components/mqtt/include/  \
-    -I $(top_srcdir)/src/components/json/include/   \
+    -I $(top_srcdir)/src/components/cjson/include/   \
+    -I $(top_srcdir)/src/components/snowflake/include/   \
+    -I $(top_srcdir)/src/components/openssl/include/   \
     -I $(top_srcdir)/src/developer/include/
 
 tiger_SOURCES = \
     main.c \
-    aliiot_signature.c \
-    aliiot.c
+    aliyun_signature.c \
+    httpd_start.c \
+    httpd_router.c \
+    aliyun_iot_api.c
 
 tiger_LDADD = \
+    $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
     $(top_builddir)/src/components/mqtt/libcomponent_mqtt.la \
     $(top_builddir)/src/components/cjson/libcomponent_cjson.la \
+    $(top_builddir)/src/components/openssl/libcomponent_openssl.la \
     $(top_builddir)/src/developer/libdeveloper.la \
     $(FLIBS) 
 
@@ -407,8 +416,10 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/aliiot.Po # am--include-marker
-include ./$(DEPDIR)/aliiot_signature.Po # am--include-marker
+include ./$(DEPDIR)/aliyun_iot_api.Po # am--include-marker
+include ./$(DEPDIR)/aliyun_signature.Po # am--include-marker
+include ./$(DEPDIR)/httpd_router.Po # am--include-marker
+include ./$(DEPDIR)/httpd_start.Po # am--include-marker
 include ./$(DEPDIR)/main.Po # am--include-marker
 
 $(am__depfiles_remade):
@@ -571,8 +582,10 @@ clean: clean-am
 clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/aliiot.Po
-	-rm -f ./$(DEPDIR)/aliiot_signature.Po
+		-rm -f ./$(DEPDIR)/aliyun_iot_api.Po
+	-rm -f ./$(DEPDIR)/aliyun_signature.Po
+	-rm -f ./$(DEPDIR)/httpd_router.Po
+	-rm -f ./$(DEPDIR)/httpd_start.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -619,8 +632,10 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/aliiot.Po
-	-rm -f ./$(DEPDIR)/aliiot_signature.Po
+		-rm -f ./$(DEPDIR)/aliyun_iot_api.Po
+	-rm -f ./$(DEPDIR)/aliyun_signature.Po
+	-rm -f ./$(DEPDIR)/httpd_router.Po
+	-rm -f ./$(DEPDIR)/httpd_start.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

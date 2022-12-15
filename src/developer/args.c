@@ -28,7 +28,7 @@ ok_t args_initializing(args_t **args, allocate_t *allocate, int argc, char *argv
     {
         return ErrorException;
     }
-    (*args)->daemoned = disabled;
+    (*args)->daemoned = DISABLED;
     (*args)->started = onstart;
     while (-1 != (opt = getopt_long(argc, argv, short_options, long_options, &option_index)))
     {
@@ -60,7 +60,7 @@ ok_t args_initializing(args_t **args, allocate_t *allocate, int argc, char *argv
             }
             break;
         case 'd':
-            (*args)->daemoned = enabled;
+            (*args)->daemoned = ENABLED;
             break;
         case 'v':
             fprintf(stderr, "v");

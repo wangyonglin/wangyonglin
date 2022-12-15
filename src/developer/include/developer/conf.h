@@ -11,6 +11,7 @@
 #include <openssl/conf.h>
 #include <developer/public.h>
 #include <developer/allocate.h>
+
 typedef enum
 {
     String,
@@ -31,7 +32,8 @@ typedef struct
     allocate_t *allocate;
 } conf_t;
 
-ok_t conf_initializing(conf_t **conf, allocate_t *allocate, const char *filename);
+ok_t conf_create(conf_t **conf, allocate_t *allocate, const char *filename);
 ok_t conf_mapping(conf_t *conf, void **pointer, int pointer_size, const char *group, conf_command_t conf_commands[], int conf_commands_size);
 size_t conf_commands_size(conf_command_t commands[]);
+
 #endif

@@ -284,10 +284,10 @@ OTOOL64 =
 PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = tiger
-PACKAGE_STRING = tiger 1.3.25
+PACKAGE_STRING = tiger 1.3.28
 PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.25
+PACKAGE_VERSION = 1.3.28
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -295,7 +295,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.25
+VERSION = 1.3.28
 abs_builddir = /home/wangyonglin/github/wangyonglin/build
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/..
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -352,6 +352,8 @@ top_builddir = .
 top_srcdir = ..
 SUBDIRS = \
     src/developer   \
+    src/components/openssl    \
+    src/components/snowflake    \
     src/components/mqtt \
     src/components/cjson \
     src/application

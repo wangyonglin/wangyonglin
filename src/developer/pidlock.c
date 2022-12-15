@@ -36,50 +36,48 @@ boolean pidlock_startused(pidlock_t *pidlock)
             if (errno == EACCES || errno == EAGAIN)
             {
                 fprintf(stdout, "alone runnind");
-                return enabled;
+                return ENABLED;
             }
             else
             {
-                return disabled;
+                return DISABLED;
             }
         }
     }
     return ErrorException;
 };
-ok_t pidlock_initializing(pidlock_t **pidlock, allocate_t *allocate, conf_t *conf)
+ok_t pidlock_initializing(pidlock_t **pidlock, mapping_t *mapping, char *cnf)
 {
-
-    if (!allocate && !conf)
+    if (!mapping)
     {
         return ArgumentException;
     }
-    if (object_create(allocate, (void **)pidlock, sizeof(pidlock_t)) != Ok)
+    if (object_create(mapping->allocate, (void **)pidlock, sizeof(pidlock_t)) != Ok)
     {
-
         return ErrorException;
     }
-    conf_command_t commands[] = {
-        {"pid_filename", String, offsetof(pidlock_t, filename)}};
-    int commands_size = sizeof(commands) / sizeof(commands[0]);
-    if (conf_mapping(conf, (void **)pidlock, sizeof(pidlock_t), NULL, commands, commands_size) == Ok)
+    mapping_arguments_t arguments[] = {
+        {"pidfile", NULL, STRING, offsetof(pidlock_t, pidfile)}};
+    int arguments_size = sizeof(arguments) / sizeof(arguments[0]);
+
+    if (mapping_create(mapping, (*pidlock), cnf, NULL, arguments, arguments_size) == Ok)
     {
-        (*pidlock)->allocate = allocate;
-        (*pidlock)->conf = conf;
+        (*pidlock)->mapping = mapping;
         return Ok;
     }
     return ErrorException;
 }
 ok_t pidlock_status(pidlock_t *pidlock)
 {
-    if (!pidlock && !pidlock->filename)
+    if (!pidlock && !pidlock->pidfile)
     {
         fprintf(stderr, "pidlock_status ArgumentException");
         return ArgumentException;
     }
     int fd;
-    if ((fd = open(pidlock->filename, O_RDWR | O_CREAT, 0666)) < 0)
+    if ((fd = open(pidlock->pidfile, O_RDWR | O_CREAT, 0666)) < 0)
     {
-        fprintf(stderr, "unable to open file '%s': %s", pidlock->filename, strerror(errno));
+        fprintf(stderr, "unable to open file '%s': %s", pidlock->pidfile, strerror(errno));
         return ErrorException;
     }
 
@@ -89,10 +87,10 @@ ok_t pidlock_status(pidlock_t *pidlock)
         {
             close(fd);
             fprintf(stdout, "alone runnind");
-            pidlock->statused = enabled;
+            pidlock->statused = ENABLED;
             return Ok;
         }
-        fprintf(stderr, "can't lock %s: %s", pidlock->filename, strerror(errno));
+        fprintf(stderr, "can't lock %s: %s", pidlock->pidfile, strerror(errno));
     }
     close(fd);
 
@@ -101,7 +99,7 @@ ok_t pidlock_status(pidlock_t *pidlock)
 
 ok_t pidlock_locking(pidlock_t *pidlock)
 {
-    if (!pidlock && !pidlock->filename)
+    if (!pidlock && !pidlock->pidfile)
     {
         fprintf(stderr, "pidlock_locking ArgumentException");
         return ArgumentException;
@@ -109,9 +107,9 @@ ok_t pidlock_locking(pidlock_t *pidlock)
 
     char buf[16];
 
-    if ((pidlock->lockfd = open(pidlock->filename, O_RDWR | O_CREAT, 0666)) < 0)
+    if ((pidlock->lockfd = open(pidlock->pidfile, O_RDWR | O_CREAT, 0666)) < 0)
     {
-        fprintf(stderr, "unable to open file '%s': %s", pidlock->filename, strerror(errno));
+        fprintf(stderr, "unable to open file '%s': %s", pidlock->pidfile, strerror(errno));
         return NullPointerException;
     }
 
@@ -120,10 +118,10 @@ ok_t pidlock_locking(pidlock_t *pidlock)
         if (errno == EACCES || errno == EAGAIN)
         {
             fprintf(stdout, "alone runnind");
-            pidlock->statused = enabled;
+            pidlock->statused = ENABLED;
             return NoneException;
         }
-        fprintf(stderr, "can't lock %s: %s", pidlock->filename, strerror(errno));
+        fprintf(stderr, "can't lock %s: %s", pidlock->pidfile, strerror(errno));
     }
 
     ftruncate(pidlock->lockfd, 0); // 设置文件的大小为0
@@ -134,7 +132,7 @@ ok_t pidlock_locking(pidlock_t *pidlock)
 
 ok_t pidlock_unlocking(pidlock_t *pidlock)
 {
-    if (!pidlock && !pidlock->filename)
+    if (!pidlock && !pidlock->pidfile)
     {
         return ArgumentException;
     }
@@ -143,16 +141,16 @@ ok_t pidlock_unlocking(pidlock_t *pidlock)
     {
         close(pidlock->lockfd);
     }
-    if (unlink(pidlock->filename) != 0)
+    if (unlink(pidlock->pidfile) != 0)
     {
-        fprintf(stderr, "delect failed:[%s] %s ", pidlock->filename, strerror(errno));
+        fprintf(stderr, "delect failed:[%s] %s ", pidlock->pidfile, strerror(errno));
     }
 
     return Ok;
 }
 ok_t pidlock_exit(pidlock_t *pidlock)
 {
-    if (!pidlock && !pidlock->filename)
+    if (!pidlock && !pidlock->pidfile)
     {
         return ArgumentException;
     }
@@ -164,7 +162,7 @@ ok_t pidlock_exit(pidlock_t *pidlock)
     fl.l_start = 0;
     fl.l_whence = SEEK_SET;
     fl.l_len = 0;
-    if ((fd = open(pidlock->filename, O_RDWR, 0666)) != -1)
+    if ((fd = open(pidlock->pidfile, O_RDWR, 0666)) != -1)
     {
         if (fcntl(fd, F_SETLK, &fl) < 0)
         {
@@ -175,9 +173,9 @@ ok_t pidlock_exit(pidlock_t *pidlock)
                     close(fd);
                     if (kill(atoi(buf), SIGTERM) == 0)
                     {
-                        if (unlink(pidlock->filename) != 0)
+                        if (unlink(pidlock->pidfile) != 0)
                         {
-                            fprintf(stderr, "delect failed:[%s] %s ", pidlock->filename, strerror(errno));
+                            fprintf(stderr, "delect failed:[%s] %s ", pidlock->pidfile, strerror(errno));
                         }
                     }
                     return Ok;
