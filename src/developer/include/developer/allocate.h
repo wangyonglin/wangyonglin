@@ -50,14 +50,10 @@ void allocate_cleanup(allocate_t *pool);
 void *allocate_create(allocate_t *pool, size_t size);
 int allocate_delete(allocate_t *pool, void *pointer);
 
-ok_t string_create(allocate_t *allocate, unsigned char **pointer, char *data, size_t data_size);
-ok_t string_delete(allocate_t *allocate, unsigned char *pointer);
+ok_t allocate_string_create(allocate_t *allocate, unsigned char **pointer, char *data, size_t data_size);
+ok_t allocate_string_delete(allocate_t *allocate, unsigned char *pointer);
 
-ok_t object_create(allocate_t *allocate, void **object, size_t object_size);
-ok_t object_delete(allocate_t *allocate, void *object);
+ok_t allocate_object_create(allocate_t *allocate, void **object, size_t object_size);
+ok_t allocate_object_delete(allocate_t *allocate, void *object);
 
-void boolean_create(unsigned char **pointer, boolean value);
-void number_create(unsigned char **pointer, long value);
-
-unsigned char **touchar(void **pointer);
 #endif

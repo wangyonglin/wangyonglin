@@ -10,7 +10,7 @@ ok_t file_create(allocate_t *allocate, file_t **file)
     {
         return Ok;
     }
-    if (object_create(allocate, (void **)file, sizeof(file_t)) != Ok)
+    if (allocate_object_create(allocate, (void **)file, sizeof(file_t)) != Ok)
     {
         return ErrorException;
     }
@@ -34,7 +34,7 @@ ok_t file_getdata(allocate_t *allocate, file_t *file, char *filename)
         close(fd);
         return ArgumentException;
     }
-    object_create(allocate, (void **)&(file->filedata), file->filestat.st_size + 1);
+    allocate_object_create(allocate, (void **)&(file->filedata), file->filestat.st_size + 1);
     memset(file->filedata, 0x00, file->filestat.st_size + 1);
     if (read(fd, file->filedata, file->filestat.st_size + 1) != file->filestat.st_size)
     {
@@ -51,7 +51,7 @@ void file_destroy(allocate_t *allocate, file_t *file)
     if (allocate && file)
     {
         if (file->filedata)
-            object_delete(allocate, file->filedata);
-        object_delete(allocate, file);
+            allocate_object_delete(allocate, file->filedata);
+        allocate_object_delete(allocate, file);
     }
 }

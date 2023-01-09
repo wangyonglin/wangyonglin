@@ -151,6 +151,10 @@
         "mapping.h": "c",
         "pidlock.h": "c",
         "hashmap.h": "c",
-        "elements.h": "c"
+        "elements.h": "c",
+        "listelement.h": "c",
+        "url.h": "c",
+        "aliyun_api.h": "c",
+        "listitem.h": "c"
     }
 }

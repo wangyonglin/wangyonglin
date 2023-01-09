@@ -49,7 +49,7 @@ void login_handler(struct evhttp_request *req, void *arg)
 void v3_pay_transactions_jsapi(struct evhttp_request *request, void *arg)
 {
     httpd_t *httpd = (httpd_t *)arg;
-
+    
     evhttp_add_header(request->output_headers, "Content-Type", "application/json; charset=UTF-8");
     evhttp_add_header(request->output_headers, "Connection", "close");
     cJSON *root = NULL;

@@ -14,7 +14,7 @@ tiger_SOURCES=\
     aliyun_signature.c \
     httpd_start.c \
     httpd_router.c \
-    aliyun_iot_api.c
+    aliyun_api.c
 tiger_LDADD=\
     $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
     $(top_builddir)/src/components/mqtt/libcomponent_mqtt.la \

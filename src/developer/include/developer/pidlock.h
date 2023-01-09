@@ -3,18 +3,17 @@
 #include <signal.h>
 #include <developer/public.h>
 #include <developer/allocate.h>
+#include <wangyonglin/conf.h>
 
-#include <developer/mapping.h>
 
 typedef struct
 {
     char *pidfile;
     boolean statused;
     int lockfd;
-    mapping_t *mapping;
 } pidlock_t;
 
-ok_t pidlock_initializing(pidlock_t **pidlock, mapping_t *mapping, char *cnf);
+ok_t pidlock_create(pidlock_t **pidlock, allocate_t *allocate, char *filename);
 ok_t pidlock_status(pidlock_t *pidlock);
 ok_t pidlock_locking(pidlock_t *pidlock);
 ok_t pidlock_unlocking(pidlock_t *pidlock);

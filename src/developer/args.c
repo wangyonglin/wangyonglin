@@ -24,7 +24,7 @@ ok_t args_initializing(args_t **args, allocate_t *allocate, int argc, char *argv
         return ArgumentException;
     }
 
-    if (object_create(allocate, (void **)args, sizeof(args_t) != Ok))
+    if (allocate_object_create(allocate, (void **)args, sizeof(args_t) != Ok))
     {
         return ErrorException;
     }
@@ -35,7 +35,7 @@ ok_t args_initializing(args_t **args, allocate_t *allocate, int argc, char *argv
         switch (opt)
         {
         case 'c':
-            string_create(allocate, &(*args)->ini_filename, strdup(optarg), strlen(optarg));
+            allocate_string_create(allocate, &(*args)->ini_filename, strdup(optarg), strlen(optarg));
             break;
         case 'i':
 
@@ -80,7 +80,7 @@ ok_t args_initializing(args_t **args, allocate_t *allocate, int argc, char *argv
     }
     if (!(*args)->ini_filename)
     {
-        string_create(allocate, &(*args)->ini_filename, strdup(ini_filename), strlen(ini_filename));
+        allocate_string_create(allocate, &(*args)->ini_filename, strdup(ini_filename), strlen(ini_filename));
     }
     return Ok;
 }

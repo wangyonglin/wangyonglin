@@ -1,89 +1,113 @@
-#include <developer/conf.h>
+#include <wangyonglin/conf.h>
 
+// ok_t conf_create(conf_t **conf)
+// {
+//     if ((*conf) = global_hooks.allocate(sizeof(conf_t)))
+//     {
+//         memset((*conf), 0x00, sizeof(conf_t));
+//         return OK;
+//     }
+//     return NullPointerException;
+// }
 
-ok_t conf_create(conf_t **conf, allocate_t *allocate, const char *filename)
+ok_t conf_create(void *pointer, const char *filename, const char *section, conf_command commands[], int commands_size)
 {
-    if (!allocate && !filename)
+    if (!pointer)
     {
         return ArgumentException;
     }
-    if (object_create(allocate, (void **)conf, sizeof(conf_t)) != Ok)
-    {
-        return ErrorException;
-    }
-    if (string_create(allocate, &((*conf)->filename), strdup(filename), strlen(filename)) != Ok)
-    {
-        return ErrorException;
-    }
-    (*conf)->allocate = allocate;
-    return Ok;
-}
+    CONF *conf = NULL;
+    long errline = -1;
+    long callintger;
+    void *handler;
 
-ok_t conf_mapping(conf_t *conf, void **pointer, int pointer_size, const char *group, conf_command_t conf_commands[], int conf_commands_size)
-{
-    if (!conf->filename && !conf->allocate)
+    conf = NCONF_new(NULL);
+    if (NCONF_load(conf, filename, &errline) <= 0)
     {
-        return ArgumentException;
-    }
-
-    CONF *openssl_conf;
-    long errline;
-    if (!(openssl_conf = NCONF_new(NULL)))
-    {
-        return ErrorException;
-    }
-    if (NCONF_load(openssl_conf, conf->filename, &errline) < 0)
-    {
+        if (errline <= 0)
+            fprintf(stderr, "Error processing config file\n");
+        else
+            fprintf(stderr, "Error on line %ld\n", errline);
+        NCONF_free(conf);
         return ErrorException;
     }
 
-    if (!(*pointer))
+    for (int i; i < commands_size; i++)
     {
-        if (object_create(conf->allocate, (void **)pointer, pointer_size) != Ok)
+
+        handler = (pointer) + commands[i].address;
+
+        if (commands[i].type == STRING)
         {
-            return ErrorException;
+            char *buffer = NCONF_get_string(conf, section, commands[i].name);
+            if (buffer)
+            {
+                string_create(handler, buffer, strlen(buffer));
+            }
+            else
+            {
+                string_create(handler, commands[i].value, strlen(commands[i].value));
+            }
         }
-    }
-
-    long number_buffer;
-
-    for (int i = 0; i < conf_commands_size; i++) // 排序要排 元素总个数-1，最后一个元素不用排
-    {
-
-        if (conf_commands[i].type == String)
+        else if (commands[i].type == INTEGER)
         {
-            char *buffer = NCONF_get_string(openssl_conf, group, conf_commands[i].data);
+            if (NCONF_get_number(conf, section, commands[i].name, &callintger) == 1)
+            {
+                integer_create(handler, callintger);
+            }
+            else
+            {
+                integer_create(handler, commands[i].value);
+            }
+        }
+        else if (commands[i].type == BOOLEAN)
+        {
+            char *buffer = NCONF_get_string(conf, section, commands[i].name);
             if (buffer)
             {
 
-                string_create(conf->allocate, touchar(&(**pointer) + conf_commands[i].address), buffer, strlen(buffer));
-            }
-        }
-        else if (conf_commands[i].type == Integer)
-        {
-            if (NCONF_get_number(openssl_conf, group, conf_commands[i].data, &number_buffer) == 1)
-            {
-
-                number_create(touchar(&(**pointer) + conf_commands[i].address), number_buffer);
-            }
-        }
-        else if (conf_commands[i].type == Boolean)
-        {
-            char *buffer = NCONF_get_string(openssl_conf, group, conf_commands[i].data);
-            if (buffer)
-            {
                 if ((strcmp(buffer, "on") == 0) || (strcmp(buffer, "ON") == 0) || strcmp(buffer, "On") == 0)
                 {
 
-                    boolean_create(touchar(&(**pointer) + conf_commands[i].address), ENABLED);
+                    boolean_create(handler, positive);
                 }
                 else if ((strcmp(buffer, "off") == 0) || (strcmp(buffer, "OFF") == 0) || (strcmp(buffer, "Off") == 0))
                 {
-                    boolean_create(touchar(&(**pointer) + conf_commands[i].address), DISABLED);
+
+                    boolean_create(handler, negative);
                 }
+            }
+            else
+            {
+                boolean_create(handler, invalid);
             }
         }
     }
-    NCONF_free(openssl_conf);
-    return Ok;
+
+    NCONF_free(conf);
+    return OK;
+}
+
+void conf_delete(void *pointer)
+{
+
+    if (pointer)
+    {
+        // void *handler;
+        // for (int i; i < commands_size; i++)
+        // {
+        //     //   handler = (pointer) + commands[i].address;
+        //     if (commands[i].type == STRING)
+        //     {
+        //         //  handler = (pointer + commands[i].address);
+
+        //         printf("\thandler[%p]\r\n", commands[i].value);
+        //         if (&commands[i].value)
+        //         {
+        //             free(&commands[i].value);
+        //         }
+        //     }
+        // }
+        free(pointer);
+    }
 }

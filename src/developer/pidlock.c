@@ -46,23 +46,23 @@ boolean pidlock_startused(pidlock_t *pidlock)
     }
     return ErrorException;
 };
-ok_t pidlock_initializing(pidlock_t **pidlock, mapping_t *mapping, char *cnf)
+ok_t pidlock_create(pidlock_t **pidlock, allocate_t *allocate, char *filename)
 {
-    if (!mapping)
+    if (!allocate)
     {
         return ArgumentException;
     }
-    if (object_create(mapping->allocate, (void **)pidlock, sizeof(pidlock_t)) != Ok)
+    if (allocate_object_create(allocate, (void **)pidlock, sizeof(pidlock_t)) != Ok)
     {
         return ErrorException;
     }
-    mapping_arguments_t arguments[] = {
+    conf_command commands[] = {
         {"pidfile", NULL, STRING, offsetof(pidlock_t, pidfile)}};
-    int arguments_size = sizeof(arguments) / sizeof(arguments[0]);
+    int commands_size = sizeof(commands) / sizeof(commands[0]);
 
-    if (mapping_create(mapping, (*pidlock), cnf, NULL, arguments, arguments_size) == Ok)
+    if (conf_create((*pidlock),filename, NULL, commands, commands_size) == Ok)
     {
-        (*pidlock)->mapping = mapping;
+
         return Ok;
     }
     return ErrorException;

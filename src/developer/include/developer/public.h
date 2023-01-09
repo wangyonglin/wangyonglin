@@ -13,6 +13,13 @@ typedef int ok_t;
 #define FileNotFoundException ((ok_t)-5)
 #define ExitException ((ok_t)-9)
 
+typedef enum _datatype
+{
+    STRING,
+    INTEGER,
+    BOOLEAN
+} datatype;
+
 typedef int string;
 typedef int integer;
 typedef int boolean;
@@ -21,9 +28,9 @@ typedef int boolean;
 #define negative ((integer)0)
 #define invalid ((integer)-1)
 
-#define STRING ((integer)1)
-#define INTEGER ((integer)2)
-#define BOOLEAN ((integer)3)
+// #define STRING ((integer)1)
+// #define INTEGER ((integer)2)
+// #define BOOLEAN ((integer)3)
 
 #define ENABLED ((boolean)1)
 #define DISABLED ((boolean)0)

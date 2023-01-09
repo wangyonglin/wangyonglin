@@ -46,7 +46,7 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
  /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
  /usr/include/fcntl.h /usr/include/bits/fcntl.h \
  /usr/include/bits/fcntl-linux.h /usr/include/bits/stat.h \
- ../../../src/developer/include/developer/conf.h \
+ ../../../src/developer/include/wangyonglin/conf.h \
  /usr/include/openssl/err.h /usr/include/openssl/e_os2.h \
  /usr/include/openssl/opensslconf.h \
  /usr/include/openssl/opensslconf-x86_64.h \
@@ -92,15 +92,13 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
  /usr/include/openssl/ssl3.h /usr/include/openssl/tls1.h \
  /usr/include/openssl/dtls1.h /usr/include/openssl/srtp.h \
  /usr/include/openssl/conf.h /usr/include/openssl/conferr.h \
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
+ ../../../src/developer/include/wangyonglin/string.h \
  ../../../src/developer/include/developer/args.h /usr/include/getopt.h \
  /usr/include/bits/getopt_ext.h \
  ../../../src/developer/include/developer/pidlock.h \
- ../../../src/developer/include/developer/mapping.h \
- /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
- ../../../src/developer/include/developer/string.h \
- /usr/include/sys/stat.h \
  ../../../src/developer/include/developer/daemon.h \
- ../../../src/developer/include/developer/log.h \
+ /usr/include/sys/stat.h ../../../src/developer/include/developer/log.h \
  ../../../src/developer/include/developer/message.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
@@ -136,16 +134,16 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
  /usr/include/event2/http.h /usr/include/event2/http_struct.h \
  /usr/include/event2/http_compat.h \
  ../../../src/components/cjson/include/cJSON.h \
- ../../../include/aliyun_iot_api.h \
+ ../../../include/aliyun_api.h \
  ../../../src/components/mqtt/include/MQTTAsync.h \
  ../../../src/components/mqtt/include/MQTTExportDeclarations.h \
  ../../../src/components/mqtt/include/MQTTProperties.h \
  ../../../src/components/mqtt/include/MQTTReasonCodes.h \
  ../../../src/components/mqtt/include/MQTTSubscribeOpts.h \
  ../../../src/components/mqtt/include/MQTTClientPersistence.h \
+ ../../../src/developer/include/wangyonglin/listitem.h \
  ../../../src/components/openssl/include/HMAC_SHA1.h \
- ../../../src/components/mqtt/include/Base64.h \
- ../../../src/developer/include/wangyonglin/elements.h
+ ../../../src/components/mqtt/include/Base64.h
 
 /usr/include/stdc-predef.h:
 
@@ -317,7 +315,7 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/stat.h:
 
-../../../src/developer/include/developer/conf.h:
+../../../src/developer/include/wangyonglin/conf.h:
 
 /usr/include/openssl/err.h:
 
@@ -489,6 +487,10 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 /usr/include/openssl/conferr.h:
 
+/usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
+
+../../../src/developer/include/wangyonglin/string.h:
+
 ../../../src/developer/include/developer/args.h:
 
 /usr/include/getopt.h:
@@ -497,15 +499,9 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 ../../../src/developer/include/developer/pidlock.h:
 
-../../../src/developer/include/developer/mapping.h:
-
-/usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
-
-../../../src/developer/include/developer/string.h:
+../../../src/developer/include/developer/daemon.h:
 
 /usr/include/sys/stat.h:
-
-../../../src/developer/include/developer/daemon.h:
 
 ../../../src/developer/include/developer/log.h:
 
@@ -625,7 +621,7 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 ../../../src/components/cjson/include/cJSON.h:
 
-../../../include/aliyun_iot_api.h:
+../../../include/aliyun_api.h:
 
 ../../../src/components/mqtt/include/MQTTAsync.h:
 
@@ -639,8 +635,8 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 ../../../src/components/mqtt/include/MQTTClientPersistence.h:
 
+../../../src/developer/include/wangyonglin/listitem.h:
+
 ../../../src/components/openssl/include/HMAC_SHA1.h:
 
 ../../../src/components/mqtt/include/Base64.h:
-
-../../../src/developer/include/wangyonglin/elements.h:

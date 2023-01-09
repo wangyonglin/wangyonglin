@@ -6,21 +6,20 @@
 #include <signal.h>
 #include <developer/public.h>
 #include <developer/allocate.h>
-#include <developer/conf.h>
+#include <wangyonglin/conf.h>
 #include <developer/args.h>
 #include <developer/pidlock.h>
 #include <developer/daemon.h>
 #include <developer/log.h>
 #include <developer/message.h>
-#include <developer/string.h>
-#include <developer/mapping.h>
+#include <wangyonglin/string.h>
+
 
 typedef struct
 {
     allocate_t *allocate;
     args_t *args;
     log_t *log;
-    mapping_t *mapping;
     message_id_t msg1;
     message_id_t msg2;
     message_id_t msg3;

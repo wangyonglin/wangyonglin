@@ -8,15 +8,13 @@
 #include <sys/stat.h>
 #include <string.h>
 #include <developer/allocate.h>
-#include <developer/conf.h>
-
-#include <developer/mapping.h>
+#include <wangyonglin/conf.h>
 
 typedef struct{
     char *logfile;
     boolean model;
-    mapping_t *mapping;
 }log_t;
 
-ok_t log_initializing(log_t **log,mapping_t *mapping,char * filename, boolean model);
+ok_t log_create(log_t **log, allocate_t *allocate, char *filename, boolean model);
+int logerr(log_t *log, const char *fmt, ...);
 #endif

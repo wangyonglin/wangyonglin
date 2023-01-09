@@ -8,18 +8,19 @@ ok_t httpd_initializing(httpd_t **httpd, config_t *config, char *conf)
     {
         return ArgumentException;
     }
-    if (object_create(config->allocate, (void **)httpd, sizeof(httpd_t)) != Ok)
+    if (object_create((void **)httpd, sizeof(httpd_t)) != Ok)
     {
         logerr(config->log, "https_server_initializing failed");
         return NullPointerException;
     }
-    mapping_arguments_t arguments[] = {
+    conf_command arguments[] = {
         {"address", "0.0.0.0", STRING, offsetof(httpd_t, address)},
         {"port", 80, INTEGER, offsetof(httpd_t, port)},
         {"timeout_in_secs", 15, INTEGER, offsetof(httpd_t, timeout_in_secs)}};
 
     int arguments_size = sizeof(arguments) / sizeof(arguments[0]);
-    if (mapping_create(config->mapping, (void **)*httpd, conf,NULL, arguments, arguments_size) != Ok)
+
+    if (conf_create((void **)*httpd, conf, NULL, arguments, arguments_size) != Ok)
     {
         logerr(config->log, "https_server_initializing conf_mapping   failed");
         return ErrorException;

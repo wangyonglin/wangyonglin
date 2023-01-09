@@ -379,7 +379,7 @@ int allocate_delete(allocate_t *allocate, void *pointer)
 
 /**wangyonglin*/
 
-ok_t string_create(allocate_t *allocate, unsigned char **pointer, char *data, size_t data_size)
+ok_t allocate_string_create(allocate_t *allocate, unsigned char **pointer, char *data, size_t data_size)
 {
     if (!allocate)
     {
@@ -393,7 +393,7 @@ ok_t string_create(allocate_t *allocate, unsigned char **pointer, char *data, si
     memcpy((*pointer), data, data_size);
     return Ok;
 }
-ok_t string_delete(allocate_t *allocate, unsigned char *pointer)
+ok_t allocate_string_delete(allocate_t *allocate, unsigned char *pointer)
 {
     if (!allocate && !pointer)
     {
@@ -402,7 +402,7 @@ ok_t string_delete(allocate_t *allocate, unsigned char *pointer)
     allocate_delete(allocate, pointer);
     return Ok;
 }
-ok_t object_create(allocate_t *allocate, void **object, size_t object_size)
+ok_t allocate_object_create(allocate_t *allocate, void **object, size_t object_size)
 {
     if (!allocate)
     {
@@ -415,7 +415,7 @@ ok_t object_create(allocate_t *allocate, void **object, size_t object_size)
     memset((*object), 0x00, object_size);
     return Ok;
 }
-ok_t object_delete(allocate_t *allocate, void *object)
+ok_t allocate_object_delete(allocate_t *allocate, void *object)
 {
     if (!allocate && !object)
     {
@@ -426,18 +426,3 @@ ok_t object_delete(allocate_t *allocate, void *object)
     return Ok;
 }
 
-void boolean_create(unsigned char **pointer, boolean value)
-{
-    *pointer = value;
-
-  
-}
-void number_create(unsigned char **pointer, long value)
-{
-    *pointer = (unsigned char *)value;
-}
-
-unsigned char **touchar(void **pointer)
-{
-    return (unsigned char **)pointer;
-}

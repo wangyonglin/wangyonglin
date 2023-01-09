@@ -12,7 +12,7 @@ libdeveloper_la_SOURCES=   \
     message.c   \
     file.c \
     string.c \
-    mapping.c \
-    elements.c
+    listitem.c \
+    url.c
 #需要引用的动态库文件
 LIBS += -g -O2 -Wall -pedantic   -lm  -lmysqlclient

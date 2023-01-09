@@ -5,35 +5,36 @@
 #define FONT_COLOR_GREEN "\033[0;32m"
 #define FONT_COLOR_BLUE "\033[1;34m"
 
-
-ok_t log_initializing(log_t **log, mapping_t *mapping, char *filename, boolean model)
+ok_t log_create(log_t **log, allocate_t *allocate, char *filename, boolean model)
 {
-    if (!mapping)
+
+    if (!allocate)
     {
+        perror("log_create allocate ArgumentException");
         return ArgumentException;
     }
 
-    if (object_create(mapping->allocate, (void **)log, sizeof(log_t) != Ok))
+    if (allocate_object_create(allocate, (void **)log, sizeof(log_t) != Ok))
     {
-        return ErrorException;
+        perror("log_create log NullPointerException");
+        return NullPointerException;
     }
 
-    mapping_arguments_t arguments[] = {
+    conf_command commands[] = {
         {"logfile", NULL, STRING, offsetof(log_t, logfile)}};
-    int arguments_size = sizeof(arguments) / sizeof(arguments[0]);
+    int commands_size = conf_command_size(commands);
 
-    if (mapping_create(mapping, (*log), filename, NULL, arguments, arguments_size) == Ok)
+    if (conf_create((*log), filename, NULL, commands, commands_size) == Ok)
     {
         (*log)->model = model;
-        (*log)->mapping = mapping;
         return Ok;
     }
     return ErrorException;
 }
 
-
 int logerr(log_t *log, const char *fmt, ...)
 {
+
     if (!log)
     {
         return ArgumentException;

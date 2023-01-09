@@ -31,7 +31,7 @@ void SnowFlake_create(uint32_t workerId, uint8_t method, uint8_t SeqBitLength);
  * @return int64_t 
  */
 int64_t SnowFlake_IdGenerator();
-
+int64_t SnowFlake_IdGenerator_toString(char **pointer);
 /**
  * @brief
  * #include "SnowFlake.h"
@@ -42,7 +42,7 @@ int64_t SnowFlake_IdGenerator();
             SnowFlake_initializing(1, 1, 10);
             for (int i = 0; i < 100; i++)
             {
-                int64_t id = SnowFlake_generator();
+                int64_t id = SnowFlake_IdGenerator();
                 printf("\tid%d  :   %ld\n",i, id);
             }
         }

@@ -11,9 +11,8 @@
 #include <cJSON.h>
 #include <unistd.h>
 #include <developer/config.h>
-#include <developer/conf.h>
-#include <developer/string.h>
 #include <developer/message.h>
+
 typedef struct
 {
     struct evhttp *https;

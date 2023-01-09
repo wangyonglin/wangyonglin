@@ -130,7 +130,7 @@ LTLIBRARIES = $(lib_LTLIBRARIES)
 libdeveloper_la_LIBADD =
 am_libdeveloper_la_OBJECTS = config.lo allocate.lo daemon.lo \
 	pidlock.lo log.lo args.lo conf.lo message.lo file.lo string.lo \
-	mapping.lo elements.lo
+	listitem.lo url.lo
 libdeveloper_la_OBJECTS = $(am_libdeveloper_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -153,10 +153,10 @@ depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/allocate.Plo ./$(DEPDIR)/args.Plo \
 	./$(DEPDIR)/conf.Plo ./$(DEPDIR)/config.Plo \
-	./$(DEPDIR)/daemon.Plo ./$(DEPDIR)/elements.Plo \
-	./$(DEPDIR)/file.Plo ./$(DEPDIR)/log.Plo \
-	./$(DEPDIR)/mapping.Plo ./$(DEPDIR)/message.Plo \
-	./$(DEPDIR)/pidlock.Plo ./$(DEPDIR)/string.Plo
+	./$(DEPDIR)/daemon.Plo ./$(DEPDIR)/file.Plo \
+	./$(DEPDIR)/listitem.Plo ./$(DEPDIR)/log.Plo \
+	./$(DEPDIR)/message.Plo ./$(DEPDIR)/pidlock.Plo \
+	./$(DEPDIR)/string.Plo ./$(DEPDIR)/url.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -335,8 +335,8 @@ libdeveloper_la_SOURCES = \
     message.c   \
     file.c \
     string.c \
-    mapping.c \
-    elements.c
+    listitem.c \
+    url.c
 
 all: all-am
 
@@ -421,13 +421,13 @@ include ./$(DEPDIR)/args.Plo # am--include-marker
 include ./$(DEPDIR)/conf.Plo # am--include-marker
 include ./$(DEPDIR)/config.Plo # am--include-marker
 include ./$(DEPDIR)/daemon.Plo # am--include-marker
-include ./$(DEPDIR)/elements.Plo # am--include-marker
 include ./$(DEPDIR)/file.Plo # am--include-marker
+include ./$(DEPDIR)/listitem.Plo # am--include-marker
 include ./$(DEPDIR)/log.Plo # am--include-marker
-include ./$(DEPDIR)/mapping.Plo # am--include-marker
 include ./$(DEPDIR)/message.Plo # am--include-marker
 include ./$(DEPDIR)/pidlock.Plo # am--include-marker
 include ./$(DEPDIR)/string.Plo # am--include-marker
+include ./$(DEPDIR)/url.Plo # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -595,13 +595,13 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/conf.Plo
 	-rm -f ./$(DEPDIR)/config.Plo
 	-rm -f ./$(DEPDIR)/daemon.Plo
-	-rm -f ./$(DEPDIR)/elements.Plo
 	-rm -f ./$(DEPDIR)/file.Plo
+	-rm -f ./$(DEPDIR)/listitem.Plo
 	-rm -f ./$(DEPDIR)/log.Plo
-	-rm -f ./$(DEPDIR)/mapping.Plo
 	-rm -f ./$(DEPDIR)/message.Plo
 	-rm -f ./$(DEPDIR)/pidlock.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
+	-rm -f ./$(DEPDIR)/url.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -652,13 +652,13 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/conf.Plo
 	-rm -f ./$(DEPDIR)/config.Plo
 	-rm -f ./$(DEPDIR)/daemon.Plo
-	-rm -f ./$(DEPDIR)/elements.Plo
 	-rm -f ./$(DEPDIR)/file.Plo
+	-rm -f ./$(DEPDIR)/listitem.Plo
 	-rm -f ./$(DEPDIR)/log.Plo
-	-rm -f ./$(DEPDIR)/mapping.Plo
 	-rm -f ./$(DEPDIR)/message.Plo
 	-rm -f ./$(DEPDIR)/pidlock.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
+	-rm -f ./$(DEPDIR)/url.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

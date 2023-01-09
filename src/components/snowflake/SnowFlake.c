@@ -45,3 +45,13 @@ int64_t SnowFlake_IdGenerator()
     //    free(generator);
     //    return id;
 }
+int64_t SnowFlake_IdGenerator_toString(char **pointer)
+{
+    int64_t id = GetIdGenInstance()->NextId();
+    if ((*pointer) = malloc(sizeof(char) * 12))
+    {
+        memset((*pointer), 0x00, sizeof(char) * 12);
+        sprintf((*pointer), "%ld", id);
+    }
+    return id;
+}

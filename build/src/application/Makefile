@@ -103,7 +103,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_tiger_OBJECTS = main.$(OBJEXT) aliyun_signature.$(OBJEXT) \
 	httpd_start.$(OBJEXT) httpd_router.$(OBJEXT) \
-	aliyun_iot_api.$(OBJEXT)
+	aliyun_api.$(OBJEXT)
 tiger_OBJECTS = $(am_tiger_OBJECTS)
 tiger_DEPENDENCIES = $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
 	$(top_builddir)/src/components/mqtt/libcomponent_mqtt.la \
@@ -129,7 +129,7 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/aliyun_iot_api.Po \
+am__depfiles_remade = ./$(DEPDIR)/aliyun_api.Po \
 	./$(DEPDIR)/aliyun_signature.Po ./$(DEPDIR)/httpd_router.Po \
 	./$(DEPDIR)/httpd_start.Po ./$(DEPDIR)/main.Po
 am__mv = mv -f
@@ -313,7 +313,7 @@ tiger_SOURCES = \
     aliyun_signature.c \
     httpd_start.c \
     httpd_router.c \
-    aliyun_iot_api.c
+    aliyun_api.c
 
 tiger_LDADD = \
     $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
@@ -416,7 +416,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-include ./$(DEPDIR)/aliyun_iot_api.Po # am--include-marker
+include ./$(DEPDIR)/aliyun_api.Po # am--include-marker
 include ./$(DEPDIR)/aliyun_signature.Po # am--include-marker
 include ./$(DEPDIR)/httpd_router.Po # am--include-marker
 include ./$(DEPDIR)/httpd_start.Po # am--include-marker
@@ -582,7 +582,7 @@ clean: clean-am
 clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/aliyun_iot_api.Po
+		-rm -f ./$(DEPDIR)/aliyun_api.Po
 	-rm -f ./$(DEPDIR)/aliyun_signature.Po
 	-rm -f ./$(DEPDIR)/httpd_router.Po
 	-rm -f ./$(DEPDIR)/httpd_start.Po
@@ -632,7 +632,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/aliyun_iot_api.Po
+		-rm -f ./$(DEPDIR)/aliyun_api.Po
 	-rm -f ./$(DEPDIR)/aliyun_signature.Po
 	-rm -f ./$(DEPDIR)/httpd_router.Po
 	-rm -f ./$(DEPDIR)/httpd_start.Po

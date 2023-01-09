@@ -8,7 +8,7 @@
 #include <sys/stat.h>
 #include <string.h>
 #include <developer/allocate.h>
-#include <developer/conf.h>
+#include <wangyonglin/conf.h>
 
 
 typedef struct
