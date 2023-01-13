@@ -14,13 +14,8 @@
 #include <openssl/bio.h>
 #include <openssl/hmac.h>
 
-
 #include <stdint.h>
 
-void hmac_sha1(const uint8_t *k, /* secret key */
-               size_t lk,        /* length of the key in bytes */
-               const uint8_t *d, /* data */
-               size_t ld,        /* length of data in bytes */
-               uint8_t *out,     /* output buffer, at least "t" bytes */
-               size_t *t);
+void hmac_sha1(const uint8_t *k,size_t lk,const uint8_t *d,size_t ld,uint8_t *out,size_t *t);
+void HmacSha1_Base64(const uint8_t *k,size_t lk,const uint8_t *d,size_t ld,uint8_t **b64_encode_this,size_t encode_this_many_bytes);
 #endif

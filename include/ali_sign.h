@@ -1,5 +1,5 @@
-#if !defined(INCLUDE_ALIYUN_SIGNATURE_H)
-#define INCLUDE_ALIYUN_SIGNATURE_H
+#if !defined(INCLUDE_ALI_SIGN_H)
+#define INCLUDE_ALI_SIGN_H
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -20,5 +20,5 @@
 #define MQTT_CLINETID_KV "|timestamp=2524608000000,_v=paho-c-1.0.0,securemode=3,signmethod=hmacsha256,lan=C|"
 
 
-ok_t aliiot_signature(const char *productKey, const char *deviceName, const char *deviceSecret, char clientID[150], char username[64], char password[65]);
+ok_t ali_signature(const char *productKey, const char *deviceName, const char *deviceSecret, char clientID[150], char username[64], char password[65]);
 #endif

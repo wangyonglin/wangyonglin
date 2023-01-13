@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     SnowFlake_create(1, 1, 10);
     aliyun_config *arguments;
     aliyun_config_init(&arguments, "/home/wangyonglin/github/wangyonglin/conf/aliyun.conf");
-    aliyun_config_publish(arguments, "wangyonglin", 11);
+    aliyun_config_publish(arguments, "wang", 4);
     free(arguments);
     //     // deallocate(AliPubParams);
     // httpd_initializing(&httpd, config, "/home/wangyonglin/github/wangyonglin/conf/httpd.conf");

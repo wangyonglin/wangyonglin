@@ -129,7 +129,7 @@ am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libcomponent_openssl_la_LIBADD =
 am_libcomponent_openssl_la_OBJECTS = SHA256WithRSA.lo HMAC_SHA1.lo \
-	Base64.lo
+	Base64.lo URL.lo
 libcomponent_openssl_la_OBJECTS =  \
 	$(am_libcomponent_openssl_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
@@ -152,7 +152,7 @@ DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/Base64.Plo ./$(DEPDIR)/HMAC_SHA1.Plo \
-	./$(DEPDIR)/SHA256WithRSA.Plo
+	./$(DEPDIR)/SHA256WithRSA.Plo ./$(DEPDIR)/URL.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -324,7 +324,8 @@ lib_LTLIBRARIES = libcomponent_openssl.la
 libcomponent_openssl_la_SOURCES = \
     SHA256WithRSA.c \
     HMAC_SHA1.c \
-    Base64.c
+    Base64.c    \
+    URL.c
 
 all: all-am
 
@@ -407,6 +408,7 @@ distclean-compile:
 include ./$(DEPDIR)/Base64.Plo # am--include-marker
 include ./$(DEPDIR)/HMAC_SHA1.Plo # am--include-marker
 include ./$(DEPDIR)/SHA256WithRSA.Plo # am--include-marker
+include ./$(DEPDIR)/URL.Plo # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -572,6 +574,7 @@ distclean: distclean-am
 		-rm -f ./$(DEPDIR)/Base64.Plo
 	-rm -f ./$(DEPDIR)/HMAC_SHA1.Plo
 	-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
+	-rm -f ./$(DEPDIR)/URL.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -620,6 +623,7 @@ maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/Base64.Plo
 	-rm -f ./$(DEPDIR)/HMAC_SHA1.Plo
 	-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
+	-rm -f ./$(DEPDIR)/URL.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

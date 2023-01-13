@@ -6,6 +6,10 @@
 #include <SnowFlake.h>
 #include <Base64.h>
 #include <evhttp.h>
+#include <HMAC_SHA1.h>
+#include <curl/curl.h>
+#include <aliutils.h>
+
 ok_t aliyun_config_init(aliyun_config **config, const char *filename)
 {
     ok_t ret;
@@ -35,6 +39,7 @@ ok_t aliyun_config_init(aliyun_config **config, const char *filename)
 ok_t aliyun_config_publish(aliyun_config *config, char *MessageContentText, size_t MessageContentSize)
 {
     listitem *list;
+
     char *Signature;
     char *SignatureNonce;
     char *Timestamp;
@@ -50,7 +55,7 @@ ok_t aliyun_config_publish(aliyun_config *config, char *MessageContentText, size
         return ErrorException;
     }
     SnowFlake_IdGenerator_toString(&SignatureNonce);
-    string_localtime_create(&Timestamp);
+    alitimestamp(&Timestamp);
     // 系统规定参数。取值：Pub
     listitem_add_string(list, "Action", "Pub", strlen("Pub"));
     // 要接收消息的设备所属产品的ProductKey
@@ -80,74 +85,30 @@ ok_t aliyun_config_publish(aliyun_config *config, char *MessageContentText, size
     listitem_add_string(list, "SignatureNonce", SignatureNonce, strlen(SignatureNonce));
     /**设备所在地域（与控制台上的地域对应），如cn-shanghai。*/
     listitem_add_string(list, "RegionId", config->RegionId, strlen(config->RegionId));
-
     listitem_sort(list);
-    char out[125] = {0};
-    char text[1024] = {0};
-    int size_c = 0;
-    for (size_t i = 0; i < list->items_pos; i++)
-    {
+    // string_rows("Timestamp", Timestamp);
+    char *urlArgumentsString;
+    aliutls_url_listitem(&urlArgumentsString, 1024, list);
 
-        if (list->items[i].type == STRING)
-        {
-            //  printf("\t%s {%s}\r\n", list->items[i].name, list->items[i].data);
-            sprintf(out, "%s=%s", list->items[i].name, list->items[i].data);
-        }
-        else if (list->items[i].type == INTEGER)
-        {
-            //  printf("\t%s {%d}\r\n", list->items[i].name, list->items[i].data);
-            sprintf(out, "%s=%d", list->items[i].name, list->items[i].data);
-        }
-        strncat(text, out, strlen(out));
-        if ( i + 1 < list->items_pos)
-        {
-            strncat(text, "&", strlen("&"));
-        }
-    }
-    printf("\t%s\r\n", text);
+    string_rows("config->TopicFullName", config->TopicFullName);
+    string_rows("MessageContentText", MessageContentText);
+
+    char *base64TextUrl;
+    aliurls_base64(&base64TextUrl, 1024, urlArgumentsString, config->AccessKeySecret);
+    // string_rows("base64TextUrl", base64TextUrl);
+    char *urlString;
+    strnull(&urlString, 1024);
+    strcat(urlString, "https://iot.cn-shanghai.aliyuncs.com?");
+    strcat(urlString, urlArgumentsString);
+    strcat(urlString, "&Signature=");
+    strcat(urlString, base64TextUrl);
+    //  string_rows("urlString", urlString);
+    aliutils_https_get(urlString);
+    strdel(urlString);
     listitem_delete(list);
-    string_delete(SignatureNonce);
-    string_delete(Timestamp);
-
+    strdel(SignatureNonce);
+    strdel(Timestamp);
+    strdel(base64TextUrl);
+    strdel(urlArgumentsString);
     return OK;
 }
-
-// size_t aliyun_signature_prefix(const char *prefix, struct _element *element_date, size_t element_count, char **pointer)
-// {
-
-//     char outbuf[2048] = {0};
-//     size_t len = 0;
-//     char out[128];
-//     for (size_t i = 0; i < element_count; i++)
-//     {
-//         bzero(out, sizeof(out));
-//         if (i == 0)
-//         {
-//             if (element_date[i].type == STRING)
-//             {
-
-//                 len += sprintf(out, "%s/%s=%s", prefix, element_date[i].name, element_date[i].content);
-//             }
-//             else if (element_date[i].type == INTEGER)
-//             {
-//                 len += sprintf(out, "%s/%s=%d", prefix, element_date[i].name, element_date[i].content);
-//             }
-//         }
-//         else
-//         {
-//             if (element_date[i].type == STRING)
-//             {
-//                 len += sprintf(out, "&%s=%s", element_date[i].name, element_date[i].content);
-//             }
-//             else if (element_date[i].type == INTEGER)
-//             {
-//                 len += sprintf(out, "&%s=%d", element_date[i].name, element_date[i].content);
-//             }
-//         }
-//         strncat(outbuf, out, strlen(out));
-//     }
-//     // printf("\t%s\r\n", outbuf);
-//     string_url_encode(outbuf, strlen(outbuf), pointer, 2048);
-//     // if((*pointer)) return strlen((*pointer));
-//     return -1;
-// }

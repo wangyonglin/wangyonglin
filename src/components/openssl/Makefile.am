@@ -7,6 +7,7 @@ lib_LTLIBRARIES=libcomponent_openssl.la
 libcomponent_openssl_la_SOURCES=\
     SHA256WithRSA.c \
     HMAC_SHA1.c \
-    Base64.c
+    Base64.c    \
+    URL.c
 
 

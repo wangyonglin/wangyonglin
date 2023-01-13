@@ -1,102 +1,98 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <string.h>
-#include <memory.h>
-typedef struct _item
-{
-    char *name;
-    void *data;
-    int type;
-} item;
 
-typedef struct _listitem
-{
-    struct _item *items;
-    int items_pos;
-    int items_max;
-} listitem;
+static unsigned char hexchars[] = "0123456789ABCDEF";
+/**
+ * @brief URLEncode : encode the base64 string "str"
+ *
+ * @param str:  the base64 encoded string
+ * @param strsz:  the str length (exclude the last \0)
+ * @param result:  the result buffer
+ * @param resultsz: the result buffer size(exclude the last \0)
+ *
+ * @return: >=0 represent the encoded result length
+ *              <0 encode failure
+ *
+ * Note:
+ * 1) to ensure the result buffer has enough space to contain the encoded string, we'd better
+ *     to set resultsz to 3*strsz
+ *
+ * 2) we don't check whether str has really been base64 encoded
+ */
+int URLEncode(const char *str, const int strsz, char *result, const int resultsz);
 
-listitem *listitem_create(listitem **arguments, size_t items_max)
+/**
+ * @brief URLEncode : encode the base64 string "str"
+ *
+ * @param str:  the base64 encoded string
+ * @param strsz:  the str length (exclude the last \0)
+ * @param result:  the result buffer
+ * @param resultsz: the result buffer size(exclude the last \0)
+ *
+ * @return: >=0 represent the encoded result length
+ *              <0 encode failure
+ *
+ * Note:
+ * 1) to ensure the result buffer has enough space to contain the encoded string, we'd better
+ *     to set resultsz to 3*strsz
+ *
+ * 2) we don't check whether str has really been base64 encoded
+ */
+int URLEncode(const char *str, const int strsz, char *result, const int resultsz)
 {
-    (*arguments) = NULL;
-    if ((*arguments) = malloc(sizeof(listitem *)))
-    {
-        memset((*arguments), 0x00, sizeof(listitem *));
-        (*arguments)->items_pos = 0;
-        (*arguments)->items_max = items_max;
-        ((*arguments)->items) = malloc(sizeof(struct _item *) * items_max);
-    }
+    int i, j;
+    char ch;
 
-    return (*arguments);
-}
-void listitem_delete(listitem *arguments)
-{
-    if (arguments->items_pos <= 0)
+    if (strsz < 0 || resultsz < 0)
+        return -1;
+
+    for (i = 0, j = 0; i < strsz && j < resultsz; i++)
     {
-        if (arguments->items)
-            free(arguments->items);
-        if (arguments)
-            free(arguments);
-        return;
-    }
-    if (arguments)
-    {
-        struct _item *items;
-        while (arguments->items_pos > 0)
+        ch = *(str + i);
+        if ((ch >= 'A' && ch <= 'Z') ||
+            (ch >= 'a' && ch <= 'z') ||
+            (ch >= '0' && ch <= '9') ||
+            ch == '.' || ch == '-' || ch == '*' || ch == '_')
+            result[j++] = ch;
+        else if (ch == ' ')
+            result[j++] = '+';
+        else
         {
-            items = NULL;
-            if (items = &arguments->items[arguments->items_pos])
+            if (j + 3 <= resultsz)
             {
-                if (items->name)
-                    free(items->name);
-                if (items->data)
-                    free(items->data);
-                arguments->items_pos--;
+                result[j++] = '%';
+                result[j++] = hexchars[(unsigned char)ch >> 4];
+                result[j++] = hexchars[(unsigned char)ch & 0xF];
+            }
+            else
+            {
+                return -2;
             }
         }
-        free(arguments->items);
-        free(arguments);
-    }
-}
-
-struct _item *listitem_strcrt(listitem *arguments, const char *name, char *data, size_t datalength)
-{
-    arguments->items[arguments->items_pos].name = strdup(name);
-    if (arguments->items[arguments->items_pos].data = malloc(sizeof(char) * datalength + 1))
-    {
-        memset(arguments->items[arguments->items_pos].data, 0x00, sizeof(char) * datalength + 1);
-        memcpy(arguments->items[arguments->items_pos].data, data, datalength);
-    }
-    if (arguments->items[arguments->items_pos].name && arguments->items[arguments->items_pos].data)
-    {
-        arguments->items_pos++;
     }
 
-    return &arguments->items[arguments->items_pos];
-}
-int __listitem_by_name(const void *e1, const void *e2)
-{
-    return strcmp(((struct _item *)e1)->name, ((struct _item *)e2)->name);
-}
-void listitem_sort(listitem *arguments)
-{
-    qsort(arguments->items, arguments->items_pos, sizeof(arguments->items[0]), __listitem_by_name);
+    if (i == 0)
+        return 0;
+    else if (i == strsz)
+        return j;
+    return -2;
 }
 
+// return < 0: represent failure
 int main(int argc, char *argv[])
 {
-    listitem *arguments = NULL;
-    listitem_create(&arguments, 512);
-    listitem_strcrt(arguments, "a", "wangyonglin", 11);
-    listitem_strcrt(arguments, "c", "wangyonglin", 11);
-    listitem_strcrt(arguments, "b", "wangyonglin", 11);
-    listitem_strcrt(arguments, "d", "wangyonglin", 11);
-    listitem_strcrt(arguments, "1", "wangyonglin", 11);
-    listitem_strcrt(arguments, "3", "wangyonglin", 11);
-    listitem_strcrt(arguments, "4", "wangyonglin", 11);
-    listitem_strcrt(arguments, "8", "wangyonglin", 11);
-    listitem_sort(arguments);
-    listitem_delete(arguments);
+    int ret;
+    char buf[1024] = "GET&%2F&AccessKeyIdLTAI5t9fk9zx771m7bwNjgeYActionPubFormatJSONMessageContentwangyonglinProductKeya170p0o3VKDRegionIdcn-shanghaiSignatureMethodHMAC-SHA1Signon1.0Timestamp2023-01-12T11";
+    char result[1024 * 3];
 
-    return 0;
+    ret = URLEncode(buf, strlen(buf), result, 1024 * 3);
+
+    printf("%s", result);
+
+    return ret;
 }

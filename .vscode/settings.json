@@ -155,6 +155,8 @@
         "listelement.h": "c",
         "url.h": "c",
         "aliyun_api.h": "c",
-        "listitem.h": "c"
+        "listitem.h": "c",
+        "aliutils.h": "c",
+        "hmac_sha1.h": "c"
     }
 }

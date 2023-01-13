@@ -101,9 +101,9 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_tiger_OBJECTS = main.$(OBJEXT) aliyun_signature.$(OBJEXT) \
+am_tiger_OBJECTS = main.$(OBJEXT) ali_signature.$(OBJEXT) \
 	httpd_start.$(OBJEXT) httpd_router.$(OBJEXT) \
-	aliyun_api.$(OBJEXT)
+	aliyun_api.$(OBJEXT) aliutils.$(OBJEXT)
 tiger_OBJECTS = $(am_tiger_OBJECTS)
 tiger_DEPENDENCIES = $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
 	$(top_builddir)/src/components/mqtt/libcomponent_mqtt.la \
@@ -129,9 +129,10 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/aliyun_api.Po \
-	./$(DEPDIR)/aliyun_signature.Po ./$(DEPDIR)/httpd_router.Po \
-	./$(DEPDIR)/httpd_start.Po ./$(DEPDIR)/main.Po
+am__depfiles_remade = ./$(DEPDIR)/ali_signature.Po \
+	./$(DEPDIR)/aliutils.Po ./$(DEPDIR)/aliyun_api.Po \
+	./$(DEPDIR)/httpd_router.Po ./$(DEPDIR)/httpd_start.Po \
+	./$(DEPDIR)/main.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -310,10 +311,11 @@ AM_CPPFLAGS = \
 
 tiger_SOURCES = \
     main.c \
-    aliyun_signature.c \
+    ali_signature.c \
     httpd_start.c \
     httpd_router.c \
-    aliyun_api.c
+    aliyun_api.c    \
+    aliutils.c
 
 tiger_LDADD = \
     $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
@@ -416,8 +418,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/ali_signature.Po # am--include-marker
+include ./$(DEPDIR)/aliutils.Po # am--include-marker
 include ./$(DEPDIR)/aliyun_api.Po # am--include-marker
-include ./$(DEPDIR)/aliyun_signature.Po # am--include-marker
 include ./$(DEPDIR)/httpd_router.Po # am--include-marker
 include ./$(DEPDIR)/httpd_start.Po # am--include-marker
 include ./$(DEPDIR)/main.Po # am--include-marker
@@ -582,8 +585,9 @@ clean: clean-am
 clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/aliyun_api.Po
-	-rm -f ./$(DEPDIR)/aliyun_signature.Po
+		-rm -f ./$(DEPDIR)/ali_signature.Po
+	-rm -f ./$(DEPDIR)/aliutils.Po
+	-rm -f ./$(DEPDIR)/aliyun_api.Po
 	-rm -f ./$(DEPDIR)/httpd_router.Po
 	-rm -f ./$(DEPDIR)/httpd_start.Po
 	-rm -f ./$(DEPDIR)/main.Po
@@ -632,8 +636,9 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/aliyun_api.Po
-	-rm -f ./$(DEPDIR)/aliyun_signature.Po
+		-rm -f ./$(DEPDIR)/ali_signature.Po
+	-rm -f ./$(DEPDIR)/aliutils.Po
+	-rm -f ./$(DEPDIR)/aliyun_api.Po
 	-rm -f ./$(DEPDIR)/httpd_router.Po
 	-rm -f ./$(DEPDIR)/httpd_start.Po
 	-rm -f ./$(DEPDIR)/main.Po

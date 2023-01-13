@@ -52,3 +52,6 @@ libmbedtls_la_SOURCES=\
     printf("\t%s\r\n", out);
     printf("len: %d\n", strlen(out));
     free(out);
+    设置时间
+    timedatectl list-timezones |grep Shanghai
+    timedatectl set-timezone Asia/Shanghai

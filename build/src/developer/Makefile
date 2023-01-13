@@ -130,7 +130,7 @@ LTLIBRARIES = $(lib_LTLIBRARIES)
 libdeveloper_la_LIBADD =
 am_libdeveloper_la_OBJECTS = config.lo allocate.lo daemon.lo \
 	pidlock.lo log.lo args.lo conf.lo message.lo file.lo string.lo \
-	listitem.lo url.lo
+	listitem.lo Unix_timestamp_converter.lo
 libdeveloper_la_OBJECTS = $(am_libdeveloper_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -151,12 +151,13 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/allocate.Plo ./$(DEPDIR)/args.Plo \
+am__depfiles_remade = ./$(DEPDIR)/Unix_timestamp_converter.Plo \
+	./$(DEPDIR)/allocate.Plo ./$(DEPDIR)/args.Plo \
 	./$(DEPDIR)/conf.Plo ./$(DEPDIR)/config.Plo \
 	./$(DEPDIR)/daemon.Plo ./$(DEPDIR)/file.Plo \
 	./$(DEPDIR)/listitem.Plo ./$(DEPDIR)/log.Plo \
 	./$(DEPDIR)/message.Plo ./$(DEPDIR)/pidlock.Plo \
-	./$(DEPDIR)/string.Plo ./$(DEPDIR)/url.Plo
+	./$(DEPDIR)/string.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -336,7 +337,7 @@ libdeveloper_la_SOURCES = \
     file.c \
     string.c \
     listitem.c \
-    url.c
+    Unix_timestamp_converter.c
 
 all: all-am
 
@@ -416,6 +417,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/Unix_timestamp_converter.Plo # am--include-marker
 include ./$(DEPDIR)/allocate.Plo # am--include-marker
 include ./$(DEPDIR)/args.Plo # am--include-marker
 include ./$(DEPDIR)/conf.Plo # am--include-marker
@@ -427,7 +429,6 @@ include ./$(DEPDIR)/log.Plo # am--include-marker
 include ./$(DEPDIR)/message.Plo # am--include-marker
 include ./$(DEPDIR)/pidlock.Plo # am--include-marker
 include ./$(DEPDIR)/string.Plo # am--include-marker
-include ./$(DEPDIR)/url.Plo # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -590,7 +591,8 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 	mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/allocate.Plo
+		-rm -f ./$(DEPDIR)/Unix_timestamp_converter.Plo
+	-rm -f ./$(DEPDIR)/allocate.Plo
 	-rm -f ./$(DEPDIR)/args.Plo
 	-rm -f ./$(DEPDIR)/conf.Plo
 	-rm -f ./$(DEPDIR)/config.Plo
@@ -601,7 +603,6 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/message.Plo
 	-rm -f ./$(DEPDIR)/pidlock.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
-	-rm -f ./$(DEPDIR)/url.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -647,7 +648,8 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/allocate.Plo
+		-rm -f ./$(DEPDIR)/Unix_timestamp_converter.Plo
+	-rm -f ./$(DEPDIR)/allocate.Plo
 	-rm -f ./$(DEPDIR)/args.Plo
 	-rm -f ./$(DEPDIR)/conf.Plo
 	-rm -f ./$(DEPDIR)/config.Plo
@@ -658,7 +660,6 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/message.Plo
 	-rm -f ./$(DEPDIR)/pidlock.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
-	-rm -f ./$(DEPDIR)/url.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

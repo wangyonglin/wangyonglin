@@ -1,5 +1,5 @@
-string.lo: ../../../src/developer/string.c /usr/include/stdc-predef.h \
- ../../../src/developer/include/wangyonglin/string.h /usr/include/stdio.h \
+ali_url.o: ../../../src/application/ali_url.c /usr/include/stdc-predef.h \
+ ../../../include/ali_url.h /usr/include/stdio.h \
  /usr/include/bits/libc-header-start.h /usr/include/features.h \
  /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
@@ -86,7 +86,7 @@ string.lo: ../../../src/developer/string.c /usr/include/stdc-predef.h \
 
 /usr/include/stdc-predef.h:
 
-../../../src/developer/include/wangyonglin/string.h:
+../../../include/ali_url.h:
 
 /usr/include/stdio.h:
 

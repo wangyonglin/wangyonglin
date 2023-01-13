@@ -48,18 +48,30 @@ typedef int boolean;
 #define onstop ((integer)0)
 #define onstatus ((integer)-1)
 
-void *string_create(char **pointer, char *data, size_t data_size);
-void string_delete(char *pointer);
+// typedef struct _strdat
+// {
+//     size_t len;
+//     char *dat;
+// } strdat;
+
+// char *string_null(char **pointer, size_t pointermax);
+// void *string_create(char **pointer, char *data, size_t data_size);
+// void string_delete(char *pointer);
 void boolean_create(unsigned char **pointer, boolean value);
 void integer_create(unsigned char **pointer, long value);
 
 void *object_create(void **pointer, size_t pointer_size);
 void object_delete(void *pointer);
 
-char *string_localtime_create(char **pointer);
-char *string_url_encode(char *data, size_t data_size, char **pointer ,size_t pointer_max_size);
-unsigned char uchar2hex(unsigned char x);
-unsigned char *urldecode(unsigned char *encd, unsigned char *decd);
-static int is_alpha_number_char(unsigned char c);
-void urlencode(unsigned char *src, int src_len, unsigned char *dest, int dest_len);
+void string_rows(const char *title, char *data);
+char *string_replace(char *formerString, size_t formerStringMax, const char *findString, char *replaceString);
+
+char *strcrt(char **obj, char *dat, size_t datsz);
+char *strnull(char **obj, size_t objmaxsz);
+void strdel(char *obj);
+
+void *memcrt(void **obj, size_t objsz, void *dat, size_t datsz);
+void *memnull(void **obj, size_t objsz);
+void memdel(void * obj);
+
 #endif

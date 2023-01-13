@@ -135,7 +135,14 @@ aliyun_api.o: ../../../src/application/aliyun_api.c \
  /usr/include/event2/bufferevent_struct.h \
  /usr/include/event2/bufferevent_compat.h /usr/include/event2/tag.h \
  /usr/include/event2/tag_compat.h /usr/include/event2/http.h \
- /usr/include/event2/http_struct.h /usr/include/event2/http_compat.h
+ /usr/include/event2/http_struct.h /usr/include/event2/http_compat.h \
+ ../../../src/components/openssl/include/HMAC_SHA1.h \
+ /usr/include/assert.h /usr/include/openssl/rand.h \
+ /usr/include/openssl/randerr.h /usr/include/curl/curl.h \
+ /usr/include/curl/curlver.h /usr/include/curl/system.h \
+ /usr/include/curl/easy.h /usr/include/curl/multi.h \
+ /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
+ /usr/include/curl/typecheck-gcc.h ../../../include/aliutils.h
 
 /usr/include/stdc-predef.h:
 
@@ -614,3 +621,29 @@ aliyun_api.o: ../../../src/application/aliyun_api.c \
 /usr/include/event2/http_struct.h:
 
 /usr/include/event2/http_compat.h:
+
+../../../src/components/openssl/include/HMAC_SHA1.h:
+
+/usr/include/assert.h:
+
+/usr/include/openssl/rand.h:
+
+/usr/include/openssl/randerr.h:
+
+/usr/include/curl/curl.h:
+
+/usr/include/curl/curlver.h:
+
+/usr/include/curl/system.h:
+
+/usr/include/curl/easy.h:
+
+/usr/include/curl/multi.h:
+
+/usr/include/curl/curl.h:
+
+/usr/include/curl/urlapi.h:
+
+/usr/include/curl/typecheck-gcc.h:
+
+../../../include/aliutils.h:

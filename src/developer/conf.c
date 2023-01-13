@@ -42,11 +42,11 @@ ok_t conf_create(void *pointer, const char *filename, const char *section, conf_
             char *buffer = NCONF_get_string(conf, section, commands[i].name);
             if (buffer)
             {
-                string_create(handler, buffer, strlen(buffer));
+                strcrt(handler, buffer, strlen(buffer));
             }
             else
             {
-                string_create(handler, commands[i].value, strlen(commands[i].value));
+                strcrt(handler, commands[i].value, strlen(commands[i].value));
             }
         }
         else if (commands[i].type == INTEGER)

@@ -1,9 +1,9 @@
-string.lo: ../../../src/developer/string.c /usr/include/stdc-predef.h \
- ../../../src/developer/include/wangyonglin/string.h /usr/include/stdio.h \
- /usr/include/bits/libc-header-start.h /usr/include/features.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
- /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
- /usr/include/gnu/stubs-64.h \
+aliutils.o: ../../../src/application/aliutils.c \
+ /usr/include/stdc-predef.h ../../../include/aliutils.h \
+ /usr/include/stdio.h /usr/include/bits/libc-header-start.h \
+ /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/bits/long-double.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stddef.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdarg.h \
  /usr/include/bits/types.h /usr/include/bits/typesizes.h \
@@ -37,21 +37,36 @@ string.lo: ../../../src/developer/string.c /usr/include/stdc-predef.h \
  /usr/include/bits/uintn-identity.h /usr/include/sys/select.h \
  /usr/include/bits/select.h /usr/include/bits/types/struct_timeval.h \
  /usr/include/alloca.h /usr/include/bits/stdlib-bsearch.h \
- /usr/include/bits/stdlib-float.h /usr/include/openssl/err.h \
- /usr/include/openssl/e_os2.h /usr/include/openssl/opensslconf.h \
+ /usr/include/bits/stdlib-float.h \
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
+ ../../../src/developer/include/wangyonglin/listitem.h \
+ ../../../src/developer/include/developer/public.h \
+ /usr/include/curl/curl.h /usr/include/curl/curlver.h \
+ /usr/include/curl/system.h /usr/include/sys/socket.h \
+ /usr/include/bits/types/struct_iovec.h /usr/include/bits/socket.h \
+ /usr/include/bits/socket_type.h /usr/include/bits/sockaddr.h \
+ /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
+ /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
+ /usr/include/bits/types/struct_osockaddr.h \
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/limits.h \
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/syslimits.h \
+ /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+ /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/bits/posix2_lim.h /usr/include/time.h \
+ /usr/include/bits/time.h /usr/include/bits/types/struct_tm.h \
+ /usr/include/bits/types/struct_itimerspec.h /usr/include/sys/time.h \
+ /usr/include/curl/easy.h /usr/include/curl/multi.h \
+ /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
+ /usr/include/curl/typecheck-gcc.h \
+ ../../../src/developer/include/wangyonglin/string.h \
+ /usr/include/openssl/err.h /usr/include/openssl/e_os2.h \
+ /usr/include/openssl/opensslconf.h \
  /usr/include/openssl/opensslconf-x86_64.h \
  /usr/include/openssl/opensslv.h /usr/include/inttypes.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/wchar.h \
  /usr/include/bits/stdint-uintn.h /usr/include/openssl/ossl_typ.h \
- /usr/lib/gcc/x86_64-redhat-linux/8/include/limits.h \
- /usr/lib/gcc/x86_64-redhat-linux/8/include/syslimits.h \
- /usr/include/limits.h /usr/include/bits/posix1_lim.h \
- /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
- /usr/include/bits/posix2_lim.h /usr/include/openssl/bio.h \
- /usr/include/openssl/crypto.h /usr/include/time.h \
- /usr/include/bits/time.h /usr/include/bits/types/struct_tm.h \
- /usr/include/bits/types/struct_itimerspec.h \
+ /usr/include/openssl/bio.h /usr/include/openssl/crypto.h \
  /usr/include/openssl/safestack.h /usr/include/openssl/stack.h \
  /usr/include/openssl/cryptoerr.h /usr/include/openssl/symhacks.h \
  /usr/include/pthread.h /usr/include/sched.h /usr/include/bits/sched.h \
@@ -82,11 +97,14 @@ string.lo: ../../../src/developer/string.c /usr/include/stdc-predef.h \
  /usr/include/openssl/ssl3.h /usr/include/openssl/tls1.h \
  /usr/include/openssl/dtls1.h /usr/include/openssl/srtp.h \
  /usr/include/openssl/conf.h /usr/include/openssl/conferr.h \
- /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h
+ ../../../src/developer/include/wangyonglin/Unix_timestamp_converter.h \
+ ../../../src/components/openssl/include/URL.h /usr/include/assert.h \
+ ../../../src/components/openssl/include/HMAC_SHA1.h \
+ /usr/include/openssl/rand.h /usr/include/openssl/randerr.h
 
 /usr/include/stdc-predef.h:
 
-../../../src/developer/include/wangyonglin/string.h:
+../../../include/aliutils.h:
 
 /usr/include/stdio.h:
 
@@ -230,6 +248,74 @@ string.lo: ../../../src/developer/string.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/stdlib-float.h:
 
+/usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
+
+../../../src/developer/include/wangyonglin/listitem.h:
+
+../../../src/developer/include/developer/public.h:
+
+/usr/include/curl/curl.h:
+
+/usr/include/curl/curlver.h:
+
+/usr/include/curl/system.h:
+
+/usr/include/sys/socket.h:
+
+/usr/include/bits/types/struct_iovec.h:
+
+/usr/include/bits/socket.h:
+
+/usr/include/bits/socket_type.h:
+
+/usr/include/bits/sockaddr.h:
+
+/usr/include/asm/socket.h:
+
+/usr/include/asm-generic/socket.h:
+
+/usr/include/asm/sockios.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/bits/types/struct_osockaddr.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/8/include/limits.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/8/include/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/bits/posix1_lim.h:
+
+/usr/include/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/bits/posix2_lim.h:
+
+/usr/include/time.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/bits/types/struct_tm.h:
+
+/usr/include/bits/types/struct_itimerspec.h:
+
+/usr/include/sys/time.h:
+
+/usr/include/curl/easy.h:
+
+/usr/include/curl/multi.h:
+
+/usr/include/curl/curl.h:
+
+/usr/include/curl/urlapi.h:
+
+/usr/include/curl/typecheck-gcc.h:
+
+../../../src/developer/include/wangyonglin/string.h:
+
 /usr/include/openssl/err.h:
 
 /usr/include/openssl/e_os2.h:
@@ -252,31 +338,9 @@ string.lo: ../../../src/developer/string.c /usr/include/stdc-predef.h \
 
 /usr/include/openssl/ossl_typ.h:
 
-/usr/lib/gcc/x86_64-redhat-linux/8/include/limits.h:
-
-/usr/lib/gcc/x86_64-redhat-linux/8/include/syslimits.h:
-
-/usr/include/limits.h:
-
-/usr/include/bits/posix1_lim.h:
-
-/usr/include/bits/local_lim.h:
-
-/usr/include/linux/limits.h:
-
-/usr/include/bits/posix2_lim.h:
-
 /usr/include/openssl/bio.h:
 
 /usr/include/openssl/crypto.h:
-
-/usr/include/time.h:
-
-/usr/include/bits/time.h:
-
-/usr/include/bits/types/struct_tm.h:
-
-/usr/include/bits/types/struct_itimerspec.h:
 
 /usr/include/openssl/safestack.h:
 
@@ -400,4 +464,14 @@ string.lo: ../../../src/developer/string.c /usr/include/stdc-predef.h \
 
 /usr/include/openssl/conferr.h:
 
-/usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
+../../../src/developer/include/wangyonglin/Unix_timestamp_converter.h:
+
+../../../src/components/openssl/include/URL.h:
+
+/usr/include/assert.h:
+
+../../../src/components/openssl/include/HMAC_SHA1.h:
+
+/usr/include/openssl/rand.h:
+
+/usr/include/openssl/randerr.h:

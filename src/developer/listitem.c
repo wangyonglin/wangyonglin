@@ -88,7 +88,7 @@ int listitem_add_string(listitem *arguments, const char *name, char *data, size_
     arguments->items[arguments->items_pos].type = STRING;
     memset(arguments->items[arguments->items_pos].name, 0x00, sizeof(arguments->items[arguments->items_pos].name));
     memcpy(arguments->items[arguments->items_pos].name, name, strlen(name));
-    string_create((char **)&arguments->items[arguments->items_pos].data, data, datalength);
+    strcrt((char **)&arguments->items[arguments->items_pos].data, data, datalength);
     if (arguments->items[arguments->items_pos].name && arguments->items[arguments->items_pos].data)
     {
         arguments->items_pos++;

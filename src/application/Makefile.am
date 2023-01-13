@@ -11,10 +11,11 @@ AM_CPPFLAGS=\
 bin_PROGRAMS=tiger
 tiger_SOURCES=\
     main.c \
-    aliyun_signature.c \
+    ali_signature.c \
     httpd_start.c \
     httpd_router.c \
-    aliyun_api.c
+    aliyun_api.c    \
+    aliutils.c
 tiger_LDADD=\
     $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
     $(top_builddir)/src/components/mqtt/libcomponent_mqtt.la \

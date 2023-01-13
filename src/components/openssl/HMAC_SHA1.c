@@ -1,40 +1,39 @@
 #include <HMAC_SHA1.h>
-
+#include <Base64.h>
 /**
-* @file hmac_sha1.c  Implements HMAC-SHA1 as of RFC 2202
-*
-* Copyright (C) 2010 Creytiv.com
-*/
-
-
+ * @file hmac_sha1.c  Implements HMAC-SHA1 as of RFC 2202
+ *
+ * Copyright (C) 2010 Creytiv.com
+ */
 
 /** SHA-1 Block size */
 #ifndef SHA_BLOCKSIZE
-#define SHA_BLOCKSIZE   (64)
+#define SHA_BLOCKSIZE (64)
 #endif
 
-
 /**
-* Function to compute the digest
-*
-* @param k   Secret key
-* @param lk  Length of the key in bytes
-* @param d   Data
-* @param ld  Length of data in bytes
-* @param out Digest output
-* @param t   Size of digest output
-*/
-void hmac_sha1(const uint8_t *k,  /* secret key */
-        size_t lk,       /* length of the key in bytes */
-        const uint8_t *d,  /* data */
-        size_t ld,       /* length of data in bytes */
-        uint8_t *out,      /* output buffer, at least "t" bytes */
-        size_t *t) {
+ * Function to compute the digest
+ *
+ * @param k   Secret key
+ * @param lk  Length of the key in bytes
+ * @param d   Data
+ * @param ld  Length of data in bytes
+ * @param out Digest output
+ * @param t   Size of digest output
+ */
+void hmac_sha1(const uint8_t *k, /* secret key */
+               size_t lk,        /* length of the key in bytes */
+               const uint8_t *d, /* data */
+               size_t ld,        /* length of data in bytes */
+               uint8_t *out,     /* output buffer, at least "t" bytes */
+               size_t *t)
+{
 #ifdef USE_OPENSSL
 
-	if (!HMAC(EVP_sha1(), k, (int)lk, d, ld, out, t)) {
-		ERR_clear_error();
-	}
+    if (!HMAC(EVP_sha1(), k, (int)lk, d, ld, out, t))
+    {
+        ERR_clear_error();
+    }
 #else
     SHA_CTX ictx, octx;
     uint8_t isha[SHA_DIGEST_LENGTH], osha[SHA_DIGEST_LENGTH];
@@ -42,7 +41,8 @@ void hmac_sha1(const uint8_t *k,  /* secret key */
     uint8_t buf[SHA_BLOCKSIZE];
     size_t i;
 
-    if (lk > SHA_BLOCKSIZE) {
+    if (lk > SHA_BLOCKSIZE)
+    {
         SHA_CTX tctx;
 
         SHA1_Init(&tctx);
@@ -58,10 +58,12 @@ void hmac_sha1(const uint8_t *k,  /* secret key */
     SHA1_Init(&ictx);
 
     /* Pad the key for inner digest */
-    for (i = 0; i < lk; ++i) {
+    for (i = 0; i < lk; ++i)
+    {
         buf[i] = k[i] ^ 0x36;
     }
-    for (i = lk; i < SHA_BLOCKSIZE; ++i) {
+    for (i = lk; i < SHA_BLOCKSIZE; ++i)
+    {
         buf[i] = 0x36;
     }
 
@@ -76,10 +78,12 @@ void hmac_sha1(const uint8_t *k,  /* secret key */
 
     /* Pad the key for outter digest */
 
-    for (i = 0; i < lk; ++i) {
+    for (i = 0; i < lk; ++i)
+    {
         buf[i] = k[i] ^ 0x5c;
     }
-    for (i = lk; i < SHA_BLOCKSIZE; ++i) {
+    for (i = lk; i < SHA_BLOCKSIZE; ++i)
+    {
         buf[i] = 0x5c;
     }
 
@@ -92,4 +96,17 @@ void hmac_sha1(const uint8_t *k,  /* secret key */
     *t = *t > SHA_DIGEST_LENGTH ? SHA_DIGEST_LENGTH : *t;
     memcpy(out, osha, *t);
 #endif
+}
+
+void HmacSha1_Base64(const uint8_t *k,size_t lk,const uint8_t *d,size_t ld,uint8_t **b64_encode_this,size_t encode_this_many_bytes)
+{
+    char *base64Buffer;
+    int outputSize = 0;
+    (*b64_encode_this) = malloc(sizeof(uint8_t) * encode_this_many_bytes);
+    memset((*b64_encode_this), 0x00, sizeof(uint8_t) * encode_this_many_bytes);
+    hmac_sha1(k, lk, d, ld, (*b64_encode_this), &outputSize);
+    base64Buffer = base64encode((*b64_encode_this), outputSize);
+    memset((*b64_encode_this), 0x00, sizeof(uint8_t) * encode_this_many_bytes);
+    memcpy((*b64_encode_this), base64Buffer, strlen(base64Buffer));
+    free(base64Buffer);
 }

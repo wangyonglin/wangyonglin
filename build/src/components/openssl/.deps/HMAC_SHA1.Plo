@@ -61,7 +61,16 @@ HMAC_SHA1.lo: ../../../../src/components/openssl/HMAC_SHA1.c \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/openssl/rsa.h /usr/include/openssl/rsaerr.h \
  /usr/include/openssl/sha.h /usr/include/openssl/rand.h \
- /usr/include/openssl/randerr.h /usr/include/openssl/hmac.h
+ /usr/include/openssl/randerr.h /usr/include/openssl/hmac.h \
+ ../../../../src/components/openssl/include/Base64.h \
+ /usr/include/openssl/pem.h /usr/include/openssl/x509.h \
+ /usr/include/openssl/buffer.h /usr/include/openssl/buffererr.h \
+ /usr/include/openssl/ec.h /usr/include/openssl/ecerr.h \
+ /usr/include/openssl/dsa.h /usr/include/openssl/dh.h \
+ /usr/include/openssl/dherr.h /usr/include/openssl/dsaerr.h \
+ /usr/include/openssl/x509err.h /usr/include/openssl/x509_vfy.h \
+ /usr/include/openssl/pkcs7.h /usr/include/openssl/pkcs7err.h \
+ /usr/include/openssl/pemerr.h
 
 /usr/include/stdc-predef.h:
 
@@ -288,3 +297,35 @@ HMAC_SHA1.lo: ../../../../src/components/openssl/HMAC_SHA1.c \
 /usr/include/openssl/randerr.h:
 
 /usr/include/openssl/hmac.h:
+
+../../../../src/components/openssl/include/Base64.h:
+
+/usr/include/openssl/pem.h:
+
+/usr/include/openssl/x509.h:
+
+/usr/include/openssl/buffer.h:
+
+/usr/include/openssl/buffererr.h:
+
+/usr/include/openssl/ec.h:
+
+/usr/include/openssl/ecerr.h:
+
+/usr/include/openssl/dsa.h:
+
+/usr/include/openssl/dh.h:
+
+/usr/include/openssl/dherr.h:
+
+/usr/include/openssl/dsaerr.h:
+
+/usr/include/openssl/x509err.h:
+
+/usr/include/openssl/x509_vfy.h:
+
+/usr/include/openssl/pkcs7.h:
+
+/usr/include/openssl/pkcs7err.h:
+
+/usr/include/openssl/pemerr.h:
