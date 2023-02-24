@@ -21,7 +21,7 @@
 #include <openssl/err.h>
 #include <openssl/ssl.h>
 #include <openssl/conf.h>
-
+#include <openssl/bio.h>
 typedef struct internal_hooks
 {
     void *(*allocate)(size_t size);
@@ -46,7 +46,8 @@ typedef enum _character
 {
     STRING,
     INTEGER,
-    BOOLEAN
+    BOOLEAN,
+    INVALID
 } character;
 
 typedef enum _boolean

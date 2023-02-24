@@ -8,7 +8,7 @@
 #include <wangyonglin/list.h>
 #include <curl/curl.h>
 #include <wangyonglin/conf.h>
-typedef struct _aliutils_sys
+typedef struct _aliutils_apis_t
 {
     char *DeviceName;
     char *AccessKeySecret;
@@ -23,20 +23,7 @@ typedef struct _aliutils_sys
     char *SignatureVersion;
     char *RegionId;
     long maxInflight;
-} aliutils_sys;
-
-typedef struct _aliutils_common
-{
-    char *Format;
-    char *Version;
-    char *AccessKeyId;
-    char *Signature;
-    char *SignatureMethod;
-    char *Timestamp;
-    char *SignatureVersion;
-    char *SignatureNonce;
-    char *RegionId;
-} aliutils_common;
+} aliutils_apis_t;
 
 char *aliurls_timestamp(char **obj);
 char *aliutls_url_list(char **outputString, size_t outputStringMax, list *objlist);
@@ -46,7 +33,7 @@ char *percentEncode(char **dataOut, char *dataText, size_t dataSize);
 void aliutils_https_get(char *url);
 
 void aliutils_del(char *obj);
-ok_t aliutils_sys_init(aliutils_sys **sys, const char *filename);
-void aliutils_common_clean(aliutils_common *common);
-aliutils_common * aliutils_common_init(aliutils_common **common, aliutils_sys *sys);
+// ok_t aliutils_sys_init(aliutils_sys **sys, const char *filename);
+// void aliutils_common_clean(aliutils_common *common);
+// aliutils_common * aliutils_common_init(aliutils_common **common, aliutils_sys *sys);
 #endif

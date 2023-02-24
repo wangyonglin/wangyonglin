@@ -1,5 +1,5 @@
 main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
- ../../../src/wangyonglin/include/wangyonglin/application.h \
+ ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
  ../../../src/wangyonglin/include/wangyonglin/package.h \
  /usr/include/stdio.h /usr/include/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
@@ -112,9 +112,10 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
  ../../../src/components/openssl/include/SHA256WithRSA.h \
  /usr/include/openssl/rand.h /usr/include/openssl/randerr.h \
  ../../../src/wangyonglin/include/wangyonglin/file.h \
- ../../../src/application/include/httpd.h /usr/include/event.h \
- /usr/include/event2/event-config.h /usr/include/event2/event-config-64.h \
- /usr/include/sys/time.h /usr/include/evutil.h /usr/include/event2/util.h \
+ ../../../src/application/include/application/httpd.h \
+ /usr/include/event.h /usr/include/event2/event-config.h \
+ /usr/include/event2/event-config-64.h /usr/include/sys/time.h \
+ /usr/include/evutil.h /usr/include/event2/util.h \
  /usr/include/event2/visibility.h /usr/include/netdb.h \
  /usr/include/netinet/in.h /usr/include/sys/socket.h \
  /usr/include/bits/types/struct_iovec.h /usr/include/bits/socket.h \
@@ -134,7 +135,7 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
  /usr/include/event2/http.h /usr/include/event2/http_struct.h \
  /usr/include/event2/http_compat.h \
  ../../../src/components/cjson/include/cJSON.h \
- ../../../src/application/include/aliapis.h \
+ ../../../src/application/include/application/aliapis.h \
  ../../../src/components/mqtt/include/MQTTAsync.h \
  ../../../src/components/mqtt/include/MQTTExportDeclarations.h \
  ../../../src/components/mqtt/include/MQTTProperties.h \
@@ -142,17 +143,17 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
  ../../../src/components/mqtt/include/MQTTSubscribeOpts.h \
  ../../../src/components/mqtt/include/MQTTClientPersistence.h \
  ../../../src/wangyonglin/include/wangyonglin/list.h \
- ../../../src/application/include/aliutils.h /usr/include/curl/curl.h \
- /usr/include/curl/curlver.h /usr/include/curl/system.h \
- /usr/include/curl/easy.h /usr/include/curl/multi.h \
- /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
- /usr/include/curl/typecheck-gcc.h \
+ ../../../src/application/include/application/aliutils.h \
+ /usr/include/curl/curl.h /usr/include/curl/curlver.h \
+ /usr/include/curl/system.h /usr/include/curl/easy.h \
+ /usr/include/curl/multi.h /usr/include/curl/curl.h \
+ /usr/include/curl/urlapi.h /usr/include/curl/typecheck-gcc.h \
  ../../../src/components/openssl/include/HMAC_SHA1.h \
  ../../../src/components/mqtt/include/Base64.h
 
 /usr/include/stdc-predef.h:
 
-../../../src/wangyonglin/include/wangyonglin/application.h:
+../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
 
 ../../../src/wangyonglin/include/wangyonglin/package.h:
 
@@ -546,7 +547,7 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 ../../../src/wangyonglin/include/wangyonglin/file.h:
 
-../../../src/application/include/httpd.h:
+../../../src/application/include/application/httpd.h:
 
 /usr/include/event.h:
 
@@ -628,7 +629,7 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 ../../../src/components/cjson/include/cJSON.h:
 
-../../../src/application/include/aliapis.h:
+../../../src/application/include/application/aliapis.h:
 
 ../../../src/components/mqtt/include/MQTTAsync.h:
 
@@ -644,7 +645,7 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 ../../../src/wangyonglin/include/wangyonglin/list.h:
 
-../../../src/application/include/aliutils.h:
+../../../src/application/include/application/aliutils.h:
 
 /usr/include/curl/curl.h:
 

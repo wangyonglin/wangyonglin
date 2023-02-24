@@ -1,5 +1,5 @@
-#if !defined(WANGYONGLIN_APPLICATION_H)
-#define WANGYONGLIN_APPLICATION_H
+#if !defined(WANGYONGLIN_WANGYONGLIN_H)
+#define WANGYONGLIN_WANGYONGLIN_H
 
 #include <wangyonglin/package.h>
 #include <wangyonglin/pool.h>

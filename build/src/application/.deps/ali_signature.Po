@@ -1,5 +1,6 @@
 ali_signature.o: ../../../src/application/ali_signature.c \
- /usr/include/stdc-predef.h ../../../src/application/include/ali_sign.h \
+ /usr/include/stdc-predef.h \
+ ../../../src/application/include/application/ali_sign.h \
  /usr/include/stdlib.h /usr/include/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/bits/long-double.h \
@@ -98,7 +99,7 @@ ali_signature.o: ../../../src/application/ali_signature.c \
 
 /usr/include/stdc-predef.h:
 
-../../../src/application/include/ali_sign.h:
+../../../src/application/include/application/ali_sign.h:
 
 /usr/include/stdlib.h:
 

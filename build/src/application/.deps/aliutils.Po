@@ -1,5 +1,6 @@
 aliutils.o: ../../../src/application/aliutils.c \
- /usr/include/stdc-predef.h ../../../src/application/include/aliutils.h \
+ /usr/include/stdc-predef.h \
+ ../../../src/application/include/application/aliutils.h \
  /usr/include/stdio.h /usr/include/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/bits/long-double.h \
@@ -106,6 +107,16 @@ aliutils.o: ../../../src/application/aliutils.c \
  /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
  /usr/include/curl/typecheck-gcc.h \
  ../../../src/wangyonglin/include/wangyonglin/conf.h \
+ ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
+ ../../../src/wangyonglin/include/wangyonglin/pool.h \
+ ../../../src/wangyonglin/include/wangyonglin/options.h \
+ ../../../src/wangyonglin/include/wangyonglin/lock.h \
+ ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
+ ../../../src/wangyonglin/include/wangyonglin/log.h \
+ ../../../src/wangyonglin/include/wangyonglin/message.h \
+ /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
+ /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
+ /usr/include/malloc.h \
  ../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h \
  ../../../src/components/openssl/include/URL.h \
  ../../../src/components/openssl/include/HMAC_SHA1.h \
@@ -113,7 +124,7 @@ aliutils.o: ../../../src/application/aliutils.c \
 
 /usr/include/stdc-predef.h:
 
-../../../src/application/include/aliutils.h:
+../../../src/application/include/application/aliutils.h:
 
 /usr/include/stdio.h:
 
@@ -504,6 +515,32 @@ aliutils.o: ../../../src/application/aliutils.c \
 /usr/include/curl/typecheck-gcc.h:
 
 ../../../src/wangyonglin/include/wangyonglin/conf.h:
+
+../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
+
+../../../src/wangyonglin/include/wangyonglin/pool.h:
+
+../../../src/wangyonglin/include/wangyonglin/options.h:
+
+../../../src/wangyonglin/include/wangyonglin/lock.h:
+
+../../../src/wangyonglin/include/wangyonglin/daemonize.h:
+
+../../../src/wangyonglin/include/wangyonglin/log.h:
+
+../../../src/wangyonglin/include/wangyonglin/message.h:
+
+/usr/include/sys/ipc.h:
+
+/usr/include/bits/ipctypes.h:
+
+/usr/include/bits/ipc.h:
+
+/usr/include/sys/msg.h:
+
+/usr/include/bits/msq.h:
+
+/usr/include/malloc.h:
 
 ../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h:
 

@@ -3,7 +3,7 @@
 #include <wangyonglin/package.h>
 #include <wangyonglin/conf.h>
 #include <wangyonglin/string.h>
-#include <wangyonglin/application.h>
+#include <wangyonglin/wangyonglin.h>
 typedef struct _log_t{
     char *error_log;
     boolean log_errors;

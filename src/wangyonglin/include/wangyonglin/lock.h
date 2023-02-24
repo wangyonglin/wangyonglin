@@ -3,7 +3,7 @@
 
 #include <wangyonglin/package.h>
 #include <wangyonglin/conf.h>
-#include <wangyonglin/application.h>
+#include <wangyonglin/wangyonglin.h>
 typedef struct _lock_t
 {
     char *lockfile;

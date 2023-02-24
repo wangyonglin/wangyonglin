@@ -28,7 +28,7 @@ extern int64_t NextId()
     //    return id;
 }
 
-void SnowFlake_create(uint32_t workerId, uint8_t method, uint8_t SeqBitLength)
+void SnowFlakeInit(uint32_t workerId, uint8_t method, uint8_t SeqBitLength)
 {
 
     IdGeneratorOptions options = BuildIdGenOptions(1);
@@ -46,7 +46,7 @@ int64_t SnowFlake_IdGenerator()
     //    free(generator);
     //    return id;
 }
-int64_t SnowFlake_IdGenerator_toString(char **pointer)
+int64_t SnowFlakeFormat(char **pointer)
 {
     int64_t id = GetIdGenInstance()->NextId();
     if ((*pointer) = malloc(sizeof(char) * 12))

@@ -1,4 +1,4 @@
-#include <aliutils.h>
+#include <application/aliutils.h>
 #include <wangyonglin/string.h>
 #include <wangyonglin/Unix_timestamp_converter.h>
 #include <URL.h>
@@ -120,56 +120,55 @@ void aliutils_del(char *obj)
         free(obj);
 }
 
-ok_t aliutils_sys_init(aliutils_sys **sys, const char *filename)
+ok_t aliutils_apis_init(struct _app_t *app,struct _aliutils_apis_t **apis, const char *filename)
 {
     ok_t ret;
-    if (!objcrt((void **)sys, sizeof(aliutils_sys)))
+    if (!objcrt((void **)apis, sizeof(struct _aliutils_apis_t)))
     {
         return NullPointerException;
     }
-    conf_command commands[] = {
-        {"AccessKeyId", NULL, STRING, offsetof(aliutils_sys, AccessKeyId)},
-        {"AccessKeySecret", NULL, STRING, offsetof(aliutils_sys, AccessKeySecret)},
-        {"ProductKey", "cn-shanghai", STRING, offsetof(aliutils_sys, ProductKey)},
-        {"DeviceName", "JSON", STRING, offsetof(aliutils_sys, DeviceName)},
-        {"Format", "JSON", STRING, offsetof(aliutils_sys, Format)},
-        {"Version", "2020-04-20", STRING, offsetof(aliutils_sys, Version)},
-        {"AccessKeyId", NULL, STRING, offsetof(aliutils_sys, AccessKeyId)},
-        {"SignatureMethod", "HMAC-SHA1", STRING, offsetof(aliutils_sys, SignatureMethod)},
-        {"SignatureVersion", "1.0", STRING, offsetof(aliutils_sys, SignatureVersion)},
-        {"RegionId", "cn-shanghai", STRING, offsetof(aliutils_sys, RegionId)},
-        {"TopicFullName", NULL, STRING, offsetof(aliutils_sys, TopicFullName)}};
-    size_t commands_size = conf_command_size(commands);
-    // printf("\t%d\r\n", commands_size);
-    ret = conf_create((void **)*sys, filename, NULL, commands, commands_size);
+     struct _command  commands[] = {
+        {"AccessKeyId", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeyId)},
+        {"AccessKeySecret", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeySecret)},
+        {"ProductKey", "cn-shanghai", STRING, offsetof(struct _aliutils_apis_t, ProductKey)},
+        {"DeviceName", "JSON", STRING, offsetof(struct _aliutils_apis_t, DeviceName)},
+        {"Format", "JSON", STRING, offsetof(struct _aliutils_apis_t, Format)},
+        {"Version", "2020-04-20", STRING, offsetof(struct _aliutils_apis_t, Version)},
+        {"AccessKeyId", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeyId)},
+        {"SignatureMethod", "HMAC-SHA1", STRING, offsetof(struct _aliutils_apis_t, SignatureMethod)},
+        {"SignatureVersion", "1.0", STRING, offsetof(struct _aliutils_apis_t, SignatureVersion)},
+        {"RegionId", "cn-shanghai", STRING, offsetof(struct _aliutils_apis_t, RegionId)},
+        {"TopicFullName", NULL, STRING, offsetof(struct _aliutils_apis_t, TopicFullName)}};
 
+    // printf("\t%d\r\n", commands_size);
+    command_init(app,*apis,commands,NULL);
     return ret;
 }
 
-aliutils_common * aliutils_common_init(aliutils_common **common, aliutils_sys *sys)
-{
-    objcrt(common, sizeof(aliutils_common));
-    aliurls_timestamp(&(*common)->Timestamp);
-    SnowFlake_IdGenerator_toString(&(*common)->SignatureNonce);
-    strcrt(&(*common)->Format, sys->Format, strlen(sys->Format));
-    strcrt(&(*common)->Version, sys->Version, strlen(sys->Version));
-    strcrt(&(*common)->AccessKeyId, sys->AccessKeyId, strlen(sys->AccessKeyId));
-    strcrt(&(*common)->SignatureMethod, sys->SignatureMethod, strlen(sys->SignatureMethod));
-    strcrt(&(*common)->AccessKeyId, sys->AccessKeyId, strlen(sys->AccessKeyId));
-    strcrt(&(*common)->SignatureVersion, sys->SignatureVersion, strlen(sys->SignatureVersion));
-    strcrt(&(*common)->RegionId, sys->RegionId, strlen(sys->RegionId));
-    return (*common);
-}
+// aliutils_common *aliutils_common_init(aliutils_common **common, aliutils_sys *sys)
+// {
+//     objcrt(common, sizeof(aliutils_common));
+//     aliurls_timestamp(&(*common)->Timestamp);
+//     SnowFlake_IdGenerator_toString(&(*common)->SignatureNonce);
+//     strcrt(&(*common)->Format, sys->Format, strlen(sys->Format));
+//     strcrt(&(*common)->Version, sys->Version, strlen(sys->Version));
+//     strcrt(&(*common)->AccessKeyId, sys->AccessKeyId, strlen(sys->AccessKeyId));
+//     strcrt(&(*common)->SignatureMethod, sys->SignatureMethod, strlen(sys->SignatureMethod));
+//     strcrt(&(*common)->AccessKeyId, sys->AccessKeyId, strlen(sys->AccessKeyId));
+//     strcrt(&(*common)->SignatureVersion, sys->SignatureVersion, strlen(sys->SignatureVersion));
+//     strcrt(&(*common)->RegionId, sys->RegionId, strlen(sys->RegionId));
+//     return (*common);
+// }
 
-void aliutils_common_clean(aliutils_common *common)
-{
-    strdel(common->Timestamp);
-    strdel(common->SignatureNonce);
-    strdel(common->Format);
-    strdel(common->Version);
-    strdel(common->AccessKeyId);
-    strdel(common->SignatureMethod);
-    strdel(common->AccessKeyId);
-    strdel(common->SignatureVersion);
-    strdel(common->RegionId);
-}
+// void aliutils_common_clean(aliutils_common *common)
+// {
+//     strdel(common->Timestamp);
+//     strdel(common->SignatureNonce);
+//     strdel(common->Format);
+//     strdel(common->Version);
+//     strdel(common->AccessKeyId);
+//     strdel(common->SignatureMethod);
+//     strdel(common->AccessKeyId);
+//     strdel(common->SignatureVersion);
+//     strdel(common->RegionId);
+// }

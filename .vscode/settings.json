@@ -167,7 +167,8 @@
         "application.h": "c",
         "list.h": "c",
         "unix_timestamp_converter.h": "c",
-        "daemonize.h": "c"
+        "daemonize.h": "c",
+        "curl.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

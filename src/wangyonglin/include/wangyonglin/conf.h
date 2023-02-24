@@ -3,18 +3,17 @@
 
 #include <wangyonglin/package.h>
 #include <wangyonglin/string.h>
+#include <wangyonglin/wangyonglin.h>
 
 
-#define conf_command_size(array) ((sizeof(array)) / (sizeof(array[0])))
-
-typedef struct _conf_command
+typedef struct _command
 {
     const char *name;
     void *value;
     character type;
     size_t address;
-} conf_command;
+} command_t;
+#define null_command {NULL, "", INVALID, NULL}
+ok_t command_init(struct _app_t *app, void *pointer, struct _command commands[], const char *section);
 
-ok_t conf_create(void *pointer,const char *filename, const char *section, conf_command commands[], int commands_size);
-void conf_delete(void *pointer);
 #endif

@@ -22,7 +22,7 @@ extern int64_t TAP_STDCALL NextId();
  * @param method        /// 雪花计算方法,（1-漂移算法|2-传统算法），默认1
  * @param SeqBitLength  /// 序列数位长，默认值6，取值范围 [3, 21]（要求：序列数位长+机器码位长不超过22）
  */
-void SnowFlake_create(uint32_t workerId, uint8_t method, uint8_t SeqBitLength);
+void SnowFlakeInit(uint32_t workerId, uint8_t method, uint8_t SeqBitLength);
 /**
  * @brief       /// 生成ID： 
  *                           5745600032343070
@@ -31,7 +31,7 @@ void SnowFlake_create(uint32_t workerId, uint8_t method, uint8_t SeqBitLength);
  * @return int64_t 
  */
 int64_t SnowFlake_IdGenerator();
-int64_t SnowFlake_IdGenerator_toString(char **pointer);
+int64_t SnowFlakeFormat(char **pointer);
 /**
  * @brief
  * #include "SnowFlake.h"

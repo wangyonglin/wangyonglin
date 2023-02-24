@@ -8,10 +8,10 @@
 #include <time.h>
 #include <stdbool.h>
 #include "MQTTAsync.h"
-#include <wangyonglin/application.h>
+#include <wangyonglin/wangyonglin.h>
 #include <wangyonglin/list.h>
 #include <cJSON.h>
-#include <aliutils.h>
-ok_t aliapisPub(char **aliapisurl,aliutils_sys *sys, char *MessageContentText, size_t MessageContentSize);
+#include <application/aliutils.h>
+ok_t aliapis_https_pub(char **aliapisurl, struct _aliutils_apis_t *apis, char *MessageContentText, size_t MessageContentSize);
 
 #endif

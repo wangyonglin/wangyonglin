@@ -1,5 +1,6 @@
 httpd_router.o: ../../../src/application/httpd_router.c \
- /usr/include/stdc-predef.h ../../../src/application/include/httpd.h \
+ /usr/include/stdc-predef.h \
+ ../../../src/application/include/application/httpd.h \
  /usr/include/string.h /usr/include/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/bits/long-double.h \
@@ -57,7 +58,7 @@ httpd_router.o: ../../../src/application/httpd_router.c \
  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
  /usr/include/bits/getopt_core.h \
  ../../../src/components/cjson/include/cJSON.h \
- ../../../src/wangyonglin/include/wangyonglin/application.h \
+ ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
  ../../../src/wangyonglin/include/wangyonglin/package.h \
  /usr/include/stdlib.h /usr/include/bits/waitflags.h \
  /usr/include/bits/waitstatus.h /usr/include/bits/floatn.h \
@@ -133,7 +134,7 @@ httpd_router.o: ../../../src/application/httpd_router.c \
 
 /usr/include/stdc-predef.h:
 
-../../../src/application/include/httpd.h:
+../../../src/application/include/application/httpd.h:
 
 /usr/include/string.h:
 
@@ -343,7 +344,7 @@ httpd_router.o: ../../../src/application/httpd_router.c \
 
 ../../../src/components/cjson/include/cJSON.h:
 
-../../../src/wangyonglin/include/wangyonglin/application.h:
+../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
 
 ../../../src/wangyonglin/include/wangyonglin/package.h:
 

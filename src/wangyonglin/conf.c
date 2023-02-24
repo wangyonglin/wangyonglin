@@ -1,60 +1,46 @@
 #include <wangyonglin/conf.h>
 
-// ok_t conf_create(conf_t **conf)
-// {
-//     if ((*conf) = global_hooks.allocate(sizeof(conf_t)))
-//     {
-//         memset((*conf), 0x00, sizeof(conf_t));
-//         return OK;
-//     }
-//     return NullPointerException;
-// }
-
-ok_t conf_create(void *pointer, const char *filename, const char *section, conf_command commands[], int commands_size)
+ok_t command_init(struct _app_t *app, void *pointer, struct _command commands[], const char *section)
 {
-    if (!pointer)
+    if (!pointer && !app->options->ini_file)
     {
-        return ArgumentException;
+        return NullPointerException;
     }
-    CONF *conf = NULL;
-    long errline = -1;
+
+    CONF *pConf = NCONF_new(NULL);
+    BIO *pBio = BIO_new_file(app->options->ini_file, "r");
+    if (pBio == NULL)
+    {
+        printf("load failed \n");
+        return -1;
+    }
+
     long callintger;
+    long lELine = 0;
+    NCONF_load_bio(pConf, pBio, &lELine);
     void *handler;
-
-    conf = NCONF_new(NULL);
-    if (NCONF_load(conf, filename, &errline) <= 0)
+    int i = 0;
+    while (commands[i].name)
     {
-        if (errline <= 0)
-            fprintf(stderr, "Error processing config file\n");
-        else
-            fprintf(stderr, "Error on line %ld\n", errline);
-        NCONF_free(conf);
-        return ErrorException;
-    }
-
-    for (int i; i < commands_size; i++)
-    {
-
+        /* code */
         handler = (pointer) + commands[i].address;
 
         if (commands[i].type == STRING)
         {
-            char *buffer = NCONF_get_string(conf, section, commands[i].name);
-            if (buffer)
+
+            char *out = NCONF_get_string(pConf, section, commands[i].name);
+            if (out)
             {
-                strcrt(handler, buffer, strlen(buffer));
+                string_create(app->pool, handler,  out, strlen(out));
             }
             else
             {
-                // strcrt(handler, commands[i].value, strlen(commands[i].value));
-                errno = EINVAL;
-                perror(commands[i].name);
-                exit(EXIT_FAILURE);
+                 string_create(app->pool, handler, commands[i].value, strlen(commands[i].value));
             }
         }
         else if (commands[i].type == INTEGER)
         {
-            if (NCONF_get_number(conf, section, commands[i].name, &callintger) == 1)
+            if (NCONF_get_number(pConf, section, commands[i].name, &callintger) == 1)
             {
                 integer_create(handler, callintger);
             }
@@ -65,7 +51,7 @@ ok_t conf_create(void *pointer, const char *filename, const char *section, conf_
         }
         else if (commands[i].type == BOOLEAN)
         {
-            char *buffer = NCONF_get_string(conf, section, commands[i].name);
+            char *buffer = NCONF_get_string(pConf, section, commands[i].name);
             if (buffer)
             {
 
@@ -87,32 +73,26 @@ ok_t conf_create(void *pointer, const char *filename, const char *section, conf_
                 exit(EXIT_FAILURE);
             }
         }
+        i++;
     }
 
-    NCONF_free(conf);
+    BIO_free(pBio);
+    NCONF_free(pConf);
     return OK;
 }
 
-void conf_delete(void *pointer)
+boolean toBoolean(char *objstr)
 {
-
-    if (pointer)
+    if (objstr)
     {
-        // void *handler;
-        // for (int i; i < commands_size; i++)
-        // {
-        //     //   handler = (pointer) + commands[i].address;
-        //     if (commands[i].type == STRING)
-        //     {
-        //         //  handler = (pointer + commands[i].address);
-
-        //         printf("\thandler[%p]\r\n", commands[i].value);
-        //         if (&commands[i].value)
-        //         {
-        //             free(&commands[i].value);
-        //         }
-        //     }
-        // }
-        free(pointer);
+        if ((strcmp(objstr, "on") == 0) || (strcmp(objstr, "ON") == 0) || strcmp(objstr, "On") == 0)
+        {
+            return positive;
+        }
+        else if ((strcmp(objstr, "off") == 0) || (strcmp(objstr, "OFF") == 0) || (strcmp(objstr, "Off") == 0))
+        {
+            return negative;
+        }
     }
+    return invalid;
 }

@@ -1,18 +1,30 @@
-#include <wangyonglin/application.h>
+#include <wangyonglin/wangyonglin.h>
 #include <wangyonglin/pool.h>
 pool_t *pool = NULL;
+/**
+ * 处理SIGINT信号
+ **/
+void sigintHandler(int signal)
+{
+    printf("this is sigintHandler\n");
+    event_loopexit();
+}
 void __attribute__((destructor)) __exit()
 {
-    // printf("this is exit\n");
-    exit(EXIT_SUCCESS);
+    printf("this is exit\n");
+
+    if (pool)
+    {
+        allocate_delete(pool);
+    }
 }
 
 void __attribute__((constructor)) init()
 {
-    // printf("this is init\n");
-    signal(SIGHUP, __exit);
-    signal(SIGINT, __exit);
-    signal(SIGALRM, __exit);
+    printf("this is init\n");
+    signal(SIGHUP, sigintHandler);
+    signal(SIGINT, sigintHandler);
+    signal(SIGALRM, sigintHandler);
 }
 
 app_t *application_create(app_t **app, int argc, char *argv[])
@@ -35,7 +47,6 @@ app_t *application_create(app_t **app, int argc, char *argv[])
         perror("options_create failed");
         exit(EXIT_FAILURE);
     }
-    string_rows("ini_file", (*app)->options->ini_file);
 
     if (!lock_create((*app)))
     {
@@ -48,22 +59,19 @@ app_t *application_create(app_t **app, int argc, char *argv[])
         perror("log_create failed");
         exit(EXIT_FAILURE);
     }
-    logerr((*app)->log, "wangyonglin");
+
     if ((*app)->options->startup == positive)
     {
-        string_rows("app", "start");
-
         locking((*app)->lock);
         return (*app);
     }
     else if ((*app)->options->startup == negative)
     {
-        string_rows("app", "stop");
         lockexit((*app)->lock);
         exit(EXIT_SUCCESS);
     }
-
-    // // string_rows("启动", "失败");
+    perror("application_create failed");
+    exit(EXIT_FAILURE);
     return NULL;
 }
 

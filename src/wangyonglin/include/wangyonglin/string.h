@@ -8,7 +8,8 @@ void integer_create(unsigned char **pointer, long value);
 void *objcrt(void **obj, size_t objsize);
 void objdel(void *obj);
 
-void string_rows(const char *title, char *data);
+void message(const char *title, char *data);
+
 char *string_replace(char *formerString, size_t formerStringMax, const char *findString, char *replaceString);
 
 char *strcrt(char **obj, char *dat, size_t datsz);

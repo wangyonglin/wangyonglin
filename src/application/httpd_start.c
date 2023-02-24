@@ -1,34 +1,34 @@
-#include <httpd.h>
+#include <application/httpd.h>
 #include <curl/curl.h>
 #include <cJSON.h>
 
-ok_t httpd_initializing(httpd_t **httpd, app_t *app, char *conf)
+httpd_t *httpd = NULL;
+
+ok_t httpd_create(app_t *app)
 {
     if (!app)
     {
         return ArgumentException;
     }
-    if (objcrt((void **)httpd, sizeof(httpd_t)) != OK)
+    if (!objcrt((void **)&httpd, sizeof(struct _httpd_t)))
     {
-        logerr(app->log, "https_server_initializing failed");
+        logerr(app->log, "httpd_create failed");
         return NullPointerException;
     }
-    conf_command arguments[] = {
-        {"address", "0.0.0.0", STRING, offsetof(httpd_t, address)},
-        {"port",80,INTEGER, offsetof(httpd_t, port)},
-        {"timeout_in_secs",15, INTEGER, offsetof(httpd_t, timeout_in_secs)}};
+    struct _command commands[] = {
+        {"address", "0.0.0.0", STRING, offsetof(struct _httpd_t, address)},
+        {"port",(void*) 80, INTEGER, offsetof(struct _httpd_t, port)},
+        {"timeout_in_secs", 15, INTEGER, offsetof(struct _httpd_t, timeout_in_secs)},
+        null_command};
 
-    int arguments_size = sizeof(arguments) / sizeof(arguments[0]);
-
-    if (conf_create((void **)*httpd, conf, NULL, arguments, arguments_size) != OK)
+    if (command_init(app, httpd, commands, "HTTPD") != OK)
     {
-        logerr(app->log, "https_server_initializing conf_mapping   failed");
         return ErrorException;
     }
-    logerr(app->log, "address    {%s}", (*httpd)->address);
-    logerr(app->log, "port    {%d}", (*httpd)->port);
-    logerr(app->log, "timeout_in_secs    {%d}", (*httpd)->timeout_in_secs);
-    (*httpd)->app = app;
+    logerr(app->log, "address    {%s}", (httpd)->address);
+    logerr(app->log, "port    {%d}", (httpd)->port);
+    logerr(app->log, "timeout_in_secs    {%d}", (httpd)->timeout_in_secs);
+    (httpd)->app = app;
     return OK;
 }
 
@@ -88,7 +88,7 @@ done:
     return;
 }
 
-ok_t httpd_start(httpd_t *httpd)
+ok_t httpd_start()
 {
 
     if (httpd)
@@ -112,10 +112,11 @@ ok_t httpd_start(httpd_t *httpd)
 
     return ErrorException;
 }
-void httpd_destroy(httpd_t *httpd)
+void httpd_delete()
 {
     if (httpd->https)
     {
         evhttp_free(httpd->https);
+        objdel(httpd);
     }
 }

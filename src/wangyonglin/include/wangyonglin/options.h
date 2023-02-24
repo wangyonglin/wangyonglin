@@ -4,16 +4,7 @@
 #include <wangyonglin/package.h>
 #include <wangyonglin/pool.h>
 #include <wangyonglin/string.h>
-#include <wangyonglin/application.h>
-typedef struct _args_t
-{
-    unsigned char *ini_filename;
-    boolean startup;
-    boolean daemonize;
-    char *error_log;
-    boolean log_errors;
-    char *lockfile;
-} args_t;
+#include <wangyonglin/wangyonglin.h>
 
 typedef struct _options_t
 {

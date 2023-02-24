@@ -98,6 +98,16 @@ aliapis.o: ../../../src/application/aliapis.c /usr/include/stdc-predef.h \
  /usr/include/openssl/dtls1.h /usr/include/openssl/srtp.h \
  /usr/include/openssl/conf.h /usr/include/openssl/conferr.h \
  ../../../src/wangyonglin/include/wangyonglin/string.h \
+ ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
+ ../../../src/wangyonglin/include/wangyonglin/pool.h \
+ ../../../src/wangyonglin/include/wangyonglin/options.h \
+ ../../../src/wangyonglin/include/wangyonglin/lock.h \
+ ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
+ ../../../src/wangyonglin/include/wangyonglin/log.h \
+ ../../../src/wangyonglin/include/wangyonglin/message.h \
+ /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
+ /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
+ /usr/include/malloc.h \
  ../../../src/wangyonglin/include/wangyonglin/list.h \
  ../../../src/components/mqtt/include/Base64.h /usr/include/evhttp.h \
  /usr/include/event.h /usr/include/event2/event-config.h \
@@ -126,24 +136,15 @@ aliapis.o: ../../../src/application/aliapis.c /usr/include/stdc-predef.h \
  /usr/include/curl/system.h /usr/include/curl/easy.h \
  /usr/include/curl/multi.h /usr/include/curl/curl.h \
  /usr/include/curl/urlapi.h /usr/include/curl/typecheck-gcc.h \
- ../../../src/application/include/aliapis.h \
+ ../../../src/application/include/application/aliapis.h \
  ../../../src/components/mqtt/include/MQTTAsync.h \
  ../../../src/components/mqtt/include/MQTTExportDeclarations.h \
  ../../../src/components/mqtt/include/MQTTProperties.h \
  ../../../src/components/mqtt/include/MQTTReasonCodes.h \
  ../../../src/components/mqtt/include/MQTTSubscribeOpts.h \
  ../../../src/components/mqtt/include/MQTTClientPersistence.h \
- ../../../src/wangyonglin/include/wangyonglin/application.h \
- ../../../src/wangyonglin/include/wangyonglin/pool.h \
- ../../../src/wangyonglin/include/wangyonglin/options.h \
- ../../../src/wangyonglin/include/wangyonglin/lock.h \
- ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
- ../../../src/wangyonglin/include/wangyonglin/log.h \
- ../../../src/wangyonglin/include/wangyonglin/message.h \
- /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
- /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
- /usr/include/malloc.h ../../../src/components/cjson/include/cJSON.h \
- ../../../src/application/include/aliutils.h
+ ../../../src/components/cjson/include/cJSON.h \
+ ../../../src/application/include/application/aliutils.h
 
 /usr/include/stdc-predef.h:
 
@@ -503,6 +504,32 @@ aliapis.o: ../../../src/application/aliapis.c /usr/include/stdc-predef.h \
 
 ../../../src/wangyonglin/include/wangyonglin/string.h:
 
+../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
+
+../../../src/wangyonglin/include/wangyonglin/pool.h:
+
+../../../src/wangyonglin/include/wangyonglin/options.h:
+
+../../../src/wangyonglin/include/wangyonglin/lock.h:
+
+../../../src/wangyonglin/include/wangyonglin/daemonize.h:
+
+../../../src/wangyonglin/include/wangyonglin/log.h:
+
+../../../src/wangyonglin/include/wangyonglin/message.h:
+
+/usr/include/sys/ipc.h:
+
+/usr/include/bits/ipctypes.h:
+
+/usr/include/bits/ipc.h:
+
+/usr/include/sys/msg.h:
+
+/usr/include/bits/msq.h:
+
+/usr/include/malloc.h:
+
 ../../../src/wangyonglin/include/wangyonglin/list.h:
 
 ../../../src/components/mqtt/include/Base64.h:
@@ -607,7 +634,7 @@ aliapis.o: ../../../src/application/aliapis.c /usr/include/stdc-predef.h \
 
 /usr/include/curl/typecheck-gcc.h:
 
-../../../src/application/include/aliapis.h:
+../../../src/application/include/application/aliapis.h:
 
 ../../../src/components/mqtt/include/MQTTAsync.h:
 
@@ -621,32 +648,6 @@ aliapis.o: ../../../src/application/aliapis.c /usr/include/stdc-predef.h \
 
 ../../../src/components/mqtt/include/MQTTClientPersistence.h:
 
-../../../src/wangyonglin/include/wangyonglin/application.h:
-
-../../../src/wangyonglin/include/wangyonglin/pool.h:
-
-../../../src/wangyonglin/include/wangyonglin/options.h:
-
-../../../src/wangyonglin/include/wangyonglin/lock.h:
-
-../../../src/wangyonglin/include/wangyonglin/daemonize.h:
-
-../../../src/wangyonglin/include/wangyonglin/log.h:
-
-../../../src/wangyonglin/include/wangyonglin/message.h:
-
-/usr/include/sys/ipc.h:
-
-/usr/include/bits/ipctypes.h:
-
-/usr/include/bits/ipc.h:
-
-/usr/include/sys/msg.h:
-
-/usr/include/bits/msq.h:
-
-/usr/include/malloc.h:
-
 ../../../src/components/cjson/include/cJSON.h:
 
-../../../src/application/include/aliutils.h:
+../../../src/application/include/application/aliutils.h:

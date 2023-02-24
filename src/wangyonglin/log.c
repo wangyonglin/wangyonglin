@@ -24,7 +24,6 @@ log_t *log_create(struct _app_t *app)
 
 void logerr(log_t *log, const char *fmt, ...)
 {
-    string_rows("error_log", log->error_log);
     if (log && log->log_errors == positive && log->error_log)
     {
         char log_line[1000] = {0};

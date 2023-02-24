@@ -2,7 +2,7 @@ AUTOMAKE_OPTIONS=foreign
 lib_LTLIBRARIES=libwangyonglin.la
 AM_CPPFLAGS=-I $(top_srcdir)/src/wangyonglin/include/
 libwangyonglin_la_SOURCES=   \
-    application.c \
+    wangyonglin.c \
     pool.c  \
     daemonize.c    \
     lock.c   \

@@ -128,7 +128,7 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libwangyonglin_la_LIBADD =
-am_libwangyonglin_la_OBJECTS = application.lo pool.lo daemonize.lo \
+am_libwangyonglin_la_OBJECTS = wangyonglin.lo pool.lo daemonize.lo \
 	lock.lo log.lo options.lo conf.lo message.lo file.lo string.lo \
 	list.lo Unix_timestamp_converter.lo
 libwangyonglin_la_OBJECTS = $(am_libwangyonglin_la_OBJECTS)
@@ -152,11 +152,11 @@ DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/Unix_timestamp_converter.Plo \
-	./$(DEPDIR)/application.Plo ./$(DEPDIR)/conf.Plo \
-	./$(DEPDIR)/daemonize.Plo ./$(DEPDIR)/file.Plo \
-	./$(DEPDIR)/list.Plo ./$(DEPDIR)/lock.Plo ./$(DEPDIR)/log.Plo \
-	./$(DEPDIR)/message.Plo ./$(DEPDIR)/options.Plo \
-	./$(DEPDIR)/pool.Plo ./$(DEPDIR)/string.Plo
+	./$(DEPDIR)/conf.Plo ./$(DEPDIR)/daemonize.Plo \
+	./$(DEPDIR)/file.Plo ./$(DEPDIR)/list.Plo ./$(DEPDIR)/lock.Plo \
+	./$(DEPDIR)/log.Plo ./$(DEPDIR)/message.Plo \
+	./$(DEPDIR)/options.Plo ./$(DEPDIR)/pool.Plo \
+	./$(DEPDIR)/string.Plo ./$(DEPDIR)/wangyonglin.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -325,7 +325,7 @@ AUTOMAKE_OPTIONS = foreign
 lib_LTLIBRARIES = libwangyonglin.la
 AM_CPPFLAGS = -I $(top_srcdir)/src/wangyonglin/include/
 libwangyonglin_la_SOURCES = \
-    application.c \
+    wangyonglin.c \
     pool.c  \
     daemonize.c    \
     lock.c   \
@@ -417,7 +417,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/Unix_timestamp_converter.Plo # am--include-marker
-include ./$(DEPDIR)/application.Plo # am--include-marker
 include ./$(DEPDIR)/conf.Plo # am--include-marker
 include ./$(DEPDIR)/daemonize.Plo # am--include-marker
 include ./$(DEPDIR)/file.Plo # am--include-marker
@@ -428,6 +427,7 @@ include ./$(DEPDIR)/message.Plo # am--include-marker
 include ./$(DEPDIR)/options.Plo # am--include-marker
 include ./$(DEPDIR)/pool.Plo # am--include-marker
 include ./$(DEPDIR)/string.Plo # am--include-marker
+include ./$(DEPDIR)/wangyonglin.Plo # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -591,7 +591,6 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/Unix_timestamp_converter.Plo
-	-rm -f ./$(DEPDIR)/application.Plo
 	-rm -f ./$(DEPDIR)/conf.Plo
 	-rm -f ./$(DEPDIR)/daemonize.Plo
 	-rm -f ./$(DEPDIR)/file.Plo
@@ -602,6 +601,7 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/options.Plo
 	-rm -f ./$(DEPDIR)/pool.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
+	-rm -f ./$(DEPDIR)/wangyonglin.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -648,7 +648,6 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/Unix_timestamp_converter.Plo
-	-rm -f ./$(DEPDIR)/application.Plo
 	-rm -f ./$(DEPDIR)/conf.Plo
 	-rm -f ./$(DEPDIR)/daemonize.Plo
 	-rm -f ./$(DEPDIR)/file.Plo
@@ -659,6 +658,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/options.Plo
 	-rm -f ./$(DEPDIR)/pool.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
+	-rm -f ./$(DEPDIR)/wangyonglin.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

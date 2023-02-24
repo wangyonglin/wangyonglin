@@ -91,9 +91,9 @@ void integer_create(unsigned char **pointer, long value)
 //         global_hooks.deallocate(pointer);
 //     }
 // }
-void string_rows(const char *title, char *data)
+void message(const char *title, char *data)
 {
-    printf("\t%s:[%d]\n \t\t%s\r\n", title, strlen(data), data);
+    printf("\t%s:[%d]\t%s\r\n", title, strlen(data), data);
 }
 
 void *memcrt(void **obj, size_t objsz, void *dat, size_t datsz)
