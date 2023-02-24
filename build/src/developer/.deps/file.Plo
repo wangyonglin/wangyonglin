@@ -35,9 +35,9 @@ file.lo: ../../../src/developer/file.c /usr/include/stdc-predef.h \
  /usr/include/bits/pthreadtypes.h /usr/include/bits/thread-shared-types.h \
  /usr/include/bits/pthreadtypes-arch.h /usr/include/alloca.h \
  /usr/include/bits/stdlib-bsearch.h /usr/include/bits/stdlib-float.h \
- ../../../src/developer/include/developer/public.h \
- ../../../src/developer/include/wangyonglin/conf.h /usr/include/signal.h \
- /usr/include/bits/signum.h /usr/include/bits/signum-generic.h \
+ ../../../src/developer/include/wangyonglin/string.h \
+ /usr/include/signal.h /usr/include/bits/signum.h \
+ /usr/include/bits/signum-generic.h \
  /usr/include/bits/types/sig_atomic_t.h \
  /usr/include/bits/types/siginfo_t.h /usr/include/bits/types/__sigval_t.h \
  /usr/include/bits/siginfo-arch.h /usr/include/bits/siginfo-consts.h \
@@ -92,7 +92,7 @@ file.lo: ../../../src/developer/file.c /usr/include/stdc-predef.h \
  /usr/include/openssl/dtls1.h /usr/include/openssl/srtp.h \
  /usr/include/openssl/conf.h /usr/include/openssl/conferr.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
- ../../../src/developer/include/wangyonglin/string.h
+ ../../../src/developer/include/wangyonglin/conf.h
 
 /usr/include/stdc-predef.h:
 
@@ -230,9 +230,7 @@ file.lo: ../../../src/developer/file.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/stdlib-float.h:
 
-../../../src/developer/include/developer/public.h:
-
-../../../src/developer/include/wangyonglin/conf.h:
+../../../src/developer/include/wangyonglin/string.h:
 
 /usr/include/signal.h:
 
@@ -444,4 +442,4 @@ file.lo: ../../../src/developer/file.c /usr/include/stdc-predef.h \
 
 /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
 
-../../../src/developer/include/wangyonglin/string.h:
+../../../src/developer/include/wangyonglin/conf.h:

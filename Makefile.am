@@ -1,5 +1,5 @@
 SUBDIRS =\
-    src/developer   \
+    src/wangyonglin   \
     src/components/openssl    \
     src/components/snowflake    \
     src/components/mqtt \
@@ -8,7 +8,7 @@ SUBDIRS =\
 
 
 #安装的各个目录和文件
-includedir= $(prefix)/include
+#includedir= $(prefix)/include
 bindir=     $(prefix)/bin
 libdir=     $(prefix)/lib
 datadir=    $(prefix)/share

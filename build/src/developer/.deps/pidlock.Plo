@@ -45,7 +45,7 @@ pidlock.lo: ../../../src/developer/pidlock.c /usr/include/stdc-predef.h \
  /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
  /usr/include/fcntl.h /usr/include/bits/fcntl.h \
  /usr/include/bits/fcntl-linux.h /usr/include/bits/stat.h \
- ../../../src/developer/include/wangyonglin/conf.h \
+ ../../../src/developer/include/wangyonglin/string.h \
  /usr/include/openssl/err.h /usr/include/openssl/e_os2.h \
  /usr/include/openssl/opensslconf.h \
  /usr/include/openssl/opensslconf-x86_64.h \
@@ -92,8 +92,8 @@ pidlock.lo: ../../../src/developer/pidlock.c /usr/include/stdc-predef.h \
  /usr/include/openssl/dtls1.h /usr/include/openssl/srtp.h \
  /usr/include/openssl/conf.h /usr/include/openssl/conferr.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
- ../../../src/developer/include/wangyonglin/string.h \
- /usr/include/assert.h /usr/include/ctype.h
+ ../../../src/developer/include/wangyonglin/conf.h /usr/include/assert.h \
+ /usr/include/ctype.h
 
 /usr/include/stdc-predef.h:
 
@@ -265,7 +265,7 @@ pidlock.lo: ../../../src/developer/pidlock.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/stat.h:
 
-../../../src/developer/include/wangyonglin/conf.h:
+../../../src/developer/include/wangyonglin/string.h:
 
 /usr/include/openssl/err.h:
 
@@ -439,7 +439,7 @@ pidlock.lo: ../../../src/developer/pidlock.c /usr/include/stdc-predef.h \
 
 /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
 
-../../../src/developer/include/wangyonglin/string.h:
+../../../src/developer/include/wangyonglin/conf.h:
 
 /usr/include/assert.h:
 

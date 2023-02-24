@@ -1,9 +1,10 @@
 main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
- ../../../src/developer/include/developer/config.h /usr/include/stdio.h \
- /usr/include/bits/libc-header-start.h /usr/include/features.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
- /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
- /usr/include/gnu/stubs-64.h \
+ ../../../src/wangyonglin/include/wangyonglin/application.h \
+ ../../../src/wangyonglin/include/wangyonglin/package.h \
+ /usr/include/stdio.h /usr/include/bits/libc-header-start.h \
+ /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/bits/long-double.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stddef.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdarg.h \
  /usr/include/bits/types.h /usr/include/bits/typesizes.h \
@@ -26,6 +27,7 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
  /usr/include/bits/pthreadtypes.h /usr/include/bits/thread-shared-types.h \
  /usr/include/bits/pthreadtypes-arch.h /usr/include/alloca.h \
  /usr/include/bits/stdlib-bsearch.h /usr/include/bits/stdlib-float.h \
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
  /usr/include/signal.h /usr/include/bits/signum.h \
  /usr/include/bits/signum-generic.h \
  /usr/include/bits/types/sig_atomic_t.h \
@@ -36,41 +38,40 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
  /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
- /usr/include/bits/sigthread.h \
- ../../../src/developer/include/developer/public.h \
- ../../../src/developer/include/developer/allocate.h \
- /usr/include/string.h /usr/include/bits/types/locale_t.h \
- /usr/include/bits/types/__locale_t.h /usr/include/strings.h \
- /usr/include/unistd.h /usr/include/bits/posix_opt.h \
- /usr/include/bits/environments.h /usr/include/bits/confname.h \
- /usr/include/bits/getopt_posix.h /usr/include/bits/getopt_core.h \
- /usr/include/fcntl.h /usr/include/bits/fcntl.h \
- /usr/include/bits/fcntl-linux.h /usr/include/bits/stat.h \
- ../../../src/developer/include/wangyonglin/conf.h \
+ /usr/include/bits/sigthread.h /usr/include/unistd.h \
+ /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+ /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
+ /usr/include/bits/getopt_core.h /usr/include/fcntl.h \
+ /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
+ /usr/include/bits/stat.h /usr/include/getopt.h \
+ /usr/include/bits/getopt_ext.h /usr/include/string.h \
+ /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
+ /usr/include/strings.h /usr/include/assert.h /usr/include/ctype.h \
+ /usr/include/errno.h /usr/include/bits/errno.h \
+ /usr/include/linux/errno.h /usr/include/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/wchar.h \
+ /usr/include/bits/stdint-uintn.h /usr/include/time.h \
+ /usr/include/bits/time.h /usr/include/bits/types/struct_tm.h \
+ /usr/include/bits/types/struct_itimerspec.h /usr/include/sys/stat.h \
  /usr/include/openssl/err.h /usr/include/openssl/e_os2.h \
  /usr/include/openssl/opensslconf.h \
  /usr/include/openssl/opensslconf-x86_64.h \
  /usr/include/openssl/opensslv.h /usr/include/inttypes.h \
- /usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h \
- /usr/include/stdint.h /usr/include/bits/wchar.h \
- /usr/include/bits/stdint-uintn.h /usr/include/openssl/ossl_typ.h \
+ /usr/include/openssl/ossl_typ.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/limits.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/syslimits.h \
  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
  /usr/include/bits/posix2_lim.h /usr/include/openssl/bio.h \
- /usr/include/openssl/crypto.h /usr/include/time.h \
- /usr/include/bits/time.h /usr/include/bits/types/struct_tm.h \
- /usr/include/bits/types/struct_itimerspec.h \
- /usr/include/openssl/safestack.h /usr/include/openssl/stack.h \
- /usr/include/openssl/cryptoerr.h /usr/include/openssl/symhacks.h \
- /usr/include/pthread.h /usr/include/sched.h /usr/include/bits/sched.h \
+ /usr/include/openssl/crypto.h /usr/include/openssl/safestack.h \
+ /usr/include/openssl/stack.h /usr/include/openssl/cryptoerr.h \
+ /usr/include/openssl/symhacks.h /usr/include/pthread.h \
+ /usr/include/sched.h /usr/include/bits/sched.h \
  /usr/include/bits/types/struct_sched_param.h /usr/include/bits/cpu-set.h \
  /usr/include/bits/setjmp.h /usr/include/openssl/bioerr.h \
- /usr/include/openssl/lhash.h /usr/include/errno.h \
- /usr/include/bits/errno.h /usr/include/linux/errno.h \
- /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
- /usr/include/asm-generic/errno-base.h /usr/include/openssl/ssl.h \
+ /usr/include/openssl/lhash.h /usr/include/openssl/ssl.h \
  /usr/include/openssl/comp.h /usr/include/openssl/comperr.h \
  /usr/include/openssl/x509.h /usr/include/openssl/buffer.h \
  /usr/include/openssl/buffererr.h /usr/include/openssl/evp.h \
@@ -92,14 +93,14 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
  /usr/include/openssl/ssl3.h /usr/include/openssl/tls1.h \
  /usr/include/openssl/dtls1.h /usr/include/openssl/srtp.h \
  /usr/include/openssl/conf.h /usr/include/openssl/conferr.h \
- /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
- ../../../src/developer/include/wangyonglin/string.h \
- ../../../src/developer/include/developer/args.h /usr/include/getopt.h \
- /usr/include/bits/getopt_ext.h \
- ../../../src/developer/include/developer/pidlock.h \
- ../../../src/developer/include/developer/daemon.h \
- /usr/include/sys/stat.h ../../../src/developer/include/developer/log.h \
- ../../../src/developer/include/developer/message.h \
+ ../../../src/wangyonglin/include/wangyonglin/pool.h \
+ ../../../src/wangyonglin/include/wangyonglin/string.h \
+ ../../../src/wangyonglin/include/wangyonglin/conf.h \
+ ../../../src/wangyonglin/include/wangyonglin/options.h \
+ ../../../src/wangyonglin/include/wangyonglin/lock.h \
+ ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
+ ../../../src/wangyonglin/include/wangyonglin/log.h \
+ ../../../src/wangyonglin/include/wangyonglin/message.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
  /usr/include/malloc.h \
@@ -109,12 +110,11 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
  ../../../src/components/snowflake/include/SnowFlake.h \
  ../../../src/components/snowflake/include/common.h \
  ../../../src/components/openssl/include/SHA256WithRSA.h \
- /usr/include/assert.h /usr/include/openssl/rand.h \
- /usr/include/openssl/randerr.h \
- ../../../src/developer/include/developer/file.h ../../../include/httpd.h \
- /usr/include/event.h /usr/include/event2/event-config.h \
- /usr/include/event2/event-config-64.h /usr/include/sys/time.h \
- /usr/include/evutil.h /usr/include/event2/util.h \
+ /usr/include/openssl/rand.h /usr/include/openssl/randerr.h \
+ ../../../src/wangyonglin/include/wangyonglin/file.h \
+ ../../../src/application/include/httpd.h /usr/include/event.h \
+ /usr/include/event2/event-config.h /usr/include/event2/event-config-64.h \
+ /usr/include/sys/time.h /usr/include/evutil.h /usr/include/event2/util.h \
  /usr/include/event2/visibility.h /usr/include/netdb.h \
  /usr/include/netinet/in.h /usr/include/sys/socket.h \
  /usr/include/bits/types/struct_iovec.h /usr/include/bits/socket.h \
@@ -134,20 +134,27 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
  /usr/include/event2/http.h /usr/include/event2/http_struct.h \
  /usr/include/event2/http_compat.h \
  ../../../src/components/cjson/include/cJSON.h \
- ../../../include/aliyun_api.h \
+ ../../../src/application/include/aliapis.h \
  ../../../src/components/mqtt/include/MQTTAsync.h \
  ../../../src/components/mqtt/include/MQTTExportDeclarations.h \
  ../../../src/components/mqtt/include/MQTTProperties.h \
  ../../../src/components/mqtt/include/MQTTReasonCodes.h \
  ../../../src/components/mqtt/include/MQTTSubscribeOpts.h \
  ../../../src/components/mqtt/include/MQTTClientPersistence.h \
- ../../../src/developer/include/wangyonglin/listitem.h \
+ ../../../src/wangyonglin/include/wangyonglin/list.h \
+ ../../../src/application/include/aliutils.h /usr/include/curl/curl.h \
+ /usr/include/curl/curlver.h /usr/include/curl/system.h \
+ /usr/include/curl/easy.h /usr/include/curl/multi.h \
+ /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
+ /usr/include/curl/typecheck-gcc.h \
  ../../../src/components/openssl/include/HMAC_SHA1.h \
  ../../../src/components/mqtt/include/Base64.h
 
 /usr/include/stdc-predef.h:
 
-../../../src/developer/include/developer/config.h:
+../../../src/wangyonglin/include/wangyonglin/application.h:
+
+../../../src/wangyonglin/include/wangyonglin/package.h:
 
 /usr/include/stdio.h:
 
@@ -245,6 +252,8 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/stdlib-float.h:
 
+/usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
+
 /usr/include/signal.h:
 
 /usr/include/bits/signum.h:
@@ -283,18 +292,6 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/sigthread.h:
 
-../../../src/developer/include/developer/public.h:
-
-../../../src/developer/include/developer/allocate.h:
-
-/usr/include/string.h:
-
-/usr/include/bits/types/locale_t.h:
-
-/usr/include/bits/types/__locale_t.h:
-
-/usr/include/strings.h:
-
 /usr/include/unistd.h:
 
 /usr/include/bits/posix_opt.h:
@@ -315,7 +312,51 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/stat.h:
 
-../../../src/developer/include/wangyonglin/conf.h:
+/usr/include/getopt.h:
+
+/usr/include/bits/getopt_ext.h:
+
+/usr/include/string.h:
+
+/usr/include/bits/types/locale_t.h:
+
+/usr/include/bits/types/__locale_t.h:
+
+/usr/include/strings.h:
+
+/usr/include/assert.h:
+
+/usr/include/ctype.h:
+
+/usr/include/errno.h:
+
+/usr/include/bits/errno.h:
+
+/usr/include/linux/errno.h:
+
+/usr/include/asm/errno.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/bits/wchar.h:
+
+/usr/include/bits/stdint-uintn.h:
+
+/usr/include/time.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/bits/types/struct_tm.h:
+
+/usr/include/bits/types/struct_itimerspec.h:
+
+/usr/include/sys/stat.h:
 
 /usr/include/openssl/err.h:
 
@@ -328,14 +369,6 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 /usr/include/openssl/opensslv.h:
 
 /usr/include/inttypes.h:
-
-/usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h:
-
-/usr/include/stdint.h:
-
-/usr/include/bits/wchar.h:
-
-/usr/include/bits/stdint-uintn.h:
 
 /usr/include/openssl/ossl_typ.h:
 
@@ -356,14 +389,6 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 /usr/include/openssl/bio.h:
 
 /usr/include/openssl/crypto.h:
-
-/usr/include/time.h:
-
-/usr/include/bits/time.h:
-
-/usr/include/bits/types/struct_tm.h:
-
-/usr/include/bits/types/struct_itimerspec.h:
 
 /usr/include/openssl/safestack.h:
 
@@ -388,18 +413,6 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 /usr/include/openssl/bioerr.h:
 
 /usr/include/openssl/lhash.h:
-
-/usr/include/errno.h:
-
-/usr/include/bits/errno.h:
-
-/usr/include/linux/errno.h:
-
-/usr/include/asm/errno.h:
-
-/usr/include/asm-generic/errno.h:
-
-/usr/include/asm-generic/errno-base.h:
 
 /usr/include/openssl/ssl.h:
 
@@ -487,25 +500,21 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 /usr/include/openssl/conferr.h:
 
-/usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
+../../../src/wangyonglin/include/wangyonglin/pool.h:
 
-../../../src/developer/include/wangyonglin/string.h:
+../../../src/wangyonglin/include/wangyonglin/string.h:
 
-../../../src/developer/include/developer/args.h:
+../../../src/wangyonglin/include/wangyonglin/conf.h:
 
-/usr/include/getopt.h:
+../../../src/wangyonglin/include/wangyonglin/options.h:
 
-/usr/include/bits/getopt_ext.h:
+../../../src/wangyonglin/include/wangyonglin/lock.h:
 
-../../../src/developer/include/developer/pidlock.h:
+../../../src/wangyonglin/include/wangyonglin/daemonize.h:
 
-../../../src/developer/include/developer/daemon.h:
+../../../src/wangyonglin/include/wangyonglin/log.h:
 
-/usr/include/sys/stat.h:
-
-../../../src/developer/include/developer/log.h:
-
-../../../src/developer/include/developer/message.h:
+../../../src/wangyonglin/include/wangyonglin/message.h:
 
 /usr/include/sys/ipc.h:
 
@@ -531,15 +540,13 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 ../../../src/components/openssl/include/SHA256WithRSA.h:
 
-/usr/include/assert.h:
-
 /usr/include/openssl/rand.h:
 
 /usr/include/openssl/randerr.h:
 
-../../../src/developer/include/developer/file.h:
+../../../src/wangyonglin/include/wangyonglin/file.h:
 
-../../../include/httpd.h:
+../../../src/application/include/httpd.h:
 
 /usr/include/event.h:
 
@@ -621,7 +628,7 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 ../../../src/components/cjson/include/cJSON.h:
 
-../../../include/aliyun_api.h:
+../../../src/application/include/aliapis.h:
 
 ../../../src/components/mqtt/include/MQTTAsync.h:
 
@@ -635,7 +642,25 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 ../../../src/components/mqtt/include/MQTTClientPersistence.h:
 
-../../../src/developer/include/wangyonglin/listitem.h:
+../../../src/wangyonglin/include/wangyonglin/list.h:
+
+../../../src/application/include/aliutils.h:
+
+/usr/include/curl/curl.h:
+
+/usr/include/curl/curlver.h:
+
+/usr/include/curl/system.h:
+
+/usr/include/curl/easy.h:
+
+/usr/include/curl/multi.h:
+
+/usr/include/curl/curl.h:
+
+/usr/include/curl/urlapi.h:
+
+/usr/include/curl/typecheck-gcc.h:
 
 ../../../src/components/openssl/include/HMAC_SHA1.h:
 

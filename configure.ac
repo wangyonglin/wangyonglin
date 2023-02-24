@@ -55,6 +55,6 @@ AC_CONFIG_FILES([src/components/openssl/Makefile])
 AC_CONFIG_FILES([src/components/snowflake/Makefile])
 AC_CONFIG_FILES([src/components/cjson/Makefile])
 AC_CONFIG_FILES([src/components/mqtt/Makefile])
-AC_CONFIG_FILES([src/developer/Makefile])
+AC_CONFIG_FILES([src/wangyonglin/Makefile])
 AC_CONFIG_FILES([src/application/Makefile])
 AC_OUTPUT

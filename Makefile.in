@@ -308,6 +308,9 @@ am__leading_dot = @am__leading_dot@
 am__quote = @am__quote@
 am__tar = @am__tar@
 am__untar = @am__untar@
+
+#安装的各个目录和文件
+#includedir= $(prefix)/include
 bindir = $(prefix)/bin
 build = @build@
 build_alias = @build_alias@
@@ -326,9 +329,7 @@ host_cpu = @host_cpu@
 host_os = @host_os@
 host_vendor = @host_vendor@
 htmldir = @htmldir@
-
-#安装的各个目录和文件
-includedir = $(prefix)/include
+includedir = @includedir@
 infodir = @infodir@
 install_sh = @install_sh@
 libdir = $(prefix)/lib
@@ -351,7 +352,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = \
-    src/developer   \
+    src/wangyonglin   \
     src/components/openssl    \
     src/components/snowflake    \
     src/components/mqtt \

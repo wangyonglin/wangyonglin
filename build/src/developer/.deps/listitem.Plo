@@ -29,7 +29,6 @@ listitem.lo: ../../../src/developer/listitem.c /usr/include/stdc-predef.h \
  /usr/include/string.h /usr/include/bits/types/locale_t.h \
  /usr/include/bits/types/__locale_t.h /usr/include/strings.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
- ../../../src/developer/include/developer/public.h \
  ../../../src/developer/include/wangyonglin/string.h \
  /usr/include/signal.h /usr/include/bits/signum.h \
  /usr/include/bits/signum-generic.h \
@@ -196,8 +195,6 @@ listitem.lo: ../../../src/developer/listitem.c /usr/include/stdc-predef.h \
 /usr/include/strings.h:
 
 /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
-
-../../../src/developer/include/developer/public.h:
 
 ../../../src/developer/include/wangyonglin/string.h:
 

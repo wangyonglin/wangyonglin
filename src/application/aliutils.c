@@ -3,9 +3,9 @@
 #include <wangyonglin/Unix_timestamp_converter.h>
 #include <URL.h>
 #include <HMAC_SHA1.h>
-#include <wangyonglin/listitem.h>
+#include <wangyonglin/list.h>
 char *aliurls_encode(char **outputString, size_t outputStringMax, char *inputString, size_t inputStringSize);
-char *alitimestamp(char **obj)
+char *aliurls_timestamp(char **obj)
 {
     strnull(obj, 80);
     UtcTime result;
@@ -50,7 +50,7 @@ char *aliurls_encode(char **outputString, size_t outputStringMax, char *inputStr
     memcpy(tmpString, inputString, inputStringSize);
     // string_rows("tmpString", tmpString);
     URLEncode(tmpString, strlen(tmpString), tmpoutString, outputStringMax);
-   // string_rows("tmpoutString", tmpoutString);
+    // string_rows("tmpoutString", tmpoutString);
     strnull(outputString, outputStringMax);
     memcpy(*outputString, tmpoutString, strlen(tmpoutString));
     strdel(tmpString);
@@ -58,27 +58,27 @@ char *aliurls_encode(char **outputString, size_t outputStringMax, char *inputStr
     return (*outputString);
 }
 
-char *aliutls_url_listitem(char **outputString, size_t outputStringMax, listitem *list)
+char *aliutls_url_list(char **outputString, size_t outputStringMax, list *objlist)
 {
 
     char out[125] = {0};
     strnull(outputString, outputStringMax);
     int size_c = 0;
-    for (size_t i = 0; i < list->items_pos; i++)
+    for (size_t i = 0; i < objlist->items_pos; i++)
     {
 
-        if (list->items[i].type == STRING)
+        if (objlist->items[i].type == STRING)
         {
             //  printf("\t%s {%s}\r\n", list->items[i].name, list->items[i].data);
-            sprintf(out, "%s=%s", list->items[i].name, list->items[i].data);
+            sprintf(out, "%s=%s", objlist->items[i].name, objlist->items[i].data);
         }
-        else if (list->items[i].type == INTEGER)
+        else if (objlist->items[i].type == INTEGER)
         {
             //  printf("\t%s {%d}\r\n", list->items[i].name, list->items[i].data);
-            sprintf(out, "%s=%d", list->items[i].name, list->items[i].data);
+            sprintf(out, "%s=%d", objlist->items[i].name, objlist->items[i].data);
         }
         strncat(*outputString, out, strlen(out));
-        if (i + 1 < list->items_pos)
+        if (i + 1 < objlist->items_pos)
         {
             strncat(*outputString, "&", strlen("&"));
         }
@@ -112,4 +112,64 @@ void aliutils_https_get(char *url)
         curl_easy_cleanup(curl);
     }
     curl_global_cleanup();
+}
+
+void aliutils_del(char *obj)
+{
+    if (obj)
+        free(obj);
+}
+
+ok_t aliutils_sys_init(aliutils_sys **sys, const char *filename)
+{
+    ok_t ret;
+    if (!objcrt((void **)sys, sizeof(aliutils_sys)))
+    {
+        return NullPointerException;
+    }
+    conf_command commands[] = {
+        {"AccessKeyId", NULL, STRING, offsetof(aliutils_sys, AccessKeyId)},
+        {"AccessKeySecret", NULL, STRING, offsetof(aliutils_sys, AccessKeySecret)},
+        {"ProductKey", "cn-shanghai", STRING, offsetof(aliutils_sys, ProductKey)},
+        {"DeviceName", "JSON", STRING, offsetof(aliutils_sys, DeviceName)},
+        {"Format", "JSON", STRING, offsetof(aliutils_sys, Format)},
+        {"Version", "2020-04-20", STRING, offsetof(aliutils_sys, Version)},
+        {"AccessKeyId", NULL, STRING, offsetof(aliutils_sys, AccessKeyId)},
+        {"SignatureMethod", "HMAC-SHA1", STRING, offsetof(aliutils_sys, SignatureMethod)},
+        {"SignatureVersion", "1.0", STRING, offsetof(aliutils_sys, SignatureVersion)},
+        {"RegionId", "cn-shanghai", STRING, offsetof(aliutils_sys, RegionId)},
+        {"TopicFullName", NULL, STRING, offsetof(aliutils_sys, TopicFullName)}};
+    size_t commands_size = conf_command_size(commands);
+    // printf("\t%d\r\n", commands_size);
+    ret = conf_create((void **)*sys, filename, NULL, commands, commands_size);
+
+    return ret;
+}
+
+aliutils_common * aliutils_common_init(aliutils_common **common, aliutils_sys *sys)
+{
+    objcrt(common, sizeof(aliutils_common));
+    aliurls_timestamp(&(*common)->Timestamp);
+    SnowFlake_IdGenerator_toString(&(*common)->SignatureNonce);
+    strcrt(&(*common)->Format, sys->Format, strlen(sys->Format));
+    strcrt(&(*common)->Version, sys->Version, strlen(sys->Version));
+    strcrt(&(*common)->AccessKeyId, sys->AccessKeyId, strlen(sys->AccessKeyId));
+    strcrt(&(*common)->SignatureMethod, sys->SignatureMethod, strlen(sys->SignatureMethod));
+    strcrt(&(*common)->AccessKeyId, sys->AccessKeyId, strlen(sys->AccessKeyId));
+    strcrt(&(*common)->SignatureVersion, sys->SignatureVersion, strlen(sys->SignatureVersion));
+    strcrt(&(*common)->RegionId, sys->RegionId, strlen(sys->RegionId));
+    return (*common);
+}
+
+void aliutils_common_clean(aliutils_common *common)
+{
+    strdel(common->Timestamp);
+    strdel(common->SignatureNonce);
+    strdel(common->Format);
+    strdel(common->Version);
+    strdel(common->AccessKeyId);
+    strdel(common->SignatureMethod);
+    strdel(common->AccessKeyId);
+    strdel(common->SignatureVersion);
+    strdel(common->RegionId);
 }

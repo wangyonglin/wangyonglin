@@ -157,6 +157,17 @@
         "aliyun_api.h": "c",
         "listitem.h": "c",
         "aliutils.h": "c",
-        "hmac_sha1.h": "c"
-    }
+        "hmac_sha1.h": "c",
+        "ali_sign.h": "c",
+        "errno.h": "c",
+        "stdint.h": "c",
+        "aliapis.h": "c",
+        "package.h": "c",
+        "stat.h": "c",
+        "application.h": "c",
+        "list.h": "c",
+        "unix_timestamp_converter.h": "c",
+        "daemonize.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "enabled"
 }

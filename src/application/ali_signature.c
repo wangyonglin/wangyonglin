@@ -68,7 +68,7 @@ ok_t aliiot_signature(const char *productKey, const char *deviceName, const char
 
     
     _hex2str(macRes, sizeof(macRes), password);
-    return Ok;
+    return OK;
 }
 
 /******************************

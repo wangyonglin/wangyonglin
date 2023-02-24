@@ -104,7 +104,7 @@ void v3_pay_transactions_jsapi(struct evhttp_request *request, void *arg)
 
 void wireless_handler(struct evhttp_request *request, void *arg)
 {
-    config_t *config = (config_t *)arg;
+    app_t *app = (app_t *)arg;
     evhttp_add_header(request->output_headers, "Content-Type", "application/json; charset=UTF-8");
     evhttp_add_header(request->output_headers, "Connection", "close");
 
@@ -130,7 +130,7 @@ void wireless_handler(struct evhttp_request *request, void *arg)
     // 输出的内容
     char *out = cJSON_PrintUnformatted(root);
 
-    if (sutpc_sndMsgQue(config->msg1, 100, out, strlen(out)) != Ok)
+    if (sutpc_sndMsgQue(app->msg1, 100, out, strlen(out)) != OK)
     {
         printf("\tdata%s err:%s\n", out, strerror(errno));
     }

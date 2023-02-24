@@ -284,10 +284,10 @@ OTOOL64 =
 PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = tiger
-PACKAGE_STRING = tiger 1.3.28
+PACKAGE_STRING = tiger 1.3.32
 PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.28
+PACKAGE_VERSION = 1.3.32
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -295,7 +295,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.28
+VERSION = 1.3.32
 abs_builddir = /home/wangyonglin/github/wangyonglin/build
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/..
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -308,6 +308,9 @@ am__leading_dot = .
 am__quote = 
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
+
+#安装的各个目录和文件
+#includedir= $(prefix)/include
 bindir = $(prefix)/bin
 build = x86_64-pc-linux-gnu
 build_alias = 
@@ -326,9 +329,7 @@ host_cpu = x86_64
 host_os = linux-gnu
 host_vendor = pc
 htmldir = ${docdir}
-
-#安装的各个目录和文件
-includedir = $(prefix)/include
+includedir = ${prefix}/include
 infodir = ${datarootdir}/info
 install_sh = ${SHELL} /home/wangyonglin/github/wangyonglin/install-sh
 libdir = $(prefix)/lib
@@ -351,7 +352,7 @@ top_build_prefix =
 top_builddir = .
 top_srcdir = ..
 SUBDIRS = \
-    src/developer   \
+    src/wangyonglin   \
     src/components/openssl    \
     src/components/snowflake    \
     src/components/mqtt \

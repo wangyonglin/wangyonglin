@@ -2,34 +2,34 @@
 #include <curl/curl.h>
 #include <cJSON.h>
 
-ok_t httpd_initializing(httpd_t **httpd, config_t *config, char *conf)
+ok_t httpd_initializing(httpd_t **httpd, app_t *app, char *conf)
 {
-    if (!config)
+    if (!app)
     {
         return ArgumentException;
     }
-    if (object_create((void **)httpd, sizeof(httpd_t)) != Ok)
+    if (objcrt((void **)httpd, sizeof(httpd_t)) != OK)
     {
-        logerr(config->log, "https_server_initializing failed");
+        logerr(app->log, "https_server_initializing failed");
         return NullPointerException;
     }
     conf_command arguments[] = {
         {"address", "0.0.0.0", STRING, offsetof(httpd_t, address)},
-        {"port", 80, INTEGER, offsetof(httpd_t, port)},
-        {"timeout_in_secs", 15, INTEGER, offsetof(httpd_t, timeout_in_secs)}};
+        {"port",80,INTEGER, offsetof(httpd_t, port)},
+        {"timeout_in_secs",15, INTEGER, offsetof(httpd_t, timeout_in_secs)}};
 
     int arguments_size = sizeof(arguments) / sizeof(arguments[0]);
 
-    if (conf_create((void **)*httpd, conf, NULL, arguments, arguments_size) != Ok)
+    if (conf_create((void **)*httpd, conf, NULL, arguments, arguments_size) != OK)
     {
-        logerr(config->log, "https_server_initializing conf_mapping   failed");
+        logerr(app->log, "https_server_initializing conf_mapping   failed");
         return ErrorException;
     }
-    logerr(config->log, "address    {%s}", (*httpd)->address);
-    logerr(config->log, "port    {%d}", (*httpd)->port);
-    logerr(config->log, "timeout_in_secs    {%d}", (*httpd)->timeout_in_secs);
-    (*httpd)->config = config;
-    return Ok;
+    logerr(app->log, "address    {%s}", (*httpd)->address);
+    logerr(app->log, "port    {%d}", (*httpd)->port);
+    logerr(app->log, "timeout_in_secs    {%d}", (*httpd)->timeout_in_secs);
+    (*httpd)->app = app;
+    return OK;
 }
 
 void error_handler(struct evhttp_request *req, void *arg)
@@ -102,12 +102,12 @@ ok_t httpd_start(httpd_t *httpd)
 
         evhttp_set_cb(httpd->https, "/v1/login", login_handler, httpd);
         evhttp_set_cb(httpd->https, "/v3/pay/transactions/jsapi", v3_pay_transactions_jsapi, httpd);
-        evhttp_set_cb(httpd->https, "/wireless", wireless_handler, httpd->config);
+        evhttp_set_cb(httpd->https, "/wireless", wireless_handler, httpd->app);
         evhttp_set_gencb(httpd->https, error_handler, NULL);
         // 循环监听
         event_dispatch();
 
-        return Ok;
+        return OK;
     }
 
     return ErrorException;
