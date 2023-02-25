@@ -43,9 +43,10 @@ SOFTWARE.
 #include <openssl/ssl.h>
 #include <string.h>
 
-#include "openssl_hostname_validation.h"
-#include "hostcheck.h"
 
+
+#include <https/hostcheck.h>
+#include <https/openssl_hostname_validation.h>
 #define HOSTNAME_MAX_SIZE 255
 
 #if (OPENSSL_VERSION_NUMBER < 0x10100000L) || \

@@ -33,7 +33,8 @@ SOFTWARE.
  * License: See LICENSE
  *
  */
-#include <openssl/x509.h>
+
+
 typedef enum {
         MatchFound,
         MatchNotFound,

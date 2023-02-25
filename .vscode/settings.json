@@ -168,7 +168,8 @@
         "list.h": "c",
         "unix_timestamp_converter.h": "c",
         "daemonize.h": "c",
-        "curl.h": "c"
+        "curl.h": "c",
+        "https_successful.h": "c"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

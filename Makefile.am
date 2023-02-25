@@ -4,6 +4,7 @@ SUBDIRS =\
     src/components/snowflake    \
     src/components/mqtt \
     src/components/cjson \
+    src/components/https \
     src/application
 
 
@@ -31,6 +32,5 @@ conf_DATA = $(top_srcdir)/conf/tiger.conf
 #logs_DATA = $(top_srcdir)/logs/error.log
 
 EXTRA_DIST  = README.md
-EXTRA_DIST += $(top_srcdir)/include/*
 EXTRA_DIST += $(top_srcdir)/conf/tiger.conf
-#EXTRA_DIST += $(top_srcdir)/logs/error.log
+EXTRA_DIST += $(top_srcdir)/logs/error.log

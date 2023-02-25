@@ -6,7 +6,8 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/src/wangyonglin/include",
                 "${workspaceFolder}/src/application/include",
-                "${workspaceFolder}/src/components/cjson/include"
+                "${workspaceFolder}/src/components/cjson/include",
+                "${workspaceFolder}/src/components/https/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

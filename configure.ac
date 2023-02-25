@@ -52,6 +52,7 @@ AC_FUNC_STRTOD
 AC_CHECK_FUNCS([bzero getpass localeconv memset strcasecmp strchr strdup strerror strrchr strspn strstr])
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([src/components/openssl/Makefile])
+AC_CONFIG_FILES([src/components/https/Makefile])
 AC_CONFIG_FILES([src/components/snowflake/Makefile])
 AC_CONFIG_FILES([src/components/cjson/Makefile])
 AC_CONFIG_FILES([src/components/mqtt/Makefile])

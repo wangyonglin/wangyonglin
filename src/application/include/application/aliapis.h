@@ -12,6 +12,9 @@
 #include <wangyonglin/list.h>
 #include <cJSON.h>
 #include <application/aliutils.h>
-ok_t aliapis_https_pub(char **aliapisurl, struct _aliutils_apis_t *apis, char *MessageContentText, size_t MessageContentSize);
-
+ok_t Pub(char **aliapisurl, struct _aliutils_apis_t *apis, char *DeviceName, char *MessageContentText, size_t MessageContentSize);
+ok_t QueryDeviceInfo(char **aliapisurl, struct _aliutils_apis_t *apis, char *DeviceName);
+ok_t RegisterDevice(char **aliapisurl, struct _aliutils_apis_t *apis, char *DeviceName);
+ok_t QueryDeviceStatistics(char **aliapisurl, struct _aliutils_apis_t *apis);
+ok_t GetDeviceStatus(char **aliapisurl, struct _aliutils_apis_t *apis, char *IotId);
 #endif

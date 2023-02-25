@@ -357,6 +357,7 @@ SUBDIRS = \
     src/components/snowflake    \
     src/components/mqtt \
     src/components/cjson \
+    src/components/https \
     src/application
 
 
@@ -371,8 +372,8 @@ conf_DATA = $(top_srcdir)/conf/tiger.conf
 
 #logsdir =   $(prefix)/logs
 #logs_DATA = $(top_srcdir)/logs/error.log
-EXTRA_DIST = README.md $(top_srcdir)/include/* \
-	$(top_srcdir)/conf/tiger.conf
+EXTRA_DIST = README.md $(top_srcdir)/conf/tiger.conf \
+	$(top_srcdir)/logs/error.log
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -882,7 +883,6 @@ uninstall-am: uninstall-confDATA
 
 .PRECIOUS: Makefile
 
-#EXTRA_DIST += $(top_srcdir)/logs/error.log
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

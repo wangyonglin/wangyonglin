@@ -1,6 +1,6 @@
-wangyonglin.lo: ../../../src/wangyonglin/wangyonglin.c \
+https_successful.o: ../../../src/application/https_successful.c \
  /usr/include/stdc-predef.h \
- ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
+ ../../../src/application/include/application/https_successful.h \
  ../../../src/wangyonglin/include/wangyonglin/package.h \
  /usr/include/stdio.h /usr/include/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
@@ -94,21 +94,12 @@ wangyonglin.lo: ../../../src/wangyonglin/wangyonglin.c \
  /usr/include/openssl/ssl2.h /usr/include/openssl/ssl3.h \
  /usr/include/openssl/tls1.h /usr/include/openssl/dtls1.h \
  /usr/include/openssl/srtp.h /usr/include/openssl/err.h \
- ../../../src/wangyonglin/include/wangyonglin/pool.h \
- ../../../src/wangyonglin/include/wangyonglin/string.h \
- ../../../src/wangyonglin/include/wangyonglin/conf.h \
- ../../../src/wangyonglin/include/wangyonglin/options.h \
- ../../../src/wangyonglin/include/wangyonglin/lock.h \
- ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
- ../../../src/wangyonglin/include/wangyonglin/log.h \
- ../../../src/wangyonglin/include/wangyonglin/message.h \
- /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
- /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
- /usr/include/malloc.h
+ ../../../src/components/cjson/include/cJSON.h \
+ ../../../src/wangyonglin/include/wangyonglin/string.h
 
 /usr/include/stdc-predef.h:
 
-../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
+../../../src/application/include/application/https_successful.h:
 
 ../../../src/wangyonglin/include/wangyonglin/package.h:
 
@@ -460,30 +451,6 @@ wangyonglin.lo: ../../../src/wangyonglin/wangyonglin.c \
 
 /usr/include/openssl/err.h:
 
-../../../src/wangyonglin/include/wangyonglin/pool.h:
+../../../src/components/cjson/include/cJSON.h:
 
 ../../../src/wangyonglin/include/wangyonglin/string.h:
-
-../../../src/wangyonglin/include/wangyonglin/conf.h:
-
-../../../src/wangyonglin/include/wangyonglin/options.h:
-
-../../../src/wangyonglin/include/wangyonglin/lock.h:
-
-../../../src/wangyonglin/include/wangyonglin/daemonize.h:
-
-../../../src/wangyonglin/include/wangyonglin/log.h:
-
-../../../src/wangyonglin/include/wangyonglin/message.h:
-
-/usr/include/sys/ipc.h:
-
-/usr/include/bits/ipctypes.h:
-
-/usr/include/bits/ipc.h:
-
-/usr/include/sys/msg.h:
-
-/usr/include/bits/msq.h:
-
-/usr/include/malloc.h:

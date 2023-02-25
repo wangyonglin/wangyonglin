@@ -284,10 +284,10 @@ OTOOL64 =
 PACKAGE = tiger
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = tiger
-PACKAGE_STRING = tiger 1.3.32
+PACKAGE_STRING = tiger 1.3.37
 PACKAGE_TARNAME = tiger
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.32
+PACKAGE_VERSION = 1.3.37
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -295,7 +295,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.32
+VERSION = 1.3.37
 abs_builddir = /home/wangyonglin/github/wangyonglin/build
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/..
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -357,6 +357,7 @@ SUBDIRS = \
     src/components/snowflake    \
     src/components/mqtt \
     src/components/cjson \
+    src/components/https \
     src/application
 
 
@@ -371,8 +372,8 @@ conf_DATA = $(top_srcdir)/conf/tiger.conf
 
 #logsdir =   $(prefix)/logs
 #logs_DATA = $(top_srcdir)/logs/error.log
-EXTRA_DIST = README.md $(top_srcdir)/include/* \
-	$(top_srcdir)/conf/tiger.conf
+EXTRA_DIST = README.md $(top_srcdir)/conf/tiger.conf \
+	$(top_srcdir)/logs/error.log
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -882,7 +883,6 @@ uninstall-am: uninstall-confDATA
 
 .PRECIOUS: Makefile
 
-#EXTRA_DIST += $(top_srcdir)/logs/error.log
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
