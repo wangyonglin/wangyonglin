@@ -28,7 +28,7 @@ ok_t Pub(char **aliapisurl, struct _aliutils_apis_t *apis, char *DeviceName, cha
     SnowFlakeFormat(&SignatureNonce);
     char *TopicFullName;
     strcrt(&TopicFullName, NULL, ProductKeySize + DeviceNameSize + strlen(apis->TopicFullName)+8);
-    sprintf(TopicFullName, "/%s/%s/%s", apis->ProductKey, DeviceName, apis->TopicFullName);
+    sprintf(TopicFullName, "/%s/%s%s", apis->ProductKey, DeviceName, apis->TopicFullName);
     list *objlist;
     if (!list_create(&objlist, 20))
     {

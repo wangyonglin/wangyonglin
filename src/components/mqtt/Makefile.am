@@ -71,3 +71,5 @@ libcomponent_mqtt_la_SOURCES=\
     Proxy.c \
     SSLSocket.c \
     utf-8.c
+
+include_HEADERS =  $(top_srcdir)/src/components/mqtt/include/*.h

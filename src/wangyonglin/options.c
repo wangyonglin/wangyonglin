@@ -14,10 +14,7 @@ struct option long_options[] = {
     {"version", no_argument, 0, 'v'},
     {0, 0, 0, 0}};
 
-const char *ini_file = "/home/wangyonglin/github/wangyonglin/conf/tiger.conf";
-
 #define STRING_MALLOC_MAX 512
-
 
 options_t *options_create(struct _app_t *app, int argc, char *argv[])
 {
@@ -28,7 +25,9 @@ options_t *options_create(struct _app_t *app, int argc, char *argv[])
     }
     app->options->daemonize = negative;
     app->options->startup = positive;
-
+    const char conffilename[128] = {0};
+    strcat(conffilename, PACKAGE_DIRECTERY_PREFIX);
+    strcat(conffilename,"/conf/wangyonglin.conf");
     while (-1 != (opt = getopt_long(argc, argv, short_options, long_options, &option_index)))
     {
         switch (opt)
@@ -85,7 +84,7 @@ options_t *options_create(struct _app_t *app, int argc, char *argv[])
     }
     if (!app->options->ini_file)
     {
-        string_create(app->pool, &app->options->ini_file, strdup(ini_file), strlen(ini_file));
+        string_create(app->pool, &app->options->ini_file, conffilename, strlen(conffilename));
     }
 
     struct _command commands[] = {

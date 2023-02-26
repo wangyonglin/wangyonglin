@@ -14,22 +14,9 @@ bindir=     $(prefix)/bin
 libdir=     $(prefix)/lib
 datadir=    $(prefix)/share
 sysconfdir= $(prefix)/etc
-
-#if ENABLE_EXAMPLES
-#SUBDIRS            += examples
-#endif
-# Headers to install
-#include_HEADERS= $(top_srcdir)/include/wangyonglin/*.h
-#includedir=$(prefix)/include/wangyonglin
-
-
-
-
+logdir =    $(prefix)/logs
 confdir =   $(prefix)/conf
-conf_DATA = $(top_srcdir)/conf/tiger.conf
-
-#logsdir =   $(prefix)/logs
-#logs_DATA = $(top_srcdir)/logs/error.log
+conf_DATA = $(top_srcdir)/conf/wangyonglin.conf
 
 EXTRA_DIST  = README.md
 EXTRA_DIST += $(top_srcdir)/conf/tiger.conf

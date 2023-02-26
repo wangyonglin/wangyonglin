@@ -15,6 +15,7 @@
 #include <wangyonglin/conf.h>
 #include <https/client.h>
 #include <wangyonglin/string.h>
+
 #define MSG_QUE_KEY_ID 1996 // 消息队列标识
 
 int main(int argc, char *argv[])

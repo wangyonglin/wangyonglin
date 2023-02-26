@@ -10,4 +10,4 @@ libcomponent_openssl_la_SOURCES=\
     Base64.c    \
     URL.c
 
-
+include_HEADERS =  $(top_srcdir)/src/components/openssl/include/*.h

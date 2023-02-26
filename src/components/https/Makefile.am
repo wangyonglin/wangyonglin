@@ -7,3 +7,4 @@ libcomponent_https_la_SOURCES=\
         openssl_hostname_validation.c  \
         client.c  \
         hostcheck.c
+include_HEADERS =  $(top_srcdir)/src/components/https/include/https/*.h

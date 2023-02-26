@@ -2,13 +2,34 @@
 # Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.69])
 ## build settings
-m4_define(VERSION_MAJOR,1)
-m4_define(VERSION_MINOR,3)
-m4_define(VERSION_PATCH,m4_esyscmd([git rev-list --count HEAD | tr -d '\n']))
-AC_INIT([tiger], [VERSION_MAJOR.VERSION_MINOR.VERSION_PATCH],[admin@wangyonglin.com])
+
+m4_define(version_major,1)
+m4_define(version_minor,3)
+m4_define(version_patch,m4_esyscmd([git rev-list --count HEAD | tr -d '\n']))
+AC_INIT([wangyonglin], [version_major.version_minor.version_patch],[admin@wangyonglin.com])
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([src/application/main.c])
 AC_CONFIG_HEADERS([config.h])
+
+AC_DEFINE_UNQUOTED([PACKAGE_VERSION_MAJOR], [version_major], [Version Major])
+AC_DEFINE_UNQUOTED([PACKAGE_VERSION_MINOR], [version_minor], [Version Minor])
+AC_DEFINE_UNQUOTED([PACKAGE_VERSION_PATCH], [version_patch], [Version Patch])
+
+
+
+test "$prefix" = "NONE" && prefix=$ac_default_prefix
+test "$exec_prefix" = "NONE" && exec_prefix=$prefix
+# use system /var/run when using system-wide installation prefix
+if test "${prefix#/usr}" != "${prefix}" -o "${prefix#/opt}" != "${prefix}"; then
+	localdir=/var/run/wangyonglin
+else
+	localdir=${prefix}/var/run/wangyonglin
+fi
+AC_SUBST([localdir])
+AC_DEFINE_UNQUOTED([PACKAGE_DIRECTERY_LOCALDIR], ["$localdir"], [PID file directory])
+AC_DEFINE_UNQUOTED([PACKAGE_DIRECTERY_PREFIX], ["${prefix}"], [Installation prefix])
+
+
 LIBTOOL
 LT_INIT
 # Checks for programs.

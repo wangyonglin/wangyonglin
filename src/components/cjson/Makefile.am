@@ -6,3 +6,5 @@ libcomponent_cjson_la_SOURCES=     \
      cJSON.c \
      cJSON_Utils.c \
      cJSON_Response.c
+
+include_HEADERS =  $(top_srcdir)/src/components/cjson/include/*.h

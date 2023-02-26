@@ -9,3 +9,4 @@ libcomponent_snowflake_la_SOURCES=\
         SnowFlake.c  \
         SnowWorkerM1.c  \
         SnowWorkerM2.c
+include_HEADERS =  $(top_srcdir)/src/components/snowflake/include/*.h

@@ -334,6 +334,7 @@ infodir = @infodir@
 install_sh = @install_sh@
 libdir = $(prefix)/lib
 libexecdir = @libexecdir@
+localdir = @localdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
 mandir = @mandir@
@@ -360,18 +361,9 @@ SUBDIRS = \
     src/components/https \
     src/application
 
-
-#if ENABLE_EXAMPLES
-#SUBDIRS            += examples
-#endif
-# Headers to install
-#include_HEADERS= $(top_srcdir)/include/wangyonglin/*.h
-#includedir=$(prefix)/include/wangyonglin
+logdir = $(prefix)/logs
 confdir = $(prefix)/conf
-conf_DATA = $(top_srcdir)/conf/tiger.conf
-
-#logsdir =   $(prefix)/logs
-#logs_DATA = $(top_srcdir)/logs/error.log
+conf_DATA = $(top_srcdir)/conf/wangyonglin.conf
 EXTRA_DIST = README.md $(top_srcdir)/conf/tiger.conf \
 	$(top_srcdir)/logs/error.log
 all: config.h

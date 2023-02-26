@@ -11,7 +11,8 @@ ok_t command_init(struct _app_t *app, void *pointer, struct _command commands[],
     BIO *pBio = BIO_new_file(app->options->ini_file, "r");
     if (pBio == NULL)
     {
-        printf("load failed \n");
+        message("加载配置文件失败",app->options->ini_file);
+        exit(EXIT_FAILURE);
         return -1;
     }
 

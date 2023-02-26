@@ -15,4 +15,5 @@ libwangyonglin_la_SOURCES=   \
     list.c \
     Unix_timestamp_converter.c
 #需要引用的动态库文件
-LIBS += -g -O2 -Wall -pedantic   -lm  -lmysqlclient
+include_HEADERS =  $(top_srcdir)/src/wangyonglin/include/wangyonglin/*.h
+LIBS += -g -O2 -Wall -pedantic   -lm
