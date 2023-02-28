@@ -9,6 +9,6 @@ typedef struct _log_t{
     boolean log_errors;
 }log_t;
 
-log_t *log_create(struct _app_t *app);
+log_t *log_create(struct _pool_t *pool, struct _conf_t *cf);
 void logerr(log_t *log, const char *fmt, ...);
 #endif

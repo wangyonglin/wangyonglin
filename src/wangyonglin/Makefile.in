@@ -132,7 +132,7 @@ LTLIBRARIES = $(lib_LTLIBRARIES)
 libwangyonglin_la_LIBADD =
 am_libwangyonglin_la_OBJECTS = wangyonglin.lo pool.lo daemonize.lo \
 	lock.lo log.lo options.lo conf.lo message.lo file.lo string.lo \
-	list.lo Unix_timestamp_converter.lo
+	list.lo Unix_timestamp_converter.lo regedit.lo
 libwangyonglin_la_OBJECTS = $(am_libwangyonglin_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -158,7 +158,8 @@ am__depfiles_remade = ./$(DEPDIR)/Unix_timestamp_converter.Plo \
 	./$(DEPDIR)/file.Plo ./$(DEPDIR)/list.Plo ./$(DEPDIR)/lock.Plo \
 	./$(DEPDIR)/log.Plo ./$(DEPDIR)/message.Plo \
 	./$(DEPDIR)/options.Plo ./$(DEPDIR)/pool.Plo \
-	./$(DEPDIR)/string.Plo ./$(DEPDIR)/wangyonglin.Plo
+	./$(DEPDIR)/regedit.Plo ./$(DEPDIR)/string.Plo \
+	./$(DEPDIR)/wangyonglin.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -339,7 +340,8 @@ libwangyonglin_la_SOURCES = \
     file.c \
     string.c \
     list.c \
-    Unix_timestamp_converter.c
+    Unix_timestamp_converter.c \
+    regedit.c
 
 #需要引用的动态库文件
 include_HEADERS = $(top_srcdir)/src/wangyonglin/include/wangyonglin/*.h
@@ -431,6 +433,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/message.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/options.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pool.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/regedit.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/string.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wangyonglin.Plo@am__quote@ # am--include-marker
 
@@ -626,6 +629,7 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/message.Plo
 	-rm -f ./$(DEPDIR)/options.Plo
 	-rm -f ./$(DEPDIR)/pool.Plo
+	-rm -f ./$(DEPDIR)/regedit.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f ./$(DEPDIR)/wangyonglin.Plo
 	-rm -f Makefile
@@ -683,6 +687,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/message.Plo
 	-rm -f ./$(DEPDIR)/options.Plo
 	-rm -f ./$(DEPDIR)/pool.Plo
+	-rm -f ./$(DEPDIR)/regedit.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
 	-rm -f ./$(DEPDIR)/wangyonglin.Plo
 	-rm -f Makefile

@@ -4,6 +4,7 @@
 #include <URL.h>
 #include <HMAC_SHA1.h>
 #include <wangyonglin/list.h>
+#include <wangyonglin/regedit.h>
 char *aliurls_encode(char **outputString, size_t outputStringMax, char *inputString, size_t inputStringSize);
 char *aliurls_timestamp(char **obj)
 {
@@ -127,7 +128,7 @@ ok_t aliutils_apis_init(struct _app_t *app,struct _aliutils_apis_t **apis, const
     {
         return NullPointerException;
     }
-     struct _command  commands[] = {
+     struct _regedit_command_t  commands[] = {
         {"AccessKeyId", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeyId)},
         {"AccessKeySecret", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeySecret)},
         {"ProductKey", "cn-shanghai", STRING, offsetof(struct _aliutils_apis_t, ProductKey)},
@@ -138,10 +139,11 @@ ok_t aliutils_apis_init(struct _app_t *app,struct _aliutils_apis_t **apis, const
         {"SignatureMethod", "HMAC-SHA1", STRING, offsetof(struct _aliutils_apis_t, SignatureMethod)},
         {"SignatureVersion", "1.0", STRING, offsetof(struct _aliutils_apis_t, SignatureVersion)},
         {"RegionId", "cn-shanghai", STRING, offsetof(struct _aliutils_apis_t, RegionId)},
-        {"TopicFullName", NULL, STRING, offsetof(struct _aliutils_apis_t, TopicFullName)}};
+        {"TopicFullName", NULL, STRING, offsetof(struct _aliutils_apis_t, TopicFullName)},
+        regedit_null_command};
 
     // printf("\t%d\r\n", commands_size);
-    command_init(app,*apis,commands,NULL);
+    regedit(*apis,app->pool,app->options->cfname,NULL,commands);
     return ret;
 }
 

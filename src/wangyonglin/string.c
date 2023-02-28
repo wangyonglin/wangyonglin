@@ -120,5 +120,3 @@ void memdel(void *obj)
     if (obj)
         global_hooks.deallocate(obj);
 }
-
-

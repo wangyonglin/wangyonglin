@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
   app_t *app;
   ok_t ret = -1;
   application_create(&app, argc, argv);
+  logerr(app->log,"wefdfwfw");
   SnowFlakeInit(1, 1, 10);
   httpd_create(app);
   httpd_start();

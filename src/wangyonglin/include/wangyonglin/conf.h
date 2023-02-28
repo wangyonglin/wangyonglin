@@ -4,16 +4,16 @@
 #include <wangyonglin/package.h>
 #include <wangyonglin/string.h>
 #include <wangyonglin/wangyonglin.h>
-
-
-typedef struct _command
+// log_errors  = On
+// error_log = "/home/wangyonglin/github/wangyonglin/logs/error.log"
+// lockfile = "/var/run/wangyonglin.pid"
+typedef struct _conf_t
 {
-    const char *name;
-    void *value;
-    character type;
-    size_t address;
-} command_t;
-#define null_command {NULL, "", INVALID, NULL}
-ok_t command_init(struct _app_t *app, void *pointer, struct _command commands[], const char *section);
+    boolean log_errors;
+    char *error_log;
+    char *lockfile;
+} conf_t;
+
+conf_t *conf_create(struct _pool_t *pool, char *filename);
 
 #endif

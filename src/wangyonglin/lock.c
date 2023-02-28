@@ -39,22 +39,35 @@ boolean locked(struct _lock_t *lock)
     return ErrorException;
 }
 
-lock_t *lock_create(struct _app_t *app)
+lock_t *lock_create(struct _pool_t *pool, struct _conf_t *cf)
 {
-    if(!object_create(app->pool,&app->lock,sizeof(struct _lock_t))){
-        return NULL;
-    }
-    if(!app->options){
-         return NULL;
-    }
-    if (!string_create(app->pool,&app->lock->lockfile,app->options->lockfile,strlen(app->options->lockfile)))
+    struct _lock_t *lock;
+    size_t lockfilesize = 0;
+    if (!pool && !cf->lockfile)
     {
-        return NULL;
+        return lock = NULL;
+    }
+    if (lock = allocate(pool, sizeof(struct _lock_t)))
+    {
+        if (cf->lockfile[0] == '/')
+        {
+            string_create(pool, &lock->lockfile, cf->lockfile, strlen(cf->lockfile));
+        }
+        else
+        {
+            lockfilesize += strlen(PACKAGE_DIRECTERY_PREFIX);
+            lockfilesize += strlen(cf->lockfile);
+            lockfilesize += 2;
+            lock->lockfile = allocate(pool, lockfilesize);
+            strcat(lock->lockfile, PACKAGE_DIRECTERY_PREFIX);
+            strcat(lock->lockfile, "/");
+            strcat(lock->lockfile, cf->lockfile);
+        }
+        return lock;
     }
 
-    return app->lock;
+    return lock = NULL;
 }
-
 
 ok_t locking(struct _lock_t *lock)
 {

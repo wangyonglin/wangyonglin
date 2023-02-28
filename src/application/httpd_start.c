@@ -2,20 +2,20 @@
 #include <curl/curl.h>
 #include <cJSON.h>
 #include <application/https_successful.h>
-
+#include <wangyonglin/regedit.h>
 httpd_t *httpd = NULL;
-struct _command aliyun_commands[] = {{"AccessKeyId", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeyId)},
-                                     {"AccessKeySecret", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeySecret)},
-                                     {"ProductKey", "cn-shanghai", STRING, offsetof(struct _aliutils_apis_t, ProductKey)},
-                                     {"DeviceName", "JSON", STRING, offsetof(struct _aliutils_apis_t, DeviceName)},
-                                     {"Format", "JSON", STRING, offsetof(struct _aliutils_apis_t, Format)},
-                                     {"Version", "2020-04-20", STRING, offsetof(struct _aliutils_apis_t, Version)},
-                                     {"AccessKeyId", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeyId)},
-                                     {"SignatureMethod", "HMAC-SHA1", STRING, offsetof(struct _aliutils_apis_t, SignatureMethod)},
-                                     {"SignatureVersion", "1.0", STRING, offsetof(struct _aliutils_apis_t, SignatureVersion)},
-                                     {"RegionId", "cn-shanghai", STRING, offsetof(struct _aliutils_apis_t, RegionId)},
-                                     {"TopicFullName", NULL, STRING, offsetof(struct _aliutils_apis_t, TopicFullName)},
-                                     null_command};
+struct _regedit_command_t aliyun_commands[] = {{"AccessKeyId", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeyId)},
+                                               {"AccessKeySecret", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeySecret)},
+                                               {"ProductKey", "cn-shanghai", STRING, offsetof(struct _aliutils_apis_t, ProductKey)},
+                                               {"DeviceName", "JSON", STRING, offsetof(struct _aliutils_apis_t, DeviceName)},
+                                               {"Format", "JSON", STRING, offsetof(struct _aliutils_apis_t, Format)},
+                                               {"Version", "2020-04-20", STRING, offsetof(struct _aliutils_apis_t, Version)},
+                                               {"AccessKeyId", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeyId)},
+                                               {"SignatureMethod", "HMAC-SHA1", STRING, offsetof(struct _aliutils_apis_t, SignatureMethod)},
+                                               {"SignatureVersion", "1.0", STRING, offsetof(struct _aliutils_apis_t, SignatureVersion)},
+                                               {"RegionId", "cn-shanghai", STRING, offsetof(struct _aliutils_apis_t, RegionId)},
+                                               {"TopicFullName", NULL, STRING, offsetof(struct _aliutils_apis_t, TopicFullName)},
+                                               regedit_null_command};
 struct _aliutils_apis_t *apis;
 
 ok_t httpd_create(app_t *app)
@@ -29,13 +29,13 @@ ok_t httpd_create(app_t *app)
         logerr(app->log, "httpd_create failed");
         return NullPointerException;
     }
-    struct _command commands[] = {
+    struct _regedit_command_t commands[] = {
         {"address", "0.0.0.0", STRING, offsetof(struct _httpd_t, address)},
         {"port", (void *)80, INTEGER, offsetof(struct _httpd_t, port)},
         {"timeout_in_secs", 15, INTEGER, offsetof(struct _httpd_t, timeout_in_secs)},
-        null_command};
+        regedit_null_command};
 
-    if (command_init(app, httpd, commands, "HTTPD") != OK)
+    if (regedit(httpd, app->pool,app->options->cfname, "HTTPD", commands) != OK)
     {
         return ErrorException;
     }
@@ -43,7 +43,7 @@ ok_t httpd_create(app_t *app)
     logerr(app->log, "port    {%d}", (httpd)->port);
     logerr(app->log, "timeout_in_secs    {%d}", (httpd)->timeout_in_secs);
     objcrt(&apis, sizeof(struct _aliutils_apis_t));
-    command_init(app, apis, aliyun_commands, "ALIIOT");
+    regedit(apis, app->pool, app->options->cfname, "ALIIOT", aliyun_commands);
     (httpd)->app = app;
 
     return OK;

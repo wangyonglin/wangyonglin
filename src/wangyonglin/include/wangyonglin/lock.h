@@ -10,7 +10,7 @@ typedef struct _lock_t
     int lockfd;
 } lock_t;
 
-lock_t *lock_create(struct _app_t *app);
+lock_t *lock_create(struct _pool_t *pool, struct _conf_t *cf);
 ok_t lockstat(struct _lock_t *lock);
 ok_t locking(struct _lock_t *lock);
 ok_t unlocking(struct _lock_t *lock);

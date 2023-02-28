@@ -5,21 +5,35 @@
 #define FONT_COLOR_GREEN "\033[0;32m"
 #define FONT_COLOR_BLUE "\033[1;34m"
 
-log_t *log_create(struct _app_t *app)
+log_t *log_create(struct _pool_t *pool, struct _conf_t *cf)
 {
-  if(!object_create(app->pool,&app->log,sizeof(struct _log_t))){
-        return NULL;
-    }
-    if(!app->options){
-         return NULL;
-    }
-    if (!string_create(app->pool,&app->log->error_log,app->options->error_log,strlen(app->options->error_log)))
+    struct _log_t *log;
+    size_t logsize = 0;
+    if (!pool && !cf->error_log)
     {
-        return NULL;
+        return log = NULL;
     }
-    app->log->log_errors=app->options->log_errors;
+    if (log = allocate(pool, sizeof(struct _log_t)))
+    {
+        if (cf->error_log[0] == '/')
+        {
+            string_create(pool, &log->error_log, cf->error_log, strlen(cf->error_log));
+        }
+        else
+        {
+            logsize += strlen(PACKAGE_DIRECTERY_PREFIX);
+            logsize += strlen(cf->error_log);
+            logsize += 2;
+            log->error_log = allocate(pool, logsize);
+            strcat(log->error_log, PACKAGE_DIRECTERY_PREFIX);
+            strcat(log->error_log, "/");
+            strcat(log->error_log, cf->error_log);
+        }
+        log->log_errors = cf->log_errors;
+        return log;
+    }
 
-    return app->log;
+    return log = NULL;
 }
 
 void logerr(log_t *log, const char *fmt, ...)

@@ -13,7 +13,8 @@ libwangyonglin_la_SOURCES=   \
     file.c \
     string.c \
     list.c \
-    Unix_timestamp_converter.c
+    Unix_timestamp_converter.c \
+    regedit.c
 #需要引用的动态库文件
 include_HEADERS =  $(top_srcdir)/src/wangyonglin/include/wangyonglin/*.h
 LIBS += -g -O2 -Wall -pedantic   -lm

@@ -8,7 +8,7 @@
 
 typedef struct _options_t
 {
-    unsigned char *ini_file;
+    unsigned char *cfname;
     boolean startup;
     boolean daemonize;
     char *error_log;
@@ -16,5 +16,5 @@ typedef struct _options_t
     char *lockfile;
 } options_t;
 
-options_t *options_create(struct _app_t *app,int argc, char *argv[]);
+options_t *options_create(struct _pool_t *pool, int argc, char *argv[]);
 #endif

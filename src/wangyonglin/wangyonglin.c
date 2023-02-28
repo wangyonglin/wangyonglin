@@ -1,9 +1,10 @@
 #include <wangyonglin/wangyonglin.h>
 #include <wangyonglin/pool.h>
 pool_t *pool = NULL;
-/**
- * 处理SIGINT信号
- **/
+struct _options_t *options;
+struct _conf_t *cf;
+struct _lock_t *lock;
+struct _log_t *log;
 void sigintHandler(int signal)
 {
     printf("this is sigintHandler\n");
@@ -34,40 +35,48 @@ app_t *application_create(app_t **app, int argc, char *argv[])
         perror("allocate_create failed");
         exit(EXIT_FAILURE);
     }
-
-    if (!object_create(pool, app, sizeof(app_t)))
+    if (!((*app) = (struct _app_t *)allocate(pool, sizeof(struct _app_t))))
     {
         perror("allocate app_t failed");
         exit(EXIT_FAILURE);
     }
     (*app)->pool = pool;
-
-    if (!options_create((*app), argc, argv))
+    if (!(options = options_create(pool, argc, argv)))
     {
         perror("options_create failed");
         exit(EXIT_FAILURE);
     }
+    (*app)->options = options;
 
-    if (!lock_create((*app)))
+    cf = conf_create(pool, options->cfname);
+    if (!cf)
+    {
+        perror("conf_create failed");
+        exit(EXIT_FAILURE);
+    }
+    (*app)->conf = cf;
+    lock = lock_create(pool, cf);
+    if (!lock)
     {
         perror("lock_create failed");
         exit(EXIT_FAILURE);
     }
 
-    if (!log_create(*app))
+    log = log_create(pool, cf);
+    if (!log)
     {
         perror("log_create failed");
         exit(EXIT_FAILURE);
     }
-
-    if ((*app)->options->startup == positive)
+    (*app)->log = log;
+    if (options->startup == positive)
     {
-        locking((*app)->lock);
+        locking(lock);
         return (*app);
     }
-    else if ((*app)->options->startup == negative)
+    else if (options->startup == negative)
     {
-        lockexit((*app)->lock);
+        lockexit(lock);
         exit(EXIT_SUCCESS);
     }
     perror("application_create failed");

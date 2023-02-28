@@ -15,8 +15,8 @@ typedef struct _app_t
 {
     pool_t *pool;
     struct _options_t *options;
-    struct _lock_t *lock;
     struct _log_t *log;
+    struct _conf_t *conf;
     message_id_t msg1;
     message_id_t msg2;
     message_id_t msg3;
@@ -26,5 +26,4 @@ typedef struct _app_t
 
 app_t *application_create(app_t **app, int argc, char *argv[]);
 void application_delete(app_t *app);
-
 #endif

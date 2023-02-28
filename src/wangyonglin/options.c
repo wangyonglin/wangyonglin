@@ -1,6 +1,7 @@
 #include <wangyonglin/options.h>
 #include <wangyonglin/daemonize.h>
 #include <wangyonglin/conf.h>
+#include <wangyonglin/regedit.h>
 #define STRINTG_BUFFER_MAX 64
 
 int opt;
@@ -16,24 +17,21 @@ struct option long_options[] = {
 
 #define STRING_MALLOC_MAX 512
 
-options_t *options_create(struct _app_t *app, int argc, char *argv[])
+options_t *options_create(struct _pool_t *pool, int argc, char *argv[])
 {
-
-    if (!object_create(app->pool, &app->options, sizeof(struct _options_t)))
+    struct _options_t *options;
+    if (!object_create(pool, &options, sizeof(struct _options_t)))
     {
         return NULL;
     }
-    app->options->daemonize = negative;
-    app->options->startup = positive;
-    const char conffilename[128] = {0};
-    strcat(conffilename, PACKAGE_DIRECTERY_PREFIX);
-    strcat(conffilename,"/conf/wangyonglin.conf");
+    options->daemonize = negative;
+    options->startup = positive;
     while (-1 != (opt = getopt_long(argc, argv, short_options, long_options, &option_index)))
     {
         switch (opt)
         {
         case 'c':
-            string_create(app->pool, &app->options->ini_file, optarg, strlen(optarg));
+            string_create(pool, &options->cfname, optarg, strlen(optarg));
             break;
         case 'i':
 
@@ -41,15 +39,15 @@ options_t *options_create(struct _app_t *app, int argc, char *argv[])
         case 's':
             if (!strcmp(optarg, "start"))
             {
-                app->options->startup = positive;
+                options->startup = positive;
             }
             else if (!strcmp(optarg, "stop"))
             {
-                app->options->startup = negative;
+                options->startup = negative;
             }
             else if (!strcmp(optarg, "status"))
             {
-                app->options->startup = invalid;
+                options->startup = invalid;
             }
             else
             {
@@ -58,7 +56,7 @@ options_t *options_create(struct _app_t *app, int argc, char *argv[])
             }
             break;
         case 'd':
-            app->options->daemonize = positive;
+            options->daemonize = positive;
             break;
         case 'v':
             fprintf(stderr, "v");
@@ -78,20 +76,23 @@ options_t *options_create(struct _app_t *app, int argc, char *argv[])
             break;
         }
     }
-    if (app->options->daemonize == positive && app->options->startup == positive)
+    if (options->daemonize == positive && options->startup == positive)
     {
         daemonize();
     }
-    if (!app->options->ini_file)
+    if (!options->cfname)
     {
-        string_create(app->pool, &app->options->ini_file, conffilename, strlen(conffilename));
+        size_t cfnamesize = 0;
+        cfnamesize += strlen(PACKAGE_DIRECTERY_PREFIX);
+        cfnamesize += strlen("/conf/");
+        cfnamesize += strlen(PACKAGE_NAME);
+        cfnamesize += strlen(".conf");
+        cfnamesize += 1;
+        options->cfname = allocate(pool, cfnamesize);
+        strcat(options->cfname, PACKAGE_DIRECTERY_PREFIX);
+        strcat(options->cfname, "/conf/");
+        strcat(options->cfname, PACKAGE_NAME);
+        strcat(options->cfname, ".conf");
     }
-
-    struct _command commands[] = {
-        {"error_log", NULL, STRING, offsetof(struct _options_t, error_log)},
-        {"lockfile", NULL, STRING, offsetof(struct _options_t, lockfile)},
-        {"log_errors", NULL, BOOLEAN, offsetof(struct _options_t, log_errors)},
-        null_command};
-    command_init(app, app->options, commands, NULL);
-    return app->options;
+    return options;
 }
