@@ -1,24 +1,21 @@
 #include <wangyonglin/conf.h>
-#include <wangyonglin/regedit.h>
+#include <wangyonglin/object.h>
 
-conf_t *conf_create(struct _pool_t *pool, char *filename)
+conf_t *conf_create(conf_t **conf, pool_t *pool, string_t confname)
 {
-    struct _conf_t *cf;
-    if (pool && filename)
-    {
-        object_create(pool, &cf, sizeof(struct _conf_t));
-        struct _regedit_command_t commands[] = {
-            {"log_errors", 0, BOOLEAN, offsetof(struct _conf_t, log_errors)},
-            {"error_log", "", STRING, offsetof(struct _conf_t, error_log)},
-            {"lockfile", "", STRING, offsetof(struct _conf_t, lockfile)},
-            regedit_null_command};
 
-        if (regedit(cf, pool, filename, NULL, commands) != OK)
+    if (pool)
+    {
+        if (pool_object_create(pool, (void **)conf, sizeof(conf_t)))
         {
-            deallocate(pool, cf);
-            return NULL;
+            object_command_t objects[] = {
+                object_string_command("error_log", offsetof(conf_t, error_log)),
+                object_string_command("lockfile", offsetof(conf_t, lockfile)),
+                object_boolean_command("log_errors", offsetof(conf_t, log_errors)),
+                object_null_command};
+            object_mirror(objects, (*conf), confname, NULL);
+            return (*conf);
         }
-        return cf;
     }
-    return cf = NULL;
+    return (*conf) = NULL;
 }

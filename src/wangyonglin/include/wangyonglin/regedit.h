@@ -13,9 +13,13 @@ typedef struct _regedit_command_t
 {
     const char *name;
     void *value;
-    character type;
+    type_t type;
     size_t address;
 } regedit_command_t;
 
-ok_t regedit(void *obj, struct _pool_t *pool, char *filename, const char *section, struct _regedit_command_t commands[]);
+ok_t regedit_pool_create(void *obj, struct _pool_t *pool, string_t confname, const char *section, struct _regedit_command_t commands[]);
+ok_t regedit_create(void *obj, char *filename, const char *section, struct _regedit_command_t commands[]);
+
+
+
 #endif

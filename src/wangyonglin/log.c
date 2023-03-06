@@ -5,35 +5,36 @@
 #define FONT_COLOR_GREEN "\033[0;32m"
 #define FONT_COLOR_BLUE "\033[1;34m"
 
-log_t *log_create(struct _pool_t *pool, struct _conf_t *cf)
+log_t *log_create(log_t **log, pool_t *pool, conf_t *conf)
 {
-    struct _log_t *log;
-    size_t logsize = 0;
-    if (!pool && !cf->error_log)
+    if (pool && conf)
     {
-        return log = NULL;
-    }
-    if (log = allocate(pool, sizeof(struct _log_t)))
-    {
-        if (cf->error_log[0] == '/')
+
+        if (pool_object_create(pool, (void **)log, sizeof(struct _log_t)))
         {
-            string_create(pool, &log->error_log, cf->error_log, strlen(cf->error_log));
+            if (conf->error_log[0] == '/')
+            {
+                pool_buffer_create(pool, &(*log)->error_log, conf->error_log, strlen(conf->error_log));
+            }
+            else
+            {
+                size_t logsize = 0;
+                logsize += strlen(PACKAGE_DIRECTERY_PREFIX);
+                logsize += strlen(conf->error_log);
+                logsize += 2;
+                char tmpError_log[logsize];
+                memset(tmpError_log, 0x00, sizeof(tmpError_log));
+                strcat(tmpError_log, PACKAGE_DIRECTERY_PREFIX);
+                strcat(tmpError_log, "/");
+                strcat(tmpError_log, conf->error_log);
+                pool_buffer_create(pool, &(*log)->error_log, tmpError_log, strlen(tmpError_log));
+            }
+            (*log)->log_errors = conf->log_errors;
+            return (*log);
         }
-        else
-        {
-            logsize += strlen(PACKAGE_DIRECTERY_PREFIX);
-            logsize += strlen(cf->error_log);
-            logsize += 2;
-            log->error_log = allocate(pool, logsize);
-            strcat(log->error_log, PACKAGE_DIRECTERY_PREFIX);
-            strcat(log->error_log, "/");
-            strcat(log->error_log, cf->error_log);
-        }
-        log->log_errors = cf->log_errors;
-        return log;
     }
 
-    return log = NULL;
+    return (*log) = NULL;
 }
 
 void logerr(log_t *log, const char *fmt, ...)

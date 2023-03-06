@@ -1,5 +1,6 @@
 #include <wangyonglin/pool.h>
-
+#include <wangyonglin/string.h>
+#include <wangyonglin/buffer.h>
 // int main()
 // {
 // 	int size = 1 << 12; //左移12位，申请内存块的大小，一般是2的倍数 这里是2的12次方
@@ -44,7 +45,7 @@
 
 // 申请线程池 保存管理节点+实际的内存
 // 管理节点和哨兵节点
-pool_t *allocate_create(size_t size)
+pool_t *pool_create(size_t size)
 {
 	pool_t *pool;
 	// 申请大内存 目标申请大小+管理节点结构体
@@ -68,7 +69,7 @@ pool_t *allocate_create(size_t size)
 }
 
 // 线程池的销毁处理
-void allocate_delete(pool_t *pool)
+void pool_delete(pool_t *pool)
 {
 	if (pool == NULL)
 		return;
@@ -96,7 +97,7 @@ void allocate_delete(pool_t *pool)
 }
 
 // 销毁大内存的申请 小块内存的重新指向
-void allocate_reset(pool_t *pool)
+void pool_reset(pool_t *pool)
 {
 	large_t *large;
 	for (large = pool->large; large; large = large->next)
@@ -284,28 +285,59 @@ int deallocate(pool_t *pool, void *p)
 	return -1;
 }
 
-void *object_create(pool_t *pool, void **obj, size_t objsize)
+string_t pool_string_create(pool_t *pool, char *datastring, size_t datalength)
 {
-	if (!pool)
+	string_t out = string_null_command;
+	if (pool && datastring)
 	{
-		return NULL;
+
+		if (out.outstring = allocate(pool, datalength + 1))
+		{
+			memset(out.outstring, 0x00, datalength + 1);
+			memcpy(out.outstring, datastring, datalength);
+			out.outlength = strlen(out.outstring);
+			return out;
+		}
 	}
-	if (!((*obj) = allocate(pool, objsize)))
-	{
-		return NULL;
-	}
-	return *obj;
+	return out;
 }
-char *string_create(pool_t *pool, char **obj, char *text, size_t textsize)
+char *pool_buffer_create(pool_t *pool, char **outstring, char *instring, size_t instringsize)
 {
-	if (!pool)
+	size_t tmpinstringsize = instringsize;
+	if (pool)
 	{
-		return NULL;
+
+		if (buffer_is_null(instring) && buffer_is_empty(instring))
+		{
+
+			if (((*outstring) = allocate(pool, tmpinstringsize)))
+			{
+				return memset((*outstring), 0x00, tmpinstringsize);
+			}
+		}
+		else
+		{
+			tmpinstringsize++;
+			if (((*outstring) = allocate(pool, tmpinstringsize)))
+			{
+				memset((*outstring), 0x00, tmpinstringsize);
+				return memcpy(*outstring, instring, instringsize);
+			}
+		}
 	}
-	if (!((*obj) = allocate(pool, textsize+1)))
+
+	return (*outstring) = NULL;
+}
+
+void *pool_object_create(pool_t *pool, void **outobject, size_t outobjectsize)
+{
+	if (pool)
 	{
-		return NULL;
+		if (((*outobject) = allocate(pool, outobjectsize)))
+		{
+			memset((*outobject), 0x00, outobjectsize);
+			return (*outobject);
+		}
 	}
-	memset(*obj,0x00,textsize+1);
-	return memcpy(*obj,text,textsize);
+	return (*outobject) = NULL;
 }

@@ -266,7 +266,7 @@ INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
-LIBS = -lssl -lpthread -lm -levent_openssl -levent -lcurl -lcrypto 
+LIBS = -lssl -lpthread -lm -levent_openssl -levent -lcurl -lcrypto  -g -O2 -Wall -pedantic
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
@@ -284,10 +284,10 @@ OTOOL64 =
 PACKAGE = wangyonglin
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = wangyonglin
-PACKAGE_STRING = wangyonglin 1.3.38
+PACKAGE_STRING = wangyonglin 1.3.41
 PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.38
+PACKAGE_VERSION = 1.3.41
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -295,7 +295,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.38
+VERSION = 1.3.41
 abs_builddir = /home/wangyonglin/github/wangyonglin/build
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/..
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -356,7 +356,6 @@ SUBDIRS = \
     src/wangyonglin   \
     src/components/openssl    \
     src/components/snowflake    \
-    src/components/mqtt \
     src/components/cjson \
     src/components/https \
     src/application

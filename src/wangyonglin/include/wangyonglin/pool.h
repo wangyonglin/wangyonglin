@@ -66,10 +66,11 @@ void * allocate_nalloc(pool_t * pool, size_t size);
 void * allocate_calloc(pool_t * pool, size_t size);
 int deallocate(pool_t *pool, void* p);
 
-pool_t * allocate_create(size_t size);
-void allocate_delete(pool_t* pool);
-void allocate_reset(pool_t * pool);
+pool_t * pool_create(size_t size);
+void pool_delete(pool_t* pool);
+void pool_reset(pool_t * pool);
 
-void *object_create(pool_t *pool, void **obj, size_t objsize);
-char *string_create(pool_t *pool, char **obj, char *text, size_t textsize);
+void *pool_object_create(pool_t *pool, void **outobject, size_t outobjectsize);
+string_t pool_string_create(pool_t *pool, char *datastring, size_t datalength);
+char *pool_buffer_create(pool_t *pool, char **outstring, char *instring, size_t instringsize);
 #endif

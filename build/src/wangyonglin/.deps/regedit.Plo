@@ -104,7 +104,8 @@ regedit.lo: ../../../src/wangyonglin/regedit.c /usr/include/stdc-predef.h \
  ../../../src/wangyonglin/include/wangyonglin/message.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
- /usr/include/malloc.h
+ /usr/include/malloc.h \
+ ../../../src/wangyonglin/include/wangyonglin/buffer.h
 
 /usr/include/stdc-predef.h:
 
@@ -491,3 +492,5 @@ regedit.lo: ../../../src/wangyonglin/regedit.c /usr/include/stdc-predef.h \
 /usr/include/bits/msq.h:
 
 /usr/include/malloc.h:
+
+../../../src/wangyonglin/include/wangyonglin/buffer.h:

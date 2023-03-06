@@ -41,7 +41,6 @@ aliutils.o: ../../../src/application/aliutils.c \
  /usr/include/bits/stdlib-float.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
  ../../../src/wangyonglin/include/wangyonglin/list.h \
- ../../../src/wangyonglin/include/wangyonglin/string.h \
  ../../../src/wangyonglin/include/wangyonglin/package.h \
  /usr/include/unistd.h /usr/include/bits/posix_opt.h \
  /usr/include/bits/environments.h /usr/include/bits/confname.h \
@@ -96,6 +95,7 @@ aliutils.o: ../../../src/application/aliutils.c \
  /usr/include/openssl/ssl2.h /usr/include/openssl/ssl3.h \
  /usr/include/openssl/tls1.h /usr/include/openssl/dtls1.h \
  /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h \
+ ../../../src/wangyonglin/include/wangyonglin/string.h \
  /usr/include/curl/curl.h /usr/include/curl/curlver.h \
  /usr/include/curl/system.h /usr/include/sys/socket.h \
  /usr/include/bits/types/struct_iovec.h /usr/include/bits/socket.h \
@@ -107,8 +107,15 @@ aliutils.o: ../../../src/application/aliutils.c \
  /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
  /usr/include/curl/typecheck-gcc.h \
  ../../../src/wangyonglin/include/wangyonglin/conf.h \
- ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
  ../../../src/wangyonglin/include/wangyonglin/pool.h \
+ ../../../src/wangyonglin/include/wangyonglin/object.h \
+ ../../../src/wangyonglin/include/wangyonglin/buffer.h \
+ ../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h \
+ ../../../src/components/openssl/include/URL.h \
+ ../../../src/components/openssl/include/HMAC_SHA1.h \
+ /usr/include/openssl/rand.h /usr/include/openssl/randerr.h \
+ ../../../src/wangyonglin/include/wangyonglin/regedit.h \
+ ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
  ../../../src/wangyonglin/include/wangyonglin/options.h \
  ../../../src/wangyonglin/include/wangyonglin/lock.h \
  ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
@@ -117,11 +124,10 @@ aliutils.o: ../../../src/application/aliutils.c \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
  /usr/include/malloc.h \
- ../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h \
- ../../../src/components/openssl/include/URL.h \
- ../../../src/components/openssl/include/HMAC_SHA1.h \
- /usr/include/openssl/rand.h /usr/include/openssl/randerr.h \
- ../../../src/wangyonglin/include/wangyonglin/regedit.h
+ ../../../src/components/snowflake/include/SnowFlake.h \
+ ../../../src/components/snowflake/include/IdGenOptions.h \
+ ../../../src/components/snowflake/include/common.h \
+ ../../../src/components/openssl/include/Base64.h
 
 /usr/include/stdc-predef.h:
 
@@ -272,8 +278,6 @@ aliutils.o: ../../../src/application/aliutils.c \
 /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
 
 ../../../src/wangyonglin/include/wangyonglin/list.h:
-
-../../../src/wangyonglin/include/wangyonglin/string.h:
 
 ../../../src/wangyonglin/include/wangyonglin/package.h:
 
@@ -483,6 +487,8 @@ aliutils.o: ../../../src/application/aliutils.c \
 
 /usr/include/openssl/err.h:
 
+../../../src/wangyonglin/include/wangyonglin/string.h:
+
 /usr/include/curl/curl.h:
 
 /usr/include/curl/curlver.h:
@@ -523,9 +529,25 @@ aliutils.o: ../../../src/application/aliutils.c \
 
 ../../../src/wangyonglin/include/wangyonglin/conf.h:
 
-../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
-
 ../../../src/wangyonglin/include/wangyonglin/pool.h:
+
+../../../src/wangyonglin/include/wangyonglin/object.h:
+
+../../../src/wangyonglin/include/wangyonglin/buffer.h:
+
+../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h:
+
+../../../src/components/openssl/include/URL.h:
+
+../../../src/components/openssl/include/HMAC_SHA1.h:
+
+/usr/include/openssl/rand.h:
+
+/usr/include/openssl/randerr.h:
+
+../../../src/wangyonglin/include/wangyonglin/regedit.h:
+
+../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
 
 ../../../src/wangyonglin/include/wangyonglin/options.h:
 
@@ -549,14 +571,10 @@ aliutils.o: ../../../src/application/aliutils.c \
 
 /usr/include/malloc.h:
 
-../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h:
+../../../src/components/snowflake/include/SnowFlake.h:
 
-../../../src/components/openssl/include/URL.h:
+../../../src/components/snowflake/include/IdGenOptions.h:
 
-../../../src/components/openssl/include/HMAC_SHA1.h:
+../../../src/components/snowflake/include/common.h:
 
-/usr/include/openssl/rand.h:
-
-/usr/include/openssl/randerr.h:
-
-../../../src/wangyonglin/include/wangyonglin/regedit.h:
+../../../src/components/openssl/include/Base64.h:

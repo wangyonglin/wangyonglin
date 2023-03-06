@@ -2,22 +2,24 @@
 #include <cJSON.h>
 #include <wangyonglin/string.h>
 #include <wangyonglin/package.h>
-char *https_failure(char **ostr, const char *errmsg)
+
+string_t https_failure(const char *errmsg)
 {
+    string_t out = string_null_command;
     cJSON *root = cJSON_CreateObject();
     cJSON_AddFalseToObject(root, "Success");
     cJSON_AddStringToObject(root, "ErrorMessage", errmsg);
     cJSON_AddItemToObjectCS(root, "Data", cJSON_CreateObject());
 
-    char *out = cJSON_PrintUnformatted(root);
-    size_t outsize = strlen(out);
-    strcrt(ostr, out, outsize);
+    char *tmp = cJSON_PrintUnformatted(root);
+    string_create(tmp, strlen(tmp));
     if (root)
         cJSON_Delete(root);
-    return ostr;
+    return out;
 }
-char *https_successful(char **pstr, cJSON *item)
+string_t https_successful(cJSON *item)
 {
+    string_t out = string_null_command;
     cJSON *root = cJSON_CreateObject();
     cJSON_AddTrueToObject(root, "Success");
     cJSON_AddStringToObject(root, "ErrorMessage", "");
@@ -25,10 +27,9 @@ char *https_successful(char **pstr, cJSON *item)
         cJSON_AddItemToObjectCS(root, "Data", item);
     else
         cJSON_AddItemToObjectCS(root, "Data", cJSON_CreateObject());
-    char *out = cJSON_PrintUnformatted(root);
-    size_t outsize = strlen(out);
-    strcrt(pstr, out, outsize);
+    char *tmp = cJSON_PrintUnformatted(root);
+    string_create(tmp, strlen(tmp));
     if (root)
         cJSON_Delete(root);
-    return pstr;
+    return out;
 }

@@ -266,7 +266,7 @@ INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
-LIBS = @LIBS@
+LIBS = @LIBS@ -g -O2 -Wall -pedantic
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
@@ -356,7 +356,6 @@ SUBDIRS = \
     src/wangyonglin   \
     src/components/openssl    \
     src/components/snowflake    \
-    src/components/mqtt \
     src/components/cjson \
     src/components/https \
     src/application

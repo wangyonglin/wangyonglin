@@ -3,6 +3,8 @@
 #include <cJSON.h>
 #include <application/https_successful.h>
 #include <wangyonglin/regedit.h>
+#include <wangyonglin/object.h>
+#include <wangyonglin/buffer.h>
 httpd_t *httpd = NULL;
 struct _regedit_command_t aliyun_commands[] = {{"AccessKeyId", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeyId)},
                                                {"AccessKeySecret", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeySecret)},
@@ -24,7 +26,7 @@ ok_t httpd_create(app_t *app)
     {
         return ArgumentException;
     }
-    if (!objcrt((void **)&httpd, sizeof(struct _httpd_t)))
+    if (!object_create((void **)&httpd, sizeof(struct _httpd_t)))
     {
         logerr(app->log, "httpd_create failed");
         return NullPointerException;
@@ -35,34 +37,32 @@ ok_t httpd_create(app_t *app)
         {"timeout_in_secs", 15, INTEGER, offsetof(struct _httpd_t, timeout_in_secs)},
         regedit_null_command};
 
-    if (regedit(httpd, app->pool,app->options->cfname, "HTTPD", commands) != OK)
-    {
-        return ErrorException;
-    }
-    logerr(app->log, "address    {%s}", (httpd)->address);
-    logerr(app->log, "port    {%d}", (httpd)->port);
-    logerr(app->log, "timeout_in_secs    {%d}", (httpd)->timeout_in_secs);
-    objcrt(&apis, sizeof(struct _aliutils_apis_t));
-    regedit(apis, app->pool, app->options->cfname, "ALIIOT", aliyun_commands);
-    (httpd)->app = app;
+    // if (regedit(httpd, app->pool,app->options->confname, "HTTPD", commands) != OK)
+    // {
+    //     return ErrorException;
+    // }
+    object_create(&apis, sizeof(struct _aliutils_apis_t));
+    // regedit(apis, app->pool, app->options->confname, "ALIIOT", aliyun_commands);
+    // (httpd)->app = app;
 
     return OK;
 }
 
-void error_handler(struct evhttp_request *req, void *arg)
-{
-    evhttp_add_header(req->output_headers, "Content-Type", "application/json; charset=UTF-8");
-    evhttp_add_header(req->output_headers, "Connection", "close");
-    char *ostr;
-    https_failure(&ostr, "404 Unknown Error");
-    struct evbuffer *evbuffer_body = evbuffer_new();
-    evbuffer_add(evbuffer_body, ostr, strlen(ostr));
-    evhttp_send_reply(req, 404, "404 Unknown Error", evbuffer_body);
-    if (evbuffer_body)
-        evbuffer_free(evbuffer_body);
-    strdel(ostr);
-    return;
-}
+// void error_handler(struct evhttp_request *req, void *arg)
+// {
+//     evhttp_add_header(req->output_headers, "Content-Type", "application/json; charset=UTF-8");
+//     evhttp_add_header(req->output_headers, "Connection", "close");
+
+//     buffer_t result = buffer_null_command;
+//     https_failure(&result, "404 Unknown Error");
+//     struct evbuffer *evbuffer_body = evbuffer_new();
+//     evbuffer_add(evbuffer_body, result.datastring, result.datasize);
+//     evhttp_send_reply(req, 404, "404 Unknown Error", evbuffer_body);
+//     if (evbuffer_body)
+//         evbuffer_free(evbuffer_body);
+//     buffer_delete(result);
+//     return;
+// }
 
 ok_t httpd_start()
 {
@@ -76,12 +76,12 @@ ok_t httpd_start()
         // 设置超时时间15秒
         evhttp_set_timeout(httpd->https, httpd->timeout_in_secs);
 
-        evhttp_set_cb(httpd->https, "/v1/login", login_handler, httpd);
-        evhttp_set_cb(httpd->https, "/v3/pay/transactions/jsapi", v3_pay_transactions_jsapi, httpd);
-        evhttp_set_cb(httpd->https, "/wireless", wireless_handler, httpd->app);
-        evhttp_set_cb(httpd->https, "/aliyun/pub", PubHandler, apis);
-        evhttp_set_cb(httpd->https, "/aliyun/regisgerdevice", RegisterDeviceHandler, apis);
-        evhttp_set_gencb(httpd->https, error_handler, NULL);
+       // evhttp_set_cb(httpd->https, "/v1/login", login_handler, httpd);
+     //   evhttp_set_cb(httpd->https, "/v3/pay/transactions/jsapi", v3_pay_transactions_jsapi, httpd);
+      //  evhttp_set_cb(httpd->https, "/wireless", wireless_handler, httpd->app);
+     //   evhttp_set_cb(httpd->https, "/aliyun/pub", PubHandler, apis);
+     //   evhttp_set_cb(httpd->https, "/aliyun/regisgerdevice", RegisterDeviceHandler, apis);
+      //  evhttp_set_gencb(httpd->https, error_handler, NULL);
         // 循环监听
         event_dispatch();
 
@@ -96,9 +96,9 @@ void httpd_delete()
     {
         if (apis)
         {
-            objdel(apis);
+            object_delete(apis);
         }
         evhttp_free(httpd->https);
-        objdel(httpd);
+        object_delete(httpd);
     }
 }

@@ -32,9 +32,10 @@
 #include <openssl/bio.h>
 typedef struct internal_hooks
 {
-    void *(*allocate)(size_t size);
-    void (*deallocate)(void *pointer);
-    void *(*reallocate)(void *pointer, size_t size);
+    void *(*allocate)(size_t objsize);
+    void (*deallocate)(void *obj);
+    void *(*reallocate)(void *obj, size_t objsize);
+
 } internal_hooks;
 static internal_hooks global_hooks = {malloc, free, realloc};
 
@@ -50,23 +51,20 @@ typedef int ok_t;
 #define FileNotFoundException ((ok_t)-5)
 #define ExitException ((ok_t)-9)
 
-typedef enum _character
+typedef enum _type_t
 {
+    INVALID,
     STRING,
     INTEGER,
-    BOOLEAN,
-    INVALID
-} character;
+    BOOLEAN
+} type_t;
 
-typedef enum _boolean
-{
-    positive,
-    negative,
-    invalid
-} boolean;
+typedef int boolean;
+#define negative ((boolean)0)
+#define positive ((boolean)1)
+#define invalid ((boolean)-1)
 
 typedef int integer;
-
 #define onstart ((integer)1)
 #define onstop ((integer)0)
 #define onstatus ((integer)-1)

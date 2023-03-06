@@ -1,5 +1,5 @@
 #include <wangyonglin/lock.h>
-
+#include <wangyonglin/buffer.h>
 int _fcntl(int fd)
 {
     struct flock fl;
@@ -39,34 +39,35 @@ boolean locked(struct _lock_t *lock)
     return ErrorException;
 }
 
-lock_t *lock_create(struct _pool_t *pool, struct _conf_t *cf)
+lock_t *lock_create(lock_t **lock, pool_t *pool, conf_t *conf)
 {
-    struct _lock_t *lock;
-    size_t lockfilesize = 0;
-    if (!pool && !cf->lockfile)
+
+    if (pool)
     {
-        return lock = NULL;
-    }
-    if (lock = allocate(pool, sizeof(struct _lock_t)))
-    {
-        if (cf->lockfile[0] == '/')
+        if (pool_object_create(pool, (void **)lock, sizeof(lock_t)))
         {
-            string_create(pool, &lock->lockfile, cf->lockfile, strlen(cf->lockfile));
+            if (conf->lockfile[0] == '/')
+            {
+                pool_buffer_create(pool,  &(*lock)->lockfile, conf->lockfile, strlen(conf->lockfile));
+            }
+            else
+            {
+                size_t lockfilesize = 0;
+                lockfilesize += strlen(PACKAGE_DIRECTERY_PREFIX);
+                lockfilesize += strlen(conf->lockfile);
+                lockfilesize += 2;
+                char tmpLockfile[lockfilesize];
+                memset(tmpLockfile, 0x00, sizeof(tmpLockfile));
+                strcat(tmpLockfile, PACKAGE_DIRECTERY_PREFIX);
+                strcat(tmpLockfile, "/");
+                strcat(tmpLockfile, conf->lockfile);
+                pool_buffer_create(pool, &(*lock)->lockfile, tmpLockfile, strlen(tmpLockfile));
+            }
+            return (*lock);
         }
-        else
-        {
-            lockfilesize += strlen(PACKAGE_DIRECTERY_PREFIX);
-            lockfilesize += strlen(cf->lockfile);
-            lockfilesize += 2;
-            lock->lockfile = allocate(pool, lockfilesize);
-            strcat(lock->lockfile, PACKAGE_DIRECTERY_PREFIX);
-            strcat(lock->lockfile, "/");
-            strcat(lock->lockfile, cf->lockfile);
-        }
-        return lock;
     }
 
-    return lock = NULL;
+    return NULL;
 }
 
 ok_t locking(struct _lock_t *lock)

@@ -3,10 +3,7 @@
 
 #include <wangyonglin/package.h>
 #include <wangyonglin/string.h>
-#include <wangyonglin/wangyonglin.h>
-// log_errors  = On
-// error_log = "/home/wangyonglin/github/wangyonglin/logs/error.log"
-// lockfile = "/var/run/wangyonglin.pid"
+#include <wangyonglin/pool.h>
 typedef struct _conf_t
 {
     boolean log_errors;
@@ -14,6 +11,6 @@ typedef struct _conf_t
     char *lockfile;
 } conf_t;
 
-conf_t *conf_create(struct _pool_t *pool, char *filename);
+conf_t *conf_create(conf_t **conf, pool_t *pool, string_t confname);
 
 #endif

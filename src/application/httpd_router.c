@@ -3,6 +3,7 @@
 #include <wangyonglin/string.h>
 #include <https/client.h>
 #include <application/https_successful.h>
+#include <Base64.h>
 // 解析http头，主要用于get请求时解析uri和请求参数
 char *find_http_header(struct evhttp_request *req, struct evkeyvalq *params, const char *query_char)
 {
@@ -206,75 +207,78 @@ void wireless_handler(struct evhttp_request *request, void *arg)
     return;
 }
 
-void RegisterDeviceHandler(struct evhttp_request *request, void *arg)
-{
-    struct _aliutils_apis_t *apis = (struct _aliutils_apis_t *)arg;
-    evhttp_add_header(request->output_headers, "Content-Type", "application/json; charset=UTF-8");
-    evhttp_add_header(request->output_headers, "Connection", "close");
-    struct _https_callback *callback;
-    char *DeviceName = NULL;
-    struct evkeyvalq sign_params = {0};
-    struct evbuffer *evbuffer_body = evbuffer_new();
-    DeviceName = find_http_header(request, &sign_params, "DeviceName"); // 获取get请求uri中的sign参数
-    if (DeviceName)
-    {
-        char *url = NULL;
-        RegisterDevice(&url, apis, DeviceName);
-        //   message("urls", url);
-        https_client(url, NULL, &callback);
-        if (callback && callback->json)
-        {
-            evbuffer_add(evbuffer_body, callback->json, strlen(callback->json));
-            strdel(url);
-            goto done;
-        }
-    }
-    char *ostr;
-    https_failure(&ostr, "request uri no param DeviceName");
-    evbuffer_add(evbuffer_body, ostr, strlen(ostr));
-    strdel(ostr);
-    goto done;
-done:
+// void RegisterDeviceHandler(struct evhttp_request *request, void *arg)
+// {
+//     struct _aliutils_apis_t *apis = (struct _aliutils_apis_t *)arg;
+//     evhttp_add_header(request->output_headers, "Content-Type", "application/json; charset=UTF-8");
+//     evhttp_add_header(request->output_headers, "Connection", "close");
+//     struct _https_callback *callback;
+//     char *DeviceName = NULL;
+//     struct evkeyvalq sign_params = {0};
+//     struct evbuffer *evbuffer_body = evbuffer_new();
+//     DeviceName = find_http_header(request, &sign_params, "DeviceName"); // 获取get请求uri中的sign参数
+//     if (DeviceName)
+//     {
+//         char *url = NULL;
+// //        RegisterDevice(&url, apis, DeviceName);
+//         //   message("urls", url);
+//         https_client(url, NULL, &callback);
+//         if (callback && callback->jsonformat)
+//         {
+//             evbuffer_add(evbuffer_body, callback->jsonformat, strlen(callback->jsonformat));
+//             string_delete(url);
+//             goto done;
+//         }
+//     }
+//     char *ostr;
+//     https_failure(&ostr, "request uri no param DeviceName");
+//     evbuffer_add(evbuffer_body, ostr, strlen(ostr));
+//     string_delete(ostr);
+//     goto done;
+// done:
 
-    evhttp_send_reply(request, HTTP_OK, "OK", evbuffer_body);
-    if (evbuffer_body)
-        evbuffer_free(evbuffer_body);
-    return;
-}
-void PubHandler(struct evhttp_request *request, void *arg)
-{
-    struct _aliutils_apis_t *apis = (struct _aliutils_apis_t *)arg;
-    evhttp_add_header(request->output_headers, "Content-Type", "application/json; charset=UTF-8");
-    evhttp_add_header(request->output_headers, "Connection", "close");
-    struct _https_callback *callback;
-    char *DeviceName = NULL;
-    char *MessageContentText = NULL;
-    struct evkeyvalq sign_params = {0};
-    struct evbuffer *evbuffer_body = evbuffer_new();
-    DeviceName = find_http_header(request, &sign_params, "DeviceName"); // 获取get请求uri中的sign参数
-    MessageContentText = find_http_header(request, &sign_params, "MessageContentText");
-    if (DeviceName && MessageContentText)
-    {
-        char *url = NULL;
-        Pub(&url, apis, DeviceName,MessageContentText,strlen(MessageContentText));
-        //   message("urls", url);
-        https_client(url, NULL, &callback);
-        if (callback && callback->json)
-        {
-            evbuffer_add(evbuffer_body, callback->json, strlen(callback->json));
-            strdel(url);
-            goto done;
-        }
-    }
-    char *ostr;
-    https_failure(&ostr, "request uri no param DeviceName");
-    evbuffer_add(evbuffer_body, ostr, strlen(ostr));
-    strdel(ostr);
-    goto done;
-done:
+//     evhttp_send_reply(request, HTTP_OK, "OK", evbuffer_body);
+//     if (evbuffer_body)
+//         evbuffer_free(evbuffer_body);
+//     return;
+// }
+// void PubHandler(struct evhttp_request *request, void *arg)
+// {
+//     struct _aliutils_apis_t *apis = (struct _aliutils_apis_t *)arg;
+//     evhttp_add_header(request->output_headers, "Content-Type", "application/json; charset=UTF-8");
+//     evhttp_add_header(request->output_headers, "Connection", "close");
+//     struct _https_callback *callback;
+//     char *DeviceName = NULL;
+//     char *MessageContentText = NULL;
+//     struct evkeyvalq sign_params = {0};
+//     struct evbuffer *evbuffer_body = evbuffer_new();
+//     DeviceName = find_http_header(request, &sign_params, "DeviceName"); // 获取get请求uri中的sign参数
+//     MessageContentText = find_http_header(request, &sign_params, "MessageContentText");
+//     int MessageContentTextSize = strlen(MessageContentText);
+//     message("DeviceName", DeviceName);
+//     message("MessageContentText", MessageContentText);
+//     if (DeviceName && MessageContentText)
+//     {
+//         char *url = NULL;
+//         Pub(&url, apis, DeviceName, MessageContentText, MessageContentTextSize);
+//         message("url", url);
+//         https_client(url, NULL, &callback);
+//         if (callback && callback->jsonformat)
+//         {
+//             evbuffer_add(evbuffer_body, callback->jsonformat, strlen(callback->jsonformat));
+//             string_delete(url);
+//             goto done;
+//         }
+//     }
+//     char *ostr;
+//     https_failure(&ostr, "request uri no param DeviceName");
+//     evbuffer_add(evbuffer_body, ostr, strlen(ostr));
+//     string_delete(ostr);
+//     goto done;
+// done:
 
-    evhttp_send_reply(request, HTTP_OK, "OK", evbuffer_body);
-    if (evbuffer_body)
-        evbuffer_free(evbuffer_body);
-    return;
-}
+//     evhttp_send_reply(request, HTTP_OK, "OK", evbuffer_body);
+//     if (evbuffer_body)
+//         evbuffer_free(evbuffer_body);
+//     return;
+// }

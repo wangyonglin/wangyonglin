@@ -5,172 +5,162 @@
 #include <HMAC_SHA1.h>
 #include <wangyonglin/list.h>
 #include <wangyonglin/regedit.h>
-char *aliurls_encode(char **outputString, size_t outputStringMax, char *inputString, size_t inputStringSize);
-char *aliurls_timestamp(char **obj)
+#include <SnowFlake.h>
+#include <Base64.h>
+#include <wangyonglin/buffer.h>
+
+char *TopicFullNameFormat(char **outstring, char *ProductKey, char *DeviceName, char *TopicFullName)
 {
-    strnull(obj, 80);
+
+    size_t tmpsize = strlen(ProductKey) + strlen(DeviceName) + strlen(TopicFullName) + 8;
+    char tmpstring[tmpsize];
+    memset(tmpstring, 0x00, sizeof(tmpstring));
+    strcat(tmpstring, "/");
+    strcat(tmpstring, ProductKey);
+    strcat(tmpstring, "/");
+    strcat(tmpstring, DeviceName);
+    strcat(tmpstring, "/");
+    strcat(tmpstring, TopicFullName);
+    buffer_create(outstring, tmpstring, strlen(tmpstring));
+    return *outstring;
+}
+
+char *SignatureNonceFormat(char **outstring)
+{
+
+    char tmpstring[12];
+    memset(tmpstring, 0x00, sizeof(tmpstring));
+    int64_t id = SnowFlake_IdGenerator();
+    sprintf(tmpstring, "%ld", id);
+    buffer_create(outstring, tmpstring, strlen(tmpstring));
+    return *outstring;
+}
+
+char *TimestampFormat(char **outstring)
+{
+    char tmpstring[80];
+    memset(tmpstring, 0x00, sizeof(tmpstring));
     UtcTime result;
     time_t rawtime;
     time(&rawtime);
     result = unix32_to_UTC(rawtime);
-    sprintf((*obj), "%04d-%02d-%02dT%02d:%02d:%02dZ", result.year, result.month, result.day,
+    sprintf(tmpstring, "%04d-%02d-%02dT%02d:%02d:%02dZ", result.year, result.month, result.day,
             result.hour, result.minute, result.second); // 以年月日_时分秒的形式表示当前时间
-    return (*obj);
-}
-int aliurls_base64(char **base64TextUrl, const int resmax, const char *strtypes, char *AccessKeySecret)
-{
-
-    char *prepareSignature;
-    char *argumentsUrl;
-    char *base64Text;
-    strnull(&prepareSignature, resmax);
-    strncat(prepareSignature, strdup("GET&%2F&"), strlen("GET&%2F&"));
-    aliurls_encode(&argumentsUrl, resmax, strtypes, strlen(strtypes));
-    // string_rows("argumentsUrl", argumentsUrl);
-    strncat(prepareSignature, argumentsUrl, strlen(argumentsUrl));
-    // string_rows("prepareSignature", prepareSignature);
-    HmacSha1_Base64(AccessKeySecret, strlen(AccessKeySecret), prepareSignature, strlen(prepareSignature), (uint8_t **)&base64Text, resmax);
-    // string_rows("base64Text", base64Text);
-    URLReplace(base64Text, resmax, '/', "%2F");
-    URLReplace(base64Text, resmax, '+', "%2B");
-    URLReplace(base64Text, resmax, '=', "%3D");
-    strnull(base64TextUrl, resmax);
-    strncpy(*base64TextUrl, base64Text, strlen(base64Text));
-    strdel(base64Text);
-    strdel(argumentsUrl);
-    strdel(prepareSignature);
-    return 0;
+    buffer_create(outstring, tmpstring, strlen(tmpstring));
+    return *outstring;
 }
 
-char *aliurls_encode(char **outputString, size_t outputStringMax, char *inputString, size_t inputStringSize)
+char *ContentBase64(char **outstring, char *MessageContentText, size_t MessageContentSize)
 {
-    char *tmpString;
-    char *tmpoutString;
-    strnull(&tmpoutString, outputStringMax);
-    strnull(&tmpString, outputStringMax);
-    memcpy(tmpString, inputString, inputStringSize);
-    // string_rows("tmpString", tmpString);
-    URLEncode(tmpString, strlen(tmpString), tmpoutString, outputStringMax);
-    // string_rows("tmpoutString", tmpoutString);
-    strnull(outputString, outputStringMax);
-    memcpy(*outputString, tmpoutString, strlen(tmpoutString));
-    strdel(tmpString);
-    strdel(tmpoutString);
-    return (*outputString);
+    char *tmpstring = base64encode(MessageContentText, MessageContentSize);
+    buffer_create(outstring, tmpstring, strlen(tmpstring));
+    free(tmpstring);
+    return (*outstring);
 }
 
-char *aliutls_url_list(char **outputString, size_t outputStringMax, list *objlist)
+char *SignatureFormat(char **Signature, struct _list_t lists[], size_t count, char *AccessKeySecret)
 {
-
-    char out[125] = {0};
-    strnull(outputString, outputStringMax);
-    int size_c = 0;
-    for (size_t i = 0; i < objlist->items_pos; i++)
+    size_t i = 0;
+    char tmpstring[1024];
+    memset(tmpstring, 0x00, sizeof(1024));
+    strcat(tmpstring, "GET&%2F&");
+    while (lists[i].keystring)
     {
+        if (lists[i].valtype == STRING)
+        {
+            strcat(tmpstring, lists[i].keystring);
+            strcat(tmpstring, "%3D");
+            strcat(tmpstring, lists[i].valstring);
+            if (i < count - 1)
+                strcat(tmpstring, "%26");
+        }
+        i++;
+    }
+    size_t resmax = 1024;
 
-        if (objlist->items[i].type == STRING)
+    char *tmpSignature;
+    size_t tmpSignatureLengtg = 0;
+    buffer_max_create(&tmpSignature, 1024, tmpstring, strlen(tmpstring));
+    tmpSignatureLengtg = strlen(tmpSignature);
+    ReplaceFormat(tmpSignature, tmpSignatureLengtg, '=', "%253D");
+    tmpSignatureLengtg = strlen(tmpSignature);
+    ReplaceFormat(tmpSignature, tmpSignatureLengtg, '/', "%252F");
+    tmpSignatureLengtg = strlen(tmpSignature);
+    ReplaceFormat(tmpSignature, tmpSignatureLengtg, ':', "%253A");
+    uint8_t *outstring;
+    HmacSha1_Base64(AccessKeySecret, strlen(AccessKeySecret), tmpSignature, strlen(tmpSignature), &outstring, resmax);
+    buffer_delete(tmpSignature);
+    buffer_create(Signature, outstring, strlen(outstring));
+
+    return *Signature;
+}
+
+char *URLFormat(char **formerString, list_t lists[], size_t count, char *SignatureString)
+{
+    size_t signatureStringLengtg = strlen(SignatureString);
+    size_t tempStringLengtg = 0;
+    buffer_max_create(formerString, 1024, "https://iot.cn-shanghai.aliyuncs.com?", strlen("https://iot.cn-shanghai.aliyuncs.com?"));
+    char *tempString;
+    buffer_max_create(&tempString, 1024, NULL, 0);
+    char *tempSignatureString;
+    buffer_max_create(&tempSignatureString, signatureStringLengtg, SignatureString, signatureStringLengtg);
+    ReplaceFormat(tempSignatureString, signatureStringLengtg, '+', "%2B");
+    size_t i = 0;
+    while (lists[i].keystring)
+    {
+        if (lists[i].valtype == STRING)
         {
-            //  printf("\t%s {%s}\r\n", list->items[i].name, list->items[i].data);
-            sprintf(out, "%s=%s", objlist->items[i].name, objlist->items[i].data);
+            strcat(tempString, lists[i].keystring);
+            strcat(tempString, "=");
+            strcat(tempString, lists[i].valstring);
+            strcat(tempString, "&");
         }
-        else if (objlist->items[i].type == INTEGER)
+        i++;
+    }
+    strcat(tempString, "Signature=");
+    strcat(tempString, tempSignatureString);
+    tempStringLengtg = strlen(SignatureString);
+    ReplaceFormat(tempString, tempStringLengtg, '/', "%2F");
+    tempStringLengtg = strlen(SignatureString);
+    ReplaceFormat(tempString, tempStringLengtg, '-', "%2D");
+    tempStringLengtg = strlen(SignatureString);
+    ReplaceFormat(tempString, tempStringLengtg, ':', "%3A");
+    strncat((*formerString), tempString, strlen(tempString));
+    buffer_delete(tempSignatureString);
+    buffer_delete(tempString);
+    return (*formerString);
+}
+
+char *ReplaceFormat(char *formerString, size_t formerStringMax, const char findString, char *replaceString)
+{
+
+    char *tmpstring;
+    buffer_max_create(&tmpstring, 512, NULL, 0);
+    int formerStringSize = strlen(formerString);
+    int i, j;
+    char ch;
+    if (formerStringSize < 0)
+        return NULL;
+    for (i = 0, j = 0; i < formerStringSize; i++)
+    {
+        if (formerString[i] == findString)
         {
-            //  printf("\t%s {%d}\r\n", list->items[i].name, list->items[i].data);
-            sprintf(out, "%s=%d", objlist->items[i].name, objlist->items[i].data);
+            for (size_t x = 0; x < strlen(replaceString); x++)
+            {
+                tmpstring[j++] = replaceString[x];
+            }
         }
-        strncat(*outputString, out, strlen(out));
-        if (i + 1 < objlist->items_pos)
+        else
         {
-            strncat(*outputString, "&", strlen("&"));
+            tmpstring[j++] = formerString[i];
         }
     }
-    return *outputString;
-}
 
-void aliutils_https_get(char *url)
-{
-    CURL *curl;
-    CURLcode res;
-    curl_global_init(CURL_GLOBAL_DEFAULT);
-    curl = curl_easy_init();
-    if (curl)
+    if (formerString)
     {
-        curl_easy_setopt(curl, CURLOPT_URL, url);
-
-#ifdef SKIP_PEER_VERIFICATION
-
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
-#endif
-
-#ifdef SKIP_HOSTNAME_VERIFICATION
-
-        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
-#endif
-        res = curl_easy_perform(curl);
-        if (res != CURLE_OK)
-            fprintf(stderr, "curl_easy_perform() failed: %s\n",
-                    curl_easy_strerror(res));
-        curl_easy_cleanup(curl);
+        memset(formerString, 0x00, formerStringMax);
+        memcpy(formerString, tmpstring, strlen(tmpstring));
     }
-    curl_global_cleanup();
+    buffer_delete(tmpstring);
+    return formerString;
 }
-
-void aliutils_del(char *obj)
-{
-    if (obj)
-        free(obj);
-}
-
-ok_t aliutils_apis_init(struct _app_t *app,struct _aliutils_apis_t **apis, const char *filename)
-{
-    ok_t ret;
-    if (!objcrt((void **)apis, sizeof(struct _aliutils_apis_t)))
-    {
-        return NullPointerException;
-    }
-     struct _regedit_command_t  commands[] = {
-        {"AccessKeyId", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeyId)},
-        {"AccessKeySecret", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeySecret)},
-        {"ProductKey", "cn-shanghai", STRING, offsetof(struct _aliutils_apis_t, ProductKey)},
-        {"DeviceName", "JSON", STRING, offsetof(struct _aliutils_apis_t, DeviceName)},
-        {"Format", "JSON", STRING, offsetof(struct _aliutils_apis_t, Format)},
-        {"Version", "2020-04-20", STRING, offsetof(struct _aliutils_apis_t, Version)},
-        {"AccessKeyId", NULL, STRING, offsetof(struct _aliutils_apis_t, AccessKeyId)},
-        {"SignatureMethod", "HMAC-SHA1", STRING, offsetof(struct _aliutils_apis_t, SignatureMethod)},
-        {"SignatureVersion", "1.0", STRING, offsetof(struct _aliutils_apis_t, SignatureVersion)},
-        {"RegionId", "cn-shanghai", STRING, offsetof(struct _aliutils_apis_t, RegionId)},
-        {"TopicFullName", NULL, STRING, offsetof(struct _aliutils_apis_t, TopicFullName)},
-        regedit_null_command};
-
-    // printf("\t%d\r\n", commands_size);
-    regedit(*apis,app->pool,app->options->cfname,NULL,commands);
-    return ret;
-}
-
-// aliutils_common *aliutils_common_init(aliutils_common **common, aliutils_sys *sys)
-// {
-//     objcrt(common, sizeof(aliutils_common));
-//     aliurls_timestamp(&(*common)->Timestamp);
-//     SnowFlake_IdGenerator_toString(&(*common)->SignatureNonce);
-//     strcrt(&(*common)->Format, sys->Format, strlen(sys->Format));
-//     strcrt(&(*common)->Version, sys->Version, strlen(sys->Version));
-//     strcrt(&(*common)->AccessKeyId, sys->AccessKeyId, strlen(sys->AccessKeyId));
-//     strcrt(&(*common)->SignatureMethod, sys->SignatureMethod, strlen(sys->SignatureMethod));
-//     strcrt(&(*common)->AccessKeyId, sys->AccessKeyId, strlen(sys->AccessKeyId));
-//     strcrt(&(*common)->SignatureVersion, sys->SignatureVersion, strlen(sys->SignatureVersion));
-//     strcrt(&(*common)->RegionId, sys->RegionId, strlen(sys->RegionId));
-//     return (*common);
-// }
-
-// void aliutils_common_clean(aliutils_common *common)
-// {
-//     strdel(common->Timestamp);
-//     strdel(common->SignatureNonce);
-//     strdel(common->Format);
-//     strdel(common->Version);
-//     strdel(common->AccessKeyId);
-//     strdel(common->SignatureMethod);
-//     strdel(common->AccessKeyId);
-//     strdel(common->SignatureVersion);
-//     strdel(common->RegionId);
-// }

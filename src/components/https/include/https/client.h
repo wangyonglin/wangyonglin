@@ -5,8 +5,8 @@
 typedef struct _https_callback
 {
     size_t result;
-    char prompt[64];
-    char json[256];
+    char prompt[2048];
+    char jsonformat[2048];
     struct bufferevent *bev;
 } https_callback;
 

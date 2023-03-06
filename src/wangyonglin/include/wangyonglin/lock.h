@@ -3,14 +3,14 @@
 
 #include <wangyonglin/package.h>
 #include <wangyonglin/conf.h>
-#include <wangyonglin/wangyonglin.h>
+
 typedef struct _lock_t
 {
     char *lockfile;
     int lockfd;
 } lock_t;
 
-lock_t *lock_create(struct _pool_t *pool, struct _conf_t *cf);
+lock_t *lock_create(lock_t **lock, pool_t *pool, conf_t *conf);
 ok_t lockstat(struct _lock_t *lock);
 ok_t locking(struct _lock_t *lock);
 ok_t unlocking(struct _lock_t *lock);

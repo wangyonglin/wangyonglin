@@ -2,7 +2,6 @@ ACLOCAL_AMFLAGS     = -I m4
 AUTOMAKE_OPTIONS=foreign
 AM_CPPFLAGS=\
     -I $(top_srcdir)/src/application/include/  \
-    -I $(top_srcdir)/src/components/mqtt/include/  \
     -I $(top_srcdir)/src/components/cjson/include/   \
     -I $(top_srcdir)/src/components/snowflake/include/   \
     -I $(top_srcdir)/src/components/openssl/include/   \
@@ -17,10 +16,11 @@ wangyonglin_SOURCES=\
     httpd_router.c \
     aliapis.c    \
     https_successful.c \
-    aliutils.c
+    aliutils.c \
+    localapis.c \
+    https.c
 wangyonglin_LDADD=\
     $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
-    $(top_builddir)/src/components/mqtt/libcomponent_mqtt.la \
     $(top_builddir)/src/components/cjson/libcomponent_cjson.la \
     $(top_builddir)/src/components/openssl/libcomponent_openssl.la \
     $(top_builddir)/src/components/https/libcomponent_https.la \

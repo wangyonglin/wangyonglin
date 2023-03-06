@@ -12,7 +12,8 @@
 #include <wangyonglin/list.h>
 #include <cJSON.h>
 #include <application/aliutils.h>
-ok_t Pub(char **aliapisurl, struct _aliutils_apis_t *apis, char *DeviceName, char *MessageContentText, size_t MessageContentSize);
+#include<application/localapis.h>
+void HttpsPublish(localapis_t *aliapis, char *DeviceName, char *MessageContentText, size_t MessageContentSize);
 ok_t QueryDeviceInfo(char **aliapisurl, struct _aliutils_apis_t *apis, char *DeviceName);
 ok_t RegisterDevice(char **aliapisurl, struct _aliutils_apis_t *apis, char *DeviceName);
 ok_t QueryDeviceStatistics(char **aliapisurl, struct _aliutils_apis_t *apis);

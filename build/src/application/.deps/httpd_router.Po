@@ -130,23 +130,27 @@ httpd_router.o: ../../../src/application/httpd_router.c \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
  /usr/include/malloc.h \
  ../../../src/application/include/application/aliapis.h \
- ../../../src/components/mqtt/include/MQTTAsync.h \
- ../../../src/components/mqtt/include/MQTTExportDeclarations.h \
- ../../../src/components/mqtt/include/MQTTProperties.h \
- ../../../src/components/mqtt/include/MQTTReasonCodes.h \
- ../../../src/components/mqtt/include/MQTTSubscribeOpts.h \
- ../../../src/components/mqtt/include/MQTTClientPersistence.h \
+ /usr/local/include/MQTTAsync.h \
+ /usr/local/include/MQTTExportDeclarations.h \
+ /usr/local/include/MQTTProperties.h /usr/local/include/MQTTReasonCodes.h \
+ /usr/local/include/MQTTSubscribeOpts.h \
+ /usr/local/include/MQTTClientPersistence.h \
  ../../../src/wangyonglin/include/wangyonglin/list.h \
  ../../../src/application/include/application/aliutils.h \
  /usr/include/curl/curl.h /usr/include/curl/curlver.h \
  /usr/include/curl/system.h /usr/include/curl/easy.h \
  /usr/include/curl/multi.h /usr/include/curl/curl.h \
  /usr/include/curl/urlapi.h /usr/include/curl/typecheck-gcc.h \
+ ../../../src/wangyonglin/include/wangyonglin/object.h \
+ ../../../src/wangyonglin/include/wangyonglin/buffer.h \
+ ../../../src/application/include/application/localapis.h \
  ../../../src/components/snowflake/include/SnowFlake.h \
  ../../../src/components/snowflake/include/IdGenOptions.h \
  ../../../src/components/snowflake/include/common.h \
  ../../../src/components/https/include/https/client.h \
- ../../../src/application/include/application/https_successful.h
+ ../../../src/application/include/application/https_successful.h \
+ ../../../src/components/openssl/include/Base64.h \
+ /usr/include/openssl/rand.h /usr/include/openssl/randerr.h
 
 /usr/include/stdc-predef.h:
 
@@ -616,17 +620,17 @@ httpd_router.o: ../../../src/application/httpd_router.c \
 
 ../../../src/application/include/application/aliapis.h:
 
-../../../src/components/mqtt/include/MQTTAsync.h:
+/usr/local/include/MQTTAsync.h:
 
-../../../src/components/mqtt/include/MQTTExportDeclarations.h:
+/usr/local/include/MQTTExportDeclarations.h:
 
-../../../src/components/mqtt/include/MQTTProperties.h:
+/usr/local/include/MQTTProperties.h:
 
-../../../src/components/mqtt/include/MQTTReasonCodes.h:
+/usr/local/include/MQTTReasonCodes.h:
 
-../../../src/components/mqtt/include/MQTTSubscribeOpts.h:
+/usr/local/include/MQTTSubscribeOpts.h:
 
-../../../src/components/mqtt/include/MQTTClientPersistence.h:
+/usr/local/include/MQTTClientPersistence.h:
 
 ../../../src/wangyonglin/include/wangyonglin/list.h:
 
@@ -648,6 +652,12 @@ httpd_router.o: ../../../src/application/httpd_router.c \
 
 /usr/include/curl/typecheck-gcc.h:
 
+../../../src/wangyonglin/include/wangyonglin/object.h:
+
+../../../src/wangyonglin/include/wangyonglin/buffer.h:
+
+../../../src/application/include/application/localapis.h:
+
 ../../../src/components/snowflake/include/SnowFlake.h:
 
 ../../../src/components/snowflake/include/IdGenOptions.h:
@@ -657,3 +667,9 @@ httpd_router.o: ../../../src/application/httpd_router.c \
 ../../../src/components/https/include/https/client.h:
 
 ../../../src/application/include/application/https_successful.h:
+
+../../../src/components/openssl/include/Base64.h:
+
+/usr/include/openssl/rand.h:
+
+/usr/include/openssl/randerr.h:

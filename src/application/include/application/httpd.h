@@ -13,6 +13,7 @@
 #include <wangyonglin/wangyonglin.h>
 #include <wangyonglin/message.h>
 #include <application/aliapis.h>
+#include <wangyonglin/buffer.h>
 typedef struct _httpd_t
 {
     struct evhttp *https;

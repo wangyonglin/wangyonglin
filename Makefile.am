@@ -2,7 +2,6 @@ SUBDIRS =\
     src/wangyonglin   \
     src/components/openssl    \
     src/components/snowflake    \
-    src/components/mqtt \
     src/components/cjson \
     src/components/https \
     src/application
@@ -21,3 +20,6 @@ conf_DATA = $(top_srcdir)/conf/wangyonglin.conf
 EXTRA_DIST  = README.md
 EXTRA_DIST += $(top_srcdir)/conf/tiger.conf
 EXTRA_DIST += $(top_srcdir)/logs/error.log
+
+ 
+LIBS += -g -O2 -Wall -pedantic 

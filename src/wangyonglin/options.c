@@ -17,21 +17,23 @@ struct option long_options[] = {
 
 #define STRING_MALLOC_MAX 512
 
-options_t *options_create(struct _pool_t *pool, int argc, char *argv[])
+options_t *options_create(options_t **options, pool_t *pool, int argc, char *argv[])
 {
-    struct _options_t *options;
-    if (!object_create(pool, &options, sizeof(struct _options_t)))
+    //struct _options_t *options;
+
+    if (!pool_object_create(pool, (void **)options, sizeof(struct _options_t)))
     {
+        perror("allocate app_t failed");
         return NULL;
     }
-    options->daemonize = negative;
-    options->startup = positive;
+    (*options)->daemonize = negative;
+    (*options)->startup = positive;
     while (-1 != (opt = getopt_long(argc, argv, short_options, long_options, &option_index)))
     {
         switch (opt)
         {
         case 'c':
-            string_create(pool, &options->cfname, optarg, strlen(optarg));
+            (*options)->confname = pool_string_create(pool, optarg, strlen(optarg));
             break;
         case 'i':
 
@@ -39,15 +41,15 @@ options_t *options_create(struct _pool_t *pool, int argc, char *argv[])
         case 's':
             if (!strcmp(optarg, "start"))
             {
-                options->startup = positive;
+                (*options)->startup = positive;
             }
             else if (!strcmp(optarg, "stop"))
             {
-                options->startup = negative;
+                (*options)->startup = negative;
             }
             else if (!strcmp(optarg, "status"))
             {
-                options->startup = invalid;
+                (*options)->startup = invalid;
             }
             else
             {
@@ -56,7 +58,7 @@ options_t *options_create(struct _pool_t *pool, int argc, char *argv[])
             }
             break;
         case 'd':
-            options->daemonize = positive;
+            (*options)->daemonize = positive;
             break;
         case 'v':
             fprintf(stderr, "v");
@@ -76,23 +78,27 @@ options_t *options_create(struct _pool_t *pool, int argc, char *argv[])
             break;
         }
     }
-    if (options->daemonize == positive && options->startup == positive)
+    if ((*options)->daemonize == positive && (*options)->startup == positive)
     {
         daemonize();
     }
-    if (!options->cfname)
+    if (string_is_null((*options)->confname))
     {
+
         size_t cfnamesize = 0;
         cfnamesize += strlen(PACKAGE_DIRECTERY_PREFIX);
         cfnamesize += strlen("/conf/");
         cfnamesize += strlen(PACKAGE_NAME);
         cfnamesize += strlen(".conf");
         cfnamesize += 1;
-        options->cfname = allocate(pool, cfnamesize);
-        strcat(options->cfname, PACKAGE_DIRECTERY_PREFIX);
-        strcat(options->cfname, "/conf/");
-        strcat(options->cfname, PACKAGE_NAME);
-        strcat(options->cfname, ".conf");
+
+        char tmp[cfnamesize];
+        memset(tmp, 0x00, sizeof(tmp));
+        strcat(tmp, PACKAGE_DIRECTERY_PREFIX);
+        strcat(tmp, "/conf/");
+        strcat(tmp, PACKAGE_NAME);
+        strcat(tmp, ".conf");
+        (*options)->confname = pool_string_create(pool, tmp, strlen(tmp));
     }
-    return options;
+    return (*options);
 }

@@ -95,15 +95,7 @@ log.lo: ../../../src/wangyonglin/log.c /usr/include/stdc-predef.h \
  /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h \
  ../../../src/wangyonglin/include/wangyonglin/conf.h \
  ../../../src/wangyonglin/include/wangyonglin/string.h \
- ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
- ../../../src/wangyonglin/include/wangyonglin/pool.h \
- ../../../src/wangyonglin/include/wangyonglin/options.h \
- ../../../src/wangyonglin/include/wangyonglin/lock.h \
- ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
- ../../../src/wangyonglin/include/wangyonglin/message.h \
- /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
- /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
- /usr/include/malloc.h
+ ../../../src/wangyonglin/include/wangyonglin/pool.h
 
 /usr/include/stdc-predef.h:
 
@@ -465,26 +457,4 @@ log.lo: ../../../src/wangyonglin/log.c /usr/include/stdc-predef.h \
 
 ../../../src/wangyonglin/include/wangyonglin/string.h:
 
-../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
-
 ../../../src/wangyonglin/include/wangyonglin/pool.h:
-
-../../../src/wangyonglin/include/wangyonglin/options.h:
-
-../../../src/wangyonglin/include/wangyonglin/lock.h:
-
-../../../src/wangyonglin/include/wangyonglin/daemonize.h:
-
-../../../src/wangyonglin/include/wangyonglin/message.h:
-
-/usr/include/sys/ipc.h:
-
-/usr/include/bits/ipctypes.h:
-
-/usr/include/bits/ipc.h:
-
-/usr/include/sys/msg.h:
-
-/usr/include/bits/msq.h:
-
-/usr/include/malloc.h:

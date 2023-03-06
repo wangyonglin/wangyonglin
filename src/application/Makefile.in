@@ -105,10 +105,10 @@ am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(includedir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_wangyonglin_OBJECTS = main.$(OBJEXT) ali_signature.$(OBJEXT) \
 	httpd_start.$(OBJEXT) httpd_router.$(OBJEXT) aliapis.$(OBJEXT) \
-	https_successful.$(OBJEXT) aliutils.$(OBJEXT)
+	https_successful.$(OBJEXT) aliutils.$(OBJEXT) \
+	localapis.$(OBJEXT) https.$(OBJEXT)
 wangyonglin_OBJECTS = $(am_wangyonglin_OBJECTS)
 wangyonglin_DEPENDENCIES = $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
-	$(top_builddir)/src/components/mqtt/libcomponent_mqtt.la \
 	$(top_builddir)/src/components/cjson/libcomponent_cjson.la \
 	$(top_builddir)/src/components/openssl/libcomponent_openssl.la \
 	$(top_builddir)/src/components/https/libcomponent_https.la \
@@ -135,7 +135,8 @@ am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/ali_signature.Po \
 	./$(DEPDIR)/aliapis.Po ./$(DEPDIR)/aliutils.Po \
 	./$(DEPDIR)/httpd_router.Po ./$(DEPDIR)/httpd_start.Po \
-	./$(DEPDIR)/https_successful.Po ./$(DEPDIR)/main.Po
+	./$(DEPDIR)/https.Po ./$(DEPDIR)/https_successful.Po \
+	./$(DEPDIR)/localapis.Po ./$(DEPDIR)/main.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -334,7 +335,6 @@ ACLOCAL_AMFLAGS = -I m4
 AUTOMAKE_OPTIONS = foreign
 AM_CPPFLAGS = \
     -I $(top_srcdir)/src/application/include/  \
-    -I $(top_srcdir)/src/components/mqtt/include/  \
     -I $(top_srcdir)/src/components/cjson/include/   \
     -I $(top_srcdir)/src/components/snowflake/include/   \
     -I $(top_srcdir)/src/components/openssl/include/   \
@@ -348,11 +348,12 @@ wangyonglin_SOURCES = \
     httpd_router.c \
     aliapis.c    \
     https_successful.c \
-    aliutils.c
+    aliutils.c \
+    localapis.c \
+    https.c
 
 wangyonglin_LDADD = \
     $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
-    $(top_builddir)/src/components/mqtt/libcomponent_mqtt.la \
     $(top_builddir)/src/components/cjson/libcomponent_cjson.la \
     $(top_builddir)/src/components/openssl/libcomponent_openssl.la \
     $(top_builddir)/src/components/https/libcomponent_https.la \
@@ -458,7 +459,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/aliutils.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/httpd_router.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/httpd_start.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/https.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/https_successful.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/localapis.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
@@ -647,7 +650,9 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/aliutils.Po
 	-rm -f ./$(DEPDIR)/httpd_router.Po
 	-rm -f ./$(DEPDIR)/httpd_start.Po
+	-rm -f ./$(DEPDIR)/https.Po
 	-rm -f ./$(DEPDIR)/https_successful.Po
+	-rm -f ./$(DEPDIR)/localapis.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -699,7 +704,9 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/aliutils.Po
 	-rm -f ./$(DEPDIR)/httpd_router.Po
 	-rm -f ./$(DEPDIR)/httpd_start.Po
+	-rm -f ./$(DEPDIR)/https.Po
 	-rm -f ./$(DEPDIR)/https_successful.Po
+	-rm -f ./$(DEPDIR)/localapis.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

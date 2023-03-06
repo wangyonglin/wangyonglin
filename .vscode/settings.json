@@ -170,7 +170,13 @@
         "daemonize.h": "c",
         "curl.h": "c",
         "https_successful.h": "c",
-        "regedit.h": "c"
+        "regedit.h": "c",
+        "block.h": "c",
+        "object.h": "c",
+        "local_apis.h": "c",
+        "buffer.h": "c",
+        "localapis.h": "c",
+        "https.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

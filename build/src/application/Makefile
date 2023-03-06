@@ -105,10 +105,10 @@ am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(includedir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_wangyonglin_OBJECTS = main.$(OBJEXT) ali_signature.$(OBJEXT) \
 	httpd_start.$(OBJEXT) httpd_router.$(OBJEXT) aliapis.$(OBJEXT) \
-	https_successful.$(OBJEXT) aliutils.$(OBJEXT)
+	https_successful.$(OBJEXT) aliutils.$(OBJEXT) \
+	localapis.$(OBJEXT) https.$(OBJEXT)
 wangyonglin_OBJECTS = $(am_wangyonglin_OBJECTS)
 wangyonglin_DEPENDENCIES = $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
-	$(top_builddir)/src/components/mqtt/libcomponent_mqtt.la \
 	$(top_builddir)/src/components/cjson/libcomponent_cjson.la \
 	$(top_builddir)/src/components/openssl/libcomponent_openssl.la \
 	$(top_builddir)/src/components/https/libcomponent_https.la \
@@ -135,7 +135,8 @@ am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/ali_signature.Po \
 	./$(DEPDIR)/aliapis.Po ./$(DEPDIR)/aliutils.Po \
 	./$(DEPDIR)/httpd_router.Po ./$(DEPDIR)/httpd_start.Po \
-	./$(DEPDIR)/https_successful.Po ./$(DEPDIR)/main.Po
+	./$(DEPDIR)/https.Po ./$(DEPDIR)/https_successful.Po \
+	./$(DEPDIR)/localapis.Po ./$(DEPDIR)/main.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -265,10 +266,10 @@ OTOOL64 =
 PACKAGE = wangyonglin
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = wangyonglin
-PACKAGE_STRING = wangyonglin 1.3.38
+PACKAGE_STRING = wangyonglin 1.3.41
 PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.38
+PACKAGE_VERSION = 1.3.41
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -276,7 +277,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.38
+VERSION = 1.3.41
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/src/application
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../src/application
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -334,7 +335,6 @@ ACLOCAL_AMFLAGS = -I m4
 AUTOMAKE_OPTIONS = foreign
 AM_CPPFLAGS = \
     -I $(top_srcdir)/src/application/include/  \
-    -I $(top_srcdir)/src/components/mqtt/include/  \
     -I $(top_srcdir)/src/components/cjson/include/   \
     -I $(top_srcdir)/src/components/snowflake/include/   \
     -I $(top_srcdir)/src/components/openssl/include/   \
@@ -348,11 +348,12 @@ wangyonglin_SOURCES = \
     httpd_router.c \
     aliapis.c    \
     https_successful.c \
-    aliutils.c
+    aliutils.c \
+    localapis.c \
+    https.c
 
 wangyonglin_LDADD = \
     $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
-    $(top_builddir)/src/components/mqtt/libcomponent_mqtt.la \
     $(top_builddir)/src/components/cjson/libcomponent_cjson.la \
     $(top_builddir)/src/components/openssl/libcomponent_openssl.la \
     $(top_builddir)/src/components/https/libcomponent_https.la \
@@ -458,7 +459,9 @@ include ./$(DEPDIR)/aliapis.Po # am--include-marker
 include ./$(DEPDIR)/aliutils.Po # am--include-marker
 include ./$(DEPDIR)/httpd_router.Po # am--include-marker
 include ./$(DEPDIR)/httpd_start.Po # am--include-marker
+include ./$(DEPDIR)/https.Po # am--include-marker
 include ./$(DEPDIR)/https_successful.Po # am--include-marker
+include ./$(DEPDIR)/localapis.Po # am--include-marker
 include ./$(DEPDIR)/main.Po # am--include-marker
 
 $(am__depfiles_remade):
@@ -647,7 +650,9 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/aliutils.Po
 	-rm -f ./$(DEPDIR)/httpd_router.Po
 	-rm -f ./$(DEPDIR)/httpd_start.Po
+	-rm -f ./$(DEPDIR)/https.Po
 	-rm -f ./$(DEPDIR)/https_successful.Po
+	-rm -f ./$(DEPDIR)/localapis.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
@@ -699,7 +704,9 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/aliutils.Po
 	-rm -f ./$(DEPDIR)/httpd_router.Po
 	-rm -f ./$(DEPDIR)/httpd_start.Po
+	-rm -f ./$(DEPDIR)/https.Po
 	-rm -f ./$(DEPDIR)/https_successful.Po
+	-rm -f ./$(DEPDIR)/localapis.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic

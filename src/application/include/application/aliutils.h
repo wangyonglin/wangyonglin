@@ -8,6 +8,9 @@
 #include <wangyonglin/list.h>
 #include <curl/curl.h>
 #include <wangyonglin/conf.h>
+#include <wangyonglin/object.h>
+#include <wangyonglin/buffer.h>
+
 typedef struct _aliutils_apis_t
 {
     char *DeviceName;
@@ -25,15 +28,19 @@ typedef struct _aliutils_apis_t
     long maxInflight;
 } aliutils_apis_t;
 
-char *aliurls_timestamp(char **obj);
-char *aliutls_url_list(char **outputString, size_t outputStringMax, list *objlist);
+char *aliutls_urlstring(char **outputString, size_t outputStringMax, list_t list[]);
 int aliurls_base64(char **restypes, const int resmax, const char *strtypes, char *AccessKeySecret);
 char *percentEncode(char **dataOut, char *dataText, size_t dataSize);
 
 void aliutils_https_get(char *url);
 
 void aliutils_del(char *obj);
-// ok_t aliutils_sys_init(aliutils_sys **sys, const char *filename);
-// void aliutils_common_clean(aliutils_common *common);
-// aliutils_common * aliutils_common_init(aliutils_common **common, aliutils_sys *sys);
+
+char *ReplaceFormat(char *formerString, size_t formerStringMax, const char findString, char *replaceString);
+char *TopicFullNameFormat(char **outstring, char *ProductKey, char *DeviceName, char *TopicFullName);
+char *TimestampFormat(char **outstring);
+char * SignatureNonceFormat(char **outstring);
+char *ContentBase64(char **outstring, char *MessageContentText, size_t MessageContentSize);
+char *SignatureFormat(char **Signature, struct _list_t lists[], size_t count, char *AccessKeySecret);
+char *URLFormat(char **formerString, list_t lists[], size_t count, char *SignatureString);
 #endif

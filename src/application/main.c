@@ -15,18 +15,25 @@
 #include <wangyonglin/conf.h>
 #include <https/client.h>
 #include <wangyonglin/string.h>
-
+#include <URL.h>
+#include <wangyonglin/list.h>
+#include <application/localapis.h>
+#include <wangyonglin/object.h>
+#include <wangyonglin/buffer.h>
+#include <application/https.h>
 #define MSG_QUE_KEY_ID 1996 // 消息队列标识
 
 int main(int argc, char *argv[])
 {
+  https_callback *callback;
   app_t *app;
-  ok_t ret = -1;
   application_create(&app, argc, argv);
-  logerr(app->log,"wefdfwfw");
+
   SnowFlakeInit(1, 1, 10);
-  httpd_create(app);
-  httpd_start();
-  httpd_delete();
-  return ret;
+  logerr(app->log, app->options->confname.outstring);
+  localapis_t *aliapis;
+  localapis_init(&aliapis, app->options->confname, "ALIIOT");
+  HttpsPublish(aliapis, "866714043075174", "wangyonglin", 11);
+  localapis_free(aliapis);
+  return 0;
 }

@@ -3,12 +3,13 @@
 #include <wangyonglin/package.h>
 #include <wangyonglin/conf.h>
 #include <wangyonglin/string.h>
-#include <wangyonglin/wangyonglin.h>
-typedef struct _log_t{
-    char *error_log;
-    boolean log_errors;
-}log_t;
 
-log_t *log_create(struct _pool_t *pool, struct _conf_t *cf);
+typedef struct _log_t
+{
+    char* error_log;
+    boolean log_errors;
+} log_t;
+
+log_t *log_create(log_t **log, pool_t *pool, conf_t *conf);
 void logerr(log_t *log, const char *fmt, ...);
 #endif

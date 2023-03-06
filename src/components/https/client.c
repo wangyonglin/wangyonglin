@@ -60,7 +60,7 @@ static void
 http_request_done(struct evhttp_request *req, void *ctx)
 {
 	struct _https_callback *call = (struct _https_callback *)ctx;
-	char buffer[256];
+	char buffer[2048];
 	int nread;
 
 	if (!req || !evhttp_request_get_response_code(req))
@@ -107,7 +107,7 @@ http_request_done(struct evhttp_request *req, void *ctx)
 		/* These are just arbitrary chunks of 256 bytes.
 		 * They are not lines, so we can't treat them as such. */
 		//fwrite(buffer, nread, 1, stdout);
-		strncat(call->json, buffer, nread);
+		strncat(call->jsonformat, buffer, nread);
 	}
 }
 

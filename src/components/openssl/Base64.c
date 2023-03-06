@@ -1,6 +1,7 @@
 #include <Base64.h>
 
 char *base64encode (const void *b64_encode_this, int encode_this_many_bytes){
+
     BIO *b64_bio, *mem_bio;      //Declares two OpenSSL BIOs: a base64 filter and a memory BIO.
     BUF_MEM *mem_bio_mem_ptr;    //Pointer to a "memory BIO" structure holding our base64 data.
     b64_bio = BIO_new(BIO_f_base64());                      //Initialize our base64 filter BIO.
@@ -32,3 +33,4 @@ char *base64decode (const void *b64_decode_this, int decode_this_many_bytes){
     BIO_free_all(b64_bio);  //Destroys all BIOs in chain, starting with b64 (i.e. the 1st one).
     return base64_decoded;        //Returns base-64 decoded data with trailing null terminator.
 }
+
