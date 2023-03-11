@@ -1,12 +1,12 @@
 #include <application/aliutils.h>
 #include <wangyonglin/string.h>
 #include <wangyonglin/Unix_timestamp_converter.h>
-#include <URL.h>
-#include <HMAC_SHA1.h>
+#include <Encrypt/URL.h>
+#include <Encrypt/HMAC_SHA1.h>
 #include <wangyonglin/list.h>
 #include <wangyonglin/regedit.h>
 #include <SnowFlake.h>
-#include <Base64.h>
+#include <Encrypt/Base64.h>
 #include <wangyonglin/buffer.h>
 
 char *TopicFullNameFormat(char **outstring, char *ProductKey, char *DeviceName, char *TopicFullName)

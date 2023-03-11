@@ -111,8 +111,8 @@ aliutils.o: ../../../src/application/aliutils.c \
  ../../../src/wangyonglin/include/wangyonglin/object.h \
  ../../../src/wangyonglin/include/wangyonglin/buffer.h \
  ../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h \
- ../../../src/components/openssl/include/URL.h \
- ../../../src/components/openssl/include/HMAC_SHA1.h \
+ ../../../src/Encrypt/include/Encrypt/URL.h \
+ ../../../src/Encrypt/include/Encrypt/HMAC_SHA1.h \
  /usr/include/openssl/rand.h /usr/include/openssl/randerr.h \
  ../../../src/wangyonglin/include/wangyonglin/regedit.h \
  ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
@@ -123,11 +123,10 @@ aliutils.o: ../../../src/application/aliutils.c \
  ../../../src/wangyonglin/include/wangyonglin/message.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
- /usr/include/malloc.h \
- ../../../src/components/snowflake/include/SnowFlake.h \
- ../../../src/components/snowflake/include/IdGenOptions.h \
- ../../../src/components/snowflake/include/common.h \
- ../../../src/components/openssl/include/Base64.h
+ /usr/include/malloc.h ../../../src/SnowFlake/include/SnowFlake.h \
+ ../../../src/SnowFlake/include/IdGenOptions.h \
+ ../../../src/SnowFlake/include/common.h \
+ ../../../src/Encrypt/include/Encrypt/Base64.h
 
 /usr/include/stdc-predef.h:
 
@@ -537,9 +536,9 @@ aliutils.o: ../../../src/application/aliutils.c \
 
 ../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h:
 
-../../../src/components/openssl/include/URL.h:
+../../../src/Encrypt/include/Encrypt/URL.h:
 
-../../../src/components/openssl/include/HMAC_SHA1.h:
+../../../src/Encrypt/include/Encrypt/HMAC_SHA1.h:
 
 /usr/include/openssl/rand.h:
 
@@ -571,10 +570,10 @@ aliutils.o: ../../../src/application/aliutils.c \
 
 /usr/include/malloc.h:
 
-../../../src/components/snowflake/include/SnowFlake.h:
+../../../src/SnowFlake/include/SnowFlake.h:
 
-../../../src/components/snowflake/include/IdGenOptions.h:
+../../../src/SnowFlake/include/IdGenOptions.h:
 
-../../../src/components/snowflake/include/common.h:
+../../../src/SnowFlake/include/common.h:
 
-../../../src/components/openssl/include/Base64.h:
+../../../src/Encrypt/include/Encrypt/Base64.h:

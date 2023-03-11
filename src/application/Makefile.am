@@ -2,10 +2,10 @@ ACLOCAL_AMFLAGS     = -I m4
 AUTOMAKE_OPTIONS=foreign
 AM_CPPFLAGS=\
     -I $(top_srcdir)/src/application/include/  \
-    -I $(top_srcdir)/src/components/cjson/include/   \
-    -I $(top_srcdir)/src/components/snowflake/include/   \
-    -I $(top_srcdir)/src/components/openssl/include/   \
-    -I $(top_srcdir)/src/components/https/include/   \
+    -I $(top_srcdir)/src/cJSON/include/   \
+    -I $(top_srcdir)/src/SnowFlake/include/   \
+    -I $(top_srcdir)/src/Encrypt/include/   \
+    -I $(top_srcdir)/src/HTTPS/include/   \
     -I $(top_srcdir)/src/wangyonglin/include/
 
 bin_PROGRAMS=wangyonglin
@@ -17,13 +17,13 @@ wangyonglin_SOURCES=\
     aliapis.c    \
     https_successful.c \
     aliutils.c \
-    localapis.c \
-    https.c
+    localapis.c
+
 wangyonglin_LDADD=\
-    $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
-    $(top_builddir)/src/components/cjson/libcomponent_cjson.la \
-    $(top_builddir)/src/components/openssl/libcomponent_openssl.la \
-    $(top_builddir)/src/components/https/libcomponent_https.la \
+    $(top_builddir)/src/SnowFlake/libSnowFlake.la \
+    $(top_builddir)/src/cJSON/libcJSON.la \
+    $(top_builddir)/src/Encrypt/libEncrypt.la \
+    $(top_builddir)/src/HTTPS/libHTTPS.la \
     $(top_builddir)/src/wangyonglin/libwangyonglin.la \
     $(FLIBS) 
 include_HEADERS =  $(top_srcdir)/src/application/include/application/*.h

@@ -56,8 +56,7 @@ httpd_start.o: ../../../src/application/httpd_start.c \
  /usr/include/event2/http_compat.h /usr/include/unistd.h \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h \
- ../../../src/components/cjson/include/cJSON.h \
+ /usr/include/bits/getopt_core.h ../../../src/cJSON/include/cJSON.h \
  ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
  ../../../src/wangyonglin/include/wangyonglin/package.h \
  /usr/include/stdlib.h /usr/include/bits/waitflags.h \
@@ -357,7 +356,7 @@ httpd_start.o: ../../../src/application/httpd_start.c \
 
 /usr/include/bits/getopt_core.h:
 
-../../../src/components/cjson/include/cJSON.h:
+../../../src/cJSON/include/cJSON.h:
 
 ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
 

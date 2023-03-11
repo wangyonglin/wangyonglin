@@ -97,7 +97,7 @@ https_successful.o: ../../../src/application/https_successful.c \
  ../../../src/wangyonglin/include/wangyonglin/string.h \
  ../../../src/wangyonglin/include/wangyonglin/object.h \
  ../../../src/wangyonglin/include/wangyonglin/buffer.h \
- ../../../src/components/cjson/include/cJSON.h
+ ../../../src/cJSON/include/cJSON.h
 
 /usr/include/stdc-predef.h:
 
@@ -461,4 +461,4 @@ https_successful.o: ../../../src/application/https_successful.c \
 
 ../../../src/wangyonglin/include/wangyonglin/buffer.h:
 
-../../../src/components/cjson/include/cJSON.h:
+../../../src/cJSON/include/cJSON.h:

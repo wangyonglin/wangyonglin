@@ -1,6 +1,6 @@
 aliapis.o: ../../../src/application/aliapis.c /usr/include/stdc-predef.h \
- ../../../src/components/snowflake/include/SnowFlake.h \
- ../../../src/components/snowflake/include/IdGenOptions.h \
+ ../../../src/SnowFlake/include/SnowFlake.h \
+ ../../../src/SnowFlake/include/IdGenOptions.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
@@ -8,8 +8,7 @@ aliapis.o: ../../../src/application/aliapis.c /usr/include/stdc-predef.h \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
  /usr/include/bits/types.h /usr/include/bits/typesizes.h \
  /usr/include/bits/wchar.h /usr/include/bits/stdint-intn.h \
- /usr/include/bits/stdint-uintn.h \
- ../../../src/components/snowflake/include/common.h \
+ /usr/include/bits/stdint-uintn.h ../../../src/SnowFlake/include/common.h \
  ../../../src/wangyonglin/include/wangyonglin/conf.h \
  ../../../src/wangyonglin/include/wangyonglin/package.h \
  /usr/include/stdio.h /usr/lib/gcc/x86_64-redhat-linux/8/include/stddef.h \
@@ -100,7 +99,7 @@ aliapis.o: ../../../src/application/aliapis.c /usr/include/stdc-predef.h \
  ../../../src/wangyonglin/include/wangyonglin/string.h \
  ../../../src/wangyonglin/include/wangyonglin/pool.h \
  ../../../src/wangyonglin/include/wangyonglin/list.h \
- ../../../src/components/openssl/include/Base64.h \
+ ../../../src/Encrypt/include/Encrypt/Base64.h \
  /usr/include/openssl/rand.h /usr/include/openssl/randerr.h \
  /usr/include/evhttp.h /usr/include/event.h \
  /usr/include/event2/event-config.h /usr/include/event2/event-config-64.h \
@@ -122,7 +121,7 @@ aliapis.o: ../../../src/application/aliapis.c /usr/include/stdc-predef.h \
  /usr/include/event2/bufferevent_compat.h /usr/include/event2/tag.h \
  /usr/include/event2/tag_compat.h /usr/include/event2/http.h \
  /usr/include/event2/http_struct.h /usr/include/event2/http_compat.h \
- ../../../src/components/openssl/include/HMAC_SHA1.h \
+ ../../../src/Encrypt/include/Encrypt/HMAC_SHA1.h \
  /usr/include/curl/curl.h /usr/include/curl/curlver.h \
  /usr/include/curl/system.h /usr/include/curl/easy.h \
  /usr/include/curl/multi.h /usr/include/curl/curl.h \
@@ -141,21 +140,21 @@ aliapis.o: ../../../src/application/aliapis.c /usr/include/stdc-predef.h \
  ../../../src/wangyonglin/include/wangyonglin/message.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
- /usr/include/malloc.h ../../../src/components/cjson/include/cJSON.h \
+ /usr/include/malloc.h ../../../src/cJSON/include/cJSON.h \
  ../../../src/application/include/application/aliutils.h \
  ../../../src/wangyonglin/include/wangyonglin/object.h \
  ../../../src/wangyonglin/include/wangyonglin/buffer.h \
  ../../../src/application/include/application/localapis.h \
  ../../../src/wangyonglin/include/wangyonglin/time.h \
  ../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h \
- ../../../src/components/https/include/https/client.h \
+ ../../../src/HTTPS/include/https/client.h \
  ../../../src/application/include/application/https.h
 
 /usr/include/stdc-predef.h:
 
-../../../src/components/snowflake/include/SnowFlake.h:
+../../../src/SnowFlake/include/SnowFlake.h:
 
-../../../src/components/snowflake/include/IdGenOptions.h:
+../../../src/SnowFlake/include/IdGenOptions.h:
 
 /usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h:
 
@@ -185,7 +184,7 @@ aliapis.o: ../../../src/application/aliapis.c /usr/include/stdc-predef.h \
 
 /usr/include/bits/stdint-uintn.h:
 
-../../../src/components/snowflake/include/common.h:
+../../../src/SnowFlake/include/common.h:
 
 ../../../src/wangyonglin/include/wangyonglin/conf.h:
 
@@ -519,7 +518,7 @@ aliapis.o: ../../../src/application/aliapis.c /usr/include/stdc-predef.h \
 
 ../../../src/wangyonglin/include/wangyonglin/list.h:
 
-../../../src/components/openssl/include/Base64.h:
+../../../src/Encrypt/include/Encrypt/Base64.h:
 
 /usr/include/openssl/rand.h:
 
@@ -603,7 +602,7 @@ aliapis.o: ../../../src/application/aliapis.c /usr/include/stdc-predef.h \
 
 /usr/include/event2/http_compat.h:
 
-../../../src/components/openssl/include/HMAC_SHA1.h:
+../../../src/Encrypt/include/Encrypt/HMAC_SHA1.h:
 
 /usr/include/curl/curl.h:
 
@@ -659,7 +658,7 @@ aliapis.o: ../../../src/application/aliapis.c /usr/include/stdc-predef.h \
 
 /usr/include/malloc.h:
 
-../../../src/components/cjson/include/cJSON.h:
+../../../src/cJSON/include/cJSON.h:
 
 ../../../src/application/include/application/aliutils.h:
 
@@ -673,6 +672,6 @@ aliapis.o: ../../../src/application/aliapis.c /usr/include/stdc-predef.h \
 
 ../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h:
 
-../../../src/components/https/include/https/client.h:
+../../../src/HTTPS/include/https/client.h:
 
 ../../../src/application/include/application/https.h:

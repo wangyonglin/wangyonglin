@@ -354,10 +354,10 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = \
     src/wangyonglin   \
-    src/components/openssl    \
-    src/components/snowflake    \
-    src/components/cjson \
-    src/components/https \
+    src/Encrypt    \
+    src/SnowFlake    \
+    src/cJSON \
+    src/HTTPS \
     src/application
 
 logdir = $(prefix)/logs

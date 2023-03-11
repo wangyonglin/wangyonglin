@@ -3,7 +3,7 @@
 #include <wangyonglin/string.h>
 #include <https/client.h>
 #include <application/https_successful.h>
-#include <Base64.h>
+#include <Encrypt/Base64.h>
 // 解析http头，主要用于get请求时解析uri和请求参数
 char *find_http_header(struct evhttp_request *req, struct evkeyvalq *params, const char *query_char)
 {

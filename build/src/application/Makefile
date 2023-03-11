@@ -106,12 +106,13 @@ PROGRAMS = $(bin_PROGRAMS)
 am_wangyonglin_OBJECTS = main.$(OBJEXT) ali_signature.$(OBJEXT) \
 	httpd_start.$(OBJEXT) httpd_router.$(OBJEXT) aliapis.$(OBJEXT) \
 	https_successful.$(OBJEXT) aliutils.$(OBJEXT) \
-	localapis.$(OBJEXT) https.$(OBJEXT)
+	localapis.$(OBJEXT)
 wangyonglin_OBJECTS = $(am_wangyonglin_OBJECTS)
-wangyonglin_DEPENDENCIES = $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
-	$(top_builddir)/src/components/cjson/libcomponent_cjson.la \
-	$(top_builddir)/src/components/openssl/libcomponent_openssl.la \
-	$(top_builddir)/src/components/https/libcomponent_https.la \
+wangyonglin_DEPENDENCIES =  \
+	$(top_builddir)/src/SnowFlake/libSnowFlake.la \
+	$(top_builddir)/src/cJSON/libcJSON.la \
+	$(top_builddir)/src/Encrypt/libEncrypt.la \
+	$(top_builddir)/src/HTTPS/libHTTPS.la \
 	$(top_builddir)/src/wangyonglin/libwangyonglin.la
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -135,8 +136,8 @@ am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/ali_signature.Po \
 	./$(DEPDIR)/aliapis.Po ./$(DEPDIR)/aliutils.Po \
 	./$(DEPDIR)/httpd_router.Po ./$(DEPDIR)/httpd_start.Po \
-	./$(DEPDIR)/https.Po ./$(DEPDIR)/https_successful.Po \
-	./$(DEPDIR)/localapis.Po ./$(DEPDIR)/main.Po
+	./$(DEPDIR)/https_successful.Po ./$(DEPDIR)/localapis.Po \
+	./$(DEPDIR)/main.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -266,10 +267,10 @@ OTOOL64 =
 PACKAGE = wangyonglin
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = wangyonglin
-PACKAGE_STRING = wangyonglin 1.3.41
+PACKAGE_STRING = wangyonglin 1.3.42
 PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.41
+PACKAGE_VERSION = 1.3.42
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -277,7 +278,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.41
+VERSION = 1.3.42
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/src/application
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../src/application
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -335,10 +336,10 @@ ACLOCAL_AMFLAGS = -I m4
 AUTOMAKE_OPTIONS = foreign
 AM_CPPFLAGS = \
     -I $(top_srcdir)/src/application/include/  \
-    -I $(top_srcdir)/src/components/cjson/include/   \
-    -I $(top_srcdir)/src/components/snowflake/include/   \
-    -I $(top_srcdir)/src/components/openssl/include/   \
-    -I $(top_srcdir)/src/components/https/include/   \
+    -I $(top_srcdir)/src/cJSON/include/   \
+    -I $(top_srcdir)/src/SnowFlake/include/   \
+    -I $(top_srcdir)/src/Encrypt/include/   \
+    -I $(top_srcdir)/src/HTTPS/include/   \
     -I $(top_srcdir)/src/wangyonglin/include/
 
 wangyonglin_SOURCES = \
@@ -349,14 +350,13 @@ wangyonglin_SOURCES = \
     aliapis.c    \
     https_successful.c \
     aliutils.c \
-    localapis.c \
-    https.c
+    localapis.c
 
 wangyonglin_LDADD = \
-    $(top_builddir)/src/components/snowflake/libcomponent_snowflake.la \
-    $(top_builddir)/src/components/cjson/libcomponent_cjson.la \
-    $(top_builddir)/src/components/openssl/libcomponent_openssl.la \
-    $(top_builddir)/src/components/https/libcomponent_https.la \
+    $(top_builddir)/src/SnowFlake/libSnowFlake.la \
+    $(top_builddir)/src/cJSON/libcJSON.la \
+    $(top_builddir)/src/Encrypt/libEncrypt.la \
+    $(top_builddir)/src/HTTPS/libHTTPS.la \
     $(top_builddir)/src/wangyonglin/libwangyonglin.la \
     $(FLIBS) 
 
@@ -459,7 +459,6 @@ include ./$(DEPDIR)/aliapis.Po # am--include-marker
 include ./$(DEPDIR)/aliutils.Po # am--include-marker
 include ./$(DEPDIR)/httpd_router.Po # am--include-marker
 include ./$(DEPDIR)/httpd_start.Po # am--include-marker
-include ./$(DEPDIR)/https.Po # am--include-marker
 include ./$(DEPDIR)/https_successful.Po # am--include-marker
 include ./$(DEPDIR)/localapis.Po # am--include-marker
 include ./$(DEPDIR)/main.Po # am--include-marker
@@ -650,7 +649,6 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/aliutils.Po
 	-rm -f ./$(DEPDIR)/httpd_router.Po
 	-rm -f ./$(DEPDIR)/httpd_start.Po
-	-rm -f ./$(DEPDIR)/https.Po
 	-rm -f ./$(DEPDIR)/https_successful.Po
 	-rm -f ./$(DEPDIR)/localapis.Po
 	-rm -f ./$(DEPDIR)/main.Po
@@ -704,7 +702,6 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/aliutils.Po
 	-rm -f ./$(DEPDIR)/httpd_router.Po
 	-rm -f ./$(DEPDIR)/httpd_start.Po
-	-rm -f ./$(DEPDIR)/https.Po
 	-rm -f ./$(DEPDIR)/https_successful.Po
 	-rm -f ./$(DEPDIR)/localapis.Po
 	-rm -f ./$(DEPDIR)/main.Po

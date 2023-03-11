@@ -103,13 +103,11 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
  ../../../src/wangyonglin/include/wangyonglin/message.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
- /usr/include/malloc.h \
- ../../../src/components/snowflake/include/SnowWorkerM1.h \
- /usr/include/sys/timeb.h \
- ../../../src/components/snowflake/include/IdGenOptions.h \
- ../../../src/components/snowflake/include/SnowFlake.h \
- ../../../src/components/snowflake/include/common.h \
- ../../../src/components/openssl/include/SHA256WithRSA.h \
+ /usr/include/malloc.h ../../../src/SnowFlake/include/SnowWorkerM1.h \
+ /usr/include/sys/timeb.h ../../../src/SnowFlake/include/IdGenOptions.h \
+ ../../../src/SnowFlake/include/SnowFlake.h \
+ ../../../src/SnowFlake/include/common.h \
+ ../../../src/Encrypt/include/Encrypt/SHA256WithRSA.h \
  /usr/include/openssl/rand.h /usr/include/openssl/randerr.h \
  ../../../src/wangyonglin/include/wangyonglin/file.h \
  ../../../src/application/include/application/httpd.h \
@@ -133,8 +131,7 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
  /usr/include/event2/bufferevent_compat.h /usr/include/event2/tag.h \
  /usr/include/event2/tag_compat.h /usr/include/evhttp.h \
  /usr/include/event2/http.h /usr/include/event2/http_struct.h \
- /usr/include/event2/http_compat.h \
- ../../../src/components/cjson/include/cJSON.h \
+ /usr/include/event2/http_compat.h ../../../src/cJSON/include/cJSON.h \
  ../../../src/application/include/application/aliapis.h \
  /usr/local/include/MQTTAsync.h \
  /usr/local/include/MQTTExportDeclarations.h \
@@ -150,10 +147,10 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
  ../../../src/wangyonglin/include/wangyonglin/object.h \
  ../../../src/wangyonglin/include/wangyonglin/buffer.h \
  ../../../src/application/include/application/localapis.h \
- ../../../src/components/openssl/include/HMAC_SHA1.h \
- ../../../src/components/openssl/include/Base64.h \
- ../../../src/components/https/include/https/client.h \
- ../../../src/components/openssl/include/URL.h \
+ ../../../src/Encrypt/include/Encrypt/HMAC_SHA1.h \
+ ../../../src/Encrypt/include/Encrypt/Base64.h \
+ ../../../src/HTTPS/include/https/client.h \
+ ../../../src/Encrypt/include/Encrypt/URL.h \
  ../../../src/application/include/application/https.h
 
 /usr/include/stdc-predef.h:
@@ -540,17 +537,17 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 /usr/include/malloc.h:
 
-../../../src/components/snowflake/include/SnowWorkerM1.h:
+../../../src/SnowFlake/include/SnowWorkerM1.h:
 
 /usr/include/sys/timeb.h:
 
-../../../src/components/snowflake/include/IdGenOptions.h:
+../../../src/SnowFlake/include/IdGenOptions.h:
 
-../../../src/components/snowflake/include/SnowFlake.h:
+../../../src/SnowFlake/include/SnowFlake.h:
 
-../../../src/components/snowflake/include/common.h:
+../../../src/SnowFlake/include/common.h:
 
-../../../src/components/openssl/include/SHA256WithRSA.h:
+../../../src/Encrypt/include/Encrypt/SHA256WithRSA.h:
 
 /usr/include/openssl/rand.h:
 
@@ -638,7 +635,7 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 /usr/include/event2/http_compat.h:
 
-../../../src/components/cjson/include/cJSON.h:
+../../../src/cJSON/include/cJSON.h:
 
 ../../../src/application/include/application/aliapis.h:
 
@@ -680,12 +677,12 @@ main.o: ../../../src/application/main.c /usr/include/stdc-predef.h \
 
 ../../../src/application/include/application/localapis.h:
 
-../../../src/components/openssl/include/HMAC_SHA1.h:
+../../../src/Encrypt/include/Encrypt/HMAC_SHA1.h:
 
-../../../src/components/openssl/include/Base64.h:
+../../../src/Encrypt/include/Encrypt/Base64.h:
 
-../../../src/components/https/include/https/client.h:
+../../../src/HTTPS/include/https/client.h:
 
-../../../src/components/openssl/include/URL.h:
+../../../src/Encrypt/include/Encrypt/URL.h:
 
 ../../../src/application/include/application/https.h:

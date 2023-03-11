@@ -72,10 +72,10 @@ AC_FUNC_REALLOC
 AC_FUNC_STRTOD
 AC_CHECK_FUNCS([bzero getpass localeconv memset strcasecmp strchr strdup strerror strrchr strspn strstr])
 AC_CONFIG_FILES([Makefile])
-AC_CONFIG_FILES([src/components/openssl/Makefile])
-AC_CONFIG_FILES([src/components/https/Makefile])
-AC_CONFIG_FILES([src/components/snowflake/Makefile])
-AC_CONFIG_FILES([src/components/cjson/Makefile])
+AC_CONFIG_FILES([src/Encrypt/Makefile])
+AC_CONFIG_FILES([src/HTTPS/Makefile])
+AC_CONFIG_FILES([src/SnowFlake/Makefile])
+AC_CONFIG_FILES([src/cJSON/Makefile])
 AC_CONFIG_FILES([src/wangyonglin/Makefile])
 AC_CONFIG_FILES([src/application/Makefile])
 AC_OUTPUT

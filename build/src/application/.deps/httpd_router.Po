@@ -56,8 +56,7 @@ httpd_router.o: ../../../src/application/httpd_router.c \
  /usr/include/event2/http_compat.h /usr/include/unistd.h \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h \
- ../../../src/components/cjson/include/cJSON.h \
+ /usr/include/bits/getopt_core.h ../../../src/cJSON/include/cJSON.h \
  ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
  ../../../src/wangyonglin/include/wangyonglin/package.h \
  /usr/include/stdlib.h /usr/include/bits/waitflags.h \
@@ -144,12 +143,12 @@ httpd_router.o: ../../../src/application/httpd_router.c \
  ../../../src/wangyonglin/include/wangyonglin/object.h \
  ../../../src/wangyonglin/include/wangyonglin/buffer.h \
  ../../../src/application/include/application/localapis.h \
- ../../../src/components/snowflake/include/SnowFlake.h \
- ../../../src/components/snowflake/include/IdGenOptions.h \
- ../../../src/components/snowflake/include/common.h \
- ../../../src/components/https/include/https/client.h \
+ ../../../src/SnowFlake/include/SnowFlake.h \
+ ../../../src/SnowFlake/include/IdGenOptions.h \
+ ../../../src/SnowFlake/include/common.h \
+ ../../../src/HTTPS/include/https/client.h \
  ../../../src/application/include/application/https_successful.h \
- ../../../src/components/openssl/include/Base64.h \
+ ../../../src/Encrypt/include/Encrypt/Base64.h \
  /usr/include/openssl/rand.h /usr/include/openssl/randerr.h
 
 /usr/include/stdc-predef.h:
@@ -362,7 +361,7 @@ httpd_router.o: ../../../src/application/httpd_router.c \
 
 /usr/include/bits/getopt_core.h:
 
-../../../src/components/cjson/include/cJSON.h:
+../../../src/cJSON/include/cJSON.h:
 
 ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
 
@@ -658,17 +657,17 @@ httpd_router.o: ../../../src/application/httpd_router.c \
 
 ../../../src/application/include/application/localapis.h:
 
-../../../src/components/snowflake/include/SnowFlake.h:
+../../../src/SnowFlake/include/SnowFlake.h:
 
-../../../src/components/snowflake/include/IdGenOptions.h:
+../../../src/SnowFlake/include/IdGenOptions.h:
 
-../../../src/components/snowflake/include/common.h:
+../../../src/SnowFlake/include/common.h:
 
-../../../src/components/https/include/https/client.h:
+../../../src/HTTPS/include/https/client.h:
 
 ../../../src/application/include/application/https_successful.h:
 
-../../../src/components/openssl/include/Base64.h:
+../../../src/Encrypt/include/Encrypt/Base64.h:
 
 /usr/include/openssl/rand.h:
 

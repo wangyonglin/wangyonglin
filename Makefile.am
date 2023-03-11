@@ -1,9 +1,9 @@
 SUBDIRS =\
     src/wangyonglin   \
-    src/components/openssl    \
-    src/components/snowflake    \
-    src/components/cjson \
-    src/components/https \
+    src/Encrypt    \
+    src/SnowFlake    \
+    src/cJSON \
+    src/HTTPS \
     src/application
 
 
