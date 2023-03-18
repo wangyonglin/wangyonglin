@@ -107,7 +107,6 @@ aliutils.o: ../../../src/application/aliutils.c \
  /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
  /usr/include/curl/typecheck-gcc.h \
  ../../../src/wangyonglin/include/wangyonglin/conf.h \
- ../../../src/wangyonglin/include/wangyonglin/pool.h \
  ../../../src/wangyonglin/include/wangyonglin/object.h \
  ../../../src/wangyonglin/include/wangyonglin/buffer.h \
  ../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h \
@@ -116,10 +115,11 @@ aliutils.o: ../../../src/application/aliutils.c \
  /usr/include/openssl/rand.h /usr/include/openssl/randerr.h \
  ../../../src/wangyonglin/include/wangyonglin/regedit.h \
  ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
+ ../../../src/wangyonglin/include/wangyonglin/pool.h \
  ../../../src/wangyonglin/include/wangyonglin/options.h \
  ../../../src/wangyonglin/include/wangyonglin/lock.h \
- ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
  ../../../src/wangyonglin/include/wangyonglin/log.h \
+ ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
  ../../../src/wangyonglin/include/wangyonglin/message.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
@@ -528,8 +528,6 @@ aliutils.o: ../../../src/application/aliutils.c \
 
 ../../../src/wangyonglin/include/wangyonglin/conf.h:
 
-../../../src/wangyonglin/include/wangyonglin/pool.h:
-
 ../../../src/wangyonglin/include/wangyonglin/object.h:
 
 ../../../src/wangyonglin/include/wangyonglin/buffer.h:
@@ -548,13 +546,15 @@ aliutils.o: ../../../src/application/aliutils.c \
 
 ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
 
+../../../src/wangyonglin/include/wangyonglin/pool.h:
+
 ../../../src/wangyonglin/include/wangyonglin/options.h:
 
 ../../../src/wangyonglin/include/wangyonglin/lock.h:
 
-../../../src/wangyonglin/include/wangyonglin/daemonize.h:
-
 ../../../src/wangyonglin/include/wangyonglin/log.h:
+
+../../../src/wangyonglin/include/wangyonglin/daemonize.h:
 
 ../../../src/wangyonglin/include/wangyonglin/message.h:
 

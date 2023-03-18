@@ -177,7 +177,8 @@
         "buffer.h": "c",
         "localapis.h": "c",
         "https.h": "c",
-        "evhttp.h": "c"
+        "evhttp.h": "c",
+        "httpd_result.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

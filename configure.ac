@@ -27,9 +27,9 @@ else
 fi
 AC_SUBST([localdir])
 AC_DEFINE_UNQUOTED([PACKAGE_DIRECTERY_LOCALDIR], ["$localdir"], [PID file directory])
-AC_DEFINE_UNQUOTED([PACKAGE_DIRECTERY_PREFIX], ["${prefix}"], [Installation prefix])
-
-
+AC_DEFINE_UNQUOTED([PACKAGE_DIRECTERY_PREFIX], ["${prefix}"], [prefix directery])
+AC_DEFINE_UNQUOTED([PACKAGE_DIRECTERY_LOG], ["${prefix}/logs"], [logs directery])
+AC_DEFINE_UNQUOTED([PACKAGE_DIRECTERY_CONF], ["${prefix}/conf"], [conf directery])
 LIBTOOL
 LT_INIT
 # Checks for programs.

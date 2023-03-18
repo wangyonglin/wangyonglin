@@ -16,9 +16,11 @@
 #include <wangyonglin/time.h>
 #include <https/client.h>
 #include <application/https.h>
+
 // // 通过自定义Topic向指定设备发布消息
-void HttpsPublish(localapis_t *aliapis, char *DeviceName, char *MessageContentText, size_t MessageContentSize)
+string_t aliapis_https_publish(localapis_t *aliapis, char *DeviceName, char *MessageContentText, size_t MessageContentSize)
 {
+    string_t jsonstring = string_null_command;
     https_callback *callback;
     char *tmpContentBase64;
     ContentBase64(&tmpContentBase64, MessageContentText, MessageContentSize);
@@ -45,14 +47,13 @@ void HttpsPublish(localapis_t *aliapis, char *DeviceName, char *MessageContentTe
     list_sort(list, list_count(list));
     char *SignatureString;
     SignatureFormat(&SignatureString, list, list_count(list), aliapis->AccessKeySecret);
-    buffer_print("SignatureString", SignatureString);
     char *tmpUrlString;
     URLFormat(&tmpUrlString, list, list_count(list), SignatureString);
-    buffer_print("tmpUrlString", tmpUrlString);
     https_client(tmpUrlString, NULL, &callback);
     if (callback && callback->jsonformat)
     {
-        buffer_print("callback->jsonformat", callback->jsonformat);
+        jsonstring = string_create(callback->jsonformat, strlen(callback->jsonformat));
+        string_print("[aliapis_https_register_device]", jsonstring);
     }
 
     global_hooks.deallocate(tmpUrlString);
@@ -61,6 +62,7 @@ void HttpsPublish(localapis_t *aliapis, char *DeviceName, char *MessageContentTe
     global_hooks.deallocate(tmpTimestamp);
     global_hooks.deallocate(tmpSignatureNonce);
     global_hooks.deallocate(tmpTopicFullName);
+    return jsonstring;
 }
 
 // // 通过自定义Topic向指定设备发布消息
@@ -118,61 +120,45 @@ void HttpsPublish(localapis_t *aliapis, char *DeviceName, char *MessageContentTe
 //     return OK;
 // }
 
-// // 通过自定义Topic向指定设备发布消息
-// ok_t RegisterDevice(char **aliapisurl, struct _aliutils_apis_t *apis, char *DeviceName)
-// {
-//     if (!apis)
-//     {
-//         return ArgumentException;
-//     }
+// 通过自定义Topic向指定设备发布消息
+string_t aliapis_https_register_device(localapis_t *aliapis, char *DeviceName)
+{
+    string_t jsonstring = string_null_command;
+    https_callback *callback;
 
-//     char *PreifxSignature = NULL;
-//     char *Timestamp = NULL;
-//     aliurls_timestamp(&Timestamp);
-//     char *SignatureNonce = NULL;
-//     SnowFlakeFormat(&SignatureNonce);
+    char *tmpTimestamp;
+    TimestampFormat(&tmpTimestamp);
+    char *tmpSignatureNonce;
+    SignatureNonceFormat(&tmpSignatureNonce);
+    struct _list_t list[] = {
+        list_string_command("Action", "RegisterDevice"),
+        list_string_command("ProductKey", aliapis->ProductKey),
+        list_string_command("DeviceName", DeviceName),
+        list_string_command("Format", aliapis->Format),
+        list_string_command("Version", aliapis->Version),
+        list_string_command("AccessKeyId", aliapis->AccessKeyId),
+        list_string_command("SignatureMethod", aliapis->SignatureMethod),
+        list_string_command("Timestamp", tmpTimestamp),
+        list_string_command("SignatureVersion", aliapis->SignatureVersion),
+        list_string_command("SignatureNonce", tmpSignatureNonce),
+        list_string_command("RegionId", aliapis->RegionId)};
+    list_sort(list, list_count(list));
+    char *SignatureString;
+    SignatureFormat(&SignatureString, list, list_count(list), aliapis->AccessKeySecret);
+    char *tmpUrlString;
+    URLFormat(&tmpUrlString, list, list_count(list), SignatureString);
+    https_client(tmpUrlString, NULL, &callback);
+    if (callback && callback->jsonformat)
+    {
+        jsonstring = string_create(callback->jsonformat, strlen(callback->jsonformat));
 
-//     list *objlist;
-//     if (!list_create(&objlist, 20))
-//     {
-//         return ErrorException;
-//     }
-//     list_add_string(objlist, "Action", "RegisterDevice", strlen("RegisterDevice"));
-//     list_add_string(objlist, "ProductKey", apis->ProductKey, strlen(apis->ProductKey));
-//     list_add_string(objlist, "DeviceName", DeviceName, strlen(DeviceName));
-//     list_add_string(objlist, "Format", apis->Format, strlen(apis->Format));
-//     list_add_string(objlist, "Version", apis->Version, strlen(apis->Version));
-//     list_add_string(objlist, "AccessKeyId", apis->AccessKeyId, strlen(apis->AccessKeyId));
-//     list_add_string(objlist, "SignatureMethod", apis->SignatureMethod, strlen(apis->SignatureMethod));
-//     list_add_string(objlist, "Timestamp", Timestamp, strlen(Timestamp));
-//     list_add_string(objlist, "SignatureVersion", apis->SignatureVersion, strlen(apis->SignatureVersion));
-//     list_add_string(objlist, "SignatureNonce", SignatureNonce, strlen(SignatureNonce));
-//     list_add_string(objlist, "RegionId", apis->RegionId, strlen(apis->RegionId));
-//     list_sort(objlist);
-//     char *urlArgumentsString;
-//     aliutls_urlcat_list(&urlArgumentsString, 1024, objlist);
-
-//     // message("config->TopicFullName", apis->TopicFullName);
-//     // message("MessageContentText", MessageContentText);
-
-//     char *base64TextUrl;
-//     aliurls_base64(&base64TextUrl, 1024, urlArgumentsString, apis->AccessKeySecret);
-
-//     char *urlString;
-//     strnull(&urlString, 1024);
-//     strcat(urlString, "https://iot.cn-shanghai.aliyuncs.com?");
-//     strcat(urlString, urlArgumentsString);
-//     strcat(urlString, "&Signature=");
-//     strcat(urlString, base64TextUrl);
-//     strcrt(aliapisurl, urlString, strlen(urlString));
-//     strdel(urlString);
-//     list_delete(objlist);
-//     strdel(base64TextUrl);
-//     strdel(urlArgumentsString);
-//     strdel(Timestamp);
-//     strdel(SignatureNonce);
-//     return OK;
-// }
+    }
+    global_hooks.deallocate(tmpUrlString);
+    global_hooks.deallocate(SignatureString);
+    global_hooks.deallocate(tmpTimestamp);
+    global_hooks.deallocate(tmpSignatureNonce);
+    return jsonstring;
+}
 
 // ok_t QueryDeviceStatistics(char **aliapisurl, struct _aliutils_apis_t *apis)
 // {

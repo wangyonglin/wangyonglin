@@ -19,6 +19,6 @@ typedef struct _localapis_t
     long maxInflight;
 } localapis_t;
 
-void localapis_init(localapis_t **aliapis, string_t filename, const char *section);
+void localapis_init(localapis_t **aliapis, datasheet cfg, const char *section);
   void localapis_free(localapis_t *aliapis);
 #endif

@@ -6,10 +6,14 @@
 
 typedef struct _log_t
 {
-    char* error_log;
+    char *error_log;
     boolean log_errors;
+    datasheet logdir;
 } log_t;
 
-log_t *log_create(log_t **log, pool_t *pool, conf_t *conf);
+log_t *log_create(log_t **log);
 void logerr(log_t *log, const char *fmt, ...);
+void loginfo(log_t *log, const char *fmt, ...);
+void log_delete(log_t *log);
+
 #endif

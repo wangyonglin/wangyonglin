@@ -13,9 +13,11 @@
 #include <cJSON.h>
 #include <application/aliutils.h>
 #include<application/localapis.h>
-void HttpsPublish(localapis_t *aliapis, char *DeviceName, char *MessageContentText, size_t MessageContentSize);
+
+string_t aliapis_https_publish(localapis_t *aliapis, char *DeviceName, char *MessageContentText, size_t MessageContentSize);
+string_t aliapis_https_register_device(localapis_t *aliapis, char *DeviceName);
+
 ok_t QueryDeviceInfo(char **aliapisurl, struct _aliutils_apis_t *apis, char *DeviceName);
-ok_t RegisterDevice(char **aliapisurl, struct _aliutils_apis_t *apis, char *DeviceName);
 ok_t QueryDeviceStatistics(char **aliapisurl, struct _aliutils_apis_t *apis);
 ok_t GetDeviceStatus(char **aliapisurl, struct _aliutils_apis_t *apis, char *IotId);
 #endif

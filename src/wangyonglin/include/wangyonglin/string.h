@@ -1,10 +1,7 @@
 #if !defined(INCLUDE_WANGYONGLIN_STRING_H)
 #define INCLUDE_WANGYONGLIN_STRING_H
 #include <wangyonglin/package.h>
-#define string_null_command \
-    {                       \
-        0, NULL             \
-    }
+#define string_null_command  {0,NULL}
 
 typedef struct _string_t{
     size_t outlength;

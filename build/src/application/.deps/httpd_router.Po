@@ -149,7 +149,8 @@ httpd_router.o: ../../../src/application/httpd_router.c \
  ../../../src/HTTPS/include/https/client.h \
  ../../../src/application/include/application/https_successful.h \
  ../../../src/Encrypt/include/Encrypt/Base64.h \
- /usr/include/openssl/rand.h /usr/include/openssl/randerr.h
+ /usr/include/openssl/rand.h /usr/include/openssl/randerr.h \
+ ../../../src/application/include/application/httpd_result.h
 
 /usr/include/stdc-predef.h:
 
@@ -672,3 +673,5 @@ httpd_router.o: ../../../src/application/httpd_router.c \
 /usr/include/openssl/rand.h:
 
 /usr/include/openssl/randerr.h:
+
+../../../src/application/include/application/httpd_result.h:

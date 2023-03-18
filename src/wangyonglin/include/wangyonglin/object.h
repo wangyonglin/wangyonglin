@@ -28,5 +28,5 @@ typedef struct _object_command_t
 
 void *object_create(void **obj, size_t objsize);
 void object_delete(void *obj);
-ok_t object_mirror(object_command_t objects[], void *obj, string_t confname, const char *section);
+ok_t object_mirror(object_command_t objects[], void *obj, datasheet cfg, const char *section);
 #endif

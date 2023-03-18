@@ -11,13 +11,12 @@ AM_CPPFLAGS=\
 bin_PROGRAMS=wangyonglin
 wangyonglin_SOURCES=\
     main.c \
-    ali_signature.c \
     httpd_start.c \
-    httpd_router.c \
+    httpd_handler.c \
     aliapis.c    \
-    https_successful.c \
     aliutils.c \
-    localapis.c
+    localapis.c \
+    httpd_result.c
 
 wangyonglin_LDADD=\
     $(top_builddir)/src/SnowFlake/libSnowFlake.la \

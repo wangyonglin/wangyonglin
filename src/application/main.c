@@ -25,15 +25,10 @@
 
 int main(int argc, char *argv[])
 {
-  https_callback *callback;
-  app_t *app;
-  application_create(&app, argc, argv);
-
+  config_t *config;
+  config_create(&config, argc, argv);
   SnowFlakeInit(1, 1, 10);
-  logerr(app->log, app->options->confname.outstring);
-  localapis_t *aliapis;
-  localapis_init(&aliapis, app->options->confname, "ALIIOT");
-  HttpsPublish(aliapis, "866714043075174", "wangyonglin", 11);
-  localapis_free(aliapis);
+  httpd_start(config->options->conf,config->log);
+ 
   return 0;
 }

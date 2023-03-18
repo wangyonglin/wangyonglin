@@ -95,7 +95,7 @@ log.lo: ../../../src/wangyonglin/log.c /usr/include/stdc-predef.h \
  /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h \
  ../../../src/wangyonglin/include/wangyonglin/conf.h \
  ../../../src/wangyonglin/include/wangyonglin/string.h \
- ../../../src/wangyonglin/include/wangyonglin/pool.h
+ ../../../src/wangyonglin/include/wangyonglin/object.h
 
 /usr/include/stdc-predef.h:
 
@@ -457,4 +457,4 @@ log.lo: ../../../src/wangyonglin/log.c /usr/include/stdc-predef.h \
 
 ../../../src/wangyonglin/include/wangyonglin/string.h:
 
-../../../src/wangyonglin/include/wangyonglin/pool.h:
+../../../src/wangyonglin/include/wangyonglin/object.h:

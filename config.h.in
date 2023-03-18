@@ -122,10 +122,16 @@
 /* Define to the address where bug reports for this package should be sent. */
 #undef PACKAGE_BUGREPORT
 
+/* conf directery */
+#undef PACKAGE_DIRECTERY_CONF
+
 /* PID file directory */
 #undef PACKAGE_DIRECTERY_LOCALDIR
 
-/* Installation prefix */
+/* logs directery */
+#undef PACKAGE_DIRECTERY_LOG
+
+/* prefix directery */
 #undef PACKAGE_DIRECTERY_PREFIX
 
 /* Define to the full name of this package. */

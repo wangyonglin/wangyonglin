@@ -99,12 +99,13 @@ wangyonglin.lo: ../../../src/wangyonglin/wangyonglin.c \
  ../../../src/wangyonglin/include/wangyonglin/conf.h \
  ../../../src/wangyonglin/include/wangyonglin/options.h \
  ../../../src/wangyonglin/include/wangyonglin/lock.h \
- ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
  ../../../src/wangyonglin/include/wangyonglin/log.h \
+ ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
  ../../../src/wangyonglin/include/wangyonglin/message.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
- /usr/include/malloc.h
+ /usr/include/malloc.h \
+ ../../../src/wangyonglin/include/wangyonglin/object.h
 
 /usr/include/stdc-predef.h:
 
@@ -472,9 +473,9 @@ wangyonglin.lo: ../../../src/wangyonglin/wangyonglin.c \
 
 ../../../src/wangyonglin/include/wangyonglin/lock.h:
 
-../../../src/wangyonglin/include/wangyonglin/daemonize.h:
-
 ../../../src/wangyonglin/include/wangyonglin/log.h:
+
+../../../src/wangyonglin/include/wangyonglin/daemonize.h:
 
 ../../../src/wangyonglin/include/wangyonglin/message.h:
 
@@ -489,3 +490,5 @@ wangyonglin.lo: ../../../src/wangyonglin/wangyonglin.c \
 /usr/include/bits/msq.h:
 
 /usr/include/malloc.h:
+
+../../../src/wangyonglin/include/wangyonglin/object.h:

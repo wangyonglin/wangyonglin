@@ -3,17 +3,20 @@
 
 #include <wangyonglin/package.h>
 #include <wangyonglin/conf.h>
-
+#include <wangyonglin/log.h>
 typedef struct _lock_t
 {
-    char *lockfile;
-    int lockfd;
+   datasheet piddir;
+   datasheet pidfile;
+   int fd;
+   log_t *log;
 } lock_t;
 
-lock_t *lock_create(lock_t **lock, pool_t *pool, conf_t *conf);
-ok_t lockstat(struct _lock_t *lock);
-ok_t locking(struct _lock_t *lock);
-ok_t unlocking(struct _lock_t *lock);
-ok_t lockexit(struct _lock_t *lock);
+lock_t *lock_create(lock_t **lock,log_t *log);
+void lock_delete(lock_t *lock);
 
+ok_t locking(lock_t *lock);
+void unlocking(lock_t *lock);
+boolean locked(lock_t *lock);
+ok_t lockexit(lock_t *lock);
 #endif

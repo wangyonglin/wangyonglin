@@ -2,10 +2,8 @@
 #include <wangyonglin/object.h>
 #include <wangyonglin/buffer.h>
 #include <wangyonglin/string.h>
-void localapis_init(localapis_t **aliapis, string_t filename, const char *section)
+void localapis_init(localapis_t **aliapis, datasheet cfg, const char *section)
 {
-    // string_print("filename",filename);
-    // buffer_print("section",section);
     if (object_create((void **)aliapis, sizeof(localapis_t)))
     {
         object_command_t objects[] = {
@@ -20,7 +18,7 @@ void localapis_init(localapis_t **aliapis, string_t filename, const char *sectio
             object_string_command("RegionId", offsetof(localapis_t, RegionId)),
             object_string_command("TopicFullName", offsetof(localapis_t, TopicFullName)),
             object_null_command};
-        object_mirror(objects, (*aliapis), filename, section);
+        object_mirror(objects, (*aliapis), cfg, section);
     }
 }
 void localapis_free(localapis_t *aliapis)

@@ -18,7 +18,7 @@ confdir =   $(prefix)/conf
 conf_DATA = $(top_srcdir)/conf/wangyonglin.conf
 
 EXTRA_DIST  = README.md
-EXTRA_DIST += $(top_srcdir)/conf/tiger.conf
+EXTRA_DIST += $(top_srcdir)/conf/wangyonglin.conf
 EXTRA_DIST += $(top_srcdir)/logs/error.log
 
  

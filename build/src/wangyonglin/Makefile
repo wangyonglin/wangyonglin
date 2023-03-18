@@ -133,7 +133,7 @@ libwangyonglin_la_LIBADD =
 am_libwangyonglin_la_OBJECTS = wangyonglin.lo pool.lo daemonize.lo \
 	lock.lo log.lo options.lo conf.lo object.lo message.lo file.lo \
 	string.lo list.lo Unix_timestamp_converter.lo regedit.lo \
-	time.lo buffer.lo
+	time.lo buffer.lo package.lo
 libwangyonglin_la_OBJECTS = $(am_libwangyonglin_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -159,9 +159,10 @@ am__depfiles_remade = ./$(DEPDIR)/Unix_timestamp_converter.Plo \
 	./$(DEPDIR)/daemonize.Plo ./$(DEPDIR)/file.Plo \
 	./$(DEPDIR)/list.Plo ./$(DEPDIR)/lock.Plo ./$(DEPDIR)/log.Plo \
 	./$(DEPDIR)/message.Plo ./$(DEPDIR)/object.Plo \
-	./$(DEPDIR)/options.Plo ./$(DEPDIR)/pool.Plo \
-	./$(DEPDIR)/regedit.Plo ./$(DEPDIR)/string.Plo \
-	./$(DEPDIR)/time.Plo ./$(DEPDIR)/wangyonglin.Plo
+	./$(DEPDIR)/options.Plo ./$(DEPDIR)/package.Plo \
+	./$(DEPDIR)/pool.Plo ./$(DEPDIR)/regedit.Plo \
+	./$(DEPDIR)/string.Plo ./$(DEPDIR)/time.Plo \
+	./$(DEPDIR)/wangyonglin.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -262,10 +263,10 @@ OTOOL64 =
 PACKAGE = wangyonglin
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = wangyonglin
-PACKAGE_STRING = wangyonglin 1.3.42
+PACKAGE_STRING = wangyonglin 1.3.43
 PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.42
+PACKAGE_VERSION = 1.3.43
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -273,7 +274,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.42
+VERSION = 1.3.43
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/src/wangyonglin
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../src/wangyonglin
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -346,7 +347,8 @@ libwangyonglin_la_SOURCES = \
     Unix_timestamp_converter.c \
     regedit.c \
     time.c \
-    buffer.c
+    buffer.c \
+    package.c
 
 
 #需要引用的动态库文件
@@ -440,6 +442,7 @@ include ./$(DEPDIR)/log.Plo # am--include-marker
 include ./$(DEPDIR)/message.Plo # am--include-marker
 include ./$(DEPDIR)/object.Plo # am--include-marker
 include ./$(DEPDIR)/options.Plo # am--include-marker
+include ./$(DEPDIR)/package.Plo # am--include-marker
 include ./$(DEPDIR)/pool.Plo # am--include-marker
 include ./$(DEPDIR)/regedit.Plo # am--include-marker
 include ./$(DEPDIR)/string.Plo # am--include-marker
@@ -639,6 +642,7 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/message.Plo
 	-rm -f ./$(DEPDIR)/object.Plo
 	-rm -f ./$(DEPDIR)/options.Plo
+	-rm -f ./$(DEPDIR)/package.Plo
 	-rm -f ./$(DEPDIR)/pool.Plo
 	-rm -f ./$(DEPDIR)/regedit.Plo
 	-rm -f ./$(DEPDIR)/string.Plo
@@ -700,6 +704,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/message.Plo
 	-rm -f ./$(DEPDIR)/object.Plo
 	-rm -f ./$(DEPDIR)/options.Plo
+	-rm -f ./$(DEPDIR)/package.Plo
 	-rm -f ./$(DEPDIR)/pool.Plo
 	-rm -f ./$(DEPDIR)/regedit.Plo
 	-rm -f ./$(DEPDIR)/string.Plo

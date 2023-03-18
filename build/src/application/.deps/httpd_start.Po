@@ -122,8 +122,8 @@ httpd_start.o: ../../../src/application/httpd_start.c \
  ../../../src/wangyonglin/include/wangyonglin/conf.h \
  ../../../src/wangyonglin/include/wangyonglin/options.h \
  ../../../src/wangyonglin/include/wangyonglin/lock.h \
- ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
  ../../../src/wangyonglin/include/wangyonglin/log.h \
+ ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
  ../../../src/wangyonglin/include/wangyonglin/message.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
@@ -143,8 +143,8 @@ httpd_start.o: ../../../src/application/httpd_start.c \
  ../../../src/wangyonglin/include/wangyonglin/object.h \
  ../../../src/wangyonglin/include/wangyonglin/buffer.h \
  ../../../src/application/include/application/localapis.h \
- ../../../src/application/include/application/https_successful.h \
- ../../../src/wangyonglin/include/wangyonglin/regedit.h
+ ../../../src/wangyonglin/include/wangyonglin/regedit.h \
+ ../../../src/application/include/application/httpd_handler.h
 
 /usr/include/stdc-predef.h:
 
@@ -594,9 +594,9 @@ httpd_start.o: ../../../src/application/httpd_start.c \
 
 ../../../src/wangyonglin/include/wangyonglin/lock.h:
 
-../../../src/wangyonglin/include/wangyonglin/daemonize.h:
-
 ../../../src/wangyonglin/include/wangyonglin/log.h:
+
+../../../src/wangyonglin/include/wangyonglin/daemonize.h:
 
 ../../../src/wangyonglin/include/wangyonglin/message.h:
 
@@ -652,6 +652,6 @@ httpd_start.o: ../../../src/application/httpd_start.c \
 
 ../../../src/application/include/application/localapis.h:
 
-../../../src/application/include/application/https_successful.h:
-
 ../../../src/wangyonglin/include/wangyonglin/regedit.h:
+
+../../../src/application/include/application/httpd_handler.h:

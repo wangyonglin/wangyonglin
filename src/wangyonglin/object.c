@@ -40,17 +40,17 @@ void object_delete(void *obj)
 /** objects[i].dataaddr += (obj);
         printf("\t[%s=>%p]\r\n", objects[i].keystring, objects[i].dataaddr);
         __string_create(objects[i].dataaddr, objects[i].keystring);*/
-ok_t object_mirror(object_command_t objects[], void *obj, string_t confname, const char *section)
+ok_t object_mirror(object_command_t objects[], void *obj, datasheet cfg, const char *section)
 {
     if (!obj)
     {
         return NullPointerException;
     }
     CONF *pConf = NCONF_new(NULL);
-    BIO *pBio = BIO_new_file(confname.outstring, "r");
+    BIO *pBio = BIO_new_file(datasheet_value(cfg), "r");
     if (pBio == NULL)
     {
-        message("加载配置文件失败", confname.outstring);
+        message("加载配置文件失败", datasheet_value(cfg));
         exit(EXIT_FAILURE);
         return -1;
     }

@@ -30,6 +30,9 @@
 #include <openssl/ssl.h>
 #include <openssl/conf.h>
 #include <openssl/bio.h>
+
+#define datasheet_null_command {0,NULL}
+
 typedef struct internal_hooks
 {
     void *(*allocate)(size_t objsize);
@@ -68,4 +71,26 @@ typedef int integer;
 #define onstart ((integer)1)
 #define onstop ((integer)0)
 #define onstatus ((integer)-1)
+
+typedef struct _datasheet_t
+{
+    size_t length;
+    char *string;
+} datasheet;
+
+// typedef struct _package_t
+// {
+//     datasheet logdir;
+//     datasheet localdir;
+//     datasheet confdir;
+// } package;
+
+// package *package_create(package **back);
+// void package_delete(package *back);
+
+// package *global_package;
+datasheet datasheet_create(char *datastring, size_t datalength);
+void datasheet_delete(datasheet data);
+char *datasheet_value(datasheet data);
+size_t datasheet_length(datasheet data);
 #endif

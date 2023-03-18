@@ -2,7 +2,6 @@
 #define INCLUDE_HTTPD_H
 #include <string.h>
 #include <event.h>
-// for http
 #include <evhttp.h>
 #include <event2/http.h>
 #include <event2/http_struct.h>
@@ -20,26 +19,13 @@ typedef struct _httpd_t
     char *address;
     long port;
     long timeout_in_secs;
-    app_t *app;
     message_id_t msgid;
-    struct _aliapis_t *apis;
+    localapis_t *aliapis;
+    log_t *log;
 } httpd_t;
 
-typedef enum _auth_t
-{
-    EVENT_REGISTER,
-    EVENT_LOGIN
-} auth_t;
-
-
-
-ok_t httpd_create(app_t *app);
-ok_t httpd_start();
-void httpd_delete();
-
+void httpd_start(datasheet cfg,log_t *log);
 void login_handler(struct evhttp_request *req, void *arg);
 void v3_pay_transactions_jsapi(struct evhttp_request *request, void *arg);
 void wireless_handler(struct evhttp_request *request, void *arg);
-void PubHandler(struct evhttp_request *request, void *arg);
-void RegisterDeviceHandler(struct evhttp_request *request, void *arg);
 #endif
