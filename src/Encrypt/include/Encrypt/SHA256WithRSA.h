@@ -12,13 +12,14 @@
 #include <openssl/sha.h>
 #include <openssl/rand.h>
 #include <openssl/bio.h>
+#include <string_by_this.h>
 /**
  * @brief Create a Private R S A object
- * 
+ *
  * @param keybuffer ///参数 buffer
- * @return RSA* 
+ * @return RSA*
  */
-RSA *createPrivateRSA(const char *keybuffer);
+RSA *createPrivateRSA(char *keybuffer);
 
 bool RSASign(RSA *rsa,
              const unsigned char *Msg,
@@ -26,11 +27,9 @@ bool RSASign(RSA *rsa,
              unsigned char **EncMsg,
              size_t *MsgLenEnc);
 
-
-
-void Base64Encode(const unsigned char *buffer,
-                  size_t length,
-                  char **base64Text);
+size_t Base64Encode(const unsigned char *data,
+                    size_t datasize,
+                    char **base64Text);
 void Base64Decode(const char *b64message, unsigned char **buffer, size_t *length);
 RSA *createPublicRSA(char *keybuffer);
 bool RSAVerifySignature(RSA *rsa,
@@ -39,6 +38,7 @@ bool RSAVerifySignature(RSA *rsa,
                         const char *Msg,
                         size_t MsgLen,
                         bool *Authentic);
-char *SHA256WithRSA_signature(const char *privateKey, char *plainText);
-bool SHA256WithRSA_verify(char *publicKey, char *plainText, char *signatureBase64);
+bool sha256WithRSAVerify(char *apiclient_key, char *plainText, char *signatureBase64);
+bool sha256WithRSASignature(char *apiclient_key, char *plainText, size_t plainTextSize, char **base64Text);
+bool Sha256WithRSASignatureEx(string_by_t apiclient_key, char *plainText, size_t plainTextSize, char **base64Text);
 #endif

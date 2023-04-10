@@ -93,9 +93,7 @@ log.lo: ../../../src/wangyonglin/log.c /usr/include/stdc-predef.h \
  /usr/include/openssl/ssl2.h /usr/include/openssl/ssl3.h \
  /usr/include/openssl/tls1.h /usr/include/openssl/dtls1.h \
  /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h \
- ../../../src/wangyonglin/include/wangyonglin/conf.h \
- ../../../src/wangyonglin/include/wangyonglin/string.h \
- ../../../src/wangyonglin/include/wangyonglin/object.h
+ ../../../src/string/include/string_by_this.h
 
 /usr/include/stdc-predef.h:
 
@@ -453,8 +451,4 @@ log.lo: ../../../src/wangyonglin/log.c /usr/include/stdc-predef.h \
 
 /usr/include/openssl/err.h:
 
-../../../src/wangyonglin/include/wangyonglin/conf.h:
-
-../../../src/wangyonglin/include/wangyonglin/string.h:
-
-../../../src/wangyonglin/include/wangyonglin/object.h:
+../../../src/string/include/string_by_this.h:

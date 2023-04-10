@@ -30,17 +30,9 @@
 #include <openssl/ssl.h>
 #include <openssl/conf.h>
 #include <openssl/bio.h>
+#include <string_by_this.h>
 
-#define datasheet_null_command {0,NULL}
 
-typedef struct internal_hooks
-{
-    void *(*allocate)(size_t objsize);
-    void (*deallocate)(void *obj);
-    void *(*reallocate)(void *obj, size_t objsize);
-
-} internal_hooks;
-static internal_hooks global_hooks = {malloc, free, realloc};
 
 typedef int ok_t;
 
@@ -54,43 +46,39 @@ typedef int ok_t;
 #define FileNotFoundException ((ok_t)-5)
 #define ExitException ((ok_t)-9)
 
-typedef enum _type_t
-{
-    INVALID,
-    STRING,
-    INTEGER,
-    BOOLEAN
-} type_t;
 
-typedef int boolean;
-#define negative ((boolean)0)
-#define positive ((boolean)1)
-#define invalid ((boolean)-1)
 
-typedef int integer;
-#define onstart ((integer)1)
-#define onstop ((integer)0)
-#define onstatus ((integer)-1)
+// typedef int boolean;
+// #define negative ((boolean)0)
+// #define positive ((boolean)1)
+// #define invalid ((boolean)-1)
 
-typedef struct _datasheet_t
-{
-    size_t length;
-    char *string;
-} datasheet;
+// typedef int integer;
+// #define onstart ((integer)1)
+// #define onstop ((integer)0)
+// #define onstatus ((integer)-1)
 
-// typedef struct _package_t
+// typedef struct _datasheet_t
 // {
-//     datasheet logdir;
-//     datasheet localdir;
-//     datasheet confdir;
-// } package;
+//     size_t length;
+//     char *string;
+// } datasheet;
 
-// package *package_create(package **back);
-// void package_delete(package *back);
+// datasheet datasheet_create(char *datastring, size_t datalength);
+// void datasheet_delete(datasheet data);
+// char *datasheet_value(datasheet data);
+// size_t datasheet_length(datasheet data);
 
-// package *global_package;
-datasheet datasheet_create(char *datastring, size_t datalength);
-void datasheet_delete(datasheet data);
-char *datasheet_value(datasheet data);
-size_t datasheet_length(datasheet data);
+// typedef struct _datapacket_t
+// {
+//     size_t length;
+//     char *string;
+// } datapacket;
+
+// datapacket datapacket_create(char *datastring, size_t datalength);
+// void datapacket_delete(datapacket data);
+// char *datapacket_value(datapacket data);
+// size_t datapacket_length(datapacket data);
+
+
 #endif

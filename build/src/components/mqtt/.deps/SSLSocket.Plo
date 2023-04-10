@@ -1,4 +1,0 @@
-SSLSocket.lo: ../../../../src/components/mqtt/SSLSocket.c \
- /usr/include/stdc-predef.h
-
-/usr/include/stdc-predef.h:

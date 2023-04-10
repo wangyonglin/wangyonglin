@@ -1,0 +1,19 @@
+AUTOMAKE_OPTIONS=foreign
+AM_LDFLAGS= -lpthread
+LIBS += -g -O2 -Wall -pedantic   -lm  -lssl -lcrypto -lpthread -levent_openssl 
+AM_CPPFLAGS= \
+    -I $(top_srcdir)/src/string/include/ \
+    -I $(top_srcdir)/src/SnowFlake/include/
+
+lib_LTLIBRARIES=libstring.la
+
+libstring_la_SOURCES=\
+    string_by_this.c \
+    string_by_hex.c \
+    string_by_timestamp.c \
+    string_by_id.c \
+    string_by_log.c \
+    string_by_base64.c \
+    string_by_inject.c \
+    byte_by_this.c
+include_HEADERS =  $(top_srcdir)/src/string/include/*.h

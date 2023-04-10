@@ -24,7 +24,6 @@ message.lo: ../../../src/wangyonglin/message.c /usr/include/stdc-predef.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
  /usr/include/malloc.h \
- ../../../src/wangyonglin/include/wangyonglin/string.h \
  ../../../src/wangyonglin/include/wangyonglin/package.h \
  /usr/include/stdlib.h /usr/include/bits/waitflags.h \
  /usr/include/bits/waitstatus.h /usr/include/bits/floatn.h \
@@ -96,7 +95,8 @@ message.lo: ../../../src/wangyonglin/message.c /usr/include/stdc-predef.h \
  /usr/include/openssl/cterr.h /usr/include/openssl/sslerr.h \
  /usr/include/openssl/ssl2.h /usr/include/openssl/ssl3.h \
  /usr/include/openssl/tls1.h /usr/include/openssl/dtls1.h \
- /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h
+ /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h \
+ ../../../src/string/include/string_by_this.h
 
 /usr/include/stdc-predef.h:
 
@@ -193,8 +193,6 @@ message.lo: ../../../src/wangyonglin/message.c /usr/include/stdc-predef.h \
 /usr/include/bits/msq.h:
 
 /usr/include/malloc.h:
-
-../../../src/wangyonglin/include/wangyonglin/string.h:
 
 ../../../src/wangyonglin/include/wangyonglin/package.h:
 
@@ -467,3 +465,5 @@ message.lo: ../../../src/wangyonglin/message.c /usr/include/stdc-predef.h \
 ../../config.h:
 
 /usr/include/openssl/err.h:
+
+../../../src/string/include/string_by_this.h:

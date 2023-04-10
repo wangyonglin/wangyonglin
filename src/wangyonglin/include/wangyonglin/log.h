@@ -1,14 +1,13 @@
 #if !defined(INCLUDE_DEVELOPER_LOG_H)
 #define INCLUDE_DEVELOPER_LOG_H
 #include <wangyonglin/package.h>
-#include <wangyonglin/conf.h>
-#include <wangyonglin/string.h>
+#include <string_by_this.h>
+
 
 typedef struct _log_t
 {
-    char *error_log;
-    boolean log_errors;
-    datasheet logdir;
+    string_by_t errlog;
+    boolean_by_t log_errors;
 } log_t;
 
 log_t *log_create(log_t **log);

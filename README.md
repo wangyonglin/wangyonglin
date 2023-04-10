@@ -40,7 +40,7 @@ libmbedtls_la_SOURCES=\
   ../configure --prefix=/usr/local/wangyonglin/
   /usr/bin/time -f "Total number of CPU-seconds consumed directly from each of the CPU cores: %U\nElapsed real wall clock time used by the process: %E" ./jwtcrack eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiYWRtaW4ifQ.RnWtv7Rjggm8LdMU3yLnz4ejgGAkIxoZwsCMuJlHMwTh7CJODDZWR8sVuNvo2ws25cbH9HWcp2n5WxpIZ9_v0g adimnps 9 sha512
 
-
+32193C2A390F220B183E2B303A37193E
 
      char sec_key[] = "asdfgh";
     char data[] = "jkluiop";
@@ -55,3 +55,44 @@ libmbedtls_la_SOURCES=\
     设置时间
     timedatectl list-timezones |grep Shanghai
     timedatectl set-timezone Asia/Shanghai
+typedef struct __gprmc__
+{
+UINT time;/* gps定位时间 */
+char pos_state;/*gps状态位*/
+float latitude;/*纬度 */
+float longitude;/* 经度 */
+float speed; /* 速度 */
+float direction;/*航向 */
+UINT date; /*日期 */
+float declination; /* 磁偏角 */
+char dd;
+char mode;/* GPS模式位 */
+}GPRMC;
+
+log_errors  = On
+lockfile = "/var/run/wangyonglin.pid"
+logdir = "/home/wangyonglin/github/wangyonglin/logs"
+[HTTPD]
+address = "0.0.0.0"
+port = 8080
+timeout_in_secs = 15
+message_text_max = 1024
+[ALIIOT]
+AccessKeyId =   ""
+AccessKeySecret =   "&"
+RegionId =  "cn-shanghai"
+ProductKey = ""
+DeviceName = ""
+DeviceSecret = ""
+Format  =   "JSON"
+Version = "2018-01-20"
+SignatureMethod = "HMAC-SHA1"
+SignatureVersion = "1.0"
+TopicFullName = "/user/get"
+[WECHAT_PAYMENT]
+appid   =   ""
+secret = ""
+mchid = ""
+serial_no = ""
+apiclient_key = "/home/wangyonglin/github/wangyonglin/cert/apiclient_key.pem"
+notify_url = "https://api.wangyonglin.com/wechat/notify_url"

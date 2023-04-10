@@ -1,6 +1,7 @@
 AUTOMAKE_OPTIONS=foreign
 lib_LTLIBRARIES=libwangyonglin.la
-AM_CPPFLAGS=-I $(top_srcdir)/src/wangyonglin/include/
+AM_CPPFLAGS=-I $(top_srcdir)/src/wangyonglin/include/ \
+            -I $(top_srcdir)/src/string/include/
 libwangyonglin_la_SOURCES=   \
     wangyonglin.c \
     pool.c  \
@@ -8,16 +9,10 @@ libwangyonglin_la_SOURCES=   \
     lock.c   \
     log.c    \
     options.c  \
-    conf.c  \
-    object.c \
     message.c   \
-    file.c \
-    string.c \
     list.c \
     Unix_timestamp_converter.c \
-    regedit.c \
     time.c \
-    buffer.c \
     package.c
 
 #需要引用的动态库文件

@@ -5,26 +5,30 @@ AM_CPPFLAGS=\
     -I $(top_srcdir)/src/cJSON/include/   \
     -I $(top_srcdir)/src/SnowFlake/include/   \
     -I $(top_srcdir)/src/Encrypt/include/   \
-    -I $(top_srcdir)/src/HTTPS/include/   \
+    -I $(top_srcdir)/src/https/include/   \
+    -I $(top_srcdir)/src/string/include/   \
     -I $(top_srcdir)/src/wangyonglin/include/
 
 bin_PROGRAMS=wangyonglin
 wangyonglin_SOURCES=\
-    main.c \
-    httpd_start.c \
-    httpd_handler.c \
-    aliapis.c    \
-    aliutils.c \
-    localapis.c \
-    httpd_result.c
+    UserMain.c \
+    AliyunHandler.c    \
+    AliyunUtils.c \
+    AliyunConfig.c \
+    HTTPDServer.c \
+    HTTPDHandler.c \
+    HTTPDResult.c \
+    WechatHttps.c \
+    WechatPayment.c
 
 wangyonglin_LDADD=\
     $(top_builddir)/src/SnowFlake/libSnowFlake.la \
     $(top_builddir)/src/cJSON/libcJSON.la \
     $(top_builddir)/src/Encrypt/libEncrypt.la \
-    $(top_builddir)/src/HTTPS/libHTTPS.la \
+    $(top_builddir)/src/https/libhttps.la \
+    $(top_builddir)/src/string/libstring.la \
     $(top_builddir)/src/wangyonglin/libwangyonglin.la \
     $(FLIBS) 
-include_HEADERS =  $(top_srcdir)/src/application/include/application/*.h
+include_HEADERS =  $(top_srcdir)/src/application/include/*.h
 #需要引用的动态库文件
 LIBS += -g -O2 -Wall -pedantic   -lm -levent -lssl -lcrypto -lpthread -levent_openssl -lcurl 

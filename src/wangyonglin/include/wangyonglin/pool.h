@@ -2,7 +2,7 @@
 #define INCLUDE_WANGYONGLIN_POOL_H
 
 #include <wangyonglin/package.h>
-#include <wangyonglin/string.h>
+#include <string_by_this.h>
 
 /*************************************
 实现内存池的逻辑：
@@ -71,6 +71,6 @@ void pool_delete(pool_t* pool);
 void pool_reset(pool_t * pool);
 
 void *pool_object_create(pool_t *pool, void **outobject, size_t outobjectsize);
-string_t pool_string_create(pool_t *pool, char *datastring, size_t datalength);
+//string_t pool_string_create(pool_t *pool, char *datastring, size_t datalength);
 char *pool_buffer_create(pool_t *pool, char **outstring, char *instring, size_t instringsize);
 #endif

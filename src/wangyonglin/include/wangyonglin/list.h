@@ -2,7 +2,7 @@
 #if !defined(INCLUDE_WANGYONGLIN_LIST_H)
 #define INCLUDE_WANGYONGLIN_LIST_H
 #include <wangyonglin/package.h>
-#include <wangyonglin/string.h>
+#include <string_by_this.h>
 #define list_null_command \
     {                     \
         NULL, NULL, 0, -1 \
@@ -21,7 +21,7 @@ typedef struct _list_t
     char *keystring;
     char *valstring;
     size_t valinteger;
-    type_t valtype;
+    type_by_t valtype;
 } list_t;
 
 void list_sort(struct _list_t lists[], size_t listscount);

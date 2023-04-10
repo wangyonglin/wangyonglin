@@ -6,7 +6,7 @@ void daemonize()
     {
     case -1:
         fprintf(stderr, "fork() failed");
-        return -1;
+        return;
     case 0:
         break;
     default:
@@ -15,12 +15,12 @@ void daemonize()
     if ((chdir("/")) < 0)
     {
         fprintf(stderr, "could change to root dir");
-        return -1;
+        return;
     }
     if (setsid() == -1)
     {
         fprintf(stderr, "\t\tsetsid() failed");
-        return -1;
+        return ;
     }
     umask(0);
 
@@ -28,26 +28,26 @@ void daemonize()
     if (fd == -1)
     {
         fprintf(stderr, "open(\"/dev/null\") failed");
-        return -1;
+        return ;
     }
 
     if (dup2(fd, STDIN_FILENO) == -1)
     {
         fprintf(stderr, "dup2(STDIN) failed");
-        return -1;
+        return ;
     }
 
     if (dup2(fd, STDOUT_FILENO) == -1)
     {
         fprintf(stderr, "dup2(STDOUT) failed");
-        return -1;
+        return ;
     }
     if (fd > STDERR_FILENO)
     {
         if (close(fd) == -1)
         {
             fprintf(stderr, "close() failed");
-            return -1;
+            return ;
         }
     }
 }

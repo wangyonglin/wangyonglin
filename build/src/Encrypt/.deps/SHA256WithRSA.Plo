@@ -61,7 +61,8 @@ SHA256WithRSA.lo: ../../../src/Encrypt/SHA256WithRSA.c \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/openssl/rsa.h /usr/include/openssl/rsaerr.h \
  /usr/include/openssl/sha.h /usr/include/openssl/rand.h \
- /usr/include/openssl/randerr.h /usr/include/openssl/pem.h \
+ /usr/include/openssl/randerr.h \
+ ../../../src/string/include/string_by_this.h /usr/include/openssl/pem.h \
  /usr/include/openssl/x509.h /usr/include/openssl/buffer.h \
  /usr/include/openssl/buffererr.h /usr/include/openssl/ec.h \
  /usr/include/openssl/ecerr.h /usr/include/openssl/dsa.h \
@@ -293,6 +294,8 @@ SHA256WithRSA.lo: ../../../src/Encrypt/SHA256WithRSA.c \
 /usr/include/openssl/rand.h:
 
 /usr/include/openssl/randerr.h:
+
+../../../src/string/include/string_by_this.h:
 
 /usr/include/openssl/pem.h:
 

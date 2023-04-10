@@ -255,10 +255,10 @@ OTOOL64 =
 PACKAGE = wangyonglin
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = wangyonglin
-PACKAGE_STRING = wangyonglin 1.3.43
+PACKAGE_STRING = wangyonglin 1.3.44
 PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.43
+PACKAGE_VERSION = 1.3.44
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -266,7 +266,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.43
+VERSION = 1.3.44
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/src/Encrypt
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../src/Encrypt
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -322,7 +322,9 @@ top_builddir = ../..
 top_srcdir = ../../..
 AUTOMAKE_OPTIONS = foreign
 AM_LDFLAGS = -lpthread
-AM_CPPFLAGS = -I $(top_srcdir)/src/Encrypt/include/
+AM_CPPFLAGS = -I $(top_srcdir)/src/Encrypt/include/ \
+                -I $(top_srcdir)/src/string/include/
+
 lib_LTLIBRARIES = libEncrypt.la
 libEncrypt_la_SOURCES = \
     SHA256WithRSA.c \

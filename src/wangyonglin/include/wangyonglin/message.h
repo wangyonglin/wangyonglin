@@ -11,7 +11,7 @@
 #include <sys/msg.h>
 #include <string.h>
 #include <malloc.h>
-#include <wangyonglin/string.h>
+#include <wangyonglin/package.h>
 
 typedef int message_id_t;
 typedef struct

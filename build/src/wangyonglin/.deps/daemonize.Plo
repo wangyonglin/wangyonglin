@@ -93,7 +93,8 @@ daemonize.lo: ../../../src/wangyonglin/daemonize.c \
  /usr/include/openssl/cterr.h /usr/include/openssl/sslerr.h \
  /usr/include/openssl/ssl2.h /usr/include/openssl/ssl3.h \
  /usr/include/openssl/tls1.h /usr/include/openssl/dtls1.h \
- /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h
+ /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h \
+ ../../../src/string/include/string_by_this.h
 
 /usr/include/stdc-predef.h:
 
@@ -450,3 +451,5 @@ daemonize.lo: ../../../src/wangyonglin/daemonize.c \
 ../../config.h:
 
 /usr/include/openssl/err.h:
+
+../../../src/string/include/string_by_this.h:

@@ -8,7 +8,7 @@ m4_define(version_minor,3)
 m4_define(version_patch,m4_esyscmd([git rev-list --count HEAD | tr -d '\n']))
 AC_INIT([wangyonglin], [version_major.version_minor.version_patch],[admin@wangyonglin.com])
 AM_INIT_AUTOMAKE
-AC_CONFIG_SRCDIR([src/application/main.c])
+AC_CONFIG_SRCDIR([src/application/UserMain.c])
 AC_CONFIG_HEADERS([config.h])
 
 AC_DEFINE_UNQUOTED([PACKAGE_VERSION_MAJOR], [version_major], [Version Major])
@@ -73,7 +73,8 @@ AC_FUNC_STRTOD
 AC_CHECK_FUNCS([bzero getpass localeconv memset strcasecmp strchr strdup strerror strrchr strspn strstr])
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([src/Encrypt/Makefile])
-AC_CONFIG_FILES([src/HTTPS/Makefile])
+AC_CONFIG_FILES([src/https/Makefile])
+AC_CONFIG_FILES([src/string/Makefile])
 AC_CONFIG_FILES([src/SnowFlake/Makefile])
 AC_CONFIG_FILES([src/cJSON/Makefile])
 AC_CONFIG_FILES([src/wangyonglin/Makefile])

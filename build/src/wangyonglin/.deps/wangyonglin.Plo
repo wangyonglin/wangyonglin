@@ -94,9 +94,8 @@ wangyonglin.lo: ../../../src/wangyonglin/wangyonglin.c \
  /usr/include/openssl/ssl2.h /usr/include/openssl/ssl3.h \
  /usr/include/openssl/tls1.h /usr/include/openssl/dtls1.h \
  /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h \
+ ../../../src/string/include/string_by_this.h \
  ../../../src/wangyonglin/include/wangyonglin/pool.h \
- ../../../src/wangyonglin/include/wangyonglin/string.h \
- ../../../src/wangyonglin/include/wangyonglin/conf.h \
  ../../../src/wangyonglin/include/wangyonglin/options.h \
  ../../../src/wangyonglin/include/wangyonglin/lock.h \
  ../../../src/wangyonglin/include/wangyonglin/log.h \
@@ -104,8 +103,17 @@ wangyonglin.lo: ../../../src/wangyonglin/wangyonglin.c \
  ../../../src/wangyonglin/include/wangyonglin/message.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
- /usr/include/malloc.h \
- ../../../src/wangyonglin/include/wangyonglin/object.h
+ /usr/include/malloc.h ../../../src/string/include/string_by_inject.h \
+ /usr/include/curl/curl.h /usr/include/curl/curlver.h \
+ /usr/include/curl/system.h /usr/include/sys/socket.h \
+ /usr/include/bits/types/struct_iovec.h /usr/include/bits/socket.h \
+ /usr/include/bits/socket_type.h /usr/include/bits/sockaddr.h \
+ /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
+ /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
+ /usr/include/bits/types/struct_osockaddr.h /usr/include/sys/time.h \
+ /usr/include/curl/easy.h /usr/include/curl/multi.h \
+ /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
+ /usr/include/curl/typecheck-gcc.h
 
 /usr/include/stdc-predef.h:
 
@@ -463,11 +471,9 @@ wangyonglin.lo: ../../../src/wangyonglin/wangyonglin.c \
 
 /usr/include/openssl/err.h:
 
+../../../src/string/include/string_by_this.h:
+
 ../../../src/wangyonglin/include/wangyonglin/pool.h:
-
-../../../src/wangyonglin/include/wangyonglin/string.h:
-
-../../../src/wangyonglin/include/wangyonglin/conf.h:
 
 ../../../src/wangyonglin/include/wangyonglin/options.h:
 
@@ -491,4 +497,42 @@ wangyonglin.lo: ../../../src/wangyonglin/wangyonglin.c \
 
 /usr/include/malloc.h:
 
-../../../src/wangyonglin/include/wangyonglin/object.h:
+../../../src/string/include/string_by_inject.h:
+
+/usr/include/curl/curl.h:
+
+/usr/include/curl/curlver.h:
+
+/usr/include/curl/system.h:
+
+/usr/include/sys/socket.h:
+
+/usr/include/bits/types/struct_iovec.h:
+
+/usr/include/bits/socket.h:
+
+/usr/include/bits/socket_type.h:
+
+/usr/include/bits/sockaddr.h:
+
+/usr/include/asm/socket.h:
+
+/usr/include/asm-generic/socket.h:
+
+/usr/include/asm/sockios.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/bits/types/struct_osockaddr.h:
+
+/usr/include/sys/time.h:
+
+/usr/include/curl/easy.h:
+
+/usr/include/curl/multi.h:
+
+/usr/include/curl/curl.h:
+
+/usr/include/curl/urlapi.h:
+
+/usr/include/curl/typecheck-gcc.h:

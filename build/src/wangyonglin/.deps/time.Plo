@@ -93,9 +93,8 @@ time.lo: ../../../src/wangyonglin/time.c /usr/include/stdc-predef.h \
  /usr/include/openssl/ssl2.h /usr/include/openssl/ssl3.h \
  /usr/include/openssl/tls1.h /usr/include/openssl/dtls1.h \
  /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h \
- ../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h \
- ../../../src/wangyonglin/include/wangyonglin/buffer.h \
- ../../../src/wangyonglin/include/wangyonglin/string.h
+ ../../../src/string/include/string_by_this.h \
+ ../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h
 
 /usr/include/stdc-predef.h:
 
@@ -453,8 +452,6 @@ time.lo: ../../../src/wangyonglin/time.c /usr/include/stdc-predef.h \
 
 /usr/include/openssl/err.h:
 
+../../../src/string/include/string_by_this.h:
+
 ../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h:
-
-../../../src/wangyonglin/include/wangyonglin/buffer.h:
-
-../../../src/wangyonglin/include/wangyonglin/string.h:

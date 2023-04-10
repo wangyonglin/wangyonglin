@@ -1,7 +1,8 @@
 #include <wangyonglin/lock.h>
-#include <wangyonglin/buffer.h>
-#include <wangyonglin/object.h>
+
 #include <wangyonglin/log.h>
+#include <string_by_this.h>
+
 int _fcntl(int fd)
 {
     struct flock fl;
@@ -11,7 +12,7 @@ int _fcntl(int fd)
     fl.l_len = 0;
     return (fcntl(fd, F_SETLK, &fl));
 }
-boolean locked(lock_t *lock)
+boolean_by_t locked(lock_t *lock)
 {
 
     if (lock->fd < 0)
@@ -39,29 +40,25 @@ boolean locked(lock_t *lock)
 
 lock_t *lock_create(lock_t **lock, log_t *log)
 {
-    if (object_create((void **)lock, sizeof(lock_t)))
+    if (((*lock) = (lock_t *)global_hooks.allocate(sizeof(lock_t))))
     {
-        size_t maxsize = 0;
-        (*lock)->piddir = datasheet_create(PACKAGE_DIRECTERY_LOCALDIR, strlen(PACKAGE_DIRECTERY_LOCALDIR));
-        if (datasheet_value((*lock)->piddir))
-        {
-            mkdir(datasheet_value((*lock)->piddir), 0755);
-            maxsize += datasheet_length((*lock)->piddir);
-            maxsize += sizeof(PACKAGE_NAME);
-            maxsize++;
-            maxsize += sizeof(".pid");
-            maxsize++;
-            char tmpString[maxsize];
-            memset(&tmpString, 0x00, sizeof(tmpString));
-            strcat(tmpString, datasheet_value((*lock)->piddir));
-            strcat(tmpString, "/");
-            strcat(tmpString, PACKAGE_NAME);
-            strcat(tmpString, ".pid");
-            (*lock)->pidfile = datasheet_create(tmpString, strlen(tmpString));
-            (*lock)->log = log;
-            return (*lock);
-        }
-        object_delete((*lock));
+        memset((*lock), 0x00, sizeof(lock_t));
+        size_t maxsize = 8;
+        mkdir(PACKAGE_DIRECTERY_LOCALDIR, 0755);
+        maxsize += sizeof(PACKAGE_DIRECTERY_LOCALDIR);
+        maxsize += sizeof(PACKAGE_NAME);
+        maxsize += sizeof(".pid");
+        char tmpString[maxsize];
+        memset(&tmpString, 0x00, sizeof(tmpString));
+        strcat(tmpString, PACKAGE_DIRECTERY_LOCALDIR);
+        strcat(tmpString, "/");
+        strcat(tmpString, PACKAGE_NAME);
+        strcat(tmpString, ".pid");
+        string_create(&(*lock)->pid, tmpString, strlen(tmpString));
+        (*lock)->log = log;
+        return (*lock);
+
+        global_hooks.deallocate((*lock));
     }
     return NULL;
 }
@@ -71,21 +68,20 @@ void lock_delete(lock_t *lock)
 
     if (lock)
     {
-        datasheet_delete(lock->piddir);
-        datasheet_delete(lock->pidfile);
-        object_delete(lock);
+
+        string_delete(lock->pid);
+        global_hooks.deallocate(lock);
     }
 }
 
 ok_t locking(lock_t *lock)
 {
-    if (lock && datasheet_value(lock->pidfile))
+    if (lock && lock->pid.valuestring)
     {
 
-        if ((lock->fd = open(datasheet_value(lock->pidfile), O_RDWR | O_CREAT, 0666)) < 0)
+        if ((lock->fd = open(lock->pid.valuestring, O_RDWR | O_CREAT, 0666)) < 0)
         {
-            //  fprintf(stderr, "unable to open file '%s': %s", lock->lockfile, strerror(errno));
-            logerr(lock->log, "unable to open file '%s': %s", datasheet_value(lock->pidfile), strerror(errno));
+            logerr(lock->log, "unable to open file '%s': %s", lock->pid.valuestring, strerror(errno));
             return NullPointerException;
         }
 
@@ -93,11 +89,11 @@ ok_t locking(lock_t *lock)
         {
             if (errno == EACCES || errno == EAGAIN)
             {
-                loginfo(lock->log, "alone runnind");
+                logerr(lock->log, "alone runnind");
                 exit(EXIT_SUCCESS);
             }
             //  fprintf(stderr, "can't lock %s: %s", lock->lockfile, strerror(errno));
-            logerr(lock->log, "can't lock %s: %s", datasheet_value(lock->pidfile), strerror(errno));
+            logerr(lock->log, "can't lock %s: %s", lock->pid.valuestring, strerror(errno));
         }
         char buf[16];
         ftruncate(lock->fd, 0); // 设置文件的大小为0
@@ -110,22 +106,22 @@ ok_t locking(lock_t *lock)
 
 void unlocking(lock_t *lock)
 {
-    if (lock && datasheet_value(lock->pidfile))
+    if (lock && lock->pid.valuestring)
     {
         if (lock->fd != -1)
         {
             close(lock->fd);
         }
-        if (unlink(datasheet_value(lock->pidfile)) != 0)
+        if (unlink(lock->pid.valuestring) != 0)
         {
-            logerr(lock->log, "delect failed:[%s] %s ", datasheet_value(lock->pidfile), strerror(errno));
+            logerr(lock->log, "delect failed:[%s] %s ", lock->pid.valuestring, strerror(errno));
         }
     }
 }
 
 ok_t lockexit(lock_t *lock)
 {
-    if (lock && datasheet_value(lock->pidfile))
+    if (lock && lock->pid.valuestring)
     {
         int fd;
         int pid;
@@ -135,7 +131,7 @@ ok_t lockexit(lock_t *lock)
         fl.l_start = 0;
         fl.l_whence = SEEK_SET;
         fl.l_len = 0;
-        if ((fd = open(datasheet_value(lock->pidfile), O_RDWR, 0666)) != -1)
+        if ((fd = open(lock->pid.valuestring, O_RDWR, 0666)) != -1)
         {
             if (fcntl(fd, F_SETLK, &fl) < 0)
             {
@@ -146,9 +142,9 @@ ok_t lockexit(lock_t *lock)
                         close(fd);
                         if (kill(atoi(buf), SIGTERM) == 0)
                         {
-                            if (unlink(datasheet_value(lock->pidfile)) != 0)
+                            if (unlink(lock->pid.valuestring) != 0)
                             {
-                                logerr(lock->log, "delect failed:[%s] %s ", datasheet_value(lock->pidfile), strerror(errno));
+                                logerr(lock->log, "delect failed:[%s] %s ", lock->pid.valuestring, strerror(errno));
                             }
                         }
                         return OK;

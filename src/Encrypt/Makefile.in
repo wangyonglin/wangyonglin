@@ -322,7 +322,9 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
 AM_LDFLAGS = -lpthread
-AM_CPPFLAGS = -I $(top_srcdir)/src/Encrypt/include/
+AM_CPPFLAGS = -I $(top_srcdir)/src/Encrypt/include/ \
+                -I $(top_srcdir)/src/string/include/
+
 lib_LTLIBRARIES = libEncrypt.la
 libEncrypt_la_SOURCES = \
     SHA256WithRSA.c \

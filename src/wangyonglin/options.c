@@ -1,5 +1,4 @@
 #include <wangyonglin/options.h>
-#include <wangyonglin/object.h>
 
 #define STRINTG_BUFFER_MAX 64
 
@@ -18,8 +17,8 @@ struct option long_options[] = {
 
 options_t *options_create(options_t **options, int argc, char *argv[])
 {
-    datasheet data = datasheet_null_command;
-    if (object_create((void **)options, sizeof(options_t)))
+
+    if (((*options) = (options_t *)global_hooks.allocate(sizeof(options_t))))
     {
         (*options)->daemonize = negative;
         (*options)->startup = positive;
@@ -29,7 +28,7 @@ options_t *options_create(options_t **options, int argc, char *argv[])
             switch (opt)
             {
             case 'c':
-                data = datasheet_create(optarg, strlen(optarg));
+                string_create(&(*options)->conf, optarg, strlen(optarg));
                 break;
             case 'i':
 
@@ -75,7 +74,7 @@ options_t *options_create(options_t **options, int argc, char *argv[])
             }
         }
 
-        if (!datasheet_value(data))
+        if (!(*options)->conf.valuestring)
         {
             size_t maxsize = 0;
             maxsize += sizeof(PACKAGE_DIRECTERY_CONF);
@@ -89,9 +88,9 @@ options_t *options_create(options_t **options, int argc, char *argv[])
             strcat(tmpString, "/");
             strcat(tmpString, PACKAGE_NAME);
             strcat(tmpString, ".conf");
-            data = datasheet_create(tmpString, strlen(tmpString));
+            string_create(&(*options)->conf, tmpString, strlen(tmpString));
         }
-        (*options)->conf=data;
+
         return (*options);
     }
 
@@ -102,7 +101,7 @@ void options_delete(options_t *options)
 {
     if (options)
     {
-        datasheet_delete(options->conf);
-        object_delete(options);
+        string_delete(options->conf);
+        global_hooks.deallocate(options);
     }
 }

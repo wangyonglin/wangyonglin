@@ -1,6 +1,6 @@
 #include <wangyonglin/pool.h>
-#include <wangyonglin/string.h>
-#include <wangyonglin/buffer.h>
+
+
 // int main()
 // {
 // 	int size = 1 << 12; //左移12位，申请内存块的大小，一般是2的倍数 这里是2的12次方
@@ -285,59 +285,59 @@ int deallocate(pool_t *pool, void *p)
 	return -1;
 }
 
-string_t pool_string_create(pool_t *pool, char *datastring, size_t datalength)
-{
-	string_t out = string_null_command;
-	if (pool && datastring)
-	{
+// string_t pool_string_create(pool_t *pool, char *datastring, size_t datalength)
+// {
+// 	string_t out = string_null_command;
+// 	if (pool && datastring)
+// 	{
 
-		if (out.outstring = allocate(pool, datalength + 1))
-		{
-			memset(out.outstring, 0x00, datalength + 1);
-			memcpy(out.outstring, datastring, datalength);
-			out.outlength = strlen(out.outstring);
-			return out;
-		}
-	}
-	return out;
-}
-char *pool_buffer_create(pool_t *pool, char **outstring, char *instring, size_t instringsize)
-{
-	size_t tmpinstringsize = instringsize;
-	if (pool)
-	{
+// 		if (out.outstring = allocate(pool, datalength + 1))
+// 		{
+// 			memset(out.outstring, 0x00, datalength + 1);
+// 			memcpy(out.outstring, datastring, datalength);
+// 			out.outlength = strlen(out.outstring);
+// 			return out;
+// 		}
+// 	}
+// 	return out;
+// }
+// char *pool_buffer_create(pool_t *pool, char **outstring, char *instring, size_t instringsize)
+// {
+// 	size_t tmpinstringsize = instringsize;
+// 	if (pool)
+// 	{
 
-		if (buffer_is_null(instring) && buffer_is_empty(instring))
-		{
+// 		if (buffer_is_null(instring) && buffer_is_empty(instring))
+// 		{
 
-			if (((*outstring) = allocate(pool, tmpinstringsize)))
-			{
-				return memset((*outstring), 0x00, tmpinstringsize);
-			}
-		}
-		else
-		{
-			tmpinstringsize++;
-			if (((*outstring) = allocate(pool, tmpinstringsize)))
-			{
-				memset((*outstring), 0x00, tmpinstringsize);
-				return memcpy(*outstring, instring, instringsize);
-			}
-		}
-	}
+// 			if (((*outstring) = allocate(pool, tmpinstringsize)))
+// 			{
+// 				return memset((*outstring), 0x00, tmpinstringsize);
+// 			}
+// 		}
+// 		else
+// 		{
+// 			tmpinstringsize++;
+// 			if (((*outstring) = allocate(pool, tmpinstringsize)))
+// 			{
+// 				memset((*outstring), 0x00, tmpinstringsize);
+// 				return memcpy(*outstring, instring, instringsize);
+// 			}
+// 		}
+// 	}
 
-	return (*outstring) = NULL;
-}
+// 	return (*outstring) = NULL;
+// }
 
-void *pool_object_create(pool_t *pool, void **outobject, size_t outobjectsize)
-{
-	if (pool)
-	{
-		if (((*outobject) = allocate(pool, outobjectsize)))
-		{
-			memset((*outobject), 0x00, outobjectsize);
-			return (*outobject);
-		}
-	}
-	return (*outobject) = NULL;
-}
+// void *pool_object_create(pool_t *pool, void **outobject, size_t outobjectsize)
+// {
+// 	if (pool)
+// 	{
+// 		if (((*outobject) = allocate(pool, outobjectsize)))
+// 		{
+// 			memset((*outobject), 0x00, outobjectsize);
+// 			return (*outobject);
+// 		}
+// 	}
+// 	return (*outobject) = NULL;
+// }

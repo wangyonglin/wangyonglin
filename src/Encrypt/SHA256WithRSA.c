@@ -7,22 +7,28 @@
 #include <openssl/rand.h>
 #include <openssl/bio.h>
 #include <openssl/pem.h>
+
 size_t calcDecodeLength(const char *b64input);
 
-RSA *createPrivateRSA(const char *keybuffer)
+RSA *createPrivateRSA(char *apiclient_key)
 {
-    if (!keybuffer)
+
+    if (apiclient_key)
     {
-        return NULL;
+        BIO *keybio = BIO_new_file(apiclient_key, "rb");
+        if (keybio)
+        {
+            RSA *rsa = PEM_read_bio_RSAPrivateKey(keybio, &rsa, NULL, NULL);
+            if (rsa)
+            {
+                BIO_free(keybio);
+                return rsa;
+            }
+            BIO_free(keybio);
+        }
     }
-    RSA *rsa = NULL;
-    BIO *keybio = BIO_new_mem_buf((void *)keybuffer, -1);
-    if (keybio == NULL)
-    {
-        return 0;
-    }
-    rsa = PEM_read_bio_RSAPrivateKey(keybio, &rsa, NULL, NULL);
-    return rsa;
+
+    return NULL;
 }
 
 bool RSASign(RSA *rsa,
@@ -55,33 +61,30 @@ bool RSASign(RSA *rsa,
     return true;
 }
 
-void Base64Encode(const unsigned char *buffer,
-                  size_t length,
-                  char **base64Text)
+size_t Base64Encode(const unsigned char *data,
+                    size_t datasize,
+                    char **base64Text)
 {
-    BIO *bio, *b64;
-    BUF_MEM *bufferPtr;
-    b64 = BIO_new(BIO_f_base64());
-    bio = BIO_new(BIO_s_mem());
-    bio = BIO_push(b64, bio);
-    BIO_write(bio, buffer, length);
-    BIO_flush(bio);
-    BIO_get_mem_ptr(bio, &bufferPtr);
-    BIO_set_close(bio, BIO_NOCLOSE);
-    BIO_free_all(bio);
-    *base64Text = (*bufferPtr).data;
-}
 
-char *SHA256WithRSA_signature(const char *privateKey, char *plainText)
-{
-    RSA *privateRSA = createPrivateRSA(privateKey);
-    unsigned char *encMessage;
-    char *base64Text;
-    size_t encMessageLength;
-    RSASign(privateRSA, (unsigned char *)plainText, strlen(plainText), &encMessage, &encMessageLength);
-    Base64Encode(encMessage, encMessageLength, &base64Text);
-    free(encMessage);
-    return base64Text;
+    BIO *b64 = BIO_new(BIO_f_base64());
+    BIO *bio = BIO_new(BIO_s_mem());
+    bio = BIO_push(b64, bio);
+    BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL);
+    BIO_write(bio, data, datasize);
+    BIO_ctrl(bio, BIO_CTRL_FLUSH, 0, NULL);
+
+    BUF_MEM *bptr = NULL;
+    BIO_get_mem_ptr(bio, &bptr);
+    if (*base64Text = (char *)malloc(bptr->length + 1))
+    {
+        memset(*base64Text, 0x00, bptr->length + 1);
+        memcpy(*base64Text, bptr->data, bptr->length);
+        BIO_free_all(bio);
+        return bptr->length;
+    }
+    BIO_free_all(bio);
+
+    return -1;
 }
 
 size_t calcDecodeLength(const char *b64input)
@@ -106,17 +109,24 @@ void Base64Decode(const char *b64message, unsigned char **buffer, size_t *length
     BIO_free_all(bio);
 }
 
-RSA *createPublicRSA(char *keybuffer)
+RSA *createPublicRSA(char *apiclient_key)
 {
-    RSA *rsa = NULL;
-    BIO *keybio;
-    keybio = BIO_new_mem_buf((void *)keybuffer, -1);
-    if (keybio == NULL)
+    if (apiclient_key)
     {
-        return 0;
+        BIO *keybio = BIO_new_file(apiclient_key, "rb");
+        if (keybio)
+        {
+            RSA *rsa = PEM_read_bio_RSAPublicKey(keybio, NULL, NULL, NULL);
+            if (rsa)
+            {
+                BIO_free(keybio);
+                return rsa;
+            }
+            BIO_free(keybio);
+        }
     }
-    rsa = PEM_read_bio_RSA_PUBKEY(keybio, &rsa, NULL, NULL);
-    return rsa;
+
+    return NULL;
 }
 bool RSAVerifySignature(RSA *rsa,
                         unsigned char *MsgHash,
@@ -158,13 +168,70 @@ bool RSAVerifySignature(RSA *rsa,
     }
 }
 
-bool SHA256WithRSA_verify(char *publicKey, char *plainText, char *signatureBase64)
+bool sha256WithRSAVerify(char *apiclient_key, char *plainText, char *signatureBase64)
 {
-    RSA *publicRSA = createPublicRSA(publicKey);
+    RSA *publicRSA = createPublicRSA(apiclient_key);
     unsigned char *encMessage;
     size_t encMessageLength;
     bool authentic;
     Base64Decode(signatureBase64, &encMessage, &encMessageLength);
     bool result = RSAVerifySignature(publicRSA, encMessage, encMessageLength, plainText, strlen(plainText), &authentic);
     return result & authentic;
+}
+
+bool sha256WithRSASignature(char *apiclient_key, char *plainText, size_t plainTextSize, char **base64Text)
+{
+    RSA *privateRSA = createPrivateRSA(apiclient_key);
+
+    if (privateRSA)
+    {
+        fprintf(stdout, "privateRSA YES\n");
+
+        unsigned char *encMessage;
+        size_t encMessageLength;
+        RSASign(privateRSA, (unsigned char *)plainText, plainTextSize, &encMessage, &encMessageLength);
+        Base64Encode(encMessage, encMessageLength, base64Text);
+        if (encMessage)
+            free(encMessage);
+        RSA_free(privateRSA);
+        return true;
+    }
+    else
+    {
+        fprintf(stdout, "privateRSA NULL\n");
+    }
+
+    return false;
+}
+
+bool Sha256WithRSASignatureEx(string_by_t apiclient_key, char *plainText, size_t plainTextSize, char **base64Text)
+{
+
+    RSA *privateRSA = NULL;
+    BIO *privateBIO = NULL;
+    if ((privateBIO = BIO_new_file(apiclient_key.valuestring, "rb")))
+    {
+
+        if ((privateRSA = PEM_read_bio_RSAPrivateKey(privateBIO, &privateRSA, NULL, NULL)))
+        {
+
+            unsigned char *encMessage;
+            size_t encMessageLength;
+
+            if (RSASign(privateRSA, (unsigned char *)plainText, plainTextSize, &encMessage, &encMessageLength))
+            {
+                Base64Encode(encMessage, encMessageLength, base64Text);
+                if (encMessage)
+                    free(encMessage);
+                RSA_free(privateRSA);
+                BIO_free(privateBIO);
+                return true;
+            }
+            RSA_free(privateRSA);
+        }
+
+        BIO_free(privateBIO);
+    }
+
+    return false;
 }
