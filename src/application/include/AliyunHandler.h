@@ -14,10 +14,7 @@
 #include <AliyunUtils.h>
 #include <AliyunConfig.h>
 #include <string_by_this.h>
-// string_t aliapis_https_publish(localapis_t *aliapis, char *DeviceName, char *MessageContentText, size_t MessageContentSize);
-string_by_t aliapis_https_register_device(string_by_t *jsonstring, AliyunConfig *aliConfig, char *DeviceName);
-
-// ok_t QueryDeviceInfo(char **aliapisurl, struct _aliutils_apis_t *apis, char *DeviceName);
-// ok_t QueryDeviceStatistics(char **aliapisurl, struct _aliutils_apis_t *apis);
-// ok_t GetDeviceStatus(char **aliapisurl, struct _aliutils_apis_t *apis, char *IotId);
+string_by_t HTTPSAliyunPub(string_by_t *jsonstring, AliyunConfig *aliConfig, char *DeviceName, char *MessageContentText, size_t MessageContentSize);
+string_by_t HTTPSAliyunRegisterDevice(string_by_t *jsonstring, AliyunConfig *aliConfig, char *DeviceName);
+string_by_t HTTPSAliyunGetDeviceStatus(string_by_t *jsonstring, AliyunConfig *aliConfig, char *DeviceName);
 #endif

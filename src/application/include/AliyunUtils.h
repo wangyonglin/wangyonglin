@@ -38,8 +38,8 @@ void aliutils_del(char *obj);
 
 char *ReplaceFormat(char *formerString, size_t formerStringMax, const char findString, char *replaceString);
 char *TopicFullNameFormat(char **outstring, char *ProductKey, char *DeviceName, char *TopicFullName);
-char *TimestampFormat(char **outstring);
-char * SignatureNonceFormat(char **outstring);
+
+// char * SignatureNonceFormat(char **outstring);
 char *ContentBase64(char **outstring, char *MessageContentText, size_t MessageContentSize);
 char *SignatureFormat(char **Signature, struct _list_t lists[], size_t count, char *AccessKeySecret);
 char *URLFormat(char **formerString, list_t lists[], size_t count, char *SignatureString);

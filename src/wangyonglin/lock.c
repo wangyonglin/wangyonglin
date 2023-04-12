@@ -38,7 +38,7 @@ boolean_by_t locked(lock_t *lock)
     return ErrorException;
 }
 
-lock_t *lock_create(lock_t **lock, log_t *log)
+lock_t *lock_create(lock_t **lock)
 {
     if (((*lock) = (lock_t *)global_hooks.allocate(sizeof(lock_t))))
     {
@@ -55,7 +55,6 @@ lock_t *lock_create(lock_t **lock, log_t *log)
         strcat(tmpString, PACKAGE_NAME);
         strcat(tmpString, ".pid");
         string_create(&(*lock)->pid, tmpString, strlen(tmpString));
-        (*lock)->log = log;
         return (*lock);
 
         global_hooks.deallocate((*lock));
@@ -81,7 +80,7 @@ ok_t locking(lock_t *lock)
 
         if ((lock->fd = open(lock->pid.valuestring, O_RDWR | O_CREAT, 0666)) < 0)
         {
-            logerr(lock->log, "unable to open file '%s': %s", lock->pid.valuestring, strerror(errno));
+            // logerr(lock->log, "unable to open file '%s': %s", lock->pid.valuestring, strerror(errno));
             return NullPointerException;
         }
 
@@ -89,11 +88,11 @@ ok_t locking(lock_t *lock)
         {
             if (errno == EACCES || errno == EAGAIN)
             {
-                logerr(lock->log, "alone runnind");
+                //  logerr(lock->log, "alone runnind");
                 exit(EXIT_SUCCESS);
             }
             //  fprintf(stderr, "can't lock %s: %s", lock->lockfile, strerror(errno));
-            logerr(lock->log, "can't lock %s: %s", lock->pid.valuestring, strerror(errno));
+            // logerr(lock->log, "can't lock %s: %s", lock->pid.valuestring, strerror(errno));
         }
         char buf[16];
         ftruncate(lock->fd, 0); // 设置文件的大小为0
@@ -114,7 +113,7 @@ void unlocking(lock_t *lock)
         }
         if (unlink(lock->pid.valuestring) != 0)
         {
-            logerr(lock->log, "delect failed:[%s] %s ", lock->pid.valuestring, strerror(errno));
+           // logerr(lock->log, "delect failed:[%s] %s ", lock->pid.valuestring, strerror(errno));
         }
     }
 }
@@ -144,7 +143,7 @@ ok_t lockexit(lock_t *lock)
                         {
                             if (unlink(lock->pid.valuestring) != 0)
                             {
-                                logerr(lock->log, "delect failed:[%s] %s ", lock->pid.valuestring, strerror(errno));
+                               // logerr(lock->log, "delect failed:[%s] %s ", lock->pid.valuestring, strerror(errno));
                             }
                         }
                         return OK;

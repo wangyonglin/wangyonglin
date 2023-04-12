@@ -1,6 +1,9 @@
 #if !defined(INCLUDE_UNIX_TIMESTAMP_CONVERTER_H)
 #define INCLUDE_UNIX_TIMESTAMP_CONVERTER_H
-#include <wangyonglin/package.h>
+#include <string.h>
+#include <bits/types.h>
+#include <time.h>
+#include <stdbool.h>
 
 #define log_info(format, ...) printf(format "\n", ##__VA_ARGS__)
 #define ARRAY_SIZE(array) (sizeof(array) / sizeof(array[0]))

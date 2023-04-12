@@ -13,7 +13,7 @@ typedef struct _lock_t
    log_t *log;
 } lock_t;
 
-lock_t *lock_create(lock_t **lock,log_t *log);
+lock_t *lock_create(lock_t **lock);
 void lock_delete(lock_t *lock);
 
 ok_t locking(lock_t *lock);

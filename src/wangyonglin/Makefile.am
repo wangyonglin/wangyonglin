@@ -11,8 +11,6 @@ libwangyonglin_la_SOURCES=   \
     options.c  \
     message.c   \
     list.c \
-    Unix_timestamp_converter.c \
-    time.c \
     package.c
 
 #需要引用的动态库文件

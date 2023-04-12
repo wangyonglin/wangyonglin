@@ -1,12 +1,11 @@
 #include <AliyunUtils.h>
 
-#include <wangyonglin/Unix_timestamp_converter.h>
-#include <Encrypt/URL.h>
-#include <Encrypt/HMAC_SHA1.h>
+#include <URL.h>
+#include <HMAC_SHA1.h>
 #include <wangyonglin/list.h>
 
 #include <SnowFlake.h>
-#include <Encrypt/Base64.h>
+#include <base64.h>
 #include <byte_by_this.h>
 
 char *TopicFullNameFormat(char **outstring, char *ProductKey, char *DeviceName, char *TopicFullName)
@@ -25,34 +24,34 @@ char *TopicFullNameFormat(char **outstring, char *ProductKey, char *DeviceName, 
     return *outstring;
 }
 
-char *SignatureNonceFormat(char **outstring)
-{
+// char *SignatureNonceFormat(char **outstring)
+// {
 
-    char tmpstring[12];
-    memset(tmpstring, 0x00, sizeof(tmpstring));
-    int64_t id = SnowFlake_IdGenerator();
-    sprintf(tmpstring, "%ld", id);
-    byte_create(outstring, tmpstring, strlen(tmpstring));
-    return *outstring;
-}
+//     char tmpstring[12];
+//     memset(tmpstring, 0x00, sizeof(tmpstring));
+//     int64_t id = SnowFlake_IdGenerator();
+//     sprintf(tmpstring, "%ld", id);
+//     byte_create(outstring, tmpstring, strlen(tmpstring));
+//     return *outstring;
+// }
 
-char *TimestampFormat(char **outstring)
-{
-    char tmpstring[80];
-    memset(tmpstring, 0x00, sizeof(tmpstring));
-    UtcTime result;
-    time_t rawtime;
-    time(&rawtime);
-    result = unix32_to_UTC(rawtime);
-    sprintf(tmpstring, "%04d-%02d-%02dT%02d:%02d:%02dZ", result.year, result.month, result.day,
-            result.hour, result.minute, result.second); // 以年月日_时分秒的形式表示当前时间
-    byte_create(outstring, tmpstring, strlen(tmpstring));
-    return *outstring;
-}
+// char *TimestampFormat(char **outstring)
+// {
+//     char tmpstring[80];
+//     memset(tmpstring, 0x00, sizeof(tmpstring));
+//     UtcTime result;
+//     time_t rawtime;
+//     time(&rawtime);
+//     result = unix32_to_UTC(rawtime);
+//     sprintf(tmpstring, "%04d-%02d-%02dT%02d:%02d:%02dZ", result.year, result.month, result.day,
+//             result.hour, result.minute, result.second); // 以年月日_时分秒的形式表示当前时间
+//     byte_create(outstring, tmpstring, strlen(tmpstring));
+//     return *outstring;
+// }
 
 char *ContentBase64(char **outstring, char *MessageContentText, size_t MessageContentSize)
 {
-    char *tmpstring = base64encode(MessageContentText, MessageContentSize);
+    char *tmpstring = base64_encrypt(MessageContentText, MessageContentSize);
     byte_create(outstring, tmpstring, strlen(tmpstring));
     free(tmpstring);
     return (*outstring);

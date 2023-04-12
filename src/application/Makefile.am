@@ -4,7 +4,7 @@ AM_CPPFLAGS=\
     -I $(top_srcdir)/src/application/include/  \
     -I $(top_srcdir)/src/cJSON/include/   \
     -I $(top_srcdir)/src/SnowFlake/include/   \
-    -I $(top_srcdir)/src/Encrypt/include/   \
+    -I $(top_srcdir)/src/openssl/include/   \
     -I $(top_srcdir)/src/https/include/   \
     -I $(top_srcdir)/src/string/include/   \
     -I $(top_srcdir)/src/wangyonglin/include/
@@ -19,12 +19,12 @@ wangyonglin_SOURCES=\
     HTTPDHandler.c \
     HTTPDResult.c \
     WechatHttps.c \
-    WechatPayment.c
-
+    WechatPayment.c \
+    AliyunHttps.c
 wangyonglin_LDADD=\
     $(top_builddir)/src/SnowFlake/libSnowFlake.la \
     $(top_builddir)/src/cJSON/libcJSON.la \
-    $(top_builddir)/src/Encrypt/libEncrypt.la \
+    $(top_builddir)/src/openssl/libopenssl.la \
     $(top_builddir)/src/https/libhttps.la \
     $(top_builddir)/src/string/libstring.la \
     $(top_builddir)/src/wangyonglin/libwangyonglin.la \

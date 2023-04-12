@@ -106,13 +106,15 @@ WechatPayment.o: ../../../src/application/WechatPayment.c \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
  /usr/include/malloc.h ../../../src/string/include/string_by_inject.h \
  ../../../src/cJSON/include/cJSON.h \
- ../../../src/Encrypt/include/Encrypt/SHA256WithRSA.h \
- /usr/include/openssl/rand.h /usr/include/openssl/randerr.h \
+ ../../../src/openssl/include/SHA256WithRSA.h /usr/include/openssl/rand.h \
+ /usr/include/openssl/randerr.h ../../../src/openssl/include/base64.h \
  ../../../src/string/include/string_by_hex.h \
  ../../../src/string/include/string_by_id.h \
  ../../../src/string/include/string_by_log.h \
  ../../../src/string/include/string_by_timestamp.h \
- /usr/include/sys/time.h ../../../src/string/include/byte_by_this.h
+ /usr/include/sys/time.h \
+ ../../../src/string/include/Unix_timestamp_converter.h \
+ ../../../src/string/include/byte_by_this.h
 
 /usr/include/stdc-predef.h:
 
@@ -502,11 +504,13 @@ WechatPayment.o: ../../../src/application/WechatPayment.c \
 
 ../../../src/cJSON/include/cJSON.h:
 
-../../../src/Encrypt/include/Encrypt/SHA256WithRSA.h:
+../../../src/openssl/include/SHA256WithRSA.h:
 
 /usr/include/openssl/rand.h:
 
 /usr/include/openssl/randerr.h:
+
+../../../src/openssl/include/base64.h:
 
 ../../../src/string/include/string_by_hex.h:
 
@@ -517,5 +521,7 @@ WechatPayment.o: ../../../src/application/WechatPayment.c \
 ../../../src/string/include/string_by_timestamp.h:
 
 /usr/include/sys/time.h:
+
+../../../src/string/include/Unix_timestamp_converter.h:
 
 ../../../src/string/include/byte_by_this.h:

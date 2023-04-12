@@ -1,32 +1,37 @@
 #include <string_by_this.h>
 
-char *string_create(string_by_t *string, char *valuestring, size_t datasize)
+char *string_create(string_by_t *datastring, char *valuestring, size_t valuelength)
 {
 
     if (valuestring)
     {
-        if (string->valuestring)
+        if (datastring->valuestring)
         {
-            if ((string->valuestring = global_hooks.reallocate(string->valuestring, datasize + 1)))
+            if ((datastring->valuestring = global_hooks.reallocate(datastring->valuestring, valuelength + 1)))
             {
-                memset(string->valuestring, 0x00, datasize + 1);
-                memcpy(string->valuestring, valuestring, datasize);
-                string->valuelength = strlen(string->valuestring);
-                return string->valuestring;
+                memset(datastring->valuestring, 0x00, valuelength + 1);
+                memcpy(datastring->valuestring, valuestring, valuelength);
+                datastring->valuelength = strlen(datastring->valuestring);
+                return datastring->valuestring;
             }
         }
         else
         {
-            if ((string->valuestring = global_hooks.allocate(datasize + 1)))
+            if ((datastring->valuestring = global_hooks.allocate(valuelength + 1)))
             {
-                memset(string->valuestring, 0x00, datasize + 1);
-                memcpy(string->valuestring, valuestring, datasize);
-                string->valuelength = strlen(string->valuestring);
-                return string->valuestring;
+                memset(datastring->valuestring, 0x00, valuelength + 1);
+                memcpy(datastring->valuestring, valuestring, valuelength);
+                datastring->valuelength = strlen(datastring->valuestring);
+                return datastring->valuestring;
             }
         }
     }
-    return string->valuestring;
+    else
+    {
+        datastring->valuestring = NULL;
+        datastring->valuelength = 0;
+    }
+    return datastring->valuestring;
 }
 
 void string_delete(string_by_t string)
@@ -36,21 +41,21 @@ void string_delete(string_by_t string)
     string.valuelength = 0;
     string.valuestring = NULL;
 }
-char *string_reset(string_by_t *string, char *valuestring)
+char *string_updata(string_by_t *datastring, char *valuestring, size_t valuelength)
 {
-    string_by_t __tmp = string_null_command;
-    if (valuestring)
+
+    if (valuestring && datastring->valuestring)
     {
-        size_t datasize = strlen(valuestring);
-        if ((__tmp.valuestring = global_hooks.allocate(datasize + 1)))
+
+        if ((datastring->valuestring = global_hooks.reallocate(datastring->valuestring, valuelength + 1)))
         {
-            memset(__tmp.valuestring, 0x00, datasize + 1);
-            memcpy(__tmp.valuestring, valuestring, datasize);
-            __tmp.valuelength = strlen(__tmp.valuestring);
-            return __tmp.valuestring;
+            memset(datastring->valuestring, 0x00, valuelength + 1);
+            memcpy(datastring->valuestring, valuestring, valuelength);
+
+            return datastring->valuestring;
         }
     }
-    return __tmp.valuestring;
+    return datastring->valuestring;
 }
 char *string_setting(string_by_t *string, char *valuestring)
 {
@@ -76,7 +81,7 @@ void *object_create(void **object, size_t objsize)
         memset((*object), 0x00, objsize);
         return (*object);
     }
-    return NULL;
+    return (*object) = NULL;
 }
 void object_delete(void *object)
 {

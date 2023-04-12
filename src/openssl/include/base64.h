@@ -1,5 +1,5 @@
-#if !defined(OPENSSL_BASE64_H)
-#define OPENSSL_BASE64_H
+#if !defined(INCLUDE_OPENSSL_BASE64_H)
+#define INCLUDE_OPENSSL_BASE64_H
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
@@ -14,6 +14,6 @@
 #include <openssl/bio.h>
 #include <openssl/pem.h>
 
-char *base64encode(const void *b64_encode_this, int encode_this_many_bytes);
-char *base64decode(const void *b64_decode_this, int decode_this_many_bytes);
+char *base64_encrypt(const void *b64_encode_this, int encode_this_many_bytes);
+char *base64_decrypt(const void *b64_decode_this, int decode_this_many_bytes);
 #endif

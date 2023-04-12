@@ -27,8 +27,8 @@ typedef struct _HTTPDServer_t
     WechatPayment *payment;
 } HTTPDServer;
 
-HTTPDServer *HTTPDServerCreate(config_t *config);
+HTTPDServer *HTTPDServerCreate(Config_t  *config);
 void HTTPDServerDelete();
 
-void HTTPDServerStart(config_t *config);
+void HTTPDServerStart(Config_t  *config);
 #endif

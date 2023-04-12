@@ -107,12 +107,12 @@ am_wangyonglin_OBJECTS = UserMain.$(OBJEXT) AliyunHandler.$(OBJEXT) \
 	AliyunUtils.$(OBJEXT) AliyunConfig.$(OBJEXT) \
 	HTTPDServer.$(OBJEXT) HTTPDHandler.$(OBJEXT) \
 	HTTPDResult.$(OBJEXT) WechatHttps.$(OBJEXT) \
-	WechatPayment.$(OBJEXT)
+	WechatPayment.$(OBJEXT) AliyunHttps.$(OBJEXT)
 wangyonglin_OBJECTS = $(am_wangyonglin_OBJECTS)
 wangyonglin_DEPENDENCIES =  \
 	$(top_builddir)/src/SnowFlake/libSnowFlake.la \
 	$(top_builddir)/src/cJSON/libcJSON.la \
-	$(top_builddir)/src/Encrypt/libEncrypt.la \
+	$(top_builddir)/src/openssl/libopenssl.la \
 	$(top_builddir)/src/https/libhttps.la \
 	$(top_builddir)/src/string/libstring.la \
 	$(top_builddir)/src/wangyonglin/libwangyonglin.la
@@ -136,10 +136,11 @@ DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/AliyunConfig.Po \
-	./$(DEPDIR)/AliyunHandler.Po ./$(DEPDIR)/AliyunUtils.Po \
-	./$(DEPDIR)/HTTPDHandler.Po ./$(DEPDIR)/HTTPDResult.Po \
-	./$(DEPDIR)/HTTPDServer.Po ./$(DEPDIR)/UserMain.Po \
-	./$(DEPDIR)/WechatHttps.Po ./$(DEPDIR)/WechatPayment.Po
+	./$(DEPDIR)/AliyunHandler.Po ./$(DEPDIR)/AliyunHttps.Po \
+	./$(DEPDIR)/AliyunUtils.Po ./$(DEPDIR)/HTTPDHandler.Po \
+	./$(DEPDIR)/HTTPDResult.Po ./$(DEPDIR)/HTTPDServer.Po \
+	./$(DEPDIR)/UserMain.Po ./$(DEPDIR)/WechatHttps.Po \
+	./$(DEPDIR)/WechatPayment.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -269,10 +270,10 @@ OTOOL64 =
 PACKAGE = wangyonglin
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = wangyonglin
-PACKAGE_STRING = wangyonglin 1.3.44
+PACKAGE_STRING = wangyonglin 1.3.45
 PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.44
+PACKAGE_VERSION = 1.3.45
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -280,7 +281,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.44
+VERSION = 1.3.45
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/src/application
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../src/application
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -340,7 +341,7 @@ AM_CPPFLAGS = \
     -I $(top_srcdir)/src/application/include/  \
     -I $(top_srcdir)/src/cJSON/include/   \
     -I $(top_srcdir)/src/SnowFlake/include/   \
-    -I $(top_srcdir)/src/Encrypt/include/   \
+    -I $(top_srcdir)/src/openssl/include/   \
     -I $(top_srcdir)/src/https/include/   \
     -I $(top_srcdir)/src/string/include/   \
     -I $(top_srcdir)/src/wangyonglin/include/
@@ -354,12 +355,13 @@ wangyonglin_SOURCES = \
     HTTPDHandler.c \
     HTTPDResult.c \
     WechatHttps.c \
-    WechatPayment.c
+    WechatPayment.c \
+    AliyunHttps.c
 
 wangyonglin_LDADD = \
     $(top_builddir)/src/SnowFlake/libSnowFlake.la \
     $(top_builddir)/src/cJSON/libcJSON.la \
-    $(top_builddir)/src/Encrypt/libEncrypt.la \
+    $(top_builddir)/src/openssl/libopenssl.la \
     $(top_builddir)/src/https/libhttps.la \
     $(top_builddir)/src/string/libstring.la \
     $(top_builddir)/src/wangyonglin/libwangyonglin.la \
@@ -461,6 +463,7 @@ distclean-compile:
 
 include ./$(DEPDIR)/AliyunConfig.Po # am--include-marker
 include ./$(DEPDIR)/AliyunHandler.Po # am--include-marker
+include ./$(DEPDIR)/AliyunHttps.Po # am--include-marker
 include ./$(DEPDIR)/AliyunUtils.Po # am--include-marker
 include ./$(DEPDIR)/HTTPDHandler.Po # am--include-marker
 include ./$(DEPDIR)/HTTPDResult.Po # am--include-marker
@@ -652,6 +655,7 @@ clean-am: clean-binPROGRAMS clean-generic clean-libtool mostlyclean-am
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/AliyunConfig.Po
 	-rm -f ./$(DEPDIR)/AliyunHandler.Po
+	-rm -f ./$(DEPDIR)/AliyunHttps.Po
 	-rm -f ./$(DEPDIR)/AliyunUtils.Po
 	-rm -f ./$(DEPDIR)/HTTPDHandler.Po
 	-rm -f ./$(DEPDIR)/HTTPDResult.Po
@@ -706,6 +710,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/AliyunConfig.Po
 	-rm -f ./$(DEPDIR)/AliyunHandler.Po
+	-rm -f ./$(DEPDIR)/AliyunHttps.Po
 	-rm -f ./$(DEPDIR)/AliyunUtils.Po
 	-rm -f ./$(DEPDIR)/HTTPDHandler.Po
 	-rm -f ./$(DEPDIR)/HTTPDResult.Po

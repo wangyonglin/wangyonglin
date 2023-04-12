@@ -13,6 +13,7 @@
 #include <openssl/rand.h>
 #include <openssl/bio.h>
 #include <string_by_this.h>
+#include <base64.h>
 /**
  * @brief Create a Private R S A object
  *

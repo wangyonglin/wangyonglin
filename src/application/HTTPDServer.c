@@ -9,7 +9,7 @@
 HTTPDServer *server = NULL;
 AliyunConfig *aliConfig;
 
-HTTPDServer *HTTPDServerCreate(config_t *config)
+HTTPDServer *HTTPDServerCreate(Config_t *config)
 {
     if (config && config->inject)
     {
@@ -30,13 +30,12 @@ HTTPDServer *HTTPDServerCreate(config_t *config)
     return server;
 }
 
-void HTTPDServerStart(config_t *config)
+void HTTPDServerStart(Config_t *config)
 {
 
     if (HTTPDServerCreate(config))
     {
-        printf("[%s=>%d]\r\n", server->address.valuestring, server->port);
-
+        AliyunConfigCreate(config, &server->aliConfig, "ALIIOT");
         WechatPaymentCreate(config, &server->payment, "WECHAT_PAYMENT");
         event_init();
         server->https = evhttp_start(server->address.valuestring, server->port);
@@ -44,11 +43,13 @@ void HTTPDServerStart(config_t *config)
         evhttp_set_cb(server->https, "/wechat/jscode2session", HTTPDrWechatJscode2session, server);
         evhttp_set_cb(server->https, "/wechat/purchase", HTTPDrWechatPurchase, server);
         evhttp_set_cb(server->https, "/wechat/notify_url", HTTPDrWechatNotifyUrl, server);
-        // evhttp_set_cb(httpd->https, "/aliyun/publish", PublishHandler, httpd);
+        evhttp_set_cb(server->https, "/aliyun/publish", HTTPDAliyunPub, server);
         evhttp_set_cb(server->https, "/aliyun/regisgerdevice", HTTPDAliyunRegisterDevice, server);
+        evhttp_set_cb(server->https, "/aliyun/GetDeviceStatus", HTTPDAliyunGetDeviceStatus, server);
         evhttp_set_gencb(server->https, error_handler, server);
         event_dispatch();
         WechatPaymentDelete(server->payment);
+        AliyunConfigDelete(server->aliConfig);
         HTTPDServerDelete();
     }
 }

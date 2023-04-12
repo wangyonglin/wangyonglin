@@ -21,6 +21,6 @@ typedef struct _AliyunConfig_t
     long maxInflight;
 } AliyunConfig;
 
-AliyunConfig *AliyunConfigCreate(config_t *config, AliyunConfig **apis, const char *section);
+AliyunConfig *AliyunConfigCreate(Config_t  *config, AliyunConfig **apis, const char *section);
 void AliyunConfigDelete(AliyunConfig *aliConfig);
 #endif

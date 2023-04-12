@@ -47,5 +47,5 @@ void string_delete(string_by_t string);
 char *string_setting(string_by_t *string, char *datastring);
 void *object_create(void **object, size_t objsize);
 void object_delete(void *object);
-char *string_reset(string_by_t *string, char *valuestring);
+char *string_updata(string_by_t *datastring, char *valuestring, size_t valuelength);
 #endif

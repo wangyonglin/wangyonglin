@@ -9,7 +9,6 @@ char *string_by_id(string_by_t *id)
     bzero(toString, sizeof(toString));
     int64_t result = SnowFlake_IdGenerator();
     sprintf(toString, "%ld", result);
-    printf(toString);
 
     if (string_create(id, toString, strlen(toString)))
     {

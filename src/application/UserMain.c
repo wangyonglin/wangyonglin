@@ -7,22 +7,25 @@
 #include <string_by_id.h>
 
 #include <string_by_log.h>
-#include <Encrypt/SHA256WithRSA.h>
-#include <Encrypt/HMAC_SHA1.h>
+#include <SHA256WithRSA.h>
+#include <HMAC_SHA1.h>
 
 #include <HTTPDServer.h>
 
 #include <byte_by_this.h>
 
 #include <WechatHttps.h>
+#include <aes_256_gcm.h>
+#include <base64.h>
 
 #define MSG_QUE_KEY_ID 1996 // 消息队列标识
 
 int main(int argc, char *argv[])
 {
-  config_t *config;
-  config_create(&config, argc, argv);
+  Config_t *config = ConfigInit(argc, argv);
+  logerr(config->log, "eee");
   SnowFlakeInit(1, 1, 10);
   HTTPDServerStart(config);
+
   return 0;
 }

@@ -11,13 +11,16 @@
 #include <wangyonglin/message.h>
 #include <string_by_inject.h>
 
-typedef struct _config_t
+typedef struct _Config_t
 {
     options_t *options;
     log_t *log;
     inject_t *inject;
-} config_t;
+    lock_t *lock;
+} Config_t;
 
-config_t *config_create(config_t **config, int argc, char *argv[]);
-void config_delete(config_t *config);
+Config_t *ConfigCreate();
+void ConfigDelete();
+Config_t *ConfigInit(int argc, char *argv[]);
+
 #endif

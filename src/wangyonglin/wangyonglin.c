@@ -1,10 +1,8 @@
 #include <wangyonglin/wangyonglin.h>
 #include <curl/curl.h>
-lock_t *__lock;
-options_t *options;
-config_t *__config;
-log_t *__log;
+Config_t *config = NULL;
 inject_t *__inject;
+
 void sigintHandler(int signal)
 {
     switch (signal)
@@ -26,63 +24,77 @@ void __attribute__((constructor)) init()
     signal(SIGTERM, sigintHandler);
     signal(SIGINT, sigintHandler);
     signal(SIGQUIT, sigintHandler);
+    ConfigCreate();
 
-    log_create(&__log);
-    lock_create(&__lock, __log);
     curl_global_init(CURL_GLOBAL_DEFAULT);
 }
 void __attribute__((destructor)) __exit()
 {
-    log_delete(__log);
-    lock_delete(__lock);
-    options_delete(options);
+    ConfigDelete();
     inject_delect(__inject);
-    object_delete(__config);
+
     curl_global_cleanup();
 }
-
-config_t *config_create(config_t **config, int argc, char *argv[])
+Config_t *ConfigCreate()
 {
-
-    if (object_create((void **)config, sizeof(config_t)))
+    if (object_create((void **)&config, sizeof(Config_t)))
     {
-        if (options_create(&options, argc, argv))
+
+        if (!OptCreate(&config->options))
         {
-            __config = (*config);
-            if (options->daemonize == positive && options->startup == positive)
+            return NULL;
+        }
+        if (!log_create(&config->log))
+        {
+            return NULL;
+        }
+        if (!lock_create(&config->lock))
+        {
+            return NULL;
+        }
+    }
+    return config;
+}
+Config_t *ConfigInit(int argc, char *argv[])
+{
+    if (config)
+    {
+        if (OptInit(&config->options, argc, argv))
+        {
+            if (config->options->daemonize == positive && config->options->startup == positive)
             {
                 daemonize();
             }
-            if (__lock)
+
+            if (config->options->startup == positive)
             {
-                if (options->startup == positive)
+                locking(config->lock);
+
+                inject_create(&__inject, config->options->ini);
+                if (__inject)
                 {
-                    locking(__lock);
-                    __config->log = __log;
-                    __config->options = options;
-                    inject_create(&__inject, options->conf);
-                    if (__inject)
-                    {
-                        __config->inject = __inject;
-                    }
-                    return __config;
+                    config->inject = __inject;
                 }
-                else if (options->startup == negative)
-                {
-                    lockexit(__lock);
-                    exit(EXIT_SUCCESS);
-                }
+                return config;
+            }
+            else if (config->options->startup == negative)
+            {
+                lockexit(config->lock);
+                exit(EXIT_SUCCESS);
             }
         }
     }
-
-    return NULL;
+    exit(EXIT_FAILURE);
 }
 
-void config_delete(config_t *config)
+void ConfigDelete()
 {
+    OptDelete(config->options);
+    lock_delete(config->lock);
+    log_delete(config->log);
     if (config && config->inject)
     {
         inject_delect(config->inject);
     }
+    object_delete(config);
 }

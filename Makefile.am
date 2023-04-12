@@ -1,6 +1,6 @@
 SUBDIRS =\
     src/wangyonglin   \
-    src/Encrypt    \
+    src/openssl    \
     src/SnowFlake    \
     src/cJSON \
     src/https \

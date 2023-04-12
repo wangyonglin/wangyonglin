@@ -1,4 +1,4 @@
-#include <Encrypt/SHA256WithRSA.h>
+#include <SHA256WithRSA.h>
 #include <openssl/bio.h>
 #include <openssl/evp.h>
 #include <openssl/err.h>
@@ -61,31 +61,31 @@ bool RSASign(RSA *rsa,
     return true;
 }
 
-size_t Base64Encode(const unsigned char *data,
-                    size_t datasize,
-                    char **base64Text)
-{
+// size_t base64_encrypt(const unsigned char *data,
+//                     size_t datasize,
+//                     char **base64Text)
+// {
 
-    BIO *b64 = BIO_new(BIO_f_base64());
-    BIO *bio = BIO_new(BIO_s_mem());
-    bio = BIO_push(b64, bio);
-    BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL);
-    BIO_write(bio, data, datasize);
-    BIO_ctrl(bio, BIO_CTRL_FLUSH, 0, NULL);
+//     BIO *b64 = BIO_new(BIO_f_base64());
+//     BIO *bio = BIO_new(BIO_s_mem());
+//     bio = BIO_push(b64, bio);
+//     BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL);
+//     BIO_write(bio, data, datasize);
+//     BIO_ctrl(bio, BIO_CTRL_FLUSH, 0, NULL);
 
-    BUF_MEM *bptr = NULL;
-    BIO_get_mem_ptr(bio, &bptr);
-    if (*base64Text = (char *)malloc(bptr->length + 1))
-    {
-        memset(*base64Text, 0x00, bptr->length + 1);
-        memcpy(*base64Text, bptr->data, bptr->length);
-        BIO_free_all(bio);
-        return bptr->length;
-    }
-    BIO_free_all(bio);
+//     BUF_MEM *bptr = NULL;
+//     BIO_get_mem_ptr(bio, &bptr);
+//     if (*base64Text = (char *)malloc(bptr->length + 1))
+//     {
+//         memset(*base64Text, 0x00, bptr->length + 1);
+//         memcpy(*base64Text, bptr->data, bptr->length);
+//         BIO_free_all(bio);
+//         return bptr->length;
+//     }
+//     BIO_free_all(bio);
 
-    return -1;
-}
+//     return -1;
+// }
 
 size_t calcDecodeLength(const char *b64input)
 {
@@ -190,7 +190,16 @@ bool sha256WithRSASignature(char *apiclient_key, char *plainText, size_t plainTe
         unsigned char *encMessage;
         size_t encMessageLength;
         RSASign(privateRSA, (unsigned char *)plainText, plainTextSize, &encMessage, &encMessageLength);
-        Base64Encode(encMessage, encMessageLength, base64Text);
+        char *tmpText = base64_encrypt(encMessage, encMessageLength);
+
+        if (tmpText)
+        {
+            size_t tmpTextLength = strlen(tmpText);
+            (*base64Text) = (char *)malloc(tmpTextLength + 1);
+            memset((*base64Text), 0x00, tmpTextLength + 1);
+            BUF_strlcpy((*base64Text), tmpText, tmpTextLength);
+            free(tmpText);
+        }
         if (encMessage)
             free(encMessage);
         RSA_free(privateRSA);
@@ -220,7 +229,15 @@ bool Sha256WithRSASignatureEx(string_by_t apiclient_key, char *plainText, size_t
 
             if (RSASign(privateRSA, (unsigned char *)plainText, plainTextSize, &encMessage, &encMessageLength))
             {
-                Base64Encode(encMessage, encMessageLength, base64Text);
+                char *tmpText = base64_encrypt(encMessage, encMessageLength);
+                if (tmpText)
+                {
+                    size_t tmpTextLength = strlen(tmpText);
+                    (*base64Text) = (char *)malloc(tmpTextLength + 1);
+                    memset((*base64Text), 0x00, tmpTextLength + 1);
+                    BUF_strlcpy((*base64Text), tmpText, tmpTextLength);
+                    free(tmpText);
+                }
                 if (encMessage)
                     free(encMessage);
                 RSA_free(privateRSA);

@@ -2,7 +2,7 @@
 #include <string_by_inject.h>
 #include <wangyonglin/wangyonglin.h>
 
-AliyunConfig *AliyunConfigCreate(config_t *config, AliyunConfig **aliConfig, const char *section)
+AliyunConfig *AliyunConfigCreate(Config_t  *config, AliyunConfig **aliConfig, const char *section)
 {
     if (config && config->inject)
     {

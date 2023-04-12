@@ -5,7 +5,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <string.h>
-#include <Encrypt/URL.h>
+#include <URL.h>
 
 static unsigned char hexchars[] = "0123456789ABCDEF";
 

@@ -123,9 +123,9 @@ UserMain.o: ../../../src/application/UserMain.c \
  ../../../src/string/include/string_by_hex.h \
  ../../../src/string/include/string_by_id.h \
  ../../../src/string/include/string_by_log.h \
- ../../../src/Encrypt/include/Encrypt/SHA256WithRSA.h \
- /usr/include/openssl/rand.h /usr/include/openssl/randerr.h \
- ../../../src/Encrypt/include/Encrypt/HMAC_SHA1.h \
+ ../../../src/openssl/include/SHA256WithRSA.h /usr/include/openssl/rand.h \
+ /usr/include/openssl/randerr.h ../../../src/openssl/include/base64.h \
+ ../../../src/openssl/include/HMAC_SHA1.h \
  ../../../src/application/include/HTTPDServer.h /usr/include/event.h \
  /usr/include/event2/event-config.h /usr/include/event2/event-config-64.h \
  /usr/include/evutil.h /usr/include/event2/util.h \
@@ -153,7 +153,9 @@ UserMain.o: ../../../src/application/UserMain.c \
  ../../../src/application/include/AliyunConfig.h \
  ../../../src/application/include/WechatPayment.h \
  ../../../src/string/include/byte_by_this.h \
- ../../../src/application/include/WechatHttps.h
+ ../../../src/application/include/WechatHttps.h \
+ ../../../src/openssl/include/aes_256_gcm.h \
+ ../../../src/openssl/include/stdssl.h
 
 /usr/include/stdc-predef.h:
 
@@ -595,13 +597,15 @@ UserMain.o: ../../../src/application/UserMain.c \
 
 ../../../src/string/include/string_by_log.h:
 
-../../../src/Encrypt/include/Encrypt/SHA256WithRSA.h:
+../../../src/openssl/include/SHA256WithRSA.h:
 
 /usr/include/openssl/rand.h:
 
 /usr/include/openssl/randerr.h:
 
-../../../src/Encrypt/include/Encrypt/HMAC_SHA1.h:
+../../../src/openssl/include/base64.h:
+
+../../../src/openssl/include/HMAC_SHA1.h:
 
 ../../../src/application/include/HTTPDServer.h:
 
@@ -686,3 +690,7 @@ UserMain.o: ../../../src/application/UserMain.c \
 ../../../src/string/include/byte_by_this.h:
 
 ../../../src/application/include/WechatHttps.h:
+
+../../../src/openssl/include/aes_256_gcm.h:
+
+../../../src/openssl/include/stdssl.h:

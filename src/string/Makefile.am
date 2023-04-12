@@ -8,6 +8,7 @@ AM_CPPFLAGS= \
 lib_LTLIBRARIES=libstring.la
 
 libstring_la_SOURCES=\
+    Unix_timestamp_converter.c \
     string_by_this.c \
     string_by_hex.c \
     string_by_timestamp.c \

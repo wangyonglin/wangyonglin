@@ -3,16 +3,22 @@
 #include <HTTPDResult.h>
 #include <SnowFlake.h>
 
-#include <Encrypt/Base64.h>
+#include <base64.h>
 
 #include <WechatPayment.h>
 #include <WechatHttps.h>
-#include <Encrypt/SHA256WithRSA.h>
+#include <SHA256WithRSA.h>
 #include <strings.h>
 #include <WechatHttps.h>
 #include <string_by_timestamp.h>
 #include <string_by_hex.h>
-
+#include <aes_256_gcm.h>
+int aes_256_gcm_decrypt(unsigned char *ciphertext, int ciphertext_len,
+                        unsigned char *aad, int aad_len,
+                        unsigned char *tag,
+                        unsigned char *key,
+                        unsigned char *iv, int iv_len,
+                        unsigned char *plaintext);
 // 解析http头，主要用于get请求时解析uri和请求参数
 char *find_http_header(struct evhttp_request *req, struct evkeyvalq *params, const char *query_char)
 {
@@ -196,6 +202,28 @@ char *find_http_header(struct evhttp_request *req, struct evkeyvalq *params, con
 //     string_delete(jsonstring);
 // }
 
+void HTTPDAliyunGetDeviceStatus(struct evhttp_request *request, void *arg)
+{
+    HTTPDServer *httpd = (HTTPDServer *)arg;
+    httpd_result_t *result;
+    httpd_result_create(&result, httpd->log, request, arg);
+    string_by_t jsonstring = string_null_command;
+    char *DeviceName = NULL;
+    DeviceName = httpd_result_get_params(result, "DeviceName");
+    if (DeviceName)
+    {
+        HTTPSAliyunGetDeviceStatus(&jsonstring, httpd->aliConfig, DeviceName);
+        httpd_successful(result, jsonstring);
+    }
+    else
+    {
+        httpd_failure(result, HTTPD_INVALID_PARAMETE, "request uri no param DeviceName");
+    }
+
+    httpd_result_delete(result);
+    string_delete(jsonstring);
+}
+
 void HTTPDAliyunRegisterDevice(struct evhttp_request *request, void *arg)
 {
     HTTPDServer *httpd = (HTTPDServer *)arg;
@@ -206,46 +234,47 @@ void HTTPDAliyunRegisterDevice(struct evhttp_request *request, void *arg)
     DeviceName = httpd_result_get_params(result, "DeviceName");
     if (DeviceName)
     {
-        aliapis_https_register_device(&jsonstring, httpd->aliConfig, DeviceName);
-        httpd_result_successful(result, jsonstring);
+        HTTPSAliyunRegisterDevice(&jsonstring, httpd->aliConfig, DeviceName);
+        httpd_successful(result, jsonstring);
     }
     else
     {
-        httpd_result_failure(result, HTTPD_INVALID_PARAMETE, "request uri no param DeviceName");
+        httpd_failure(result, HTTPD_INVALID_PARAMETE, "request uri no param DeviceName");
     }
 
     httpd_result_delete(result);
     string_delete(jsonstring);
 }
 
-// void PublishHandler(struct evhttp_request *request, void *arg)
-// {
-//     httpd_t *httpd = (httpd_t *)arg;
-//     string_t jsonstring = string_null_command;
-//     httpd_result_t *result;
-//     httpd_result_create(&result, httpd->log, request, arg);
-//     char *DeviceName = NULL;
-//     char *MessageContentText = NULL;
-//     DeviceName = httpd_result_get_params(result, "DeviceName");
-//     MessageContentText = httpd_result_get_params(result, "MessageContentText");
-//     if (DeviceName && MessageContentText)
-//     {
-//         jsonstring = aliapis_https_publish(result->httpd->aliapis, DeviceName, MessageContentText, strlen(MessageContentText));
-//         httpd_result_successful(result, jsonstring);
-//     }
-//     else
-//     {
-//         httpd_result_failure(result, "参数不能为空");
-//     }
-//     httpd_result_delete(result);
-//     string_delete(jsonstring);
-// }
+void HTTPDAliyunPub(struct evhttp_request *request, void *arg)
+{
+    HTTPDServer *httpd = (HTTPDServer *)arg;
+    httpd_result_t *result;
+    httpd_result_create(&result, httpd->log, request, arg);
+    string_by_t jsonstring = string_null_command;
+    char *DeviceName = NULL;
+    char *MessageContentText = NULL;
+    DeviceName = httpd_result_get_params(result, "DeviceName");
+    MessageContentText = httpd_result_get_params(result, "MessageContentText");
+    if (DeviceName && MessageContentText)
+    {
+        HTTPSAliyunPub(&jsonstring, httpd->aliConfig, DeviceName, MessageContentText, strlen(MessageContentText));
+        httpd_complete(result, 200, jsonstring);
+    }
+    else
+    {
+        httpd_failure(result, HTTPD_INVALID_PARAMETE, "参数不能为空");
+    }
+    httpd_result_delete(result);
+    string_delete(jsonstring);
+}
 /**
  * @brief 微信支付方法
  *
  */
 void HTTPDrWechatPurchase(struct evhttp_request *request, void *arg)
 {
+    integer_by_t code = 200;
     char tmpString[128] = {0};
     HTTPDServer *httpd = (HTTPDServer *)arg;
     string_by_t jsonstring = string_null_command;
@@ -255,14 +284,14 @@ void HTTPDrWechatPurchase(struct evhttp_request *request, void *arg)
     string_by_t url = string_null_command;
     string_by_t body = string_null_command;
     char *openIdString = NULL;
-    integer_by_t totalInteger = 0;
+    integer_by_t pricelInteger = 0;
     const char *urlstring = "/v3/pay/transactions/jsapi";
 
     openIdString = httpd_result_get_params(result, "OpenId");
-    char *totalString = httpd_result_get_params(result, "Total");
-    if (totalString)
+    char *pricelString = httpd_result_get_params(result, "Price");
+    if (pricelString)
     {
-       totalInteger= atoi(totalString);
+        pricelInteger = atoi(pricelString);
     }
     if (openIdString)
     {
@@ -273,7 +302,7 @@ void HTTPDrWechatPurchase(struct evhttp_request *request, void *arg)
         string_by_hex(&nonceStr, 32);
 
         string_create(&url, (char *)urlstring, strlen(urlstring));
-        WechatPaymentPurchaseAuthorization(httpd->payment, openIdString,totalInteger, url, &body, &authorization);
+        WechatPaymentPurchaseAuthorization(httpd->payment, openIdString, pricelInteger, url, &body, &authorization);
         WechatHttpsCallback httpsCallback;
         WechatHttpsPost(httpd->payment, body, authorization, url, &httpsCallback);
         cJSON *parseJSONString = NULL;
@@ -316,13 +345,14 @@ void HTTPDrWechatPurchase(struct evhttp_request *request, void *arg)
             else
             {
                 string_create(&jsonstring, httpsCallback.memory, httpsCallback.size);
+                code = 400;
             }
 
-            httpd_result_complete(result, 400, jsonstring);
+            httpd_complete(result, code, jsonstring);
         }
         else
         {
-            httpd_result_failure(result, HTTPD_INVALID_PARAMETE, "unknown error");
+            httpd_failure(result, HTTPD_INVALID_PARAMETE, "unknown error");
         }
 
         string_delete(authorization);
@@ -337,7 +367,7 @@ void HTTPDrWechatPurchase(struct evhttp_request *request, void *arg)
     }
     else
     {
-        httpd_result_failure(result, HTTPD_INVALID_PARAMETE, "参数OpenId不能为空");
+        httpd_failure(result, HTTPD_INVALID_PARAMETE, "参数OpenId不能为空");
     }
 
     httpd_result_delete(result);
@@ -349,7 +379,7 @@ void error_handler(struct evhttp_request *request, void *arg)
 
     httpd_result_t *result;
     httpd_result_create(&result, httpd->log, request, arg);
-    httpd_result_failure(result, 404, "404 not found");
+    httpd_failure(result, 404, "404 not found");
     httpd_result_delete(result);
 }
 
@@ -369,7 +399,7 @@ void HTTPDrWechatJscode2session(struct evhttp_request *request, void *arg)
         sprintf(urlString, "https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code", httpd->payment->appid.valuestring, httpd->payment->secret.valuestring, js_code);
         WechatHttpsJscode2session(urlString, &callback);
         string_create(&jsonstring, callback.memory, callback.size);
-        httpd_result_successful(result, jsonstring);
+        httpd_successful(result, jsonstring);
         string_delete(jsonstring);
         if (callback.memory)
         {
@@ -378,18 +408,81 @@ void HTTPDrWechatJscode2session(struct evhttp_request *request, void *arg)
     }
     else
     {
-        httpd_result_failure(result, HTTPD_INVALID_PARAMETE, "request uri no param js_code");
+        httpd_failure(result, HTTPD_INVALID_PARAMETE, "request uri no param js_code");
     }
     httpd_result_delete(result);
 }
 void HTTPDrWechatNotifyUrl(struct evhttp_request *request, void *arg)
 {
     HTTPDServer *httpd = (HTTPDServer *)arg;
+    string_by_t apiv3_key = httpd->payment->apiv3_key;
+    log_t *log = httpd->log;
     string_by_t jsonstring = string_null_command;
     httpd_result_t *result;
     httpd_result_create(&result, httpd->log, request, arg);
-    string_create(&jsonstring, "wangyonglin", 11);
-    httpd_result_successful(result, jsonstring);
+    cJSON *root = NULL;
+    // 获取POST方法的数据
+    size_t post_size = EVBUFFER_LENGTH(request->input_buffer);
+    char request_data[post_size + 1];
+    bzero(request_data, sizeof(request_data));
+    char *post_data = (char *)EVBUFFER_DATA(request->input_buffer);
+    if (post_data && post_size > 0 && post_size < 1024)
+    {
+
+        fprintf(stdout, "\t%s\r\n", post_data);
+        logerr(log, "\t%s\r\n", post_data);
+        memcpy(request_data, post_data, post_size);
+        root = cJSON_Parse(request_data);
+    }
+    if (root)
+    {
+        cJSON *associated_data = cJSON_GetObjectItem(root, "associated_data");
+        cJSON *nonceStr = cJSON_GetObjectItem(root, "nonce");
+        cJSON *ciphertext = cJSON_GetObjectItem(root, "ciphertext");
+        unsigned char plaintext[1024] = {0};
+        if (associated_data && nonceStr && ciphertext)
+        {
+            int ret = aes_256_gcm_decrypt(ciphertext->valuestring, strlen(ciphertext->valuestring),
+                                          associated_data->valuestring, strlen(associated_data->valuestring), NULL,
+                                          apiv3_key.valuestring, nonceStr->valuestring, strlen(nonceStr->valuestring), plaintext);
+            if (ret != -1)
+            {
+                fprintf(stdout, "\t%s\r\n", plaintext);
+                logerr(log, "\t%s\r\n", plaintext);
+            }
+        }
+        cJSON_free(root);
+    }
+    WehcatNotifyURLCreate(&jsonstring, positive);
+    httpd_complete(result, 200, jsonstring);
+
     httpd_result_delete(result);
     string_delete(jsonstring);
+}
+
+void WehcatNotifyURLCreate(string_by_t *retstring, boolean_by_t retbool)
+{
+    cJSON *root = cJSON_CreateObject();
+    if (root)
+    {
+        if (retbool == positive)
+        {
+            cJSON_AddStringToObject(root, "code", "SUCCESS");
+            cJSON_AddStringToObject(root, "message", "成功");
+        }
+        else if (retbool == negative)
+        {
+            cJSON_AddStringToObject(root, "code", "FAIL");
+            cJSON_AddStringToObject(root, "message", "失败");
+        }
+
+        char *tmpString = cJSON_PrintUnformatted(root);
+        if (tmpString)
+        {
+            string_create(retstring, tmpString, strlen(tmpString));
+            free(tmpString);
+        }
+
+        cJSON_free(root);
+    }
 }

@@ -33,7 +33,12 @@ string_by_timestamp.lo: ../../../src/string/string_by_timestamp.c \
  /usr/include/bits/types/__locale_t.h /usr/include/strings.h \
  /usr/include/errno.h /usr/include/bits/errno.h \
  /usr/include/linux/errno.h /usr/include/asm/errno.h \
- /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ ../../../src/string/include/Unix_timestamp_converter.h \
+ /usr/include/time.h /usr/include/bits/time.h \
+ /usr/include/bits/types/struct_tm.h \
+ /usr/include/bits/types/struct_itimerspec.h \
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h
 
 /usr/include/stdc-predef.h:
 
@@ -160,3 +165,15 @@ string_by_timestamp.lo: ../../../src/string/string_by_timestamp.c \
 /usr/include/asm-generic/errno.h:
 
 /usr/include/asm-generic/errno-base.h:
+
+../../../src/string/include/Unix_timestamp_converter.h:
+
+/usr/include/time.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/bits/types/struct_tm.h:
+
+/usr/include/bits/types/struct_itimerspec.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:

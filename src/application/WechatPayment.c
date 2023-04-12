@@ -1,7 +1,7 @@
 #include <WechatPayment.h>
 #include <string_by_this.h>
 #include <cJSON.h>
-#include <Encrypt/SHA256WithRSA.h>
+#include <SHA256WithRSA.h>
 
 #include <string_by_hex.h>
 #include <string_by_id.h>
@@ -12,7 +12,7 @@
 #include <string_by_inject.h>
 #include <byte_by_this.h>
 
-WechatPayment *WechatPaymentCreate(config_t *config, WechatPayment **payment, const char *section)
+WechatPayment *WechatPaymentCreate(Config_t  *config, WechatPayment **payment, const char *section)
 {
     if (config && config->inject)
     {
@@ -25,6 +25,7 @@ WechatPayment *WechatPaymentCreate(config_t *config, WechatPayment **payment, co
                 inject_string_command("serial_no", offsetof(WechatPayment, serial_no)),
                 inject_string_command("apiclient_key", offsetof(WechatPayment, apiclient_key)),
                 inject_string_command("notify_url", offsetof(WechatPayment, notify_url)),
+                inject_string_command("apiv3_key", offsetof(WechatPayment, apiv3_key)),
                 inject_null_command};
             inject_build(config->inject, commands, *payment, "WECHAT_PAYMENT");
             return (*payment);
@@ -65,7 +66,7 @@ void WechatPaymentPurchaseAuthorization(WechatPayment *payment, char *OpenId,int
         cJSON_AddStringToObject(root, "mchid", payment->mchid.valuestring);
         cJSON_AddStringToObject(root, "description", timestamp.valuestring);
         cJSON_AddStringToObject(root, "out_trade_no", id.valuestring);
-        cJSON_AddStringToObject(root, "notify_url", "https://www.weixin.qq.com/wxpay/pay.php");
+        cJSON_AddStringToObject(root, "notify_url", payment->notify_url.valuestring);
         cJSON_AddItemToObject(root, "amount", amount = cJSON_CreateObject());
         cJSON_AddStringToObject(amount, "currency", "CNY");
         cJSON_AddNumberToObject(amount, "total", total);
@@ -94,7 +95,7 @@ void WechatPaymentPurchaseAuthorization(WechatPayment *payment, char *OpenId,int
     strcat(tmpString, "\n");
     strcat(tmpString, body->valuestring);
     strcat(tmpString, "\n");
-    fprintf(stdout, "[apiclient_key=>%s]\n", payment->apiclient_key.valuestring);
+   // fprintf(stdout, "[apiclient_key=>%s]\n", payment->apiclient_key.valuestring);
     char *signatureString;
     if (Sha256WithRSASignatureEx(payment->apiclient_key, tmpString, strlen(tmpString), &signatureString))
     {

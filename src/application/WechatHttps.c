@@ -50,7 +50,7 @@ long WechatHttpsPost(WechatPayment *payment,string_by_t body, string_by_t author
         list = curl_slist_append(list, authorizationString);
         list = curl_slist_append(list, "Content-Type: application/json; charset=utf-8");
         list = curl_slist_append(list, "User-Agent:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36");
-        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L); // 启用时会汇报所有的信息
+       // curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L); // 启用时会汇报所有的信息
         curl_easy_setopt(curl, CURLOPT_URL, urlString);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, callback);
@@ -148,7 +148,7 @@ long WechatHttpsJscode2session(char * url, WechatHttpsCallback *callback)
         list = curl_slist_append(list, "Accept: application/json");
         list = curl_slist_append(list, "Content-Type: application/json; charset=utf-8");
         list = curl_slist_append(list, "User-Agent:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36");
-        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L); // 启用时会汇报所有的信息
+       // curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L); // 启用时会汇报所有的信息
         curl_easy_setopt(curl, CURLOPT_URL, url);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, callback);  

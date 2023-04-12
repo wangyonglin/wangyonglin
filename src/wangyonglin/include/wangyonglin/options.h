@@ -6,12 +6,12 @@
 typedef struct _options_t
 {
 
-    string_by_t conf;
+    string_by_t ini;
     boolean_by_t startup;
     boolean_by_t daemonize;
 } options_t;
 
-options_t *options_create(options_t **options, int argc, char *argv[]);
-
-void options_delete(options_t *options);
+options_t *OptCreate(options_t **options);
+void OptDelete(options_t *options);
+options_t *OptInit(options_t *options, int argc, char *argv[]);
 #endif

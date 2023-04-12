@@ -6,7 +6,7 @@
 
 typedef struct _log_t
 {
-    string_by_t errlog;
+    string_by_t err;
     boolean_by_t log_errors;
 } log_t;
 

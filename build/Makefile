@@ -284,10 +284,10 @@ OTOOL64 =
 PACKAGE = wangyonglin
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = wangyonglin
-PACKAGE_STRING = wangyonglin 1.3.44
+PACKAGE_STRING = wangyonglin 1.3.45
 PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.44
+PACKAGE_VERSION = 1.3.45
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -295,7 +295,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.44
+VERSION = 1.3.45
 abs_builddir = /home/wangyonglin/github/wangyonglin/build
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/..
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -354,7 +354,7 @@ top_builddir = .
 top_srcdir = ..
 SUBDIRS = \
     src/wangyonglin   \
-    src/Encrypt    \
+    src/openssl    \
     src/SnowFlake    \
     src/cJSON \
     src/https \

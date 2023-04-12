@@ -105,15 +105,13 @@ AliyunUtils.o: ../../../src/application/AliyunUtils.c \
  /usr/include/bits/types/struct_osockaddr.h /usr/include/sys/time.h \
  /usr/include/curl/easy.h /usr/include/curl/multi.h \
  /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
- /usr/include/curl/typecheck-gcc.h \
- ../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h \
- ../../../src/Encrypt/include/Encrypt/URL.h \
- ../../../src/Encrypt/include/Encrypt/HMAC_SHA1.h \
- /usr/include/openssl/rand.h /usr/include/openssl/randerr.h \
+ /usr/include/curl/typecheck-gcc.h ../../../src/openssl/include/URL.h \
+ ../../../src/openssl/include/HMAC_SHA1.h /usr/include/openssl/rand.h \
+ /usr/include/openssl/randerr.h \
  ../../../src/SnowFlake/include/SnowFlake.h \
  ../../../src/SnowFlake/include/IdGenOptions.h \
  ../../../src/SnowFlake/include/common.h \
- ../../../src/Encrypt/include/Encrypt/Base64.h \
+ ../../../src/openssl/include/base64.h \
  ../../../src/string/include/byte_by_this.h
 
 /usr/include/stdc-predef.h:
@@ -514,11 +512,9 @@ AliyunUtils.o: ../../../src/application/AliyunUtils.c \
 
 /usr/include/curl/typecheck-gcc.h:
 
-../../../src/wangyonglin/include/wangyonglin/Unix_timestamp_converter.h:
+../../../src/openssl/include/URL.h:
 
-../../../src/Encrypt/include/Encrypt/URL.h:
-
-../../../src/Encrypt/include/Encrypt/HMAC_SHA1.h:
+../../../src/openssl/include/HMAC_SHA1.h:
 
 /usr/include/openssl/rand.h:
 
@@ -530,6 +526,6 @@ AliyunUtils.o: ../../../src/application/AliyunUtils.c \
 
 ../../../src/SnowFlake/include/common.h:
 
-../../../src/Encrypt/include/Encrypt/Base64.h:
+../../../src/openssl/include/base64.h:
 
 ../../../src/string/include/byte_by_this.h:

@@ -68,8 +68,11 @@ int inject_build(inject_t *inject, inject_command_t commands[], void *obj, const
             char *out = NCONF_get_string(pConf, section, commands[i].keystring);
             if (out)
             {
-                string_create(commands[i].addr,out, strlen(out));
+                string_create(commands[i].addr, out, strlen(out));
+            }else{
+                 string_create(commands[i].addr, NULL, 0);
             }
+          
         }
         else if (commands[i].type == INTEGER)
         {

@@ -19,7 +19,7 @@ log_t *log_create(log_t **log)
         strcat(tmpString, "/");
         strcat(tmpString, PACKAGE_TARNAME);
         strcat(tmpString, ".log");
-        if (string_create(&(*log)->errlog, tmpString, strlen(tmpString)))
+        if (string_create(&(*log)->err, tmpString, strlen(tmpString)))
         {
             return (*log);
         }
@@ -40,7 +40,7 @@ void logerr(log_t *log, const char *fmt, ...)
         info = localtime(&rawtime);
         strftime(log_line, sizeof(log_line), "%Y-%m-%d %H:%M:%S", info);
         FILE *fptr;
-        if ((fptr = fopen(log->errlog.valuestring, "a+")))
+        if ((fptr = fopen(log->err.valuestring, "a+")))
         {
             fprintf(fptr, log_line);
             fprintf(fptr, "%s\t", " [ERROR]");
@@ -60,7 +60,7 @@ void log_delete(log_t *log)
 {
     if (log)
     {
-        string_delete(log->errlog);
+        string_delete(log->err);
         object_delete(log);
     }
 }

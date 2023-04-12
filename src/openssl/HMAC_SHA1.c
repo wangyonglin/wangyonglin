@@ -1,5 +1,5 @@
-#include <Encrypt/HMAC_SHA1.h>
-#include <Encrypt/Base64.h>
+#include <HMAC_SHA1.h>
+#include <base64.h>
 /**
  * @file hmac_sha1.c  Implements HMAC-SHA1 as of RFC 2202
  *
@@ -105,7 +105,7 @@ void HmacSha1_Base64(const uint8_t *k,size_t lk,const uint8_t *d,size_t ld,uint8
     (*b64_encode_this) = malloc(sizeof(uint8_t) * encode_this_many_bytes);
     memset((*b64_encode_this), 0x00, sizeof(uint8_t) * encode_this_many_bytes);
     hmac_sha1(k, lk, d, ld, (*b64_encode_this), &outputSize);
-    base64Buffer = base64encode((*b64_encode_this), outputSize);
+    base64Buffer = base64_encrypt((*b64_encode_this), outputSize);
     memset((*b64_encode_this), 0x00, sizeof(uint8_t) * encode_this_many_bytes);
     memcpy((*b64_encode_this), base64Buffer, strlen(base64Buffer));
     free(base64Buffer);

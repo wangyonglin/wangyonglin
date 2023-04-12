@@ -13,10 +13,10 @@ typedef struct _WechatPayment_t
     string_by_t body;
     string_by_t httptype;
     string_by_t notify_url;
-    
+    string_by_t apiv3_key;
 } WechatPayment;
 
-WechatPayment *WechatPaymentCreate(config_t *config, WechatPayment **payment, const char *section);
+WechatPayment *WechatPaymentCreate(Config_t  *config, WechatPayment **payment, const char *section);
 void WechatPaymentDelete(WechatPayment *payment);
 //下单函数
 void WechatPaymentPurchaseAuthorization(WechatPayment *payment, char *OpenId,integer_by_t total, string_by_t url, string_by_t *body, string_by_t *authorization);
