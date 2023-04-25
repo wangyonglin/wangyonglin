@@ -6,7 +6,7 @@
 
 #include <SnowFlake.h>
 #include <base64.h>
-#include <byte_by_this.h>
+#include <Stringex.h>
 
 char *TopicFullNameFormat(char **outstring, char *ProductKey, char *DeviceName, char *TopicFullName)
 {
@@ -20,7 +20,7 @@ char *TopicFullNameFormat(char **outstring, char *ProductKey, char *DeviceName, 
     strcat(tmpstring, DeviceName);
     strcat(tmpstring, "/");
     strcat(tmpstring, TopicFullName);
-    byte_create(outstring, tmpstring, strlen(tmpstring));
+    StringCreate(outstring, tmpstring, strlen(tmpstring));
     return *outstring;
 }
 
@@ -49,17 +49,18 @@ char *TopicFullNameFormat(char **outstring, char *ProductKey, char *DeviceName, 
 //     return *outstring;
 // }
 
-char *ContentBase64(char **outstring, char *MessageContentText, size_t MessageContentSize)
-{
-    char *tmpstring = base64_encrypt(MessageContentText, MessageContentSize);
-    byte_create(outstring, tmpstring, strlen(tmpstring));
-    free(tmpstring);
-    return (*outstring);
-}
+// char *ContentBase64(char **outstring, char *MessageContentText, size_t MessageContentSize)
+// {
+//     char *tmpstring = base64_encrypt(MessageContentText, MessageContentSize, true);
+//     byte_create(outstring, tmpstring, strlen(tmpstring));
+//     free(tmpstring);
+//     return (*outstring);
+// }
 
 char *SignatureFormat(char **Signature, struct _list_t lists[], size_t count, char *AccessKeySecret)
 {
     size_t i = 0;
+
     char tmpstring[1024];
     memset(tmpstring, 0x00, sizeof(1024));
     strcat(tmpstring, "GET&%2F&");
@@ -75,13 +76,13 @@ char *SignatureFormat(char **Signature, struct _list_t lists[], size_t count, ch
         }
         i++;
     }
+
     size_t resmax = 1024;
-
-    char *tmpSignature;
     size_t tmpSignatureLengtg = 0;
-    // buffer_max_create(&tmpSignature, 1024, tmpstring, strlen(tmpstring));
-    byte_create(&tmpSignature, tmpstring, 1024);
+    char *tmpSignature = malloc(sizeof(char) * 1024);
 
+    memset(tmpSignature, 0x00, sizeof(char) * 1024);
+    memcpy(tmpSignature, tmpstring, strlen(tmpstring));
     tmpSignatureLengtg = strlen(tmpSignature);
     ReplaceFormat(tmpSignature, tmpSignatureLengtg, '=', "%253D");
     tmpSignatureLengtg = strlen(tmpSignature);
@@ -90,9 +91,8 @@ char *SignatureFormat(char **Signature, struct _list_t lists[], size_t count, ch
     ReplaceFormat(tmpSignature, tmpSignatureLengtg, ':', "%253A");
     uint8_t *outstring;
     HmacSha1_Base64(AccessKeySecret, strlen(AccessKeySecret), tmpSignature, strlen(tmpSignature), &outstring, resmax);
-    byte_delete(tmpSignature);
-    byte_create(Signature, outstring, strlen(outstring));
-
+    StringDelete(tmpSignature);
+    StringCreate(Signature, outstring, strlen(outstring));
     return *Signature;
 }
 
@@ -100,13 +100,14 @@ char *URLFormat(char **formerString, list_t lists[], size_t count, char *Signatu
 {
     size_t signatureStringLengtg = strlen(SignatureString);
     size_t tempStringLengtg = 0;
-    byte_create(formerString, NULL, 1024);
+
+    StringCreate(formerString, NULL, 1024);
     strcat(*formerString, "https://iot.cn-shanghai.aliyuncs.com?");
     char *tempString;
-    byte_create(&tempString, NULL, 1024);
+    StringCreate(&tempString, NULL, 1024);
     char *tempSignatureString;
- 
-    byte_create(&tempSignatureString, SignatureString, signatureStringLengtg);
+
+    StringCreate(&tempSignatureString, SignatureString, signatureStringLengtg);
     ReplaceFormat(tempSignatureString, signatureStringLengtg, '+', "%2B");
     size_t i = 0;
     while (lists[i].keystring)
@@ -128,9 +129,9 @@ char *URLFormat(char **formerString, list_t lists[], size_t count, char *Signatu
     ReplaceFormat(tempString, tempStringLengtg, '-', "%2D");
     tempStringLengtg = strlen(SignatureString);
     ReplaceFormat(tempString, tempStringLengtg, ':', "%3A");
-    strncat((*formerString), tempString, strlen(tempString));
-    byte_delete(tempSignatureString);
-    byte_delete(tempString);
+    strcat((*formerString), tempString);
+    StringDelete(tempSignatureString);
+    StringDelete(tempString);
     return (*formerString);
 }
 
@@ -138,8 +139,7 @@ char *ReplaceFormat(char *formerString, size_t formerStringMax, const char findS
 {
 
     char *tmpstring;
-    // buffer_max_create(&tmpstring, 512, NULL, 0);
-    byte_create(&tmpstring, NULL, 512);
+    StringCreate(&tmpstring, NULL, 1024);
     int formerStringSize = strlen(formerString);
     int i, j;
     char ch;
@@ -165,6 +165,6 @@ char *ReplaceFormat(char *formerString, size_t formerStringMax, const char findS
         memset(formerString, 0x00, formerStringMax);
         memcpy(formerString, tmpstring, strlen(tmpstring));
     }
-    byte_delete(tmpstring);
+    StringDelete(tmpstring);
     return formerString;
 }

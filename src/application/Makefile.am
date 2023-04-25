@@ -1,6 +1,7 @@
 ACLOCAL_AMFLAGS     = -I m4
 AUTOMAKE_OPTIONS=foreign
 AM_CPPFLAGS=\
+    -I $(top_srcdir)/src/zlog/include/  \
     -I $(top_srcdir)/src/application/include/  \
     -I $(top_srcdir)/src/cJSON/include/   \
     -I $(top_srcdir)/src/SnowFlake/include/   \
@@ -19,9 +20,17 @@ wangyonglin_SOURCES=\
     HTTPDHandler.c \
     HTTPDResult.c \
     WechatHttps.c \
-    WechatPayment.c \
-    AliyunHttps.c
+    WechatConfig.c \
+    AliyunHttps.c \
+    ResultUtil.c \
+    WechatHandler.c \
+    ServerResponse.c \
+    WechatConfigCertificates.c \
+    WechatHandlerShipping.c \
+    WechatConfigAuthorization.c \
+    WechatHandlerNotifyUrl.c
 wangyonglin_LDADD=\
+    $(top_builddir)/src/zlog/libzlog.la \
     $(top_builddir)/src/SnowFlake/libSnowFlake.la \
     $(top_builddir)/src/cJSON/libcJSON.la \
     $(top_builddir)/src/openssl/libopenssl.la \
@@ -31,4 +40,4 @@ wangyonglin_LDADD=\
     $(FLIBS) 
 include_HEADERS =  $(top_srcdir)/src/application/include/*.h
 #需要引用的动态库文件
-LIBS += -g -O2 -Wall -pedantic   -lm -levent -lssl -lcrypto -lpthread -levent_openssl -lcurl 
+LIBS += -g -O2 -Wall -pedantic   -lm -levent -lssl -lcrypto -lpthread -levent_openssl -lcurl

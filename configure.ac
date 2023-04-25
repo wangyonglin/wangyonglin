@@ -30,6 +30,8 @@ AC_DEFINE_UNQUOTED([PACKAGE_DIRECTERY_LOCALDIR], ["$localdir"], [PID file direct
 AC_DEFINE_UNQUOTED([PACKAGE_DIRECTERY_PREFIX], ["${prefix}"], [prefix directery])
 AC_DEFINE_UNQUOTED([PACKAGE_DIRECTERY_LOG], ["${prefix}/logs"], [logs directery])
 AC_DEFINE_UNQUOTED([PACKAGE_DIRECTERY_CONF], ["${prefix}/conf"], [conf directery])
+AC_DEFINE_UNQUOTED([PACKAGE_CONF_MAIN_FILENAME], ["${prefix}/conf/wangyonglin.conf"], [wangyonglin.conf pathname])
+AC_DEFINE_UNQUOTED([PACKAGE_CONF_ZLOG_FILENAME], ["${prefix}/conf/zlog.conf"], [zlog.conf pathname])
 LIBTOOL
 LT_INIT
 # Checks for programs.
@@ -72,6 +74,7 @@ AC_FUNC_REALLOC
 AC_FUNC_STRTOD
 AC_CHECK_FUNCS([bzero getpass localeconv memset strcasecmp strchr strdup strerror strrchr strspn strstr])
 AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([src/zlog/Makefile])
 AC_CONFIG_FILES([src/openssl/Makefile])
 AC_CONFIG_FILES([src/https/Makefile])
 AC_CONFIG_FILES([src/string/Makefile])

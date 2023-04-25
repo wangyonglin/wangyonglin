@@ -97,8 +97,10 @@ wangyonglin.lo: ../../../src/wangyonglin/wangyonglin.c \
  ../../../src/string/include/string_by_this.h \
  ../../../src/wangyonglin/include/wangyonglin/pool.h \
  ../../../src/wangyonglin/include/wangyonglin/options.h \
+ ../../../src/string/include/Stringex.h /usr/include/sys/time.h \
+ ../../../src/string/include/Unix_timestamp_converter.h \
  ../../../src/wangyonglin/include/wangyonglin/lock.h \
- ../../../src/wangyonglin/include/wangyonglin/log.h \
+ ../../../src/zlog/include/zlog/zlog.h \
  ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
  ../../../src/wangyonglin/include/wangyonglin/message.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
@@ -110,10 +112,12 @@ wangyonglin.lo: ../../../src/wangyonglin/wangyonglin.c \
  /usr/include/bits/socket_type.h /usr/include/bits/sockaddr.h \
  /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
  /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
- /usr/include/bits/types/struct_osockaddr.h /usr/include/sys/time.h \
- /usr/include/curl/easy.h /usr/include/curl/multi.h \
- /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
- /usr/include/curl/typecheck-gcc.h
+ /usr/include/bits/types/struct_osockaddr.h /usr/include/curl/easy.h \
+ /usr/include/curl/multi.h /usr/include/curl/curl.h \
+ /usr/include/curl/urlapi.h /usr/include/curl/typecheck-gcc.h \
+ ../../../src/SnowFlake/include/SnowFlake.h \
+ ../../../src/SnowFlake/include/IdGenOptions.h \
+ ../../../src/SnowFlake/include/common.h
 
 /usr/include/stdc-predef.h:
 
@@ -477,9 +481,15 @@ wangyonglin.lo: ../../../src/wangyonglin/wangyonglin.c \
 
 ../../../src/wangyonglin/include/wangyonglin/options.h:
 
+../../../src/string/include/Stringex.h:
+
+/usr/include/sys/time.h:
+
+../../../src/string/include/Unix_timestamp_converter.h:
+
 ../../../src/wangyonglin/include/wangyonglin/lock.h:
 
-../../../src/wangyonglin/include/wangyonglin/log.h:
+../../../src/zlog/include/zlog/zlog.h:
 
 ../../../src/wangyonglin/include/wangyonglin/daemonize.h:
 
@@ -525,8 +535,6 @@ wangyonglin.lo: ../../../src/wangyonglin/wangyonglin.c \
 
 /usr/include/bits/types/struct_osockaddr.h:
 
-/usr/include/sys/time.h:
-
 /usr/include/curl/easy.h:
 
 /usr/include/curl/multi.h:
@@ -536,3 +544,9 @@ wangyonglin.lo: ../../../src/wangyonglin/wangyonglin.c \
 /usr/include/curl/urlapi.h:
 
 /usr/include/curl/typecheck-gcc.h:
+
+../../../src/SnowFlake/include/SnowFlake.h:
+
+../../../src/SnowFlake/include/IdGenOptions.h:
+
+../../../src/SnowFlake/include/common.h:

@@ -40,6 +40,6 @@ bool RSAVerifySignature(RSA *rsa,
                         size_t MsgLen,
                         bool *Authentic);
 bool sha256WithRSAVerify(char *apiclient_key, char *plainText, char *signatureBase64);
-bool sha256WithRSASignature(char *apiclient_key, char *plainText, size_t plainTextSize, char **base64Text);
-bool Sha256WithRSASignatureEx(string_by_t apiclient_key, char *plainText, size_t plainTextSize, char **base64Text);
+
+bool Sha256WithRSASignature(string_by_t *base64String, string_by_t apiclient_key, char *plainText);
 #endif

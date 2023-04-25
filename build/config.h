@@ -123,6 +123,12 @@
 /* Define to the address where bug reports for this package should be sent. */
 #define PACKAGE_BUGREPORT "admin@wangyonglin.com"
 
+/* wangyonglin.conf pathname */
+#define PACKAGE_CONF_MAIN_FILENAME "/usr/local/wangyonglin/conf/wangyonglin.conf"
+
+/* zlog.conf pathname */
+#define PACKAGE_CONF_ZLOG_FILENAME "/usr/local/wangyonglin/conf/zlog.conf"
+
 /* conf directery */
 #define PACKAGE_DIRECTERY_CONF "/usr/local/wangyonglin/conf"
 
@@ -139,7 +145,7 @@
 #define PACKAGE_NAME "wangyonglin"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "wangyonglin 1.3.45"
+#define PACKAGE_STRING "wangyonglin 1.3.46"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "wangyonglin"
@@ -148,7 +154,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.3.45"
+#define PACKAGE_VERSION "1.3.46"
 
 /* Version Major */
 #define PACKAGE_VERSION_MAJOR 1
@@ -157,13 +163,13 @@
 #define PACKAGE_VERSION_MINOR 3
 
 /* Version Patch */
-#define PACKAGE_VERSION_PATCH 45
+#define PACKAGE_VERSION_PATCH 46
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "1.3.45"
+#define VERSION "1.3.46"
 
 /* Define for Solaris 2.5.1 so the uint32_t typedef from <sys/synch.h>,
    <pthread.h>, or <semaphore.h> is not used. If the typedef were allowed, the

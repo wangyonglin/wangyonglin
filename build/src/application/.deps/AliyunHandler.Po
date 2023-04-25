@@ -133,8 +133,10 @@ AliyunHandler.o: ../../../src/application/AliyunHandler.c \
  ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
  ../../../src/wangyonglin/include/wangyonglin/pool.h \
  ../../../src/wangyonglin/include/wangyonglin/options.h \
+ ../../../src/string/include/Stringex.h \
+ ../../../src/string/include/Unix_timestamp_converter.h \
  ../../../src/wangyonglin/include/wangyonglin/lock.h \
- ../../../src/wangyonglin/include/wangyonglin/log.h \
+ ../../../src/zlog/include/zlog/zlog.h \
  ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
  ../../../src/wangyonglin/include/wangyonglin/message.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
@@ -143,12 +145,13 @@ AliyunHandler.o: ../../../src/application/AliyunHandler.c \
  ../../../src/cJSON/include/cJSON.h \
  ../../../src/application/include/AliyunUtils.h \
  ../../../src/application/include/AliyunConfig.h \
+ ../../../src/application/include/ResultUtil.h \
+ ../../../src/string/include/string_by_id.h \
  ../../../src/https/include/https_get.h \
  ../../../src/https/include/https_result.h \
  ../../../src/string/include/string_by_timestamp.h \
- ../../../src/string/include/Unix_timestamp_converter.h \
  ../../../src/application/include/AliyunHttps.h \
- ../../../src/string/include/string_by_id.h
+ ../../../src/string/include/StringexBase64.h
 
 /usr/include/stdc-predef.h:
 
@@ -636,9 +639,13 @@ AliyunHandler.o: ../../../src/application/AliyunHandler.c \
 
 ../../../src/wangyonglin/include/wangyonglin/options.h:
 
+../../../src/string/include/Stringex.h:
+
+../../../src/string/include/Unix_timestamp_converter.h:
+
 ../../../src/wangyonglin/include/wangyonglin/lock.h:
 
-../../../src/wangyonglin/include/wangyonglin/log.h:
+../../../src/zlog/include/zlog/zlog.h:
 
 ../../../src/wangyonglin/include/wangyonglin/daemonize.h:
 
@@ -664,14 +671,16 @@ AliyunHandler.o: ../../../src/application/AliyunHandler.c \
 
 ../../../src/application/include/AliyunConfig.h:
 
+../../../src/application/include/ResultUtil.h:
+
+../../../src/string/include/string_by_id.h:
+
 ../../../src/https/include/https_get.h:
 
 ../../../src/https/include/https_result.h:
 
 ../../../src/string/include/string_by_timestamp.h:
 
-../../../src/string/include/Unix_timestamp_converter.h:
-
 ../../../src/application/include/AliyunHttps.h:
 
-../../../src/string/include/string_by_id.h:
+../../../src/string/include/StringexBase64.h:

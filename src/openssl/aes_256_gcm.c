@@ -110,8 +110,8 @@ int aes_256_gcm_decrypt(unsigned char *ciphertext, int ciphertext_len,
     plaintext_len = len;
 
     /* Set expected tag value. Works in OpenSSL 1.0.1d and later */
-    // if(!EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_TAG, 16, tag))
-    //     handleErrors();
+    if(!EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_TAG, 16, tag))
+        handleErrors();
 
     /*
      * Finalise the decryption. A positive return value indicates success,

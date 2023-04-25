@@ -9,13 +9,13 @@
 #include <event2/util.h>
 #include <unistd.h>
 #include <string_by_this.h>
-void HTTPDrWechatJscode2session(struct evhttp_request *request, void *arg);
-void HTTPDrWechatNotifyUrl(struct evhttp_request *request, void *arg);
-void HTTPDrWechatPurchase(struct evhttp_request *request, void *arg);
-void WehcatNotifyURLCreate(string_by_t *retstring ,boolean_by_t retbool);
+#define JSON_TYPE_RF433 "6B962DAC-3AB5-54A8-A197-A12E56FFEF8C"
+
 
 void error_handler(struct evhttp_request *request, void *arg);
 void HTTPDAliyunRegisterDevice(struct evhttp_request *request, void *arg);
 void HTTPDAliyunGetDeviceStatus(struct evhttp_request *request, void *arg);
-void HTTPDAliyunPub(struct evhttp_request *request, void *arg);
+
+void HTTPDAliyunUserSet(struct evhttp_request *request, void *arg);
+
 #endif

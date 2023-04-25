@@ -3,11 +3,12 @@
 #define STRINTG_BUFFER_MAX 64
 
 int opt;
-const char *short_options = "s:c:i:dv";
+const char *short_options = "s:c:l:i:dv";
 int option_index = 0;
 struct option long_options[] = {
     {"daemon", no_argument, 0, 'd'},
     {"config", optional_argument, 0, 'c'},
+    {"log", optional_argument, 0, 'l'},
     {"start", required_argument, 0, 's'},
     {"pid", optional_argument, 0, 'i'},
     {"version", no_argument, 0, 'v'},
@@ -21,19 +22,9 @@ options_t *OptCreate(options_t **options)
     {
         (*options)->daemonize = negative;
         (*options)->startup = positive;
-        size_t maxsize = 0;
-        maxsize += sizeof(PACKAGE_DIRECTERY_CONF);
-        maxsize++;
-        maxsize += sizeof(PACKAGE_NAME);
-        maxsize += sizeof(".conf");
-        maxsize++;
-        char tmpString[maxsize];
-        memset(&tmpString, 0x00, sizeof(tmpString));
-        strcat(tmpString, PACKAGE_DIRECTERY_CONF);
-        strcat(tmpString, "/");
-        strcat(tmpString, PACKAGE_NAME);
-        strcat(tmpString, ".conf");
-        string_create(&(*options)->ini, tmpString, strlen(tmpString));
+        (*options)->ini = Stringex_NULL;
+        StringexResetting(&(*options)->ini, PACKAGE_CONF_MAIN_FILENAME, sizeof(PACKAGE_CONF_MAIN_FILENAME));
+        StringexCreate(&(*options)->zlog, PACKAGE_CONF_ZLOG_FILENAME, sizeof(PACKAGE_CONF_ZLOG_FILENAME));
         return (*options);
     }
     return (*options) = NULL;
@@ -53,10 +44,10 @@ options_t *OptInit(options_t *options, int argc, char *argv[])
             switch (opt)
             {
             case 'c':
-                string_updata(&options->ini, optarg, strlen(optarg));
+                StringexResetting(&options->ini, optarg,strlen(optarg));
                 break;
-            case 'i':
-
+            case 'l':
+                  StringexResetting(&options->zlog, optarg,strlen(optarg));
                 break;
             case 's':
                 if (!strcmp(optarg, "start"))

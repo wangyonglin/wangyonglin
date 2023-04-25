@@ -122,10 +122,22 @@
 /* Define to the address where bug reports for this package should be sent. */
 #undef PACKAGE_BUGREPORT
 
+/* wangyonglin.conf pathname */
+#undef PACKAGE_CONF_WANGYONGLIN_FILENAME
+
+/* zlog.conf pathname */
+#undef PACKAGE_CONF_ZLOG_FILENAME
+
+/* conf directery */
+#undef PACKAGE_DIRECTERY_CONF
+
 /* PID file directory */
 #undef PACKAGE_DIRECTERY_LOCALDIR
 
-/* Installation prefix */
+/* logs directery */
+#undef PACKAGE_DIRECTERY_LOG
+
+/* prefix directery */
 #undef PACKAGE_DIRECTERY_PREFIX
 
 /* Define to the full name of this package. */

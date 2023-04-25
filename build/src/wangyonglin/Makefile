@@ -131,7 +131,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libwangyonglin_la_LIBADD =
 am_libwangyonglin_la_OBJECTS = wangyonglin.lo pool.lo daemonize.lo \
-	lock.lo log.lo options.lo message.lo list.lo package.lo
+	lock.lo options.lo message.lo list.lo package.lo
 libwangyonglin_la_OBJECTS = $(am_libwangyonglin_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -153,10 +153,9 @@ DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/daemonize.Plo ./$(DEPDIR)/list.Plo \
-	./$(DEPDIR)/lock.Plo ./$(DEPDIR)/log.Plo \
-	./$(DEPDIR)/message.Plo ./$(DEPDIR)/options.Plo \
-	./$(DEPDIR)/package.Plo ./$(DEPDIR)/pool.Plo \
-	./$(DEPDIR)/wangyonglin.Plo
+	./$(DEPDIR)/lock.Plo ./$(DEPDIR)/message.Plo \
+	./$(DEPDIR)/options.Plo ./$(DEPDIR)/package.Plo \
+	./$(DEPDIR)/pool.Plo ./$(DEPDIR)/wangyonglin.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -257,10 +256,10 @@ OTOOL64 =
 PACKAGE = wangyonglin
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = wangyonglin
-PACKAGE_STRING = wangyonglin 1.3.45
+PACKAGE_STRING = wangyonglin 1.3.46
 PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.45
+PACKAGE_VERSION = 1.3.46
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -268,7 +267,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.45
+VERSION = 1.3.46
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/src/wangyonglin
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../src/wangyonglin
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -325,14 +324,15 @@ top_srcdir = ../../..
 AUTOMAKE_OPTIONS = foreign
 lib_LTLIBRARIES = libwangyonglin.la
 AM_CPPFLAGS = -I $(top_srcdir)/src/wangyonglin/include/ \
-            -I $(top_srcdir)/src/string/include/
+            -I $(top_srcdir)/src/string/include/    \
+            -I $(top_srcdir)/src/zlog/include/ \
+            -I $(top_srcdir)/src/SnowFlake/include/
 
 libwangyonglin_la_SOURCES = \
     wangyonglin.c \
     pool.c  \
     daemonize.c    \
     lock.c   \
-    log.c    \
     options.c  \
     message.c   \
     list.c \
@@ -422,7 +422,6 @@ distclean-compile:
 include ./$(DEPDIR)/daemonize.Plo # am--include-marker
 include ./$(DEPDIR)/list.Plo # am--include-marker
 include ./$(DEPDIR)/lock.Plo # am--include-marker
-include ./$(DEPDIR)/log.Plo # am--include-marker
 include ./$(DEPDIR)/message.Plo # am--include-marker
 include ./$(DEPDIR)/options.Plo # am--include-marker
 include ./$(DEPDIR)/package.Plo # am--include-marker
@@ -614,7 +613,6 @@ distclean: distclean-am
 		-rm -f ./$(DEPDIR)/daemonize.Plo
 	-rm -f ./$(DEPDIR)/list.Plo
 	-rm -f ./$(DEPDIR)/lock.Plo
-	-rm -f ./$(DEPDIR)/log.Plo
 	-rm -f ./$(DEPDIR)/message.Plo
 	-rm -f ./$(DEPDIR)/options.Plo
 	-rm -f ./$(DEPDIR)/package.Plo
@@ -668,7 +666,6 @@ maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/daemonize.Plo
 	-rm -f ./$(DEPDIR)/list.Plo
 	-rm -f ./$(DEPDIR)/lock.Plo
-	-rm -f ./$(DEPDIR)/log.Plo
 	-rm -f ./$(DEPDIR)/message.Plo
 	-rm -f ./$(DEPDIR)/options.Plo
 	-rm -f ./$(DEPDIR)/package.Plo

@@ -179,75 +179,83 @@ bool sha256WithRSAVerify(char *apiclient_key, char *plainText, char *signatureBa
     return result & authentic;
 }
 
-bool sha256WithRSASignature(char *apiclient_key, char *plainText, size_t plainTextSize, char **base64Text)
+// bool sha256WithRSASignature(char *apiclient_key, char *plainText, size_t plainTextSize, char **base64Text)
+// {
+//     RSA *privateRSA = createPrivateRSA(apiclient_key);
+
+//     if (privateRSA)
+//     {
+//         fprintf(stdout, "privateRSA YES\n");
+
+//         unsigned char *encMessage;
+//         size_t encMessageLength;
+//         RSASign(privateRSA, (unsigned char *)plainText, plainTextSize, &encMessage, &encMessageLength);
+//         char *tmpText = base64_encrypt(encMessage, encMessageLength);
+
+//         if (tmpText)
+//         {
+//             size_t tmpTextLength = strlen(tmpText);
+//             (*base64Text) = (char *)malloc(tmpTextLength + 1);
+//             memset((*base64Text), 0x00, tmpTextLength + 1);
+//             BUF_strlcpy((*base64Text), tmpText, tmpTextLength);
+//             free(tmpText);
+//         }
+//         if (encMessage)
+//             free(encMessage);
+//         RSA_free(privateRSA);
+//         return true;
+//     }
+//     else
+//     {
+//         fprintf(stdout, "privateRSA NULL\n");
+//     }
+
+//     return false;
+// }
+
+bool Sha256WithRSASignature(string_by_t *base64String, string_by_t apiclient_key, char *plainText)
 {
-    RSA *privateRSA = createPrivateRSA(apiclient_key);
-
-    if (privateRSA)
-    {
-        fprintf(stdout, "privateRSA YES\n");
-
-        unsigned char *encMessage;
-        size_t encMessageLength;
-        RSASign(privateRSA, (unsigned char *)plainText, plainTextSize, &encMessage, &encMessageLength);
-        char *tmpText = base64_encrypt(encMessage, encMessageLength);
-
-        if (tmpText)
-        {
-            size_t tmpTextLength = strlen(tmpText);
-            (*base64Text) = (char *)malloc(tmpTextLength + 1);
-            memset((*base64Text), 0x00, tmpTextLength + 1);
-            BUF_strlcpy((*base64Text), tmpText, tmpTextLength);
-            free(tmpText);
-        }
-        if (encMessage)
-            free(encMessage);
-        RSA_free(privateRSA);
-        return true;
-    }
-    else
-    {
-        fprintf(stdout, "privateRSA NULL\n");
-    }
-
-    return false;
-}
-
-bool Sha256WithRSASignatureEx(string_by_t apiclient_key, char *plainText, size_t plainTextSize, char **base64Text)
-{
-
     RSA *privateRSA = NULL;
     BIO *privateBIO = NULL;
-    if ((privateBIO = BIO_new_file(apiclient_key.valuestring, "rb")))
+    if (plainText && apiclient_key.valuestring)
     {
-
-        if ((privateRSA = PEM_read_bio_RSAPrivateKey(privateBIO, &privateRSA, NULL, NULL)))
+        size_t plainTextSize = strlen(plainText);
+        if ((privateBIO = BIO_new_file(apiclient_key.valuestring, "rb")))
         {
 
-            unsigned char *encMessage;
-            size_t encMessageLength;
-
-            if (RSASign(privateRSA, (unsigned char *)plainText, plainTextSize, &encMessage, &encMessageLength))
+            if ((privateRSA = PEM_read_bio_RSAPrivateKey(privateBIO, &privateRSA, NULL, NULL)))
             {
-                char *tmpText = base64_encrypt(encMessage, encMessageLength);
-                if (tmpText)
-                {
-                    size_t tmpTextLength = strlen(tmpText);
-                    (*base64Text) = (char *)malloc(tmpTextLength + 1);
-                    memset((*base64Text), 0x00, tmpTextLength + 1);
-                    BUF_strlcpy((*base64Text), tmpText, tmpTextLength);
-                    free(tmpText);
-                }
-                if (encMessage)
-                    free(encMessage);
-                RSA_free(privateRSA);
-                BIO_free(privateBIO);
-                return true;
-            }
-            RSA_free(privateRSA);
-        }
 
-        BIO_free(privateBIO);
+                unsigned char *encMessage;
+                size_t encMessageLength;
+
+                if (RSASign(privateRSA, (unsigned char *)plainText, plainTextSize, &encMessage, &encMessageLength))
+                {
+                    char *tmpText = base64_encrypt(encMessage, encMessageLength,false);
+                    if (tmpText)
+                    {
+                        string_create(base64String, tmpText, strlen(tmpText));
+                        free(tmpText);
+                        if (encMessage)
+                            free(encMessage);
+                        RSA_free(privateRSA);
+                        BIO_free(privateBIO);
+                        return true;
+                    }
+                    else
+                    {
+                        if (encMessage)
+                            free(encMessage);
+                        RSA_free(privateRSA);
+                        BIO_free(privateBIO);
+                        return false;
+                    }
+                }
+                RSA_free(privateRSA);
+            }
+
+            BIO_free(privateBIO);
+        }
     }
 
     return false;

@@ -130,7 +130,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libhttps_la_LIBADD =
-am_libhttps_la_OBJECTS = https_result.lo https_post.lo https_get.lo
+am_libhttps_la_OBJECTS = https_result.lo https_post.lo https_get.lo \
+	HTTPSUtils.lo
 libhttps_la_OBJECTS = $(am_libhttps_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -151,8 +152,9 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/https_get.Plo \
-	./$(DEPDIR)/https_post.Plo ./$(DEPDIR)/https_result.Plo
+am__depfiles_remade = ./$(DEPDIR)/HTTPSUtils.Plo \
+	./$(DEPDIR)/https_get.Plo ./$(DEPDIR)/https_post.Plo \
+	./$(DEPDIR)/https_result.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -254,10 +256,10 @@ OTOOL64 =
 PACKAGE = wangyonglin
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = wangyonglin
-PACKAGE_STRING = wangyonglin 1.3.45
+PACKAGE_STRING = wangyonglin 1.3.46
 PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.45
+PACKAGE_VERSION = 1.3.46
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -265,7 +267,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.45
+VERSION = 1.3.46
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/src/https
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../src/https
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -321,12 +323,16 @@ top_builddir = ../..
 top_srcdir = ../../..
 AUTOMAKE_OPTIONS = foreign
 AM_LDFLAGS = -lpthread
-AM_CPPFLAGS = -I $(top_srcdir)/src/https/include/
+AM_CPPFLAGS = -I $(top_srcdir)/src/https/include/        \
+                -I $(top_srcdir)/src/string/include/   \
+                -I $(top_srcdir)/src/cJSON/include/
+
 lib_LTLIBRARIES = libhttps.la
 libhttps_la_SOURCES = \
         https_result.c \
         https_post.c \
-        https_get.c
+        https_get.c \
+        HTTPSUtils.c
 
 include_HEADERS = $(top_srcdir)/src/https/include/*.h
 all: all-am
@@ -407,6 +413,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/HTTPSUtils.Plo # am--include-marker
 include ./$(DEPDIR)/https_get.Plo # am--include-marker
 include ./$(DEPDIR)/https_post.Plo # am--include-marker
 include ./$(DEPDIR)/https_result.Plo # am--include-marker
@@ -593,7 +600,8 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 	mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/https_get.Plo
+		-rm -f ./$(DEPDIR)/HTTPSUtils.Plo
+	-rm -f ./$(DEPDIR)/https_get.Plo
 	-rm -f ./$(DEPDIR)/https_post.Plo
 	-rm -f ./$(DEPDIR)/https_result.Plo
 	-rm -f Makefile
@@ -641,7 +649,8 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/https_get.Plo
+		-rm -f ./$(DEPDIR)/HTTPSUtils.Plo
+	-rm -f ./$(DEPDIR)/https_get.Plo
 	-rm -f ./$(DEPDIR)/https_post.Plo
 	-rm -f ./$(DEPDIR)/https_result.Plo
 	-rm -f Makefile

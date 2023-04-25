@@ -130,7 +130,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libhttps_la_LIBADD =
-am_libhttps_la_OBJECTS = https_result.lo https_post.lo https_get.lo
+am_libhttps_la_OBJECTS = https_result.lo https_post.lo https_get.lo \
+	HTTPSUtils.lo
 libhttps_la_OBJECTS = $(am_libhttps_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -151,8 +152,9 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/https_get.Plo \
-	./$(DEPDIR)/https_post.Plo ./$(DEPDIR)/https_result.Plo
+am__depfiles_remade = ./$(DEPDIR)/HTTPSUtils.Plo \
+	./$(DEPDIR)/https_get.Plo ./$(DEPDIR)/https_post.Plo \
+	./$(DEPDIR)/https_result.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -321,12 +323,16 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
 AM_LDFLAGS = -lpthread
-AM_CPPFLAGS = -I $(top_srcdir)/src/https/include/
+AM_CPPFLAGS = -I $(top_srcdir)/src/https/include/        \
+                -I $(top_srcdir)/src/string/include/   \
+                -I $(top_srcdir)/src/cJSON/include/
+
 lib_LTLIBRARIES = libhttps.la
 libhttps_la_SOURCES = \
         https_result.c \
         https_post.c \
-        https_get.c
+        https_get.c \
+        HTTPSUtils.c
 
 include_HEADERS = $(top_srcdir)/src/https/include/*.h
 all: all-am
@@ -407,6 +413,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/HTTPSUtils.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/https_get.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/https_post.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/https_result.Plo@am__quote@ # am--include-marker
@@ -593,7 +600,8 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 	mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/https_get.Plo
+		-rm -f ./$(DEPDIR)/HTTPSUtils.Plo
+	-rm -f ./$(DEPDIR)/https_get.Plo
 	-rm -f ./$(DEPDIR)/https_post.Plo
 	-rm -f ./$(DEPDIR)/https_result.Plo
 	-rm -f Makefile
@@ -641,7 +649,8 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/https_get.Plo
+		-rm -f ./$(DEPDIR)/HTTPSUtils.Plo
+	-rm -f ./$(DEPDIR)/https_get.Plo
 	-rm -f ./$(DEPDIR)/https_post.Plo
 	-rm -f ./$(DEPDIR)/https_result.Plo
 	-rm -f Makefile

@@ -112,7 +112,8 @@ AliyunUtils.o: ../../../src/application/AliyunUtils.c \
  ../../../src/SnowFlake/include/IdGenOptions.h \
  ../../../src/SnowFlake/include/common.h \
  ../../../src/openssl/include/base64.h \
- ../../../src/string/include/byte_by_this.h
+ ../../../src/string/include/Stringex.h \
+ ../../../src/string/include/Unix_timestamp_converter.h
 
 /usr/include/stdc-predef.h:
 
@@ -528,4 +529,6 @@ AliyunUtils.o: ../../../src/application/AliyunUtils.c \
 
 ../../../src/openssl/include/base64.h:
 
-../../../src/string/include/byte_by_this.h:
+../../../src/string/include/Stringex.h:
+
+../../../src/string/include/Unix_timestamp_converter.h:

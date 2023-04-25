@@ -1,6 +1,4 @@
 #include <wangyonglin/lock.h>
-
-#include <wangyonglin/log.h>
 #include <string_by_this.h>
 
 int _fcntl(int fd)

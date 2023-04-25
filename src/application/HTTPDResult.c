@@ -1,11 +1,11 @@
 #include <HTTPDResult.h>
 
-httpd_result_t *httpd_result_create(httpd_result_t **result, log_t *log, struct evhttp_request *request, void *arg)
+httpd_result_t *httpd_result_create(httpd_result_t **result, struct evhttp_request *request, void *arg)
 {
     if (object_create((void **)result, sizeof(httpd_result_t)))
     {
         (*result)->request = request;
-        (*result)->log = log;
+
         evhttp_add_header((*result)->request->output_headers, "Content-Type", "application/json; charset=UTF-8");
         evhttp_add_header((*result)->request->output_headers, "Connection", "close");
         memset(&(*result)->params, 0x00, sizeof(struct evkeyvalq));
@@ -13,79 +13,76 @@ httpd_result_t *httpd_result_create(httpd_result_t **result, log_t *log, struct 
         {
             (*result)->httpd = (HTTPDServer *)arg;
         }
+        
+        size_t post_size = EVBUFFER_LENGTH(request->input_buffer);
+        char request_data[post_size + 1];
+        bzero(request_data, sizeof(request_data));
+        char *post_data = (char *)EVBUFFER_DATA(request->input_buffer);
+        if (post_data && post_size > 0 && post_size < 1024)
+        {
+            memcpy(request_data, post_data, post_size);
+            (*result)->postJSON = cJSON_Parse(request_data);
+        }
+        else
+        {
+            (*result)->postJSON = NULL;
+        }
     }
     return NULL;
 }
 
 void httpd_result_delete(httpd_result_t *result)
 {
+    if (result->postJSON)
+    {
+        cJSON_free(result->postJSON);
+    }
     object_delete(result);
 }
 
-void httpd_successful(httpd_result_t *result, string_by_t jsonstring)
+void httpd_complete(httpd_result_t *result, int code, char *jsonstring)
 {
     struct evbuffer *buffer = evbuffer_new();
-    if (buffer)
+    if (buffer && jsonstring)
     {
-        evbuffer_add(buffer, jsonstring.valuestring, jsonstring.valuelength);
-        evhttp_send_reply(result->request, HTTP_OK, "successful", buffer);
-        evbuffer_free(buffer);
-    }
-}
-
-void httpd_complete(httpd_result_t *result, integer_by_t code, string_by_t jsonstring)
-{
-    struct evbuffer *buffer = evbuffer_new();
-    if (buffer)
-    {
-        evbuffer_add(buffer, jsonstring.valuestring, jsonstring.valuelength);
-        if (code == 200)
-            evhttp_send_reply(result->request, code, "successful", buffer);
-
-        else
-            evhttp_send_reply(result->request, code, "complete", buffer);
-
-        evbuffer_free(buffer);
-    }
-}
-
-void httpd_complete_types(httpd_result_t *result, integer_by_t code, char *jsonstring, size_t jsonlength)
-{
-    struct evbuffer *buffer = evbuffer_new();
-    if (buffer)
-    {
-        if (jsonstring && jsonlength > 1)
+        if (jsonstring)
         {
-            evbuffer_add(buffer, jsonstring, jsonlength);
-            evhttp_send_reply(result->request, code, "complete", buffer);
+            evbuffer_add(buffer, jsonstring, strlen(jsonstring));
+        }
+        if (code == 200)
+        {
+            evhttp_send_reply(result->request, 200, "ok", buffer);
+        }
+        else
+        {
+            evhttp_send_reply(result->request, code, "fail", buffer);
+        }
+
+        evbuffer_free(buffer);
+    }
+}
+void httpd_result_complete(httpd_result_t *result, ResultUtil *ResUtil)
+{
+    char *datastring = ResultUtilStringify(ResUtil);
+    struct evbuffer *buffer = evbuffer_new();
+    if (buffer)
+    {
+        if (datastring)
+        {
+            evbuffer_add(buffer, datastring, strlen(datastring));
+            free(datastring);
         }
         else
         {
             evbuffer_add(buffer, "{}", strlen("{}"));
-            evhttp_send_reply(result->request, code, "failure", buffer);
         }
 
+        cJSON *Code = cJSON_GetObjectItem(ResUtil->Root, "Code");
+        if (Code->valueint == 0)
+            evhttp_send_reply(result->request, 200, "ok", buffer);
+        else
+            evhttp_send_reply(result->request, 400, "fail", buffer);
         evbuffer_free(buffer);
-    }
-}
-
-void httpd_failure(httpd_result_t *result, integer_by_t code, char *errmsg)
-{
-    struct evbuffer *buffer = evbuffer_new();
-    if (buffer)
-    {
-        cJSON *root = cJSON_CreateObject();
-        cJSON_AddFalseToObject(root, "Success");
-        cJSON_AddStringToObject(root, "ErrorMessage", errmsg);
-        cJSON_AddItemToObjectCS(root, "Data", cJSON_CreateObject());
-        char *jsonformat = cJSON_PrintUnformatted(root);
-        evbuffer_add(buffer, jsonformat, strlen(jsonformat));
-        evhttp_send_reply(result->request, code, "failure", buffer);
-        evbuffer_free(buffer);
-        if (jsonformat)
-            free(jsonformat);
-        if (root)
-            cJSON_Delete(root);
     }
 }
 
@@ -105,19 +102,19 @@ char *httpd_result_get_params(httpd_result_t *result, const char *query_char)
 
     if (uri == NULL)
     {
-      //  printf("====line:%d,evhttp_request_get_uri return null\n", __LINE__);
+        //  printf("====line:%d,evhttp_request_get_uri return null\n", __LINE__);
         return NULL;
     }
     else
     {
-        logerr(result->log, "====line:%d,Got a GET request for <%s>\n", __LINE__, uri);
-      //  printf("====line:%d,Got a GET request for <%s>\n", __LINE__, uri);
+
+        //  printf("====line:%d,Got a GET request for <%s>\n", __LINE__, uri);
     }
     // 解码uri
     decoded = evhttp_uri_parse(uri);
     if (!decoded)
     {
-    //    printf("====line:%d,It's not a good URI. Sending BADREQUEST\n", __LINE__);
+        //    printf("====line:%d,It's not a good URI. Sending BADREQUEST\n", __LINE__);
         evhttp_send_error(result->request, HTTP_BADREQUEST, 0);
         return NULL;
     }
@@ -129,13 +126,13 @@ char *httpd_result_get_params(httpd_result_t *result, const char *query_char)
     }
     else
     {
-      //  printf("====line:%d,path is:%s\n", __LINE__, path);
+        //  printf("====line:%d,path is:%s\n", __LINE__, path);
     }
     // 获取uri中的参数部分
     query = (char *)evhttp_uri_get_query(decoded);
     if (query == NULL)
     {
-      //  printf("====line:%d,evhttp_uri_get_query return null\n", __LINE__);
+        //  printf("====line:%d,evhttp_uri_get_query return null\n", __LINE__);
         return NULL;
     }
     // 查询指定参数的值

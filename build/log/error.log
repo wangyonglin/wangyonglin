@@ -1,0 +1,3 @@
+2023-04-25 23:44:50.917821   ERROR [149561  .6cb92840 ../../../src/application/WechatHandlerNotifyUrl.c 33] Wechatpay-Nonce 获取失败
+2023-04-25 23:45:52.545681   INFO  [149663  .102ac840 ../../../src/application/HTTPDServer.c 72] HTTPD服务启动成功    IP地址:0.0.0.0 端口:8080
+2023-04-25 23:48:20.728362   INFO  [149751  .c3e47840 ../../../src/application/HTTPDServer.c 72] HTTPD服务启动成功    IP地址:0.0.0.0 端口:8080

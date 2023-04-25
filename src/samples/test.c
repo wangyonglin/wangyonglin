@@ -1,261 +1,101 @@
-/*
- * Copyright 2012-2019 The OpenSSL Project Authors. All Rights Reserved.
- *
- * Licensed under the OpenSSL license (the "License").  You may not use
- * this file except in compliance with the License.  You can obtain a copy
- * in the file LICENSE in the source distribution or at
- * https://www.openssl.org/source/license.html
- */
-
-/*
- * Simple AES GCM test program, uses the same NIST data used for the FIPS
- * self test but uses the application level EVP APIs.
- */
 #include <stdio.h>
 #include <string.h>
-#include <openssl/bio.h>
-#include <openssl/evp.h>
-#include <openssl/conf.h>
-#include <openssl/evp.h>
-#include <openssl/err.h>
-#include <string.h>
-/* AES-GCM test data from NIST public test vectors */
+#include <openssl/rsa.h>
+#include <openssl/pem.h>
+ 
+const char *publicKey = "-----BEGIN PUBLIC KEY-----\n\
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDnal1HozHfmZ3B1TITmbjCNKOs\n\
+49S+urgJ2P0/T36qN5w+r1jGhZKr54QDI5oXEk+9arlKxDW8kufwGjaTV3i3hyGS\n\
+jYv4wNXhPeZAyAQ1vlloLMT6oA0PKe9/l8+mAr1QPEW9fMixAc/0UzPVospjkpfr\n\
+YULcrKcH2Oaou5DZ0QIDAQAB\n\
+-----END PUBLIC KEY-----";
+ 
+const char *privateKey = "-----BEGIN CERTIFICATE-----\n\
+MIID3DCCAsSgAwIBAgIUSW1+JmaIuU57d/nlAU1iPkztWQwwDQYJKoZIhvcNAQEL\n\
+BQAwXjELMAkGA1UEBhMCQ04xEzARBgNVBAoTClRlbnBheS5jb20xHTAbBgNVBAsT\n\
+FFRlbnBheS5jb20gQ0EgQ2VudGVyMRswGQYDVQQDExJUZW5wYXkuY29tIFJvb3Qg\n\
+Q0EwHhcNMjExMDExMTAxMTQzWhcNMjYxMDEwMTAxMTQzWjBuMRgwFgYDVQQDDA9U\n\
+ZW5wYXkuY29tIHNpZ24xEzARBgNVBAoMClRlbnBheS5jb20xHTAbBgNVBAsMFFRl\n\
+bnBheS5jb20gQ0EgQ2VudGVyMQswCQYDVQQGDAJDTjERMA8GA1UEBwwIU2hlblpo\n\
+ZW4wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDPFsXk1aPLiL+BGKim\n\
+M2XK2A+xijqVuQT56dPi+erUDOyn2CzP2SPh9eptNAVOL7GLfzBlgIqlERrdwJcV\n\
+ZfBB8MwiuWQ5exvPAjeOICrhos3A6Wp1yEMfnoVbOC/aWsaAUpOVBsAdxvJk8zUf\n\
+hAI2zmlDx+/1jShtalOLUP8yhM2HjF4Ro7B3ZyrvUG6Kmse+3ayzW9G4QGIyhTf+\n\
+NmpOUmhOjTygN4+147kqAIIF+ci0XjZ/EPw4MR48o12rniU3J8oFaoAHJwzKTMPI\n\
+cATALMrLh5R4U/lA9sOFkc3mh6GkU0Fo9FUdUfBC5cNlxYoJAmSz/2TDnSGWFuV1\n\
+JvHfAgMBAAGjgYEwfzAJBgNVHRMEAjAAMAsGA1UdDwQEAwIE8DBlBgNVHR8EXjBc\n\
+MFqgWKBWhlRodHRwOi8vZXZjYS5pdHJ1cy5jb20uY24vcHVibGljL2l0cnVzY3Js\n\
+P0NBPTFCRDQyMjBFNTBEQkMwNEIwNkFEMzk3NTQ5ODQ2QzAxQzNFOEVCRDIwDQYJ\n\
+KoZIhvcNAQELBQADggEBABH437/nHroX7xJ0JqxMH4kL63kMSQy9LCYkHRNq+ahY\n\
+qKIFj4R9cXvTo0kC5o2F55qmynyDOPUT+LmqVFD4akZmZunJAWec62RBIU+CTQy1\n\
+1sC8PUbOG1uhTZK9toumfKbEArq9+LjQO2vj8gBhSrCOiIWbMjm6R301cN4Mz2UV\n\
+XAYH7NFpxwt6IMxbNRz8ftoHwE36h9Ea83ynvmyguWLe+KlbKqfMhC9ukYsWfu4R\n\
+I9D2p7ZHo6BW/Z54U/tHS3v7XF6gsZ9oAppS0/+X2D71b+ouNlG0N02lc5wkMxs9\n\
+B894nJFGRXAGrGUKtHzL3HK0edFrrt6UiHna2vL7MGI=\n\
+-----END CERTIFICATE-----";
 
-static  unsigned char gcm_key[] = {
-    0xee, 0xbc, 0x1f, 0x57, 0x48, 0x7f, 0x51, 0x92, 0x1c, 0x04, 0x65, 0x66,
-    0x5f, 0x8a, 0xe6, 0xd1, 0x65, 0x8b, 0xb2, 0x6d, 0xe6, 0xf8, 0xa0, 0x69,
-    0xa3, 0x52, 0x02, 0x93, 0xa5, 0x72, 0x07, 0x8f};
-
-static  unsigned char gcm_iv[] = {
-    0x99, 0xaa, 0x3e, 0x68, 0xed, 0x81, 0x73, 0xa0, 0xee, 0xd0, 0x66, 0x84};
-
-static  unsigned char gcm_pt[] = {
-    0xf5, 0x6e, 0x87, 0x05, 0x5b, 0xc3, 0x2d, 0x0e, 0xeb, 0x31, 0xb2, 0xea,
-    0xcc, 0x2b, 0xf2, 0xa5};
-
-static  unsigned char gcm_aad[] = {
-    0x4d, 0x23, 0xc3, 0xce, 0xc3, 0x34, 0xb4, 0x9b, 0xdb, 0x37, 0x0c, 0x43,
-    0x7f, 0xec, 0x78, 0xde};
-
-static  unsigned char gcm_ct[] = {
-    0xf7, 0x26, 0x44, 0x13, 0xa8, 0x4c, 0x0e, 0x7c, 0xd5, 0x36, 0x86, 0x7e,
-    0xb9, 0xf2, 0x17, 0x36};
-
-static  unsigned char gcm_tag[] = {
-    0x67, 0xba, 0x05, 0x10, 0x26, 0x2a, 0xe4, 0x87, 0xd7, 0x37, 0xee, 0x62,
-    0x98, 0xf7, 0x7e, 0x0c};
-
-// void aes_gcm_encrypt(void)
-// {
-//     EVP_CIPHER_CTX *ctx;
-//     int outlen, tmplen;
-//     unsigned char outbuf[1024];
-//     printf("AES GCM Encrypt:\n");
-//     printf("Plaintext:\n");
-//     BIO_dump_fp(stdout, gcm_pt, sizeof(gcm_pt));
-//     ctx = EVP_CIPHER_CTX_new();
-//     /* Set cipher type and mode */
-//     EVP_EncryptInit_ex(ctx, EVP_aes_256_gcm(), NULL, NULL, NULL);
-//     /* Set IV length if default 96 bits is not appropriate */
-//     EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_AEAD_SET_IVLEN, sizeof(gcm_iv), NULL);
-//     /* Initialise key and IV */
-//     EVP_EncryptInit_ex(ctx, NULL, NULL, gcm_key, gcm_iv);
-//     /* Zero or more calls to specify any AAD */
-//     EVP_EncryptUpdate(ctx, NULL, &outlen, gcm_aad, sizeof(gcm_aad));
-//     /* Encrypt plaintext */
-//     EVP_EncryptUpdate(ctx, outbuf, &outlen, gcm_pt, sizeof(gcm_pt));
-//     /* Output encrypted block */
-//     printf("Ciphertext:\n");
-//     BIO_dump_fp(stdout, outbuf, outlen);
-//     /* Finalise: note get no output for GCM */
-//     EVP_EncryptFinal_ex(ctx, outbuf, &outlen);
-//     /* Get tag */
-//     EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_AEAD_GET_TAG, 16, outbuf);
-//     /* Output tag */
-//     printf("Tag:\n");
-//     BIO_dump_fp(stdout, outbuf, 16);
-//     EVP_CIPHER_CTX_free(ctx);
-// }
-
-// void aes_gcm_decrypt(void)
-// {
-//     EVP_CIPHER_CTX *ctx;
-//     int outlen, tmplen, rv;
-//     unsigned char outbuf[1024];
-//     printf("AES GCM Decrypt:\n");
-//     printf("Ciphertext:\n");
-//     BIO_dump_fp(stdout, gcm_ct, sizeof(gcm_ct));
-//     ctx = EVP_CIPHER_CTX_new();
-//     /* Select cipher */
-//     EVP_DecryptInit_ex(ctx, EVP_aes_256_gcm(), NULL, NULL, NULL);
-//     /* Set IV length, omit for 96 bits */
-//     EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_AEAD_SET_IVLEN, sizeof(gcm_iv), NULL);
-//     /* Specify key and IV */
-//     EVP_DecryptInit_ex(ctx, NULL, NULL, gcm_key, gcm_iv);
-//     /* Zero or more calls to specify any AAD */
-//     EVP_DecryptUpdate(ctx, NULL, &outlen, gcm_aad, sizeof(gcm_aad));
-//     /* Decrypt plaintext */
-//     EVP_DecryptUpdate(ctx, outbuf, &outlen, gcm_ct, sizeof(gcm_ct));
-//     /* Output decrypted block */
-//     printf("Plaintext:\n");
-//     BIO_dump_fp(stdout, outbuf, outlen);
-//     /* Set expected tag value. */
-//     EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_AEAD_SET_TAG, sizeof(gcm_tag),
-//                         (void *)gcm_tag);
-//     /* Finalise: note get no output for GCM */
-//     rv = EVP_DecryptFinal_ex(ctx, outbuf, &outlen);
-//     /*
-//      * Print out return value. If this is not successful authentication
-//      * failed and plaintext is not trustworthy.
-//      */
-//     printf("Tag Verify %s\n", rv > 0 ? "Successful!" : "Failed!");
-//     EVP_CIPHER_CTX_free(ctx);
-// }
-
-void handleErrors(void)
+ 
+#define PASS "40D48F7BBAB2157D75439356085DECD7" //口令
+ 
+int main(int argc, char *argv[])
 {
-    ERR_print_errors_fp(stderr);
-    abort();
-}
-
-int aes_256_gcm_encrypt(unsigned char *plaintext, int plaintext_len,
-                        unsigned char *aad, int aad_len,
-                        unsigned char *key,
-                        unsigned char *iv, int iv_len,
-                        unsigned char *ciphertext,
-                        unsigned char *tag)
-{
-    EVP_CIPHER_CTX *ctx;
-
-    int len;
-
-    int ciphertext_len;
-
-    /* Create and initialise the context */
-    if (!(ctx = EVP_CIPHER_CTX_new()))
-        handleErrors();
-
-    /* Initialise the encryption operation. */
-    if (1 != EVP_EncryptInit_ex(ctx, EVP_aes_256_gcm(), NULL, NULL, NULL))
-        handleErrors();
-
-    /*
-     * Set IV length if default 12 bytes (96 bits) is not appropriate
-     */
-    if (1 != EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_IVLEN, iv_len, NULL))
-        handleErrors();
-
-    /* Initialise key and IV */
-    if (1 != EVP_EncryptInit_ex(ctx, NULL, NULL, key, iv))
-        handleErrors();
-
-    /*
-     * Provide any AAD data. This can be called zero or more times as
-     * required
-     */
-    if (1 != EVP_EncryptUpdate(ctx, NULL, &len, aad, aad_len))
-        handleErrors();
-
-    /*
-     * Provide the message to be encrypted, and obtain the encrypted output.
-     * EVP_EncryptUpdate can be called multiple times if necessary
-     */
-    if (1 != EVP_EncryptUpdate(ctx, ciphertext, &len, plaintext, plaintext_len))
-        handleErrors();
-    ciphertext_len = len;
-
-    /*
-     * Finalise the encryption. Normally ciphertext bytes may be written at
-     * this stage, but this does not occur in GCM mode
-     */
-    if (1 != EVP_EncryptFinal_ex(ctx, ciphertext + len, &len))
-        handleErrors();
-    ciphertext_len += len;
-
-    /* Get the tag */
-    if (1 != EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_GET_TAG, 16, tag))
-        handleErrors();
-
-    /* Clean up */
-    EVP_CIPHER_CTX_free(ctx);
-
-    return ciphertext_len;
-}
-
-int aes_256_gcm_decrypt(unsigned char *ciphertext, int ciphertext_len,
-                        unsigned char *aad, int aad_len,
-                        unsigned char *tag,
-                        unsigned char *key,
-                        unsigned char *iv, int iv_len,
-                        unsigned char *plaintext)
-{
-    EVP_CIPHER_CTX *ctx;
-    int len;
-    int plaintext_len;
-    int ret;
-
-    /* Create and initialise the context */
-    if (!(ctx = EVP_CIPHER_CTX_new()))
-        handleErrors();
-
-    /* Initialise the decryption operation. */
-    if (!EVP_DecryptInit_ex(ctx, EVP_aes_256_gcm(), NULL, NULL, NULL))
-        handleErrors();
-
-    /* Set IV length. Not necessary if this is 12 bytes (96 bits) */
-    if (!EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_IVLEN, iv_len, NULL))
-        handleErrors();
-
-    /* Initialise key and IV */
-    if (!EVP_DecryptInit_ex(ctx, NULL, NULL, key, iv))
-        handleErrors();
-
-    /*
-     * Provide any AAD data. This can be called zero or more times as
-     * required
-     */
-    if (!EVP_DecryptUpdate(ctx, NULL, &len, aad, aad_len))
-        handleErrors();
-
-    /*
-     * Provide the message to be decrypted, and obtain the plaintext output.
-     * EVP_DecryptUpdate can be called multiple times if necessary
-     */
-    if (!EVP_DecryptUpdate(ctx, plaintext, &len, ciphertext, ciphertext_len))
-        handleErrors();
-    plaintext_len = len;
-
-    /* Set expected tag value. Works in OpenSSL 1.0.1d and later */
-    if (!EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_GCM_SET_TAG, 16, tag))
-        handleErrors();
-
-    /*
-     * Finalise the decryption. A positive return value indicates success,
-     * anything else is a failure - the plaintext is not trustworthy.
-     */
-    ret = EVP_DecryptFinal_ex(ctx, plaintext + len, &len);
-
-    /* Clean up */
-    EVP_CIPHER_CTX_free(ctx);
-
-    if (ret > 0)
-    {
-        /* Success */
-        plaintext_len += len;
-        return plaintext_len;
-    }
-    else
-    {
-        /* Verify failed */
-        return -1;
-    }
-}
-int main(int argc, char **argv)
-{
-    // aes_gcm_encrypt();
-    // aes_gcm_decrypt();
-    unsigned char ciphertext[1024] = {0};
-    aes_256_gcm_encrypt(gcm_pt, sizeof(gcm_pt), gcm_aad, sizeof(gcm_aad), gcm_key, gcm_iv, sizeof(gcm_iv), ciphertext, gcm_tag);
-    printf("Ciphertext:\n");
-    BIO_dump_fp(stdout, ciphertext, strlen(ciphertext));
+	BIO *bio = NULL;
+	RSA *publicRsa = NULL;
+	RSA *privateRsa = NULL;
+    
+	if ((bio = BIO_new_mem_buf((void *)publicKey, -1)) == NULL)
+	{
+		printf("BIO_new_mem_buf publicKey error\n");
+		return -1;
+	} 	
+   
+	if ((publicRsa = PEM_read_bio_RSA_PUBKEY(bio, NULL, NULL, NULL)) == NULL) 
+	{
+		printf("PEM_read_bio_RSA_PUBKEY error\n");
+		return -1;
+	}
+	BIO_free_all(bio);
+	
+	if ((bio = BIO_new_mem_buf((void *)privateKey, -1)) == NULL)
+	{
+		printf("BIO_new_mem_buf privateKey error\n");
+		return -1;
+	}
+	OpenSSL_add_all_algorithms();//密钥有经过口令加密需要这个函数
+	if ((privateRsa = PEM_read_bio_RSAPrivateKey(bio, NULL, NULL,NULL)) == NULL) 
+	{
+        
+		printf("PEM_read_RSAPrivateKey error\n");
+		return -1;
+	}
+	BIO_free_all(bio);
+	
+	unsigned char *source = (unsigned char *)"123456789";
+		
+	int rsa_len = RSA_size(publicRsa);
+ 
+	unsigned char *encryptMsg = (unsigned char *)malloc(rsa_len);
+	memset(encryptMsg, 0, rsa_len);
+ 		
+	int len = rsa_len - 11;
+ 		
+	if (RSA_public_encrypt(len, source, encryptMsg, publicRsa, RSA_PKCS1_PADDING) < 0)
+		printf("RSA_public_encrypt error\n");
+	else 
+	{
+		rsa_len = RSA_size(privateRsa);
+		unsigned char *decryptMsg = (unsigned char *)malloc(rsa_len);
+		memset(decryptMsg, 0, rsa_len);
+	    
+		int mun =  RSA_private_decrypt(rsa_len, encryptMsg, decryptMsg, privateRsa, RSA_PKCS1_PADDING);
+	 
+		if ( mun < 0)
+			printf("RSA_private_decrypt error\n");
+		else
+			printf("RSA_private_decrypt %s\n", decryptMsg);
+	}	
+	
+	RSA_free(publicRsa);
+	RSA_free(privateRsa);
+	return 0;
 }

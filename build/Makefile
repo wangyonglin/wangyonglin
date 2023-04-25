@@ -284,10 +284,10 @@ OTOOL64 =
 PACKAGE = wangyonglin
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = wangyonglin
-PACKAGE_STRING = wangyonglin 1.3.45
+PACKAGE_STRING = wangyonglin 1.3.46
 PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.45
+PACKAGE_VERSION = 1.3.46
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -295,7 +295,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.45
+VERSION = 1.3.46
 abs_builddir = /home/wangyonglin/github/wangyonglin/build
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/..
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -353,6 +353,7 @@ top_build_prefix =
 top_builddir = .
 top_srcdir = ..
 SUBDIRS = \
+    src/zlog \
     src/wangyonglin   \
     src/openssl    \
     src/SnowFlake    \
@@ -361,16 +362,18 @@ SUBDIRS = \
     src/string \
     src/application
 
-logdir = $(prefix)/logs
+logdir = $(prefix)/log
 confdir = $(prefix)/conf
-conf_DATA = $(top_srcdir)/conf/wangyonglin.conf
+conf_DATA = $(top_srcdir)/conf/wangyonglin.conf \
+            $(top_srcdir)/conf/zlog.conf
+
 certdir = $(prefix)/cert
 cert_DATA = $(top_srcdir)/cert/apiclient_cert.pem   \
             $(top_srcdir)/cert/apiclient_key.pem    \
             $(top_srcdir)/cert/apiclient_cert.p12
 
 EXTRA_DIST = README.md $(top_srcdir)/conf/wangyonglin.conf \
-	$(top_srcdir)/logs/error.log \
+	$(top_srcdir)/conf/zlog.conf \
 	$(top_srcdir)/cert/apiclient_cert.pem \
 	$(top_srcdir)/cert/apiclient_key.pem \
 	$(top_srcdir)/cert/apiclient_cert.p12

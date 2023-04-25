@@ -133,7 +133,8 @@ libstring_la_LIBADD =
 am_libstring_la_OBJECTS = Unix_timestamp_converter.lo \
 	string_by_this.lo string_by_hex.lo string_by_timestamp.lo \
 	string_by_id.lo string_by_log.lo string_by_base64.lo \
-	string_by_inject.lo byte_by_this.lo
+	string_by_inject.lo Stringex.lo StringexBase64.lo \
+	StringexSha256WithRsa.lo
 libstring_la_OBJECTS = $(am_libstring_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -154,11 +155,13 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/Unix_timestamp_converter.Plo \
-	./$(DEPDIR)/byte_by_this.Plo ./$(DEPDIR)/string_by_base64.Plo \
-	./$(DEPDIR)/string_by_hex.Plo ./$(DEPDIR)/string_by_id.Plo \
-	./$(DEPDIR)/string_by_inject.Plo ./$(DEPDIR)/string_by_log.Plo \
-	./$(DEPDIR)/string_by_this.Plo \
+am__depfiles_remade = ./$(DEPDIR)/Stringex.Plo \
+	./$(DEPDIR)/StringexBase64.Plo \
+	./$(DEPDIR)/StringexSha256WithRsa.Plo \
+	./$(DEPDIR)/Unix_timestamp_converter.Plo \
+	./$(DEPDIR)/string_by_base64.Plo ./$(DEPDIR)/string_by_hex.Plo \
+	./$(DEPDIR)/string_by_id.Plo ./$(DEPDIR)/string_by_inject.Plo \
+	./$(DEPDIR)/string_by_log.Plo ./$(DEPDIR)/string_by_this.Plo \
 	./$(DEPDIR)/string_by_timestamp.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -342,7 +345,9 @@ libstring_la_SOURCES = \
     string_by_log.c \
     string_by_base64.c \
     string_by_inject.c \
-    byte_by_this.c
+    Stringex.c \
+    StringexBase64.c \
+    StringexSha256WithRsa.c
 
 include_HEADERS = $(top_srcdir)/src/string/include/*.h
 all: all-am
@@ -423,8 +428,10 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Stringex.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/StringexBase64.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/StringexSha256WithRsa.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Unix_timestamp_converter.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/byte_by_this.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/string_by_base64.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/string_by_hex.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/string_by_id.Plo@am__quote@ # am--include-marker
@@ -615,8 +622,10 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 	mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/Unix_timestamp_converter.Plo
-	-rm -f ./$(DEPDIR)/byte_by_this.Plo
+		-rm -f ./$(DEPDIR)/Stringex.Plo
+	-rm -f ./$(DEPDIR)/StringexBase64.Plo
+	-rm -f ./$(DEPDIR)/StringexSha256WithRsa.Plo
+	-rm -f ./$(DEPDIR)/Unix_timestamp_converter.Plo
 	-rm -f ./$(DEPDIR)/string_by_base64.Plo
 	-rm -f ./$(DEPDIR)/string_by_hex.Plo
 	-rm -f ./$(DEPDIR)/string_by_id.Plo
@@ -669,8 +678,10 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/Unix_timestamp_converter.Plo
-	-rm -f ./$(DEPDIR)/byte_by_this.Plo
+		-rm -f ./$(DEPDIR)/Stringex.Plo
+	-rm -f ./$(DEPDIR)/StringexBase64.Plo
+	-rm -f ./$(DEPDIR)/StringexSha256WithRsa.Plo
+	-rm -f ./$(DEPDIR)/Unix_timestamp_converter.Plo
 	-rm -f ./$(DEPDIR)/string_by_base64.Plo
 	-rm -f ./$(DEPDIR)/string_by_hex.Plo
 	-rm -f ./$(DEPDIR)/string_by_id.Plo

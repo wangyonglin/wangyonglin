@@ -1,6 +1,7 @@
 #include <string_by_inject.h>
 #include <openssl/conf.h>
 #include <openssl/bio.h>
+#include <Stringex.h>
 void __boolean_create(unsigned char **pointer, boolean_by_t value)
 {
     *pointer = (unsigned char *)value;
@@ -21,7 +22,7 @@ char *__string_create(char **outstring, char *valuestring)
     return (*outstring) = NULL;
 }
 
-inject_t *inject_create(inject_t **inject, string_by_t ini)
+inject_t *inject_create(inject_t **inject, Stringex ini)
 {
     if (((*inject) = (inject_t *)global_hooks.allocate(sizeof(inject_t))))
     {
@@ -68,11 +69,13 @@ int inject_build(inject_t *inject, inject_command_t commands[], void *obj, const
             char *out = NCONF_get_string(pConf, section, commands[i].keystring);
             if (out)
             {
-                string_create(commands[i].addr, out, strlen(out));
-            }else{
-                 string_create(commands[i].addr, NULL, 0);
+                StringexCreate((Stringex *)commands[i].addr, out, strlen(out));
             }
-          
+            else
+            {
+                ((Stringex *)commands[i].addr)->valuelength = 0;
+                ((Stringex *)commands[i].addr)->valuestring = NULL;
+            }
         }
         else if (commands[i].type == INTEGER)
         {

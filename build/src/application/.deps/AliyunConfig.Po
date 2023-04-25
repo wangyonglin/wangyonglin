@@ -98,8 +98,10 @@ AliyunConfig.o: ../../../src/application/AliyunConfig.c \
  ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
  ../../../src/wangyonglin/include/wangyonglin/pool.h \
  ../../../src/wangyonglin/include/wangyonglin/options.h \
+ ../../../src/string/include/Stringex.h /usr/include/sys/time.h \
+ ../../../src/string/include/Unix_timestamp_converter.h \
  ../../../src/wangyonglin/include/wangyonglin/lock.h \
- ../../../src/wangyonglin/include/wangyonglin/log.h \
+ ../../../src/zlog/include/zlog/zlog.h \
  ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
  ../../../src/wangyonglin/include/wangyonglin/message.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
@@ -470,9 +472,15 @@ AliyunConfig.o: ../../../src/application/AliyunConfig.c \
 
 ../../../src/wangyonglin/include/wangyonglin/options.h:
 
+../../../src/string/include/Stringex.h:
+
+/usr/include/sys/time.h:
+
+../../../src/string/include/Unix_timestamp_converter.h:
+
 ../../../src/wangyonglin/include/wangyonglin/lock.h:
 
-../../../src/wangyonglin/include/wangyonglin/log.h:
+../../../src/zlog/include/zlog/zlog.h:
 
 ../../../src/wangyonglin/include/wangyonglin/daemonize.h:
 

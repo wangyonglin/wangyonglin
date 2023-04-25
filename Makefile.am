@@ -1,4 +1,5 @@
 SUBDIRS =\
+    src/zlog \
     src/wangyonglin   \
     src/openssl    \
     src/SnowFlake    \
@@ -14,9 +15,10 @@ bindir=     $(prefix)/bin
 libdir=     $(prefix)/lib
 datadir=    $(prefix)/share
 sysconfdir= $(prefix)/etc
-logdir =    $(prefix)/logs
+logdir =    $(prefix)/log
 confdir =   $(prefix)/conf
-conf_DATA = $(top_srcdir)/conf/wangyonglin.conf
+conf_DATA = $(top_srcdir)/conf/wangyonglin.conf \
+            $(top_srcdir)/conf/zlog.conf
 
 certdir = $(prefix)/cert
 cert_DATA = $(top_srcdir)/cert/apiclient_cert.pem   \
@@ -25,7 +27,7 @@ cert_DATA = $(top_srcdir)/cert/apiclient_cert.pem   \
 
 EXTRA_DIST  = README.md
 EXTRA_DIST += $(top_srcdir)/conf/wangyonglin.conf
-EXTRA_DIST += $(top_srcdir)/logs/error.log
+EXTRA_DIST += $(top_srcdir)/conf/zlog.conf
 
 EXTRA_DIST += $(top_srcdir)/cert/apiclient_cert.pem
 EXTRA_DIST += $(top_srcdir)/cert/apiclient_key.pem

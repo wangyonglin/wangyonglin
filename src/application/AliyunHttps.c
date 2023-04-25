@@ -66,7 +66,7 @@ long AliyunHttpsGET(char *url, AliyunHttpsCallback *callback)
              * Do something nice with it!
              */
 
-            printf("%lu bytes retrieved\n", (unsigned long)callback->size);
+          //  printf("%lu bytes retrieved\n", (unsigned long)callback->size);
         }
 
         curl_slist_free_all(list);

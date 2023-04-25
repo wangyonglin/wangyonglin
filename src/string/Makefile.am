@@ -16,5 +16,7 @@ libstring_la_SOURCES=\
     string_by_log.c \
     string_by_base64.c \
     string_by_inject.c \
-    byte_by_this.c
+    Stringex.c \
+    StringexBase64.c \
+    StringexSha256WithRsa.c
 include_HEADERS =  $(top_srcdir)/src/string/include/*.h

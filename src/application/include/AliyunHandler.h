@@ -14,7 +14,8 @@
 #include <AliyunUtils.h>
 #include <AliyunConfig.h>
 #include <string_by_this.h>
-string_by_t HTTPSAliyunPub(string_by_t *jsonstring, AliyunConfig *aliConfig, char *DeviceName, char *MessageContentText, size_t MessageContentSize);
-string_by_t HTTPSAliyunRegisterDevice(string_by_t *jsonstring, AliyunConfig *aliConfig, char *DeviceName);
-string_by_t HTTPSAliyunGetDeviceStatus(string_by_t *jsonstring, AliyunConfig *aliConfig, char *DeviceName);
+#include <ResultUtil.h>
+boolean_by_t HTTPSAliyunPub(cJSON **RetCallback, AliyunConfig *aliConfig, cJSON *DeviceName, cJSON *MessageContentText);
+boolean_by_t HTTPSAliyunRegisterDevice(cJSON **RetCallback, AliyunConfig *aliConfig, char *DeviceName);
+boolean_by_t HTTPSAliyunGetDeviceStatus(cJSON **RetCallback, AliyunConfig *aliConfig, char *DeviceName);
 #endif

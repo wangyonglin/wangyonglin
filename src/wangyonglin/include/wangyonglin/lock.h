@@ -2,15 +2,14 @@
 #define INCLUDE_WANGYONGLIN_LOCK_H
 
 #include <wangyonglin/package.h>
-
-#include <wangyonglin/log.h>
+#include <Stringex.h>
+#include <zlog/zlog.h>
 #include <string_by_this.h>
 
 typedef struct _lock_t
 {
    string_by_t pid;
    int fd;
-   log_t *log;
 } lock_t;
 
 lock_t *lock_create(lock_t **lock);

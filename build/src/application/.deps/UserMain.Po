@@ -97,8 +97,10 @@ UserMain.o: ../../../src/application/UserMain.c \
  ../../../src/string/include/string_by_this.h \
  ../../../src/wangyonglin/include/wangyonglin/pool.h \
  ../../../src/wangyonglin/include/wangyonglin/options.h \
+ ../../../src/string/include/Stringex.h /usr/include/sys/time.h \
+ ../../../src/string/include/Unix_timestamp_converter.h \
  ../../../src/wangyonglin/include/wangyonglin/lock.h \
- ../../../src/wangyonglin/include/wangyonglin/log.h \
+ ../../../src/zlog/include/zlog/zlog.h \
  ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
  ../../../src/wangyonglin/include/wangyonglin/message.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
@@ -112,13 +114,9 @@ UserMain.o: ../../../src/application/UserMain.c \
  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
  /usr/include/asm-generic/socket.h /usr/include/asm/sockios.h \
  /usr/include/asm-generic/sockios.h \
- /usr/include/bits/types/struct_osockaddr.h /usr/include/sys/time.h \
- /usr/include/curl/easy.h /usr/include/curl/multi.h \
- /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
- /usr/include/curl/typecheck-gcc.h \
- ../../../src/SnowFlake/include/SnowFlake.h \
- ../../../src/SnowFlake/include/IdGenOptions.h \
- ../../../src/SnowFlake/include/common.h \
+ /usr/include/bits/types/struct_osockaddr.h /usr/include/curl/easy.h \
+ /usr/include/curl/multi.h /usr/include/curl/curl.h \
+ /usr/include/curl/urlapi.h /usr/include/curl/typecheck-gcc.h \
  ../../../src/cJSON/include/cJSON.h \
  ../../../src/string/include/string_by_hex.h \
  ../../../src/string/include/string_by_id.h \
@@ -151,11 +149,13 @@ UserMain.o: ../../../src/application/UserMain.c \
  ../../../src/wangyonglin/include/wangyonglin/list.h \
  ../../../src/application/include/AliyunUtils.h \
  ../../../src/application/include/AliyunConfig.h \
- ../../../src/application/include/WechatPayment.h \
- ../../../src/string/include/byte_by_this.h \
- ../../../src/application/include/WechatHttps.h \
+ ../../../src/application/include/ResultUtil.h \
+ ../../../src/application/include/WechatConfig.h \
+ ../../../src/application/include/WechatConfigCertificates.h \
  ../../../src/openssl/include/aes_256_gcm.h \
- ../../../src/openssl/include/stdssl.h
+ ../../../src/openssl/include/stdssl.h \
+ ../../../src/string/include/StringexBase64.h \
+ ../../../src/application/include/WechatHttps.h
 
 /usr/include/stdc-predef.h:
 
@@ -519,9 +519,15 @@ UserMain.o: ../../../src/application/UserMain.c \
 
 ../../../src/wangyonglin/include/wangyonglin/options.h:
 
+../../../src/string/include/Stringex.h:
+
+/usr/include/sys/time.h:
+
+../../../src/string/include/Unix_timestamp_converter.h:
+
 ../../../src/wangyonglin/include/wangyonglin/lock.h:
 
-../../../src/wangyonglin/include/wangyonglin/log.h:
+../../../src/zlog/include/zlog/zlog.h:
 
 ../../../src/wangyonglin/include/wangyonglin/daemonize.h:
 
@@ -571,8 +577,6 @@ UserMain.o: ../../../src/application/UserMain.c \
 
 /usr/include/bits/types/struct_osockaddr.h:
 
-/usr/include/sys/time.h:
-
 /usr/include/curl/easy.h:
 
 /usr/include/curl/multi.h:
@@ -582,12 +586,6 @@ UserMain.o: ../../../src/application/UserMain.c \
 /usr/include/curl/urlapi.h:
 
 /usr/include/curl/typecheck-gcc.h:
-
-../../../src/SnowFlake/include/SnowFlake.h:
-
-../../../src/SnowFlake/include/IdGenOptions.h:
-
-../../../src/SnowFlake/include/common.h:
 
 ../../../src/cJSON/include/cJSON.h:
 
@@ -685,12 +683,16 @@ UserMain.o: ../../../src/application/UserMain.c \
 
 ../../../src/application/include/AliyunConfig.h:
 
-../../../src/application/include/WechatPayment.h:
+../../../src/application/include/ResultUtil.h:
 
-../../../src/string/include/byte_by_this.h:
+../../../src/application/include/WechatConfig.h:
 
-../../../src/application/include/WechatHttps.h:
+../../../src/application/include/WechatConfigCertificates.h:
 
 ../../../src/openssl/include/aes_256_gcm.h:
 
 ../../../src/openssl/include/stdssl.h:
+
+../../../src/string/include/StringexBase64.h:
+
+../../../src/application/include/WechatHttps.h:

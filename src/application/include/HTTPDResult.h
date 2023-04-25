@@ -16,6 +16,8 @@
 #include <string_by_this.h>
 #include <AliyunConfig.h>
 #include <HTTPDResultCode.h>
+#include <ResultUtil.h>
+
 
 typedef struct _httpd_result_t
 {
@@ -23,17 +25,18 @@ typedef struct _httpd_result_t
     struct evkeyvalq params;
     HTTPDServer *httpd;
     AliyunConfig *aliConfig;
-    log_t *log;
     void *args;
+    cJSON * postJSON;
 } httpd_result_t;
 
-httpd_result_t *httpd_result_create(httpd_result_t **result, log_t *log, struct evhttp_request *request, void *arg);
+httpd_result_t *httpd_result_create(httpd_result_t **result, struct evhttp_request *request, void *arg);
 void httpd_result_delete(httpd_result_t *result);
-
-void httpd_successful(httpd_result_t *result, string_by_t jsonstring);
-void httpd_failure(httpd_result_t *result, integer_by_t code, char *errmsg);
-void httpd_complete(httpd_result_t *result, integer_by_t code, string_by_t jsonstring);
-void httpd_complete_types(httpd_result_t *result, integer_by_t code, char *jsonstring, size_t jsonlength);
+void httpd_result_complete(httpd_result_t *result, ResultUtil *ResUtil);
+void httpd_complete(httpd_result_t *result, int code, char *jsonstring);
+// void httpd_successful(httpd_result_t *result, string_by_t jsonstring);
+// void httpd_failure(httpd_result_t *result, integer_by_t code, char *errmsg);
+// void httpd_complete(httpd_result_t *result, integer_by_t code, string_by_t jsonstring);
+// void httpd_complete_types(httpd_result_t *result, integer_by_t code, char *jsonstring, size_t jsonlength);
 
 char *httpd_result_get_params(httpd_result_t *result, const char *query);
 // string_t httpd_result_post_params(httpd_result_t *result);

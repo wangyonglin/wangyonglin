@@ -33,7 +33,7 @@ WechatHttps.o: ../../../src/application/WechatHttps.c \
  /usr/include/errno.h /usr/include/bits/errno.h \
  /usr/include/linux/errno.h /usr/include/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- ../../../src/application/include/WechatPayment.h \
+ ../../../src/application/include/WechatConfig.h \
  ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
  ../../../src/wangyonglin/include/wangyonglin/package.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
@@ -99,23 +99,25 @@ WechatHttps.o: ../../../src/application/WechatHttps.c \
  /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h \
  ../../../src/wangyonglin/include/wangyonglin/pool.h \
  ../../../src/wangyonglin/include/wangyonglin/options.h \
+ ../../../src/string/include/Stringex.h /usr/include/sys/time.h \
+ ../../../src/string/include/Unix_timestamp_converter.h \
  ../../../src/wangyonglin/include/wangyonglin/lock.h \
- ../../../src/wangyonglin/include/wangyonglin/log.h \
+ ../../../src/zlog/include/zlog/zlog.h \
  ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
  ../../../src/wangyonglin/include/wangyonglin/message.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
  /usr/include/malloc.h ../../../src/string/include/string_by_inject.h \
- /usr/include/curl/curl.h /usr/include/curl/curlver.h \
- /usr/include/curl/system.h /usr/include/sys/socket.h \
- /usr/include/bits/types/struct_iovec.h /usr/include/bits/socket.h \
- /usr/include/bits/socket_type.h /usr/include/bits/sockaddr.h \
- /usr/include/asm/socket.h /usr/include/asm-generic/socket.h \
- /usr/include/asm/sockios.h /usr/include/asm-generic/sockios.h \
- /usr/include/bits/types/struct_osockaddr.h /usr/include/sys/time.h \
- /usr/include/curl/easy.h /usr/include/curl/multi.h \
- /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
- /usr/include/curl/typecheck-gcc.h
+ ../../../src/cJSON/include/cJSON.h /usr/include/curl/curl.h \
+ /usr/include/curl/curlver.h /usr/include/curl/system.h \
+ /usr/include/sys/socket.h /usr/include/bits/types/struct_iovec.h \
+ /usr/include/bits/socket.h /usr/include/bits/socket_type.h \
+ /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+ /usr/include/asm-generic/socket.h /usr/include/asm/sockios.h \
+ /usr/include/asm-generic/sockios.h \
+ /usr/include/bits/types/struct_osockaddr.h /usr/include/curl/easy.h \
+ /usr/include/curl/multi.h /usr/include/curl/curl.h \
+ /usr/include/curl/urlapi.h /usr/include/curl/typecheck-gcc.h
 
 /usr/include/stdc-predef.h:
 
@@ -241,7 +243,7 @@ WechatHttps.o: ../../../src/application/WechatHttps.c \
 
 /usr/include/asm-generic/errno-base.h:
 
-../../../src/application/include/WechatPayment.h:
+../../../src/application/include/WechatConfig.h:
 
 ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
 
@@ -483,9 +485,15 @@ WechatHttps.o: ../../../src/application/WechatHttps.c \
 
 ../../../src/wangyonglin/include/wangyonglin/options.h:
 
+../../../src/string/include/Stringex.h:
+
+/usr/include/sys/time.h:
+
+../../../src/string/include/Unix_timestamp_converter.h:
+
 ../../../src/wangyonglin/include/wangyonglin/lock.h:
 
-../../../src/wangyonglin/include/wangyonglin/log.h:
+../../../src/zlog/include/zlog/zlog.h:
 
 ../../../src/wangyonglin/include/wangyonglin/daemonize.h:
 
@@ -504,6 +512,8 @@ WechatHttps.o: ../../../src/application/WechatHttps.c \
 /usr/include/malloc.h:
 
 ../../../src/string/include/string_by_inject.h:
+
+../../../src/cJSON/include/cJSON.h:
 
 /usr/include/curl/curl.h:
 
@@ -530,8 +540,6 @@ WechatHttps.o: ../../../src/application/WechatHttps.c \
 /usr/include/asm-generic/sockios.h:
 
 /usr/include/bits/types/struct_osockaddr.h:
-
-/usr/include/sys/time.h:
 
 /usr/include/curl/easy.h:
 

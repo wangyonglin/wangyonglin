@@ -107,9 +107,14 @@ am_wangyonglin_OBJECTS = UserMain.$(OBJEXT) AliyunHandler.$(OBJEXT) \
 	AliyunUtils.$(OBJEXT) AliyunConfig.$(OBJEXT) \
 	HTTPDServer.$(OBJEXT) HTTPDHandler.$(OBJEXT) \
 	HTTPDResult.$(OBJEXT) WechatHttps.$(OBJEXT) \
-	WechatPayment.$(OBJEXT) AliyunHttps.$(OBJEXT)
+	WechatConfig.$(OBJEXT) AliyunHttps.$(OBJEXT) \
+	ResultUtil.$(OBJEXT) WechatHandler.$(OBJEXT) \
+	ServerResponse.$(OBJEXT) WechatConfigCertificates.$(OBJEXT) \
+	WechatHandlerShipping.$(OBJEXT) \
+	WechatConfigAuthorization.$(OBJEXT) \
+	WechatHandlerNotifyUrl.$(OBJEXT)
 wangyonglin_OBJECTS = $(am_wangyonglin_OBJECTS)
-wangyonglin_DEPENDENCIES =  \
+wangyonglin_DEPENDENCIES = $(top_builddir)/src/zlog/libzlog.la \
 	$(top_builddir)/src/SnowFlake/libSnowFlake.la \
 	$(top_builddir)/src/cJSON/libcJSON.la \
 	$(top_builddir)/src/openssl/libopenssl.la \
@@ -139,8 +144,14 @@ am__depfiles_remade = ./$(DEPDIR)/AliyunConfig.Po \
 	./$(DEPDIR)/AliyunHandler.Po ./$(DEPDIR)/AliyunHttps.Po \
 	./$(DEPDIR)/AliyunUtils.Po ./$(DEPDIR)/HTTPDHandler.Po \
 	./$(DEPDIR)/HTTPDResult.Po ./$(DEPDIR)/HTTPDServer.Po \
-	./$(DEPDIR)/UserMain.Po ./$(DEPDIR)/WechatHttps.Po \
-	./$(DEPDIR)/WechatPayment.Po
+	./$(DEPDIR)/ResultUtil.Po ./$(DEPDIR)/ServerResponse.Po \
+	./$(DEPDIR)/UserMain.Po ./$(DEPDIR)/WechatConfig.Po \
+	./$(DEPDIR)/WechatConfigAuthorization.Po \
+	./$(DEPDIR)/WechatConfigCertificates.Po \
+	./$(DEPDIR)/WechatHandler.Po \
+	./$(DEPDIR)/WechatHandlerNotifyUrl.Po \
+	./$(DEPDIR)/WechatHandlerShipping.Po \
+	./$(DEPDIR)/WechatHttps.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -270,10 +281,10 @@ OTOOL64 =
 PACKAGE = wangyonglin
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = wangyonglin
-PACKAGE_STRING = wangyonglin 1.3.45
+PACKAGE_STRING = wangyonglin 1.3.46
 PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.45
+PACKAGE_VERSION = 1.3.46
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -281,7 +292,7 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.45
+VERSION = 1.3.46
 abs_builddir = /home/wangyonglin/github/wangyonglin/build/src/application
 abs_srcdir = /home/wangyonglin/github/wangyonglin/build/../src/application
 abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
@@ -338,6 +349,7 @@ top_srcdir = ../../..
 ACLOCAL_AMFLAGS = -I m4
 AUTOMAKE_OPTIONS = foreign
 AM_CPPFLAGS = \
+    -I $(top_srcdir)/src/zlog/include/  \
     -I $(top_srcdir)/src/application/include/  \
     -I $(top_srcdir)/src/cJSON/include/   \
     -I $(top_srcdir)/src/SnowFlake/include/   \
@@ -355,10 +367,18 @@ wangyonglin_SOURCES = \
     HTTPDHandler.c \
     HTTPDResult.c \
     WechatHttps.c \
-    WechatPayment.c \
-    AliyunHttps.c
+    WechatConfig.c \
+    AliyunHttps.c \
+    ResultUtil.c \
+    WechatHandler.c \
+    ServerResponse.c \
+    WechatConfigCertificates.c \
+    WechatHandlerShipping.c \
+    WechatConfigAuthorization.c \
+    WechatHandlerNotifyUrl.c
 
 wangyonglin_LDADD = \
+    $(top_builddir)/src/zlog/libzlog.la \
     $(top_builddir)/src/SnowFlake/libSnowFlake.la \
     $(top_builddir)/src/cJSON/libcJSON.la \
     $(top_builddir)/src/openssl/libopenssl.la \
@@ -468,9 +488,16 @@ include ./$(DEPDIR)/AliyunUtils.Po # am--include-marker
 include ./$(DEPDIR)/HTTPDHandler.Po # am--include-marker
 include ./$(DEPDIR)/HTTPDResult.Po # am--include-marker
 include ./$(DEPDIR)/HTTPDServer.Po # am--include-marker
+include ./$(DEPDIR)/ResultUtil.Po # am--include-marker
+include ./$(DEPDIR)/ServerResponse.Po # am--include-marker
 include ./$(DEPDIR)/UserMain.Po # am--include-marker
+include ./$(DEPDIR)/WechatConfig.Po # am--include-marker
+include ./$(DEPDIR)/WechatConfigAuthorization.Po # am--include-marker
+include ./$(DEPDIR)/WechatConfigCertificates.Po # am--include-marker
+include ./$(DEPDIR)/WechatHandler.Po # am--include-marker
+include ./$(DEPDIR)/WechatHandlerNotifyUrl.Po # am--include-marker
+include ./$(DEPDIR)/WechatHandlerShipping.Po # am--include-marker
 include ./$(DEPDIR)/WechatHttps.Po # am--include-marker
-include ./$(DEPDIR)/WechatPayment.Po # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -660,9 +687,16 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/HTTPDHandler.Po
 	-rm -f ./$(DEPDIR)/HTTPDResult.Po
 	-rm -f ./$(DEPDIR)/HTTPDServer.Po
+	-rm -f ./$(DEPDIR)/ResultUtil.Po
+	-rm -f ./$(DEPDIR)/ServerResponse.Po
 	-rm -f ./$(DEPDIR)/UserMain.Po
+	-rm -f ./$(DEPDIR)/WechatConfig.Po
+	-rm -f ./$(DEPDIR)/WechatConfigAuthorization.Po
+	-rm -f ./$(DEPDIR)/WechatConfigCertificates.Po
+	-rm -f ./$(DEPDIR)/WechatHandler.Po
+	-rm -f ./$(DEPDIR)/WechatHandlerNotifyUrl.Po
+	-rm -f ./$(DEPDIR)/WechatHandlerShipping.Po
 	-rm -f ./$(DEPDIR)/WechatHttps.Po
-	-rm -f ./$(DEPDIR)/WechatPayment.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -715,9 +749,16 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/HTTPDHandler.Po
 	-rm -f ./$(DEPDIR)/HTTPDResult.Po
 	-rm -f ./$(DEPDIR)/HTTPDServer.Po
+	-rm -f ./$(DEPDIR)/ResultUtil.Po
+	-rm -f ./$(DEPDIR)/ServerResponse.Po
 	-rm -f ./$(DEPDIR)/UserMain.Po
+	-rm -f ./$(DEPDIR)/WechatConfig.Po
+	-rm -f ./$(DEPDIR)/WechatConfigAuthorization.Po
+	-rm -f ./$(DEPDIR)/WechatConfigCertificates.Po
+	-rm -f ./$(DEPDIR)/WechatHandler.Po
+	-rm -f ./$(DEPDIR)/WechatHandlerNotifyUrl.Po
+	-rm -f ./$(DEPDIR)/WechatHandlerShipping.Po
 	-rm -f ./$(DEPDIR)/WechatHttps.Po
-	-rm -f ./$(DEPDIR)/WechatPayment.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

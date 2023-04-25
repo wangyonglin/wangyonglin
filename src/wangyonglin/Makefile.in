@@ -131,7 +131,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libwangyonglin_la_LIBADD =
 am_libwangyonglin_la_OBJECTS = wangyonglin.lo pool.lo daemonize.lo \
-	lock.lo log.lo options.lo message.lo list.lo package.lo
+	lock.lo options.lo message.lo list.lo package.lo
 libwangyonglin_la_OBJECTS = $(am_libwangyonglin_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -153,10 +153,9 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/daemonize.Plo ./$(DEPDIR)/list.Plo \
-	./$(DEPDIR)/lock.Plo ./$(DEPDIR)/log.Plo \
-	./$(DEPDIR)/message.Plo ./$(DEPDIR)/options.Plo \
-	./$(DEPDIR)/package.Plo ./$(DEPDIR)/pool.Plo \
-	./$(DEPDIR)/wangyonglin.Plo
+	./$(DEPDIR)/lock.Plo ./$(DEPDIR)/message.Plo \
+	./$(DEPDIR)/options.Plo ./$(DEPDIR)/package.Plo \
+	./$(DEPDIR)/pool.Plo ./$(DEPDIR)/wangyonglin.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -325,14 +324,15 @@ top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
 lib_LTLIBRARIES = libwangyonglin.la
 AM_CPPFLAGS = -I $(top_srcdir)/src/wangyonglin/include/ \
-            -I $(top_srcdir)/src/string/include/
+            -I $(top_srcdir)/src/string/include/    \
+            -I $(top_srcdir)/src/zlog/include/ \
+            -I $(top_srcdir)/src/SnowFlake/include/
 
 libwangyonglin_la_SOURCES = \
     wangyonglin.c \
     pool.c  \
     daemonize.c    \
     lock.c   \
-    log.c    \
     options.c  \
     message.c   \
     list.c \
@@ -422,7 +422,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/daemonize.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/list.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lock.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/log.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/message.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/options.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/package.Plo@am__quote@ # am--include-marker
@@ -614,7 +613,6 @@ distclean: distclean-am
 		-rm -f ./$(DEPDIR)/daemonize.Plo
 	-rm -f ./$(DEPDIR)/list.Plo
 	-rm -f ./$(DEPDIR)/lock.Plo
-	-rm -f ./$(DEPDIR)/log.Plo
 	-rm -f ./$(DEPDIR)/message.Plo
 	-rm -f ./$(DEPDIR)/options.Plo
 	-rm -f ./$(DEPDIR)/package.Plo
@@ -668,7 +666,6 @@ maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/daemonize.Plo
 	-rm -f ./$(DEPDIR)/list.Plo
 	-rm -f ./$(DEPDIR)/lock.Plo
-	-rm -f ./$(DEPDIR)/log.Plo
 	-rm -f ./$(DEPDIR)/message.Plo
 	-rm -f ./$(DEPDIR)/options.Plo
 	-rm -f ./$(DEPDIR)/package.Plo

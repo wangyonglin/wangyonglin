@@ -13,8 +13,11 @@
 #include <wangyonglin/message.h>
 #include <AliyunHandler.h>
 #include <string_by_inject.h>
-#include <WechatPayment.h>
+#include <WechatConfig.h>
 #include <AliyunConfig.h>
+#include <WechatConfigCertificates.h>
+#include <zlog/zlog.h>
+
 typedef struct _HTTPDServer_t
 {
     struct evhttp *https;
@@ -23,8 +26,9 @@ typedef struct _HTTPDServer_t
     integer_by_t timeout_in_secs;
     message_id_t msgid;
     AliyunConfig *aliConfig;
-    log_t *log;
-    WechatPayment *payment;
+    WechatConfig *wConfig;
+    WechatConfigCertificates configCertificates;
+    zlog_category_t *log;
 } HTTPDServer;
 
 HTTPDServer *HTTPDServerCreate(Config_t  *config);

@@ -14,69 +14,74 @@
 #include <string_by_timestamp.h>
 #include <AliyunHttps.h>
 #include <string_by_id.h>
+#include <StringexBase64.h>
 // // // 通过自定义Topic向指定设备发布消息
-string_by_t HTTPSAliyunPub(string_by_t *jsonstring, AliyunConfig *aliConfig, char *DeviceName, char *MessageContentText, size_t MessageContentSize)
+boolean_by_t HTTPSAliyunPub(cJSON **RetCallback, AliyunConfig *aliConfig, cJSON *DeviceName, cJSON *MessageContentText)
 {
-  
-    https_result *result;
-    https_result_create(&result);
-    char *tmpContentBase64;
-    ContentBase64(&tmpContentBase64, MessageContentText, MessageContentSize);
-    string_by_t utcTimestamp = string_null_command;
-    string_by_utc(&utcTimestamp);
-
-    string_by_t SignatureNonce = string_null_command;
-    string_by_id(&SignatureNonce);
-    char *tmpTopicFullName;
-    TopicFullNameFormat(&tmpTopicFullName, aliConfig->ProductKey.valuestring, DeviceName, "user/get");
-
-    list_t list[] = {
-        list_string_command("Action", "Pub"),
-        list_string_command("ProductKey", aliConfig->ProductKey.valuestring),
-        list_string_command("MessageContent", tmpContentBase64),
-        list_string_command("TopicFullName", tmpTopicFullName),
-        list_string_command("Format", aliConfig->Format.valuestring),
-        list_string_command("Version", aliConfig->Version.valuestring),
-        list_string_command("AccessKeyId", aliConfig->AccessKeyId.valuestring),
-        list_string_command("SignatureMethod", aliConfig->SignatureMethod.valuestring),
-        list_string_command("Timestamp", utcTimestamp.valuestring),
-        list_string_command("SignatureVersion", aliConfig->SignatureVersion.valuestring),
-        list_string_command("SignatureNonce", SignatureNonce.valuestring),
-        list_string_command("RegionId", aliConfig->RegionId.valuestring)};
-    list_sort(list, list_count(list));
-    char *SignatureString;
-    SignatureFormat(&SignatureString, list, list_count(list), aliConfig->AccessKeySecret.valuestring);
-    char *tmpUrlString;
-    URLFormat(&tmpUrlString, list, list_count(list), SignatureString);
-    AliyunHttpsCallback callback;
-    AliyunHttpsGET(tmpUrlString, &callback);
-    if (result)
+    if (aliConfig && DeviceName && MessageContentText)
     {
-        string_create(jsonstring, callback.memory, callback.size);
+        char *MessageContentString = cJSON_PrintUnformatted(MessageContentText);
+        if (MessageContentString)
+        {
+            Stringex MessageContentBase64;
+            StringexBase64Encrypt(&MessageContentBase64, MessageContentString, strlen(MessageContentString),false);
+            global_hooks.deallocate(MessageContentString);
+
+            Stringex Timestamp;
+            StringexTimeUTC(&Timestamp);
+
+            Stringex SignatureNonce;
+            StringexId(&SignatureNonce);
+            char *tmpTopicFullName;
+            TopicFullNameFormat(&tmpTopicFullName, aliConfig->ProductKey.valuestring, DeviceName->valuestring, "user/get");
+
+            list_t list[] = {
+                list_string_command("Action", "Pub"),
+                list_string_command("ProductKey", aliConfig->ProductKey.valuestring),
+                list_string_command("MessageContent", MessageContentBase64.valuestring),
+                list_string_command("TopicFullName", tmpTopicFullName),
+                list_string_command("Format", aliConfig->Format.valuestring),
+                list_string_command("Version", aliConfig->Version.valuestring),
+                list_string_command("AccessKeyId", aliConfig->AccessKeyId.valuestring),
+                list_string_command("SignatureMethod", aliConfig->SignatureMethod.valuestring),
+                list_string_command("Timestamp", Timestamp.valuestring),
+                list_string_command("SignatureVersion", aliConfig->SignatureVersion.valuestring),
+                list_string_command("SignatureNonce", SignatureNonce.valuestring),
+                list_string_command("RegionId", aliConfig->RegionId.valuestring)};
+            list_sort(list, list_count(list));
+            char *SignatureString;
+            SignatureFormat(&SignatureString, list, list_count(list), aliConfig->AccessKeySecret.valuestring);
+            char *tmpUrlString;
+            URLFormat(&tmpUrlString, list, list_count(list), SignatureString);
+            AliyunHttpsCallback callback;
+            AliyunHttpsGET(tmpUrlString, &callback);
+            if (callback.memory)
+            {
+                *RetCallback = cJSON_Parse(callback.memory);
+                global_hooks.deallocate(callback.memory);
+            }
+
+            global_hooks.deallocate(tmpUrlString);
+            global_hooks.deallocate(SignatureString);
+            StringexDelete(MessageContentBase64);
+            StringexDelete(Timestamp);
+            StringexDelete(SignatureNonce);
+            global_hooks.deallocate(tmpTopicFullName);
+        }
     }
-    https_result_delete(result);
-    global_hooks.deallocate(tmpUrlString);
-    global_hooks.deallocate(SignatureString);
-    global_hooks.deallocate(tmpContentBase64);
-    string_delete(utcTimestamp);
-    string_delete(SignatureNonce);
-    global_hooks.deallocate(tmpTopicFullName);
-    return *jsonstring;
+    return negative;
 }
 
 // 通过自定义Topic向指定设备发布消息
-string_by_t HTTPSAliyunRegisterDevice(string_by_t *jsonstring, AliyunConfig *aliConfig, char *DeviceName)
+boolean_by_t HTTPSAliyunRegisterDevice(cJSON **RetCallback, AliyunConfig *aliConfig, char *DeviceName)
 {
-
-    https_result *result;
-    https_result_create(&result);
     string_by_t utcTimestamp = string_null_command;
     string_by_utc(&utcTimestamp);
 
     string_by_t SignatureNonce = string_null_command;
     string_by_id(&SignatureNonce);
 
-    struct _list_t list[] = {
+    list_t list[] = {
         list_string_command("Action", "RegisterDevice"),
         list_string_command("ProductKey", aliConfig->ProductKey.valuestring),
         list_string_command("DeviceName", DeviceName),
@@ -95,20 +100,20 @@ string_by_t HTTPSAliyunRegisterDevice(string_by_t *jsonstring, AliyunConfig *ali
     URLFormat(&tmpUrlString, list, list_count(list), SignatureString);
     AliyunHttpsCallback callback;
     AliyunHttpsGET(tmpUrlString, &callback);
-    if (result)
+    if (callback.memory)
     {
-        string_create(jsonstring, callback.memory, callback.size);
+        *RetCallback = cJSON_Parse(callback.memory);
+        global_hooks.deallocate(callback.memory);
     }
 
-    https_result_delete(result);
     global_hooks.deallocate(tmpUrlString);
     global_hooks.deallocate(SignatureString);
     string_delete(utcTimestamp);
     string_delete(SignatureNonce);
-    return *jsonstring;
+    return negative;
 }
 
-string_by_t HTTPSAliyunGetDeviceStatus(string_by_t *jsonstring, AliyunConfig *aliConfig, char *DeviceName)
+boolean_by_t HTTPSAliyunGetDeviceStatus(cJSON **RetCallback, AliyunConfig *aliConfig, char *DeviceName)
 {
 
     https_result *result;
@@ -138,7 +143,8 @@ string_by_t HTTPSAliyunGetDeviceStatus(string_by_t *jsonstring, AliyunConfig *al
     AliyunHttpsGET(tmpUrlString, &callback);
     if (result)
     {
-        string_create(jsonstring, callback.memory, callback.size);
+        *RetCallback = cJSON_Parse(callback.memory);
+        global_hooks.deallocate(callback.memory);
     }
     https_result_delete(result);
     global_hooks.deallocate(tmpUrlString);
@@ -146,5 +152,5 @@ string_by_t HTTPSAliyunGetDeviceStatus(string_by_t *jsonstring, AliyunConfig *al
 
     string_delete(utcTimestamp);
     string_delete(SignatureNonce);
-    return *jsonstring;
+    return negative;
 }
