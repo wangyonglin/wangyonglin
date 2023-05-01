@@ -57,12 +57,15 @@ ServerResponse.o: ../../../src/application/ServerResponse.c \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
  /usr/include/bits/getopt_core.h ../../../src/cJSON/include/cJSON.h \
- ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
- ../../../src/wangyonglin/include/wangyonglin/package.h \
- /usr/include/stdlib.h /usr/include/bits/waitflags.h \
- /usr/include/bits/waitstatus.h /usr/include/bits/floatn.h \
- /usr/include/bits/floatn-common.h /usr/include/alloca.h \
- /usr/include/bits/stdlib-bsearch.h /usr/include/bits/stdlib-float.h \
+ ../../../src/application/include/HTTPDServer.h \
+ ../../../src/wangyonglin/include/MainConfig.h \
+ ../../../src/wangyonglin/include/MainPackage.h /usr/include/fcntl.h \
+ /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
+ /usr/include/bits/stat.h /usr/include/stdlib.h \
+ /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+ /usr/include/bits/floatn.h /usr/include/bits/floatn-common.h \
+ /usr/include/alloca.h /usr/include/bits/stdlib-bsearch.h \
+ /usr/include/bits/stdlib-float.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
  /usr/include/signal.h /usr/include/bits/signum.h \
  /usr/include/bits/signum-generic.h \
@@ -74,9 +77,7 @@ ServerResponse.o: ../../../src/application/ServerResponse.c \
  /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
- /usr/include/bits/sigthread.h /usr/include/fcntl.h \
- /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
- /usr/include/bits/stat.h /usr/include/getopt.h \
+ /usr/include/bits/sigthread.h /usr/include/getopt.h \
  /usr/include/bits/getopt_ext.h /usr/include/assert.h \
  /usr/include/ctype.h /usr/include/sys/stat.h \
  /usr/include/openssl/x509v3.h /usr/include/openssl/bio.h \
@@ -118,25 +119,20 @@ ServerResponse.o: ../../../src/application/ServerResponse.c \
  /usr/include/openssl/tls1.h /usr/include/openssl/dtls1.h \
  /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h \
  ../../../src/string/include/string_by_this.h \
- ../../../src/wangyonglin/include/wangyonglin/pool.h \
- ../../../src/wangyonglin/include/wangyonglin/options.h \
+ ../../../src/wangyonglin/include/MainOption.h \
  ../../../src/string/include/Stringex.h \
  ../../../src/string/include/Unix_timestamp_converter.h \
- ../../../src/wangyonglin/include/wangyonglin/lock.h \
+ ../../../src/wangyonglin/include/MainLock.h \
  ../../../src/zlog/include/zlog/zlog.h \
- ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
- ../../../src/wangyonglin/include/wangyonglin/message.h \
- /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
- /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
- /usr/include/malloc.h ../../../src/string/include/string_by_inject.h \
- ../../../src/application/include/HTTPDServer.h \
+ ../../../src/wangyonglin/include/MainDaemonize.h \
+ ../../../src/string/include/MemoryInject.h \
  ../../../src/application/include/AliyunHandler.h \
  /usr/local/include/MQTTAsync.h \
  /usr/local/include/MQTTExportDeclarations.h \
  /usr/local/include/MQTTProperties.h /usr/local/include/MQTTReasonCodes.h \
  /usr/local/include/MQTTSubscribeOpts.h \
  /usr/local/include/MQTTClientPersistence.h \
- ../../../src/wangyonglin/include/wangyonglin/list.h \
+ ../../../src/string/include/ArrayList.h \
  ../../../src/application/include/AliyunUtils.h /usr/include/curl/curl.h \
  /usr/include/curl/curlver.h /usr/include/curl/system.h \
  /usr/include/curl/easy.h /usr/include/curl/multi.h \
@@ -365,9 +361,19 @@ ServerResponse.o: ../../../src/application/ServerResponse.c \
 
 ../../../src/cJSON/include/cJSON.h:
 
-../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
+../../../src/application/include/HTTPDServer.h:
 
-../../../src/wangyonglin/include/wangyonglin/package.h:
+../../../src/wangyonglin/include/MainConfig.h:
+
+../../../src/wangyonglin/include/MainPackage.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/bits/fcntl.h:
+
+/usr/include/bits/fcntl-linux.h:
+
+/usr/include/bits/stat.h:
 
 /usr/include/stdlib.h:
 
@@ -424,14 +430,6 @@ ServerResponse.o: ../../../src/application/ServerResponse.c \
 /usr/include/bits/types/struct_sigstack.h:
 
 /usr/include/bits/sigthread.h:
-
-/usr/include/fcntl.h:
-
-/usr/include/bits/fcntl.h:
-
-/usr/include/bits/fcntl-linux.h:
-
-/usr/include/bits/stat.h:
 
 /usr/include/getopt.h:
 
@@ -593,37 +591,19 @@ ServerResponse.o: ../../../src/application/ServerResponse.c \
 
 ../../../src/string/include/string_by_this.h:
 
-../../../src/wangyonglin/include/wangyonglin/pool.h:
-
-../../../src/wangyonglin/include/wangyonglin/options.h:
+../../../src/wangyonglin/include/MainOption.h:
 
 ../../../src/string/include/Stringex.h:
 
 ../../../src/string/include/Unix_timestamp_converter.h:
 
-../../../src/wangyonglin/include/wangyonglin/lock.h:
+../../../src/wangyonglin/include/MainLock.h:
 
 ../../../src/zlog/include/zlog/zlog.h:
 
-../../../src/wangyonglin/include/wangyonglin/daemonize.h:
+../../../src/wangyonglin/include/MainDaemonize.h:
 
-../../../src/wangyonglin/include/wangyonglin/message.h:
-
-/usr/include/sys/ipc.h:
-
-/usr/include/bits/ipctypes.h:
-
-/usr/include/bits/ipc.h:
-
-/usr/include/sys/msg.h:
-
-/usr/include/bits/msq.h:
-
-/usr/include/malloc.h:
-
-../../../src/string/include/string_by_inject.h:
-
-../../../src/application/include/HTTPDServer.h:
+../../../src/string/include/MemoryInject.h:
 
 ../../../src/application/include/AliyunHandler.h:
 
@@ -639,7 +619,7 @@ ServerResponse.o: ../../../src/application/ServerResponse.c \
 
 /usr/local/include/MQTTClientPersistence.h:
 
-../../../src/wangyonglin/include/wangyonglin/list.h:
+../../../src/string/include/ArrayList.h:
 
 ../../../src/application/include/AliyunUtils.h:
 

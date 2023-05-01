@@ -353,6 +353,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 SUBDIRS = \
+    src/cronolog    \
     src/zlog \
     src/wangyonglin   \
     src/openssl    \
@@ -364,16 +365,13 @@ SUBDIRS = \
 
 logdir = $(prefix)/log
 confdir = $(prefix)/conf
-conf_DATA = $(top_srcdir)/conf/wangyonglin.conf \
-            $(top_srcdir)/conf/zlog.conf
-
+conf_DATA = $(top_srcdir)/conf/wangyonglin.conf
 certdir = $(prefix)/cert
 cert_DATA = $(top_srcdir)/cert/apiclient_cert.pem   \
             $(top_srcdir)/cert/apiclient_key.pem    \
             $(top_srcdir)/cert/apiclient_cert.p12
 
 EXTRA_DIST = README.md $(top_srcdir)/conf/wangyonglin.conf \
-	$(top_srcdir)/conf/zlog.conf \
 	$(top_srcdir)/cert/apiclient_cert.pem \
 	$(top_srcdir)/cert/apiclient_key.pem \
 	$(top_srcdir)/cert/apiclient_cert.p12

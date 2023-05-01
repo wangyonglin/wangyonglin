@@ -34,11 +34,18 @@ WechatHttps.o: ../../../src/application/WechatHttps.c \
  /usr/include/linux/errno.h /usr/include/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  ../../../src/application/include/WechatConfig.h \
- ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
- ../../../src/wangyonglin/include/wangyonglin/package.h \
+ ../../../src/cJSON/include/cJSON.h \
+ ../../../src/string/include/Stringex.h /usr/include/sys/time.h \
+ ../../../src/string/include/Unix_timestamp_converter.h \
+ /usr/include/time.h /usr/include/bits/time.h \
+ /usr/include/bits/types/struct_tm.h \
+ /usr/include/bits/types/struct_itimerspec.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
- /usr/include/signal.h /usr/include/bits/signum.h \
- /usr/include/bits/signum-generic.h \
+ ../../../src/wangyonglin/include/MainConfig.h \
+ ../../../src/wangyonglin/include/MainPackage.h /usr/include/fcntl.h \
+ /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
+ /usr/include/bits/stat.h /usr/include/signal.h \
+ /usr/include/bits/signum.h /usr/include/bits/signum-generic.h \
  /usr/include/bits/types/sig_atomic_t.h \
  /usr/include/bits/types/siginfo_t.h /usr/include/bits/types/__sigval_t.h \
  /usr/include/bits/siginfo-arch.h /usr/include/bits/siginfo-consts.h \
@@ -50,15 +57,11 @@ WechatHttps.o: ../../../src/application/WechatHttps.c \
  /usr/include/bits/sigthread.h /usr/include/unistd.h \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h /usr/include/fcntl.h \
- /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
- /usr/include/bits/stat.h /usr/include/getopt.h \
+ /usr/include/bits/getopt_core.h /usr/include/getopt.h \
  /usr/include/bits/getopt_ext.h /usr/include/ctype.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/wchar.h \
- /usr/include/bits/stdint-uintn.h /usr/include/time.h \
- /usr/include/bits/time.h /usr/include/bits/types/struct_tm.h \
- /usr/include/bits/types/struct_itimerspec.h /usr/include/sys/stat.h \
+ /usr/include/bits/stdint-uintn.h /usr/include/sys/stat.h \
  /usr/include/openssl/x509v3.h /usr/include/openssl/bio.h \
  /usr/include/openssl/e_os2.h /usr/include/openssl/opensslconf.h \
  /usr/include/openssl/opensslconf-x86_64.h \
@@ -97,18 +100,11 @@ WechatHttps.o: ../../../src/application/WechatHttps.c \
  /usr/include/openssl/ssl2.h /usr/include/openssl/ssl3.h \
  /usr/include/openssl/tls1.h /usr/include/openssl/dtls1.h \
  /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h \
- ../../../src/wangyonglin/include/wangyonglin/pool.h \
- ../../../src/wangyonglin/include/wangyonglin/options.h \
- ../../../src/string/include/Stringex.h /usr/include/sys/time.h \
- ../../../src/string/include/Unix_timestamp_converter.h \
- ../../../src/wangyonglin/include/wangyonglin/lock.h \
+ ../../../src/wangyonglin/include/MainOption.h \
+ ../../../src/wangyonglin/include/MainLock.h \
  ../../../src/zlog/include/zlog/zlog.h \
- ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
- ../../../src/wangyonglin/include/wangyonglin/message.h \
- /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
- /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
- /usr/include/malloc.h ../../../src/string/include/string_by_inject.h \
- ../../../src/cJSON/include/cJSON.h /usr/include/curl/curl.h \
+ ../../../src/wangyonglin/include/MainDaemonize.h \
+ ../../../src/string/include/MemoryInject.h /usr/include/curl/curl.h \
  /usr/include/curl/curlver.h /usr/include/curl/system.h \
  /usr/include/sys/socket.h /usr/include/bits/types/struct_iovec.h \
  /usr/include/bits/socket.h /usr/include/bits/socket_type.h \
@@ -245,11 +241,35 @@ WechatHttps.o: ../../../src/application/WechatHttps.c \
 
 ../../../src/application/include/WechatConfig.h:
 
-../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
+../../../src/cJSON/include/cJSON.h:
 
-../../../src/wangyonglin/include/wangyonglin/package.h:
+../../../src/string/include/Stringex.h:
+
+/usr/include/sys/time.h:
+
+../../../src/string/include/Unix_timestamp_converter.h:
+
+/usr/include/time.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/bits/types/struct_tm.h:
+
+/usr/include/bits/types/struct_itimerspec.h:
 
 /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
+
+../../../src/wangyonglin/include/MainConfig.h:
+
+../../../src/wangyonglin/include/MainPackage.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/bits/fcntl.h:
+
+/usr/include/bits/fcntl-linux.h:
+
+/usr/include/bits/stat.h:
 
 /usr/include/signal.h:
 
@@ -301,14 +321,6 @@ WechatHttps.o: ../../../src/application/WechatHttps.c \
 
 /usr/include/bits/getopt_core.h:
 
-/usr/include/fcntl.h:
-
-/usr/include/bits/fcntl.h:
-
-/usr/include/bits/fcntl-linux.h:
-
-/usr/include/bits/stat.h:
-
 /usr/include/getopt.h:
 
 /usr/include/bits/getopt_ext.h:
@@ -322,14 +334,6 @@ WechatHttps.o: ../../../src/application/WechatHttps.c \
 /usr/include/bits/wchar.h:
 
 /usr/include/bits/stdint-uintn.h:
-
-/usr/include/time.h:
-
-/usr/include/bits/time.h:
-
-/usr/include/bits/types/struct_tm.h:
-
-/usr/include/bits/types/struct_itimerspec.h:
 
 /usr/include/sys/stat.h:
 
@@ -481,39 +485,15 @@ WechatHttps.o: ../../../src/application/WechatHttps.c \
 
 /usr/include/openssl/err.h:
 
-../../../src/wangyonglin/include/wangyonglin/pool.h:
+../../../src/wangyonglin/include/MainOption.h:
 
-../../../src/wangyonglin/include/wangyonglin/options.h:
-
-../../../src/string/include/Stringex.h:
-
-/usr/include/sys/time.h:
-
-../../../src/string/include/Unix_timestamp_converter.h:
-
-../../../src/wangyonglin/include/wangyonglin/lock.h:
+../../../src/wangyonglin/include/MainLock.h:
 
 ../../../src/zlog/include/zlog/zlog.h:
 
-../../../src/wangyonglin/include/wangyonglin/daemonize.h:
+../../../src/wangyonglin/include/MainDaemonize.h:
 
-../../../src/wangyonglin/include/wangyonglin/message.h:
-
-/usr/include/sys/ipc.h:
-
-/usr/include/bits/ipctypes.h:
-
-/usr/include/bits/ipc.h:
-
-/usr/include/sys/msg.h:
-
-/usr/include/bits/msq.h:
-
-/usr/include/malloc.h:
-
-../../../src/string/include/string_by_inject.h:
-
-../../../src/cJSON/include/cJSON.h:
+../../../src/string/include/MemoryInject.h:
 
 /usr/include/curl/curl.h:
 

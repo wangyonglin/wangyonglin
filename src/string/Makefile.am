@@ -18,5 +18,7 @@ libstring_la_SOURCES=\
     string_by_inject.c \
     Stringex.c \
     StringexBase64.c \
-    StringexSha256WithRsa.c
-include_HEADERS =  $(top_srcdir)/src/string/include/*.h
+    StringexSha256WithRsa.c \
+    MemoryInject.c \
+    ArrayList.c
+EXTRA_DIST =  $(top_srcdir)/src/string/include/*

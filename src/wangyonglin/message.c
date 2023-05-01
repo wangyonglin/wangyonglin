@@ -1,4 +1,4 @@
-#include <wangyonglin/message.h>
+#include <message.h>
 
 message_id_t sutpc_creatMsgQue(int key)
 {

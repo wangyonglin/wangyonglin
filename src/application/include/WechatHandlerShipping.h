@@ -1,6 +1,6 @@
 #if !defined(INCLUDE_WECHATHANDLSHIPPING_H)
 #define INCLUDE_WECHATHANDLSHIPPING_H
-#include<wangyonglin/wangyonglin.h>
+
 #include <string_by_this.h>
 #include <cJSON.h>
 #include <HTTPDResult.h>

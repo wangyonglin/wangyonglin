@@ -1,32 +1,32 @@
 #include <AliyunConfig.h>
-#include <string_by_inject.h>
-#include <wangyonglin/wangyonglin.h>
+#include <MainConfig.h>
+#include <MemoryInject.h>
 
-AliyunConfig *AliyunConfigCreate(Config_t  *config, AliyunConfig **aliConfig, const char *section)
+AliyunConfig *AliyunConfigCreate(MainConfig  *mainConfig, AliyunConfig **aliyunConfig, const char *section)
 {
-    if (config && config->inject)
+    if (mainConfig && mainConfig->memoryInject)
     {
-        if (object_create((void **)aliConfig, sizeof(AliyunConfig)))
+        if (ObjectCreate((void **)aliyunConfig, sizeof(AliyunConfig)))
         {
-            inject_command_t commands[] = {
-                inject_string_command("AccessKeyId", offsetof(AliyunConfig, AccessKeyId)),
-                inject_string_command("AccessKeySecret", offsetof(AliyunConfig, AccessKeySecret)),
-                inject_string_command("ProductKey", offsetof(AliyunConfig, ProductKey)),
-                inject_string_command("DeviceName", offsetof(AliyunConfig, DeviceName)),
-                inject_string_command("Format", offsetof(AliyunConfig, Format)),
-                inject_string_command("Version", offsetof(AliyunConfig, Version)),
-                inject_string_command("SignatureMethod", offsetof(AliyunConfig, SignatureMethod)),
-                inject_string_command("SignatureVersion", offsetof(AliyunConfig, SignatureVersion)),
-                inject_string_command("RegionId", offsetof(AliyunConfig, RegionId)),
-                inject_string_command("TopicFullName", offsetof(AliyunConfig, TopicFullName)),
-                inject_null_command};
-            inject_build(config->inject, commands, *aliConfig, "ALIIOT");
-            return (*aliConfig);
+            MemoryInject_Command commands[] = {
+                MEMORYINJECT_STRING_COMMAND("AccessKeyId", offsetof(AliyunConfig, AccessKeyId)),
+                MEMORYINJECT_STRING_COMMAND("AccessKeySecret", offsetof(AliyunConfig, AccessKeySecret)),
+                MEMORYINJECT_STRING_COMMAND("ProductKey", offsetof(AliyunConfig, ProductKey)),
+                MEMORYINJECT_STRING_COMMAND("DeviceName", offsetof(AliyunConfig, DeviceName)),
+                MEMORYINJECT_STRING_COMMAND("Format", offsetof(AliyunConfig, Format)),
+                MEMORYINJECT_STRING_COMMAND("Version", offsetof(AliyunConfig, Version)),
+                MEMORYINJECT_STRING_COMMAND("SignatureMethod", offsetof(AliyunConfig, SignatureMethod)),
+                MEMORYINJECT_STRING_COMMAND("SignatureVersion", offsetof(AliyunConfig, SignatureVersion)),
+                MEMORYINJECT_STRING_COMMAND("RegionId", offsetof(AliyunConfig, RegionId)),
+                MEMORYINJECT_STRING_COMMAND("TopicFullName", offsetof(AliyunConfig, TopicFullName)),
+                MEMORYINJECT_NULL_COMMAND};
+            MemoryInjectInster(mainConfig->memoryInject, commands, *aliyunConfig, "ALIIOT");
+            return (*aliyunConfig);
         }
     }
     return NULL;
 }
-void AliyunConfigDelete(AliyunConfig *aliConfig)
+void AliyunConfigDelete(AliyunConfig *aliyunConfig)
 {
-    object_delete(aliConfig);
+    ObjectDelete(aliyunConfig);
 }

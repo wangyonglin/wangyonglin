@@ -1,4 +1,4 @@
-#include <wangyonglin/wangyonglin.h>
+
 #include <https_post.h>
 
 #include <cJSON.h>
@@ -17,13 +17,16 @@
 #include <base64.h>
 #include <zlog/zlog.h>
 #define MSG_QUE_KEY_ID 1996 // 消息队列标识
-
+MainConfig *mainConfig = NULL;
 int main(int argc, char *argv[])
 {
 
-  Config_t *config = ConfigInit(argc, argv);
+  if (!MainConfigCreate(&mainConfig, argc, argv))
+  {
+    return EXIT_FAILURE;
+  }
 
-  HTTPDServerStart(config);
+  HTTPDServerStart(mainConfig);
 
-  return 0;
+  return EXIT_SUCCESS;
 }

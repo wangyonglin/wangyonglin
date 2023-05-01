@@ -74,6 +74,7 @@ AC_FUNC_REALLOC
 AC_FUNC_STRTOD
 AC_CHECK_FUNCS([bzero getpass localeconv memset strcasecmp strchr strdup strerror strrchr strspn strstr])
 AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([src/cronolog/Makefile])
 AC_CONFIG_FILES([src/zlog/Makefile])
 AC_CONFIG_FILES([src/openssl/Makefile])
 AC_CONFIG_FILES([src/https/Makefile])

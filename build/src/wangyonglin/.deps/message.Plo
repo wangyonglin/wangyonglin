@@ -1,6 +1,6 @@
 message.lo: ../../../src/wangyonglin/message.c /usr/include/stdc-predef.h \
- ../../../src/wangyonglin/include/wangyonglin/message.h \
- /usr/include/unistd.h /usr/include/features.h /usr/include/sys/cdefs.h \
+ ../../../src/wangyonglin/include/message.h /usr/include/unistd.h \
+ /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/bits/long-double.h \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
@@ -23,8 +23,7 @@ message.lo: ../../../src/wangyonglin/message.c /usr/include/stdc-predef.h \
  /usr/include/bits/types/__locale_t.h /usr/include/strings.h \
  /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
  /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
- /usr/include/malloc.h \
- ../../../src/wangyonglin/include/wangyonglin/package.h \
+ /usr/include/malloc.h ../../../src/wangyonglin/include/MainPackage.h \
  /usr/include/stdlib.h /usr/include/bits/waitflags.h \
  /usr/include/bits/waitstatus.h /usr/include/bits/floatn.h \
  /usr/include/bits/floatn-common.h /usr/include/sys/types.h \
@@ -100,7 +99,7 @@ message.lo: ../../../src/wangyonglin/message.c /usr/include/stdc-predef.h \
 
 /usr/include/stdc-predef.h:
 
-../../../src/wangyonglin/include/wangyonglin/message.h:
+../../../src/wangyonglin/include/message.h:
 
 /usr/include/unistd.h:
 
@@ -194,7 +193,7 @@ message.lo: ../../../src/wangyonglin/message.c /usr/include/stdc-predef.h \
 
 /usr/include/malloc.h:
 
-../../../src/wangyonglin/include/wangyonglin/package.h:
+../../../src/wangyonglin/include/MainPackage.h:
 
 /usr/include/stdlib.h:
 

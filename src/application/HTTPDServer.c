@@ -2,7 +2,7 @@
 #include <curl/curl.h>
 #include <cJSON.h>
 #include <HTTPDHandler.h>
-#include <wangyonglin/wangyonglin.h>
+
 #include <WechatHandler.h>
 #include <HTTPDResult.h>
 #include <WechatHandlerNotifyUrl.h>
@@ -22,19 +22,19 @@ void error_handler(struct evhttp_request *request, void *arg)
     ResultUtilDelete(ResUtil);
     httpd_result_delete(result);
 }
-HTTPDServer *HTTPDServerCreate(Config_t *config)
+HTTPDServer *HTTPDServerCreate(MainConfig  *mainConfig)
 {
-    if (config && config->inject)
+    if (mainConfig && mainConfig->memoryInject)
     {
-        if (object_create((void **)&server, sizeof(HTTPDServer)))
+        if (ObjectCreate((void **)&server, sizeof(HTTPDServer)))
         {
-            inject_command_t commands[] = {
-                inject_string_command("address", offsetof(HTTPDServer, address)),
-                inject_integer_command("port", offsetof(HTTPDServer, port)),
-                inject_integer_command("timeout_in_secs", offsetof(HTTPDServer, timeout_in_secs)),
-                inject_null_command};
-            inject_build(config->inject, commands, server, "HTTPD");
-            server->log = config->zlog;
+            MemoryInject_Command commands[] = {
+                MEMORYINJECT_STRING_COMMAND("address", offsetof(HTTPDServer, address)),
+                MEMORYINJECT_INTEGER_COMMAND("port", offsetof(HTTPDServer, port)),
+                MEMORYINJECT_INTEGER_COMMAND("timeout_in_secs", offsetof(HTTPDServer, timeout_in_secs)),
+                MEMORYINJECT_NULL_COMMAND};
+            MemoryInjectInster(mainConfig->memoryInject, commands, server, "HTTPD");
+            server->log = mainConfig->log;
             return server;
         }
     }
@@ -42,14 +42,14 @@ HTTPDServer *HTTPDServerCreate(Config_t *config)
     return server;
 }
 
-void HTTPDServerStart(Config_t *config)
+void HTTPDServerStart(MainConfig  *mainConfig)
 {
 
-    if (HTTPDServerCreate(config))
+    if (HTTPDServerCreate(mainConfig))
     {
-        AliyunConfigCreate(config, &server->aliConfig, "ALIIOT");
-        WechatConfigCreate(config, &server->wConfig, "WECHAT_PAYMENT");
-        zlog_category_t *log = config->zlog;
+        AliyunConfigCreate(mainConfig, &server->aliConfig, "ALIIOT");
+        WechatConfigCreate(mainConfig, &server->wConfig, "WECHAT_PAYMENT");
+        zlog_category_t *log = mainConfig->log;
         Stringex mchid = server->wConfig->mchid;
         Stringex serial_no = server->wConfig->serial_no;
         Stringex apiclient_key = server->wConfig->apiclient_key;
@@ -93,6 +93,6 @@ void HTTPDServerDelete()
 
         string_delete(server->address);
         evhttp_free(server->https);
-        object_delete(server);
+        ObjectDelete(server);
     }
 }

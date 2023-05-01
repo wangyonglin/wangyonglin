@@ -121,6 +121,7 @@ void WechatHandlerNotifyUrl(
                                                           apiv3_key.valuestring, nonceStr->valuestring, strlen(nonceStr->valuestring), plaintext);
                             if (ret != -1)
                             {
+                                zlog_info(log,plaintext);
                                 err = Boolean_true;
                             }
                             else

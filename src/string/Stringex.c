@@ -212,6 +212,7 @@ void StringexResetting(Stringex *datastring, char *valuestring, size_t valueleng
         {
             memset(datastring->valuestring, 0x00, valuelength + 1);
             memcpy(datastring->valuestring, valuestring, valuelength);
+            datastring->valuestring[valuelength]='\0';
             datastring->valuelength = valuelength;
         }
     }

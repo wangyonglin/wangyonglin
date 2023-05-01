@@ -10,7 +10,7 @@ AM_CPPFLAGS=\
     -I $(top_srcdir)/src/string/include/   \
     -I $(top_srcdir)/src/wangyonglin/include/
 
-bin_PROGRAMS=wangyonglin
+sbin_PROGRAMS=wangyonglin
 wangyonglin_SOURCES=\
     UserMain.c \
     AliyunHandler.c    \
@@ -38,6 +38,6 @@ wangyonglin_LDADD=\
     $(top_builddir)/src/string/libstring.la \
     $(top_builddir)/src/wangyonglin/libwangyonglin.la \
     $(FLIBS) 
-include_HEADERS =  $(top_srcdir)/src/application/include/*.h
+EXTRA_DIST	 =  $(top_srcdir)/src/application/include/*
 #需要引用的动态库文件
 LIBS += -g -O2 -Wall -pedantic   -lm -levent -lssl -lcrypto -lpthread -levent_openssl -lcurl

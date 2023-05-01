@@ -24,4 +24,4 @@ libzlog_la_SOURCES= \
 		thread.c \
 		zc_profile.c \
 		zlog-chk-conf.c
-include_HEADERS=$(top_srcdir)/src/zlog/include/zlog/*.h
+EXTRA_DIST	=	$(top_srcdir)/src/zlog/include/*

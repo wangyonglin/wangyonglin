@@ -29,7 +29,7 @@ Boolean WechatConfigCertificatesCreate(
         return err;
     HTTPSUtilsCallback callback;
     Stringex auth;
-    if (!WechatConfigAuthorizationBuild(&auth, "GET", "/v3/certificates", apiclient_key, mchid, serial_no, Stringex_NULL))
+    if (!WechatConfigAuthorizationBuild(&auth, "GET", "/v3/certificates", apiclient_key, mchid, serial_no, Stringex_null))
     {
         fprintf(stderr,"获取平台证书的Authorization构建错误");
         return err;

@@ -10,4 +10,4 @@ libhttps_la_SOURCES=\
         https_post.c \
         https_get.c \
         HTTPSUtils.c
-include_HEADERS =  $(top_srcdir)/src/https/include/*.h
+EXTRA_DIST =  $(top_srcdir)/src/https/include/*

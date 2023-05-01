@@ -9,10 +9,11 @@
 #include <event2/util.h>
 #include <unistd.h>
 #include <cJSON.h>
-#include <wangyonglin/wangyonglin.h>
-#include <wangyonglin/message.h>
+
+#include <MainConfig.h>
+#include <MemoryInject.h>
 #include <AliyunHandler.h>
-#include <string_by_inject.h>
+
 #include <WechatConfig.h>
 #include <AliyunConfig.h>
 #include <WechatConfigCertificates.h>
@@ -24,15 +25,14 @@ typedef struct _HTTPDServer_t
     string_by_t address;
     integer_by_t port;
     integer_by_t timeout_in_secs;
-    message_id_t msgid;
     AliyunConfig *aliConfig;
     WechatConfig *wConfig;
     WechatConfigCertificates configCertificates;
     zlog_category_t *log;
 } HTTPDServer;
 
-HTTPDServer *HTTPDServerCreate(Config_t  *config);
+HTTPDServer *HTTPDServerCreate(MainConfig  *mainConfig);
 void HTTPDServerDelete();
 
-void HTTPDServerStart(Config_t  *config);
+void HTTPDServerStart(MainConfig  *mainConfig);
 #endif

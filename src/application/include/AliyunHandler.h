@@ -8,8 +8,8 @@
 #include <time.h>
 #include <stdbool.h>
 #include "MQTTAsync.h"
-#include <wangyonglin/wangyonglin.h>
-#include <wangyonglin/list.h>
+
+#include <ArrayList.h>
 #include <cJSON.h>
 #include <AliyunUtils.h>
 #include <AliyunConfig.h>

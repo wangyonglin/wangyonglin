@@ -232,13 +232,13 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /home/wangyonglin/github/wangyonglin/missing aclocal-1.16
+ACLOCAL = ${SHELL} /github/wangyonglin/missing aclocal-1.16
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = ar
-AUTOCONF = ${SHELL} /home/wangyonglin/github/wangyonglin/missing autoconf
-AUTOHEADER = ${SHELL} /home/wangyonglin/github/wangyonglin/missing autoheader
-AUTOMAKE = ${SHELL} /home/wangyonglin/github/wangyonglin/missing automake-1.16
+AUTOCONF = ${SHELL} /github/wangyonglin/missing autoconf
+AUTOHEADER = ${SHELL} /github/wangyonglin/missing autoheader
+AUTOMAKE = ${SHELL} /github/wangyonglin/missing automake-1.16
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -272,7 +272,7 @@ LIPO =
 LN_S = ln -s
 LTLIBOBJS = 
 LT_SYS_LIBRARY_PATH = 
-MAKEINFO = ${SHELL} /home/wangyonglin/github/wangyonglin/missing makeinfo
+MAKEINFO = ${SHELL} /github/wangyonglin/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /usr/bin/mkdir -p
 NM = /usr/bin/nm -B
@@ -284,10 +284,10 @@ OTOOL64 =
 PACKAGE = wangyonglin
 PACKAGE_BUGREPORT = admin@wangyonglin.com
 PACKAGE_NAME = wangyonglin
-PACKAGE_STRING = wangyonglin 1.3.46
+PACKAGE_STRING = wangyonglin 1.3.47
 PACKAGE_TARNAME = wangyonglin
 PACKAGE_URL = 
-PACKAGE_VERSION = 1.3.46
+PACKAGE_VERSION = 1.3.47
 PATH_SEPARATOR = :
 POW_LIB = 
 RANLIB = ranlib
@@ -295,11 +295,11 @@ SED = /usr/bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
-VERSION = 1.3.46
-abs_builddir = /home/wangyonglin/github/wangyonglin/build
-abs_srcdir = /home/wangyonglin/github/wangyonglin/build/..
-abs_top_builddir = /home/wangyonglin/github/wangyonglin/build
-abs_top_srcdir = /home/wangyonglin/github/wangyonglin/build/..
+VERSION = 1.3.47
+abs_builddir = /github/wangyonglin/build
+abs_srcdir = /github/wangyonglin/build/..
+abs_top_builddir = /github/wangyonglin/build
+abs_top_srcdir = /github/wangyonglin/build/..
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
@@ -331,7 +331,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/wangyonglin/github/wangyonglin/install-sh
+install_sh = ${SHELL} /github/wangyonglin/install-sh
 libdir = $(prefix)/lib
 libexecdir = ${exec_prefix}/libexec
 localdir = /var/run/wangyonglin
@@ -353,6 +353,7 @@ top_build_prefix =
 top_builddir = .
 top_srcdir = ..
 SUBDIRS = \
+    src/cronolog    \
     src/zlog \
     src/wangyonglin   \
     src/openssl    \
@@ -364,16 +365,13 @@ SUBDIRS = \
 
 logdir = $(prefix)/log
 confdir = $(prefix)/conf
-conf_DATA = $(top_srcdir)/conf/wangyonglin.conf \
-            $(top_srcdir)/conf/zlog.conf
-
+conf_DATA = $(top_srcdir)/conf/wangyonglin.conf
 certdir = $(prefix)/cert
 cert_DATA = $(top_srcdir)/cert/apiclient_cert.pem   \
             $(top_srcdir)/cert/apiclient_key.pem    \
             $(top_srcdir)/cert/apiclient_cert.p12
 
 EXTRA_DIST = README.md $(top_srcdir)/conf/wangyonglin.conf \
-	$(top_srcdir)/conf/zlog.conf \
 	$(top_srcdir)/cert/apiclient_cert.pem \
 	$(top_srcdir)/cert/apiclient_key.pem \
 	$(top_srcdir)/cert/apiclient_cert.p12

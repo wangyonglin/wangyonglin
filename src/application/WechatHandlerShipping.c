@@ -19,7 +19,7 @@ Boolean WechatHandlerShippingBody(Stringex *body, ServerResponse *response, Stri
     cJSON *total = NULL;
     cJSON *description = NULL;
     cJSON *device_id = NULL;
-    Stringex id = Stringex_NULL;
+    Stringex id = Stringex_null;
 
     cJSON *tojsonBody = cJSON_Parse(response->body.valuestring);
     if (tojsonBody)
@@ -100,9 +100,9 @@ Boolean WechatHandlerShippingResult(
 
     if ((parse = cJSON_Parse(jsonback)))
     {
-        Stringex paySign = Stringex_NULL;
-        Stringex timeStamp = Stringex_NULL;
-        Stringex nonceStr = Stringex_NULL;
+        Stringex paySign = Stringex_null;
+        Stringex timeStamp = Stringex_null;
+        Stringex nonceStr = Stringex_null;
 
         StringexNonce(&nonceStr, 32);
         StringexTimeUTC(&timeStamp);
@@ -110,9 +110,9 @@ Boolean WechatHandlerShippingResult(
         cJSON *prepay_id = cJSON_GetObjectItemCaseSensitive(parse, "prepay_id");
         if (cJSON_IsString(prepay_id) && (prepay_id->valuestring != NULL))
         {
-           // printf("Checking monitor \"%s\"\n", prepay_id->valuestring);
             char prepay_idString[64] = {0};
-
+            strcat(prepay_idString,"prepay_id=");
+            strcat(prepay_idString,prepay_id->valuestring);
             char plainText[512] = {0};
             strcat(plainText, appid.valuestring);
             strcat(plainText, "\n");
@@ -169,8 +169,8 @@ void WechatHandlerShipping(struct evhttp_request *request, void *arg)
     Stringex apiclient_key = ((HTTPDServer *)arg)->wConfig->apiclient_key;
     Stringex serial_no = ((HTTPDServer *)arg)->wConfig->serial_no;
     zlog_category_t *log =((HTTPDServer *)arg)->log;
-    Stringex body = Stringex_NULL;
-    Stringex auth = Stringex_NULL;
+    Stringex body = Stringex_null;
+    Stringex auth = Stringex_null;
     ServerResponse *response;
     ServerResponseCreate(&response,log, request, arg);
 

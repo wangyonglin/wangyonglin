@@ -10,8 +10,7 @@
 #include <event2/util.h>
 #include <unistd.h>
 #include <cJSON.h>
-#include <wangyonglin/wangyonglin.h>
-#include <wangyonglin/message.h>
+
 #include <HTTPDServer.h>
 #include <string_by_this.h>
 #include <AliyunConfig.h>

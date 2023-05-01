@@ -5,4 +5,4 @@ libcJSON_la_SOURCES=     \
      cJSON.c \
      cJSON_Utils.c \
      cJSON_Response.c
-include_HEADERS =  $(top_srcdir)/src/cJSON/include/*.h
+EXTRA_DIST =  $(top_srcdir)/src/cJSON/include/*

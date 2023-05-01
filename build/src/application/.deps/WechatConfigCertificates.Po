@@ -101,10 +101,11 @@ WechatConfigCertificates.o: \
  ../../../src/application/include/WechatHttps.h \
  ../../../src/string/include/string_by_this.h \
  ../../../src/application/include/WechatConfig.h \
- ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
- ../../../src/wangyonglin/include/wangyonglin/package.h \
- /usr/include/signal.h /usr/include/bits/signum.h \
- /usr/include/bits/signum-generic.h \
+ ../../../src/wangyonglin/include/MainConfig.h \
+ ../../../src/wangyonglin/include/MainPackage.h /usr/include/fcntl.h \
+ /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
+ /usr/include/bits/stat.h /usr/include/signal.h \
+ /usr/include/bits/signum.h /usr/include/bits/signum-generic.h \
  /usr/include/bits/types/sig_atomic_t.h \
  /usr/include/bits/types/siginfo_t.h /usr/include/bits/types/__sigval_t.h \
  /usr/include/bits/siginfo-arch.h /usr/include/bits/siginfo-consts.h \
@@ -113,9 +114,7 @@ WechatConfigCertificates.o: \
  /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
- /usr/include/bits/sigthread.h /usr/include/fcntl.h \
- /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
- /usr/include/bits/stat.h /usr/include/getopt.h \
+ /usr/include/bits/sigthread.h /usr/include/getopt.h \
  /usr/include/bits/getopt_ext.h /usr/include/ctype.h \
  /usr/include/sys/stat.h /usr/include/openssl/x509v3.h \
  /usr/include/openssl/conf.h /usr/include/openssl/conferr.h \
@@ -127,19 +126,15 @@ WechatConfigCertificates.o: \
  /usr/include/openssl/ssl2.h /usr/include/openssl/ssl3.h \
  /usr/include/openssl/tls1.h /usr/include/openssl/dtls1.h \
  /usr/include/openssl/srtp.h ../../config.h \
- ../../../src/wangyonglin/include/wangyonglin/pool.h \
- ../../../src/wangyonglin/include/wangyonglin/options.h \
- ../../../src/wangyonglin/include/wangyonglin/lock.h \
+ ../../../src/wangyonglin/include/MainOption.h \
+ ../../../src/wangyonglin/include/MainLock.h \
  ../../../src/zlog/include/zlog/zlog.h \
- ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
- ../../../src/wangyonglin/include/wangyonglin/message.h \
- /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
- /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
- /usr/include/malloc.h ../../../src/string/include/string_by_inject.h \
- /usr/include/curl/curl.h /usr/include/curl/curlver.h \
- /usr/include/curl/system.h /usr/include/curl/easy.h \
- /usr/include/curl/multi.h /usr/include/curl/curl.h \
- /usr/include/curl/urlapi.h /usr/include/curl/typecheck-gcc.h \
+ ../../../src/wangyonglin/include/MainDaemonize.h \
+ ../../../src/string/include/MemoryInject.h /usr/include/curl/curl.h \
+ /usr/include/curl/curlver.h /usr/include/curl/system.h \
+ /usr/include/curl/easy.h /usr/include/curl/multi.h \
+ /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
+ /usr/include/curl/typecheck-gcc.h \
  ../../../src/https/include/HTTPSUtils.h \
  ../../../src/string/include/StringexSha256WithRsa.h \
  ../../../src/application/include/WechatConfigAuthorization.h
@@ -506,9 +501,17 @@ WechatConfigCertificates.o: \
 
 ../../../src/application/include/WechatConfig.h:
 
-../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
+../../../src/wangyonglin/include/MainConfig.h:
 
-../../../src/wangyonglin/include/wangyonglin/package.h:
+../../../src/wangyonglin/include/MainPackage.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/bits/fcntl.h:
+
+/usr/include/bits/fcntl-linux.h:
+
+/usr/include/bits/stat.h:
 
 /usr/include/signal.h:
 
@@ -547,14 +550,6 @@ WechatConfigCertificates.o: \
 /usr/include/bits/types/struct_sigstack.h:
 
 /usr/include/bits/sigthread.h:
-
-/usr/include/fcntl.h:
-
-/usr/include/bits/fcntl.h:
-
-/usr/include/bits/fcntl-linux.h:
-
-/usr/include/bits/stat.h:
 
 /usr/include/getopt.h:
 
@@ -602,31 +597,15 @@ WechatConfigCertificates.o: \
 
 ../../config.h:
 
-../../../src/wangyonglin/include/wangyonglin/pool.h:
+../../../src/wangyonglin/include/MainOption.h:
 
-../../../src/wangyonglin/include/wangyonglin/options.h:
-
-../../../src/wangyonglin/include/wangyonglin/lock.h:
+../../../src/wangyonglin/include/MainLock.h:
 
 ../../../src/zlog/include/zlog/zlog.h:
 
-../../../src/wangyonglin/include/wangyonglin/daemonize.h:
+../../../src/wangyonglin/include/MainDaemonize.h:
 
-../../../src/wangyonglin/include/wangyonglin/message.h:
-
-/usr/include/sys/ipc.h:
-
-/usr/include/bits/ipctypes.h:
-
-/usr/include/bits/ipc.h:
-
-/usr/include/sys/msg.h:
-
-/usr/include/bits/msq.h:
-
-/usr/include/malloc.h:
-
-../../../src/string/include/string_by_inject.h:
+../../../src/string/include/MemoryInject.h:
 
 /usr/include/curl/curl.h:
 

@@ -6,7 +6,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <wangyonglin/list.h>
+#include <ArrayList.h>
 #include <curl/curl.h>
 
 
@@ -28,7 +28,7 @@ typedef struct _aliutils_apis_t
     long maxInflight;
 } aliutils_apis_t;
 
-char *aliutls_urlstring(char **outputString, size_t outputStringMax, list_t list[]);
+
 int aliurls_base64(char **restypes, const int resmax, const char *strtypes, char *AccessKeySecret);
 char *percentEncode(char **dataOut, char *dataText, size_t dataSize);
 
@@ -41,8 +41,8 @@ char *TopicFullNameFormat(char **outstring, char *ProductKey, char *DeviceName, 
 
 // char * SignatureNonceFormat(char **outstring);
 char *ContentBase64(char **outstring, char *MessageContentText, size_t MessageContentSize);
-char *SignatureFormat(char **Signature, struct _list_t lists[], size_t count, char *AccessKeySecret);
-char *URLFormat(char **formerString, list_t lists[], size_t count, char *SignatureString);
+char *SignatureFormat(char **Signature, ArrayList lists[], size_t count, char *AccessKeySecret);
+char *URLFormat(char **formerString, ArrayList lists[], size_t count, char *SignatureString);
 
 
 #endif

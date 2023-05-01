@@ -8,6 +8,14 @@
 #include <sys/time.h>
 #include <stdarg.h>
 #include <Unix_timestamp_converter.h>
+typedef enum ObjectType_e
+{
+    OBJECT_TYPE_INVALID,
+    OBJECT_TYPE_STRING,
+    OBJECT_TYPE_INTEGER,
+    OBJECT_TYPE_BOOLEAN
+} ObjectType,
+    ObjectType_t;
 
 #ifndef INTERNAL_HOOKS_THIS
 #define INTERNAL_HOOKS_THIS
@@ -20,20 +28,25 @@ typedef struct internal_hooks
 } internal_hooks;
 static internal_hooks global_hooks = {malloc, free, realloc};
 #endif
-#define stringex_null_command { 0, NULL}
+#define stringex_null_command \
+    {                         \
+        0, NULL               \
+    }
 
 typedef long Boolean;
 typedef long Integer;
 typedef struct _Stringex_t Stringex;
-#define Stringex_NULL (Stringex){ 0, NULL}
+#define Stringex_null \
+    (Stringex) { 0, NULL }
 #define Boolean_true ((Boolean)1)
 #define Boolean_false ((Boolean)0)
-
+#define Boolean_invalid ((Boolean)-1)
 typedef struct _Stringex_t
 {
     size_t valuelength;
     char *valuestring;
 } *pStringex;
+
 
 void *ObjectCreate(void **deststring, size_t destlength);
 void ObjectDelete(void *deststring);

@@ -9,4 +9,4 @@ libSnowFlake_la_SOURCES=\
         SnowFlake.c  \
         SnowWorkerM1.c  \
         SnowWorkerM2.c
-include_HEADERS =  $(top_srcdir)/src/SnowFlake/include/*.h
+EXTRA_DIST =  $(top_srcdir)/src/SnowFlake/include/*

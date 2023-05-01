@@ -2,7 +2,7 @@
 
 #include <URL.h>
 #include <HMAC_SHA1.h>
-#include <wangyonglin/list.h>
+#include <ArrayList.h>
 
 #include <SnowFlake.h>
 #include <base64.h>
@@ -57,20 +57,20 @@ char *TopicFullNameFormat(char **outstring, char *ProductKey, char *DeviceName, 
 //     return (*outstring);
 // }
 
-char *SignatureFormat(char **Signature, struct _list_t lists[], size_t count, char *AccessKeySecret)
+char *SignatureFormat(char **Signature, ArrayList arrayList[], size_t count, char *AccessKeySecret)
 {
     size_t i = 0;
 
     char tmpstring[1024];
     memset(tmpstring, 0x00, sizeof(1024));
     strcat(tmpstring, "GET&%2F&");
-    while (lists[i].keystring)
+    while (arrayList[i].keystring)
     {
-        if (lists[i].valtype == STRING)
+        if (arrayList[i].valtype == OBJECT_TYPE_STRING)
         {
-            strcat(tmpstring, lists[i].keystring);
+            strcat(tmpstring, arrayList[i].keystring);
             strcat(tmpstring, "%3D");
-            strcat(tmpstring, lists[i].valstring);
+            strcat(tmpstring, arrayList[i].valstring);
             if (i < count - 1)
                 strcat(tmpstring, "%26");
         }
@@ -96,7 +96,7 @@ char *SignatureFormat(char **Signature, struct _list_t lists[], size_t count, ch
     return *Signature;
 }
 
-char *URLFormat(char **formerString, list_t lists[], size_t count, char *SignatureString)
+char *URLFormat(char **formerString, ArrayList arrayList[], size_t count, char *SignatureString)
 {
     size_t signatureStringLengtg = strlen(SignatureString);
     size_t tempStringLengtg = 0;
@@ -110,13 +110,13 @@ char *URLFormat(char **formerString, list_t lists[], size_t count, char *Signatu
     StringCreate(&tempSignatureString, SignatureString, signatureStringLengtg);
     ReplaceFormat(tempSignatureString, signatureStringLengtg, '+', "%2B");
     size_t i = 0;
-    while (lists[i].keystring)
+    while (arrayList[i].keystring)
     {
-        if (lists[i].valtype == STRING)
+        if (arrayList[i].valtype == OBJECT_TYPE_STRING)
         {
-            strcat(tempString, lists[i].keystring);
+            strcat(tempString, arrayList[i].keystring);
             strcat(tempString, "=");
-            strcat(tempString, lists[i].valstring);
+            strcat(tempString, arrayList[i].valstring);
             strcat(tempString, "&");
         }
         i++;

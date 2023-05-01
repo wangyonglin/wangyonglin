@@ -38,10 +38,13 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
  /usr/include/bits/types/struct_itimerspec.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
  ../../../src/application/include/WechatConfig.h \
- ../../../src/wangyonglin/include/wangyonglin/wangyonglin.h \
- ../../../src/wangyonglin/include/wangyonglin/package.h \
- /usr/include/signal.h /usr/include/bits/signum.h \
- /usr/include/bits/signum-generic.h \
+ ../../../src/string/include/string_by_this.h \
+ ../../../src/cJSON/include/cJSON.h \
+ ../../../src/wangyonglin/include/MainConfig.h \
+ ../../../src/wangyonglin/include/MainPackage.h /usr/include/fcntl.h \
+ /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
+ /usr/include/bits/stat.h /usr/include/signal.h \
+ /usr/include/bits/signum.h /usr/include/bits/signum-generic.h \
  /usr/include/bits/types/sig_atomic_t.h \
  /usr/include/bits/types/siginfo_t.h /usr/include/bits/types/__sigval_t.h \
  /usr/include/bits/siginfo-arch.h /usr/include/bits/siginfo-consts.h \
@@ -53,9 +56,7 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
  /usr/include/bits/sigthread.h /usr/include/unistd.h \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
- /usr/include/bits/getopt_core.h /usr/include/fcntl.h \
- /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
- /usr/include/bits/stat.h /usr/include/getopt.h \
+ /usr/include/bits/getopt_core.h /usr/include/getopt.h \
  /usr/include/bits/getopt_ext.h /usr/include/ctype.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/wchar.h \
@@ -98,17 +99,11 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
  /usr/include/openssl/ssl2.h /usr/include/openssl/ssl3.h \
  /usr/include/openssl/tls1.h /usr/include/openssl/dtls1.h \
  /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h \
- ../../../src/string/include/string_by_this.h \
- ../../../src/wangyonglin/include/wangyonglin/pool.h \
- ../../../src/wangyonglin/include/wangyonglin/options.h \
- ../../../src/wangyonglin/include/wangyonglin/lock.h \
+ ../../../src/wangyonglin/include/MainOption.h \
+ ../../../src/wangyonglin/include/MainLock.h \
  ../../../src/zlog/include/zlog/zlog.h \
- ../../../src/wangyonglin/include/wangyonglin/daemonize.h \
- ../../../src/wangyonglin/include/wangyonglin/message.h \
- /usr/include/sys/ipc.h /usr/include/bits/ipctypes.h \
- /usr/include/bits/ipc.h /usr/include/sys/msg.h /usr/include/bits/msq.h \
- /usr/include/malloc.h ../../../src/string/include/string_by_inject.h \
- ../../../src/cJSON/include/cJSON.h \
+ ../../../src/wangyonglin/include/MainDaemonize.h \
+ ../../../src/string/include/MemoryInject.h \
  ../../../src/application/include/HTTPDServer.h /usr/include/event.h \
  /usr/include/event2/event-config.h /usr/include/event2/event-config-64.h \
  /usr/include/evutil.h /usr/include/event2/util.h \
@@ -136,7 +131,7 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
  /usr/local/include/MQTTProperties.h /usr/local/include/MQTTReasonCodes.h \
  /usr/local/include/MQTTSubscribeOpts.h \
  /usr/local/include/MQTTClientPersistence.h \
- ../../../src/wangyonglin/include/wangyonglin/list.h \
+ ../../../src/string/include/ArrayList.h \
  ../../../src/application/include/AliyunUtils.h /usr/include/curl/curl.h \
  /usr/include/curl/curlver.h /usr/include/curl/system.h \
  /usr/include/curl/easy.h /usr/include/curl/multi.h \
@@ -301,9 +296,21 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
 
 ../../../src/application/include/WechatConfig.h:
 
-../../../src/wangyonglin/include/wangyonglin/wangyonglin.h:
+../../../src/string/include/string_by_this.h:
 
-../../../src/wangyonglin/include/wangyonglin/package.h:
+../../../src/cJSON/include/cJSON.h:
+
+../../../src/wangyonglin/include/MainConfig.h:
+
+../../../src/wangyonglin/include/MainPackage.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/bits/fcntl.h:
+
+/usr/include/bits/fcntl-linux.h:
+
+/usr/include/bits/stat.h:
 
 /usr/include/signal.h:
 
@@ -354,14 +361,6 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
 /usr/include/bits/getopt_posix.h:
 
 /usr/include/bits/getopt_core.h:
-
-/usr/include/fcntl.h:
-
-/usr/include/bits/fcntl.h:
-
-/usr/include/bits/fcntl-linux.h:
-
-/usr/include/bits/stat.h:
 
 /usr/include/getopt.h:
 
@@ -527,35 +526,15 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
 
 /usr/include/openssl/err.h:
 
-../../../src/string/include/string_by_this.h:
+../../../src/wangyonglin/include/MainOption.h:
 
-../../../src/wangyonglin/include/wangyonglin/pool.h:
-
-../../../src/wangyonglin/include/wangyonglin/options.h:
-
-../../../src/wangyonglin/include/wangyonglin/lock.h:
+../../../src/wangyonglin/include/MainLock.h:
 
 ../../../src/zlog/include/zlog/zlog.h:
 
-../../../src/wangyonglin/include/wangyonglin/daemonize.h:
+../../../src/wangyonglin/include/MainDaemonize.h:
 
-../../../src/wangyonglin/include/wangyonglin/message.h:
-
-/usr/include/sys/ipc.h:
-
-/usr/include/bits/ipctypes.h:
-
-/usr/include/bits/ipc.h:
-
-/usr/include/sys/msg.h:
-
-/usr/include/bits/msq.h:
-
-/usr/include/malloc.h:
-
-../../../src/string/include/string_by_inject.h:
-
-../../../src/cJSON/include/cJSON.h:
+../../../src/string/include/MemoryInject.h:
 
 ../../../src/application/include/HTTPDServer.h:
 
@@ -649,7 +628,7 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
 
 /usr/local/include/MQTTClientPersistence.h:
 
-../../../src/wangyonglin/include/wangyonglin/list.h:
+../../../src/string/include/ArrayList.h:
 
 ../../../src/application/include/AliyunUtils.h:
 

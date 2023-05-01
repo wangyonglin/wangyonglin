@@ -12,4 +12,4 @@ libopenssl_la_SOURCES=\
     aes_256_gcm.c
 
 
-include_HEADERS =  $(top_srcdir)/src/openssl/include/*.h
+EXTRA_DIST =  $(top_srcdir)/src/openssl/include/*

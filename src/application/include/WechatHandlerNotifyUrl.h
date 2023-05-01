@@ -1,6 +1,6 @@
 #if !defined(INCLUDE_WECHATHANDLERNOTIFYURL_H)
 #define INCLUDE_WECHATHANDLERNOTIFYURL_H
-#include<wangyonglin/wangyonglin.h>
+
 #include <string_by_this.h>
 #include <cJSON.h>
 #include <HTTPDResult.h>

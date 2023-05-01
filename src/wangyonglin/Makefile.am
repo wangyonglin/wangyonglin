@@ -5,15 +5,13 @@ AM_CPPFLAGS=-I $(top_srcdir)/src/wangyonglin/include/ \
             -I $(top_srcdir)/src/zlog/include/ \
             -I $(top_srcdir)/src/SnowFlake/include/
 libwangyonglin_la_SOURCES=   \
-    wangyonglin.c \
+    MainConfig.c \
     pool.c  \
-    daemonize.c    \
-    lock.c   \
-    options.c  \
+    MainDaemonize.c    \
+    MainLock.c   \
+    MainOption.c  \
     message.c   \
-    list.c \
-    package.c
-
+    MainFile.c
 #需要引用的动态库文件
-include_HEADERS =  $(top_srcdir)/src/wangyonglin/include/wangyonglin/*.h
+EXTRA_DIST =  $(top_srcdir)/src/wangyonglin/include/*
 LIBS +=  -g -O0 -lm

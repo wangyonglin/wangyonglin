@@ -1,9 +1,7 @@
 #if !defined(INCLUDE_APPLICATION_ALIYUNHTTPSH)
 #define INCLUDE_APPLICATION_ALIYUNHTTPSH
 
-#include <wangyonglin/package.h>
-#include <wangyonglin/wangyonglin.h>
-#include <string_by_this.h>
+#include <Stringex.h>
 #include <curl/curl.h>
 
 typedef struct _AliyunHttpsCallback

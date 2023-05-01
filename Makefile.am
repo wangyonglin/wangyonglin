@@ -1,4 +1,5 @@
 SUBDIRS =\
+    src/cronolog    \
     src/zlog \
     src/wangyonglin   \
     src/openssl    \
@@ -17,8 +18,8 @@ datadir=    $(prefix)/share
 sysconfdir= $(prefix)/etc
 logdir =    $(prefix)/log
 confdir =   $(prefix)/conf
-conf_DATA = $(top_srcdir)/conf/wangyonglin.conf \
-            $(top_srcdir)/conf/zlog.conf
+conf_DATA = $(top_srcdir)/conf/wangyonglin.conf
+
 
 certdir = $(prefix)/cert
 cert_DATA = $(top_srcdir)/cert/apiclient_cert.pem   \
@@ -27,8 +28,6 @@ cert_DATA = $(top_srcdir)/cert/apiclient_cert.pem   \
 
 EXTRA_DIST  = README.md
 EXTRA_DIST += $(top_srcdir)/conf/wangyonglin.conf
-EXTRA_DIST += $(top_srcdir)/conf/zlog.conf
-
 EXTRA_DIST += $(top_srcdir)/cert/apiclient_cert.pem
 EXTRA_DIST += $(top_srcdir)/cert/apiclient_key.pem
 EXTRA_DIST += $(top_srcdir)/cert/apiclient_cert.p12
