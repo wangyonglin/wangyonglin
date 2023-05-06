@@ -11,12 +11,12 @@
 
 #include <AliyunConfig.h>
 #include <https_get.h>
-#include <string_by_timestamp.h>
+
 #include <AliyunHttps.h>
-#include <string_by_id.h>
+
 #include <StringexBase64.h>
 // // // 通过自定义Topic向指定设备发布消息
-boolean_by_t HTTPSAliyunPub(cJSON **RetCallback, AliyunConfig *aliConfig, cJSON *DeviceName, cJSON *MessageContentText)
+Boolean HTTPSAliyunPub(cJSON **RetCallback, AliyunConfig *aliConfig, cJSON *DeviceName, cJSON *MessageContentText)
 {
     if (aliConfig && DeviceName && MessageContentText)
     {
@@ -69,17 +69,17 @@ boolean_by_t HTTPSAliyunPub(cJSON **RetCallback, AliyunConfig *aliConfig, cJSON 
             global_hooks.deallocate(tmpTopicFullName);
         }
     }
-    return negative;
+    return Boolean_true;
 }
 
 // 通过自定义Topic向指定设备发布消息
-boolean_by_t HTTPSAliyunRegisterDevice(cJSON **RetCallback, AliyunConfig *aliConfig, char *DeviceName)
+Boolean HTTPSAliyunRegisterDevice(cJSON **RetCallback, AliyunConfig *aliConfig, char *DeviceName)
 {
-    string_by_t utcTimestamp = string_null_command;
-    string_by_utc(&utcTimestamp);
+    Stringex utcStr = Stringex_null;
+    Stringex nonceStr = Stringex_null;
 
-    string_by_t SignatureNonce = string_null_command;
-    string_by_id(&SignatureNonce);
+    StringexTimeUTC(&utcStr);
+    StringexNonce(&nonceStr, 32);
 
     ArrayList arrayList[] = {
         ARRAYLIST_STRING_COMMAND("Action", "RegisterDevice"),
@@ -89,9 +89,9 @@ boolean_by_t HTTPSAliyunRegisterDevice(cJSON **RetCallback, AliyunConfig *aliCon
         ARRAYLIST_STRING_COMMAND("Version", aliConfig->Version.valuestring),
         ARRAYLIST_STRING_COMMAND("AccessKeyId", aliConfig->AccessKeyId.valuestring),
         ARRAYLIST_STRING_COMMAND("SignatureMethod", aliConfig->SignatureMethod.valuestring),
-        ARRAYLIST_STRING_COMMAND("Timestamp", utcTimestamp.valuestring),
+        ARRAYLIST_STRING_COMMAND("Timestamp", utcStr.valuestring),
         ARRAYLIST_STRING_COMMAND("SignatureVersion", aliConfig->SignatureVersion.valuestring),
-        ARRAYLIST_STRING_COMMAND("SignatureNonce", SignatureNonce.valuestring),
+        ARRAYLIST_STRING_COMMAND("SignatureNonce", nonceStr.valuestring),
         ARRAYLIST_STRING_COMMAND("RegionId", aliConfig->RegionId.valuestring)};
     ArrayListSort(arrayList, ArrayListCount(arrayList));
     char *SignatureString;
@@ -108,21 +108,21 @@ boolean_by_t HTTPSAliyunRegisterDevice(cJSON **RetCallback, AliyunConfig *aliCon
 
     global_hooks.deallocate(tmpUrlString);
     global_hooks.deallocate(SignatureString);
-    string_delete(utcTimestamp);
-    string_delete(SignatureNonce);
-    return negative;
+    StringexDelete(utcStr);
+    StringexDelete(nonceStr);
+    return Boolean_true;
 }
 
-boolean_by_t HTTPSAliyunGetDeviceStatus(cJSON **RetCallback, AliyunConfig *aliConfig, char *DeviceName)
+Boolean HTTPSAliyunGetDeviceStatus(cJSON **RetCallback, AliyunConfig *aliConfig, char *DeviceName)
 {
 
-    https_result *result;
-    https_result_create(&result);
-    string_by_t utcTimestamp = string_null_command;
-    string_by_utc(&utcTimestamp);
-    string_by_t SignatureNonce = string_null_command;
-    string_by_id(&SignatureNonce);
-      ArrayList arrayList[] = {
+    Stringex utcStr = Stringex_null;
+    Stringex nonceStr = Stringex_null;
+
+    StringexTimeUTC(&utcStr);
+    StringexNonce(&nonceStr, 32);
+
+    ArrayList arrayList[] = {
         ARRAYLIST_STRING_COMMAND("Action", "GetDeviceStatus"),
         ARRAYLIST_STRING_COMMAND("ProductKey", aliConfig->ProductKey.valuestring),
         ARRAYLIST_STRING_COMMAND("DeviceName", DeviceName),
@@ -130,9 +130,9 @@ boolean_by_t HTTPSAliyunGetDeviceStatus(cJSON **RetCallback, AliyunConfig *aliCo
         ARRAYLIST_STRING_COMMAND("Version", aliConfig->Version.valuestring),
         ARRAYLIST_STRING_COMMAND("AccessKeyId", aliConfig->AccessKeyId.valuestring),
         ARRAYLIST_STRING_COMMAND("SignatureMethod", aliConfig->SignatureMethod.valuestring),
-        ARRAYLIST_STRING_COMMAND("Timestamp", utcTimestamp.valuestring),
+        ARRAYLIST_STRING_COMMAND("Timestamp", utcStr.valuestring),
         ARRAYLIST_STRING_COMMAND("SignatureVersion", aliConfig->SignatureVersion.valuestring),
-        ARRAYLIST_STRING_COMMAND("SignatureNonce", SignatureNonce.valuestring),
+        ARRAYLIST_STRING_COMMAND("SignatureNonce", nonceStr.valuestring),
         ARRAYLIST_STRING_COMMAND("RegionId", aliConfig->RegionId.valuestring)};
     ArrayListSort(arrayList, ArrayListCount(arrayList));
     char *SignatureString;
@@ -141,16 +141,15 @@ boolean_by_t HTTPSAliyunGetDeviceStatus(cJSON **RetCallback, AliyunConfig *aliCo
     URLFormat(&tmpUrlString, arrayList, ArrayListCount(arrayList), SignatureString);
     AliyunHttpsCallback callback;
     AliyunHttpsGET(tmpUrlString, &callback);
-    if (result)
+    if (callback.memory)
     {
         *RetCallback = cJSON_Parse(callback.memory);
         global_hooks.deallocate(callback.memory);
     }
-    https_result_delete(result);
+
     global_hooks.deallocate(tmpUrlString);
     global_hooks.deallocate(SignatureString);
-
-    string_delete(utcTimestamp);
-    string_delete(SignatureNonce);
-    return negative;
+    StringexDelete(utcStr);
+    StringexDelete(nonceStr);
+    return Boolean_true;
 }

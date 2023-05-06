@@ -2,7 +2,7 @@
 #define INCLUDE_WANGYONGLIN_POOL_H
 
 #include <MainPackage.h>
-#include <string_by_this.h>
+
 
 /*************************************
 实现内存池的逻辑：

@@ -9,11 +9,11 @@
     }
 #define ARRAYLIST_STRING_COMMAND(keystring, valstring) \
     {                                                  \
-        keystring, valstring, 0, STRING                \
+        keystring, valstring, 0, OBJECT_TYPE_STRING                \
     }
 #define ARRAYLIST_INTEGER_COMMAND(keystring, valinteger) \
     {                                                    \
-        keystring, NULL, valinteger, INTEGER             \
+        keystring, NULL, valinteger, OBJECT_TYPE_INTEGER             \
     }
 #define ArrayListCount(lists) sizeof(lists) / sizeof(lists[0])
 

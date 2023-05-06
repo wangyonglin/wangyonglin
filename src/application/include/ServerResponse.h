@@ -11,11 +11,11 @@
 #include <unistd.h>
 #include <cJSON.h>
 
-#include <HTTPDServer.h>
-#include <string_by_this.h>
+#include <WebServer.h>
+
 #include <AliyunConfig.h>
 #include <HTTPDResultCode.h>
-#include <ResultUtil.h>
+
 #include <Stringex.h>
 #include <zlog/zlog.h>
 
@@ -23,7 +23,7 @@ typedef struct _ServerResponse_t
 {
     struct evhttp_request *request;
     struct evkeyvalq params;
-    HTTPDServer *httpd;
+    WebServer *webServer;
     AliyunConfig *aliConfig;
     void *args;
     Stringex body;
@@ -35,8 +35,7 @@ void ServerResponseDelete(ServerResponse *response);
 Boolean ServerResponseBySuccessfly(ServerResponse *response, cJSON *responseBody);
 Boolean ServerResponseByErrorMessage(ServerResponse *response, Integer responseCode, char *responseMessage);
 
-void ServerResponseStringComplete(ServerResponse *response, int code, char *jsonstring);
-void ServerResponseResultUtilComplete(ServerResponse *response, ResultUtil *ResUtil);
+
 Boolean ServerResponseQuery(Stringex *retvalue, ServerResponse *response, const char *query_char);
 Boolean ServerResponseHeadersValue(Stringex *retvalue, ServerResponse *response, const char *query_char);
 #endif

@@ -13,7 +13,7 @@
 typedef struct MainConfig_s
 {
     MainOption *mainOption;
-    MemoryInject *memoryInject;
+    InjectObject *injectObject;
     MainLock *mainLock;
     zlog_category_t *log;
     Boolean display_errors;

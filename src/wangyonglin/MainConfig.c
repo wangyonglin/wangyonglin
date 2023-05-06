@@ -4,7 +4,7 @@
 #include <curl/curl.h>
 
 MainConfig *mainConfig = NULL;
-
+zlog_category_t *log = NULL;
 void sigintHandler(int signal)
 {
     switch (signal)
@@ -57,17 +57,17 @@ Boolean MainConfigCreate(MainConfig **mainConfig, int argc, char *argv[])
         {
             daemonize();
         }
-        if (!MemoryInjectCreate(&(*mainConfig)->memoryInject, (*mainConfig)->mainOption->confFilename))
+        if (!InjectObjectCreate(&(*mainConfig)->injectObject, (*mainConfig)->mainOption->confFilename))
         {
             fprintf(stderr, "MemoryInjectCreate  failed\n");
             return err;
         }
         // 注册配置文件的display_errors 值到MainConfig对象里
-        MemoryInject_Command mainConfigCommands[] = {
-            MEMORYINJECT_BOOLEAN_COMMAND("display_errors", offsetof(MainConfig, display_errors)),
-            MEMORYINJECT_STRING_COMMAND("zlog_info", offsetof(MainConfig, zlog_info)),
-            MEMORYINJECT_STRING_COMMAND("zlog_error", offsetof(MainConfig, zlog_error))};
-        MemoryInjectInster((*mainConfig)->memoryInject, mainConfigCommands, (*mainConfig), "global");
+        InjectCommand injectCommand[] = {
+            INJECT_COMMAND_BOOLEAN("display_errors", offsetof(MainConfig, display_errors)),
+            INJECT_COMMAND_STRING("zlog_info", offsetof(MainConfig, zlog_info)),
+            INJECT_COMMAND_STRING("zlog_error", offsetof(MainConfig, zlog_error))};
+        InjectCommandInit((*mainConfig)->injectObject, injectCommand, (*mainConfig), "global");
         // 初始化 zlog_init 字符串值
         char zlog_init_values[512] = {0};
         strcat(zlog_init_values, "[global]\n");
@@ -113,7 +113,8 @@ Boolean MainConfigCreate(MainConfig **mainConfig, int argc, char *argv[])
             zlog_fini();
             return err;
         }
-
+        InjectObjectLogger((*mainConfig)->injectObject, (*mainConfig)->log);
+        log=(*mainConfig)->log;
         if (!MainLockCreate(&(*mainConfig)->mainLock))
         {
 

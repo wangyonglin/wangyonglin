@@ -79,11 +79,11 @@ void WechatHandlerNotifyUrl(
 {
     Boolean err = Boolean_false;
 
-    Stringex apiv3_key = ((HTTPDServer *)arg)->wConfig->apiv3_key;
-    Stringex apiclient_key = ((HTTPDServer *)arg)->wConfig->apiclient_key;
-    Stringex apiclient_cert = ((HTTPDServer *)arg)->wConfig->apiclient_cert;
-    Stringex certificates = ((HTTPDServer *)arg)->configCertificates.certificates;
-    zlog_category_t *log = ((HTTPDServer *)arg)->log;
+    Stringex apiv3_key = ((WebServer *)arg)->wConfig->apiv3_key;
+    Stringex apiclient_key = ((WebServer *)arg)->wConfig->apiclient_key;
+    Stringex apiclient_cert = ((WebServer *)arg)->wConfig->apiclient_cert;
+    Stringex certificates = ((WebServer *)arg)->configCertificates.certificates;
+    zlog_category_t *log = ((WebServer *)arg)->log;
     ServerResponse *response;
     ServerResponseCreate(&response, log, request, arg);
 

@@ -8,9 +8,16 @@
 #include <sys/time.h>
 #include <stdarg.h>
 #include <Unix_timestamp_converter.h>
+#include <openssl/bio.h>
+#include <openssl/buffer.h>
+#include <openssl/bio.h>
+#include <openssl/err.h>
+
 typedef enum ObjectType_e
 {
     OBJECT_TYPE_INVALID,
+    OBJECT_TYPE_NULL,
+    OBJECT_TYPE_FILE,
     OBJECT_TYPE_STRING,
     OBJECT_TYPE_INTEGER,
     OBJECT_TYPE_BOOLEAN
@@ -36,6 +43,7 @@ static internal_hooks global_hooks = {malloc, free, realloc};
 typedef long Boolean;
 typedef long Integer;
 typedef struct _Stringex_t Stringex;
+
 #define Stringex_null \
     (Stringex) { 0, NULL }
 #define Boolean_true ((Boolean)1)
@@ -46,7 +54,6 @@ typedef struct _Stringex_t
     size_t valuelength;
     char *valuestring;
 } *pStringex;
-
 
 void *ObjectCreate(void **deststring, size_t destlength);
 void ObjectDelete(void *deststring);
@@ -105,4 +112,5 @@ Boolean StringexId(Stringex *id);
 Boolean StringexNonce(Stringex *noce, size_t bits);
 Boolean StringexTimeUTC(Stringex *utc);
 Boolean StringexTimestamp(Stringex *timestamp);
+
 #endif

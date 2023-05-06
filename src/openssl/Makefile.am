@@ -5,7 +5,6 @@ AM_CPPFLAGS=    -I $(top_srcdir)/src/openssl/include/ \
                 -I $(top_srcdir)/src/string/include/
 lib_LTLIBRARIES=libopenssl.la
 libopenssl_la_SOURCES=\
-    SHA256WithRSA.c \
     HMAC_SHA1.c \
     base64.c    \
     URL.c   \

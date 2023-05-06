@@ -8,7 +8,7 @@
 #include <event2/http_compat.h>
 #include <event2/util.h>
 #include <unistd.h>
-#include <string_by_this.h>
+
 #define JSON_TYPE_RF433 "6B962DAC-3AB5-54A8-A197-A12E56FFEF8C"
 
 

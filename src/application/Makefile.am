@@ -16,19 +16,21 @@ wangyonglin_SOURCES=\
     AliyunHandler.c    \
     AliyunUtils.c \
     AliyunConfig.c \
-    HTTPDServer.c \
+    WebServer.c \
     HTTPDHandler.c \
-    HTTPDResult.c \
     WechatHttps.c \
     WechatConfig.c \
     AliyunHttps.c \
-    ResultUtil.c \
     WechatHandler.c \
     ServerResponse.c \
     WechatConfigCertificates.c \
     WechatHandlerShipping.c \
     WechatConfigAuthorization.c \
-    WechatHandlerNotifyUrl.c
+    WechatHandlerNotifyUrl.c    \
+    TiktokConfig.c              \
+    TiktokSignature.c   \
+    TiktokHandlerAccessToken.c   \
+    TiktokHandlerTast.c
 wangyonglin_LDADD=\
     $(top_builddir)/src/zlog/libzlog.la \
     $(top_builddir)/src/SnowFlake/libSnowFlake.la \

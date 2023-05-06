@@ -37,8 +37,27 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
  /usr/include/bits/types/struct_tm.h \
  /usr/include/bits/types/struct_itimerspec.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
+ /usr/include/openssl/bio.h /usr/include/openssl/e_os2.h \
+ /usr/include/openssl/opensslconf.h \
+ /usr/include/openssl/opensslconf-x86_64.h \
+ /usr/include/openssl/opensslv.h /usr/include/inttypes.h \
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/wchar.h \
+ /usr/include/bits/stdint-uintn.h /usr/include/openssl/crypto.h \
+ /usr/include/openssl/safestack.h /usr/include/openssl/stack.h \
+ /usr/include/openssl/ossl_typ.h \
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/limits.h \
+ /usr/lib/gcc/x86_64-redhat-linux/8/include/syslimits.h \
+ /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+ /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/bits/posix2_lim.h /usr/include/openssl/cryptoerr.h \
+ /usr/include/openssl/symhacks.h /usr/include/pthread.h \
+ /usr/include/sched.h /usr/include/bits/sched.h \
+ /usr/include/bits/types/struct_sched_param.h /usr/include/bits/cpu-set.h \
+ /usr/include/bits/setjmp.h /usr/include/openssl/bioerr.h \
+ /usr/include/openssl/buffer.h /usr/include/openssl/buffererr.h \
+ /usr/include/openssl/err.h /usr/include/openssl/lhash.h \
  ../../../src/application/include/WechatConfig.h \
- ../../../src/string/include/string_by_this.h \
  ../../../src/cJSON/include/cJSON.h \
  ../../../src/wangyonglin/include/MainConfig.h \
  ../../../src/wangyonglin/include/MainPackage.h /usr/include/fcntl.h \
@@ -58,26 +77,8 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
  /usr/include/bits/getopt_core.h /usr/include/getopt.h \
  /usr/include/bits/getopt_ext.h /usr/include/ctype.h \
- /usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h \
- /usr/include/stdint.h /usr/include/bits/wchar.h \
- /usr/include/bits/stdint-uintn.h /usr/include/sys/stat.h \
- /usr/include/openssl/x509v3.h /usr/include/openssl/bio.h \
- /usr/include/openssl/e_os2.h /usr/include/openssl/opensslconf.h \
- /usr/include/openssl/opensslconf-x86_64.h \
- /usr/include/openssl/opensslv.h /usr/include/inttypes.h \
- /usr/include/openssl/crypto.h /usr/include/openssl/safestack.h \
- /usr/include/openssl/stack.h /usr/include/openssl/ossl_typ.h \
- /usr/lib/gcc/x86_64-redhat-linux/8/include/limits.h \
- /usr/lib/gcc/x86_64-redhat-linux/8/include/syslimits.h \
- /usr/include/limits.h /usr/include/bits/posix1_lim.h \
- /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
- /usr/include/bits/posix2_lim.h /usr/include/openssl/cryptoerr.h \
- /usr/include/openssl/symhacks.h /usr/include/pthread.h \
- /usr/include/sched.h /usr/include/bits/sched.h \
- /usr/include/bits/types/struct_sched_param.h /usr/include/bits/cpu-set.h \
- /usr/include/bits/setjmp.h /usr/include/openssl/bioerr.h \
- /usr/include/openssl/x509.h /usr/include/openssl/buffer.h \
- /usr/include/openssl/buffererr.h /usr/include/openssl/evp.h \
+ /usr/include/sys/stat.h /usr/include/openssl/x509v3.h \
+ /usr/include/openssl/x509.h /usr/include/openssl/evp.h \
  /usr/include/openssl/evperr.h /usr/include/openssl/objects.h \
  /usr/include/openssl/obj_mac.h /usr/include/openssl/asn1.h \
  /usr/include/openssl/asn1err.h /usr/include/openssl/bn.h \
@@ -87,24 +88,23 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
  /usr/include/openssl/dsa.h /usr/include/openssl/dh.h \
  /usr/include/openssl/dherr.h /usr/include/openssl/dsaerr.h \
  /usr/include/openssl/sha.h /usr/include/openssl/x509err.h \
- /usr/include/openssl/x509_vfy.h /usr/include/openssl/lhash.h \
- /usr/include/openssl/pkcs7.h /usr/include/openssl/pkcs7err.h \
- /usr/include/openssl/conf.h /usr/include/openssl/conferr.h \
- /usr/include/openssl/x509v3err.h /usr/include/openssl/ssl.h \
- /usr/include/openssl/comp.h /usr/include/openssl/comperr.h \
- /usr/include/openssl/pem.h /usr/include/openssl/pemerr.h \
- /usr/include/openssl/hmac.h /usr/include/openssl/async.h \
- /usr/include/openssl/asyncerr.h /usr/include/openssl/ct.h \
- /usr/include/openssl/cterr.h /usr/include/openssl/sslerr.h \
- /usr/include/openssl/ssl2.h /usr/include/openssl/ssl3.h \
- /usr/include/openssl/tls1.h /usr/include/openssl/dtls1.h \
- /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h \
+ /usr/include/openssl/x509_vfy.h /usr/include/openssl/pkcs7.h \
+ /usr/include/openssl/pkcs7err.h /usr/include/openssl/conf.h \
+ /usr/include/openssl/conferr.h /usr/include/openssl/x509v3err.h \
+ /usr/include/openssl/ssl.h /usr/include/openssl/comp.h \
+ /usr/include/openssl/comperr.h /usr/include/openssl/pem.h \
+ /usr/include/openssl/pemerr.h /usr/include/openssl/hmac.h \
+ /usr/include/openssl/async.h /usr/include/openssl/asyncerr.h \
+ /usr/include/openssl/ct.h /usr/include/openssl/cterr.h \
+ /usr/include/openssl/sslerr.h /usr/include/openssl/ssl2.h \
+ /usr/include/openssl/ssl3.h /usr/include/openssl/tls1.h \
+ /usr/include/openssl/dtls1.h /usr/include/openssl/srtp.h ../../config.h \
  ../../../src/wangyonglin/include/MainOption.h \
  ../../../src/wangyonglin/include/MainLock.h \
  ../../../src/zlog/include/zlog/zlog.h \
  ../../../src/wangyonglin/include/MainDaemonize.h \
  ../../../src/string/include/MemoryInject.h \
- ../../../src/application/include/HTTPDServer.h /usr/include/event.h \
+ ../../../src/application/include/WebServer.h /usr/include/event.h \
  /usr/include/event2/event-config.h /usr/include/event2/event-config-64.h \
  /usr/include/evutil.h /usr/include/event2/util.h \
  /usr/include/event2/visibility.h /usr/include/netdb.h \
@@ -138,25 +138,20 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
  /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
  /usr/include/curl/typecheck-gcc.h \
  ../../../src/application/include/AliyunConfig.h \
- ../../../src/application/include/ResultUtil.h \
- ../../../src/string/include/string_by_id.h \
  ../../../src/application/include/WechatConfigCertificates.h \
  ../../../src/openssl/include/aes_256_gcm.h \
  ../../../src/openssl/include/stdssl.h \
  ../../../src/string/include/StringexBase64.h /usr/include/openssl/rand.h \
  /usr/include/openssl/randerr.h \
+ ../../../src/application/include/Tiktok/TiktokConfig.h \
  ../../../src/application/include/ServerResponse.h \
  ../../../src/application/include/HTTPDResultCode.h \
  ../../../src/https/include/HTTPSUtils.h \
  ../../../src/string/include/StringexSha256WithRsa.h \
  ../../../src/application/include/WechatConfigAuthorization.h \
  ../../../src/application/include/WechatHandlerShipping.h \
- ../../../src/application/include/HTTPDResult.h \
- ../../../src/string/include/string_by_hex.h \
- ../../../src/string/include/string_by_timestamp.h \
  ../../../src/application/include/WechatHttps.h \
- ../../../src/openssl/include/base64.h \
- ../../../src/openssl/include/SHA256WithRSA.h
+ ../../../src/openssl/include/base64.h
 
 /usr/include/stdc-predef.h:
 
@@ -294,9 +289,75 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
 
 /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
 
-../../../src/application/include/WechatConfig.h:
+/usr/include/openssl/bio.h:
 
-../../../src/string/include/string_by_this.h:
+/usr/include/openssl/e_os2.h:
+
+/usr/include/openssl/opensslconf.h:
+
+/usr/include/openssl/opensslconf-x86_64.h:
+
+/usr/include/openssl/opensslv.h:
+
+/usr/include/inttypes.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/bits/wchar.h:
+
+/usr/include/bits/stdint-uintn.h:
+
+/usr/include/openssl/crypto.h:
+
+/usr/include/openssl/safestack.h:
+
+/usr/include/openssl/stack.h:
+
+/usr/include/openssl/ossl_typ.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/8/include/limits.h:
+
+/usr/lib/gcc/x86_64-redhat-linux/8/include/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/bits/posix1_lim.h:
+
+/usr/include/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/bits/posix2_lim.h:
+
+/usr/include/openssl/cryptoerr.h:
+
+/usr/include/openssl/symhacks.h:
+
+/usr/include/pthread.h:
+
+/usr/include/sched.h:
+
+/usr/include/bits/sched.h:
+
+/usr/include/bits/types/struct_sched_param.h:
+
+/usr/include/bits/cpu-set.h:
+
+/usr/include/bits/setjmp.h:
+
+/usr/include/openssl/bioerr.h:
+
+/usr/include/openssl/buffer.h:
+
+/usr/include/openssl/buffererr.h:
+
+/usr/include/openssl/err.h:
+
+/usr/include/openssl/lhash.h:
+
+../../../src/application/include/WechatConfig.h:
 
 ../../../src/cJSON/include/cJSON.h:
 
@@ -368,75 +429,11 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
 
 /usr/include/ctype.h:
 
-/usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h:
-
-/usr/include/stdint.h:
-
-/usr/include/bits/wchar.h:
-
-/usr/include/bits/stdint-uintn.h:
-
 /usr/include/sys/stat.h:
 
 /usr/include/openssl/x509v3.h:
 
-/usr/include/openssl/bio.h:
-
-/usr/include/openssl/e_os2.h:
-
-/usr/include/openssl/opensslconf.h:
-
-/usr/include/openssl/opensslconf-x86_64.h:
-
-/usr/include/openssl/opensslv.h:
-
-/usr/include/inttypes.h:
-
-/usr/include/openssl/crypto.h:
-
-/usr/include/openssl/safestack.h:
-
-/usr/include/openssl/stack.h:
-
-/usr/include/openssl/ossl_typ.h:
-
-/usr/lib/gcc/x86_64-redhat-linux/8/include/limits.h:
-
-/usr/lib/gcc/x86_64-redhat-linux/8/include/syslimits.h:
-
-/usr/include/limits.h:
-
-/usr/include/bits/posix1_lim.h:
-
-/usr/include/bits/local_lim.h:
-
-/usr/include/linux/limits.h:
-
-/usr/include/bits/posix2_lim.h:
-
-/usr/include/openssl/cryptoerr.h:
-
-/usr/include/openssl/symhacks.h:
-
-/usr/include/pthread.h:
-
-/usr/include/sched.h:
-
-/usr/include/bits/sched.h:
-
-/usr/include/bits/types/struct_sched_param.h:
-
-/usr/include/bits/cpu-set.h:
-
-/usr/include/bits/setjmp.h:
-
-/usr/include/openssl/bioerr.h:
-
 /usr/include/openssl/x509.h:
-
-/usr/include/openssl/buffer.h:
-
-/usr/include/openssl/buffererr.h:
 
 /usr/include/openssl/evp.h:
 
@@ -477,8 +474,6 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
 /usr/include/openssl/x509err.h:
 
 /usr/include/openssl/x509_vfy.h:
-
-/usr/include/openssl/lhash.h:
 
 /usr/include/openssl/pkcs7.h:
 
@@ -524,8 +519,6 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
 
 ../../config.h:
 
-/usr/include/openssl/err.h:
-
 ../../../src/wangyonglin/include/MainOption.h:
 
 ../../../src/wangyonglin/include/MainLock.h:
@@ -536,7 +529,7 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
 
 ../../../src/string/include/MemoryInject.h:
 
-../../../src/application/include/HTTPDServer.h:
+../../../src/application/include/WebServer.h:
 
 /usr/include/event.h:
 
@@ -650,10 +643,6 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
 
 ../../../src/application/include/AliyunConfig.h:
 
-../../../src/application/include/ResultUtil.h:
-
-../../../src/string/include/string_by_id.h:
-
 ../../../src/application/include/WechatConfigCertificates.h:
 
 ../../../src/openssl/include/aes_256_gcm.h:
@@ -665,6 +654,8 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
 /usr/include/openssl/rand.h:
 
 /usr/include/openssl/randerr.h:
+
+../../../src/application/include/Tiktok/TiktokConfig.h:
 
 ../../../src/application/include/ServerResponse.h:
 
@@ -678,14 +669,6 @@ WechatHandlerShipping.o: ../../../src/application/WechatHandlerShipping.c \
 
 ../../../src/application/include/WechatHandlerShipping.h:
 
-../../../src/application/include/HTTPDResult.h:
-
-../../../src/string/include/string_by_hex.h:
-
-../../../src/string/include/string_by_timestamp.h:
-
 ../../../src/application/include/WechatHttps.h:
 
 ../../../src/openssl/include/base64.h:
-
-../../../src/openssl/include/SHA256WithRSA.h:

@@ -128,8 +128,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libopenssl_la_LIBADD =
-am_libopenssl_la_OBJECTS = SHA256WithRSA.lo HMAC_SHA1.lo base64.lo \
-	URL.lo aes_256_gcm.lo
+am_libopenssl_la_OBJECTS = HMAC_SHA1.lo base64.lo URL.lo \
+	aes_256_gcm.lo
 libopenssl_la_OBJECTS = $(am_libopenssl_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -150,8 +150,7 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/HMAC_SHA1.Plo \
-	./$(DEPDIR)/SHA256WithRSA.Plo ./$(DEPDIR)/URL.Plo \
+am__depfiles_remade = ./$(DEPDIR)/HMAC_SHA1.Plo ./$(DEPDIR)/URL.Plo \
 	./$(DEPDIR)/aes_256_gcm.Plo ./$(DEPDIR)/base64.Plo
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -325,7 +324,6 @@ AM_CPPFLAGS = -I $(top_srcdir)/src/openssl/include/ \
 
 lib_LTLIBRARIES = libopenssl.la
 libopenssl_la_SOURCES = \
-    SHA256WithRSA.c \
     HMAC_SHA1.c \
     base64.c    \
     URL.c   \
@@ -411,7 +409,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/HMAC_SHA1.Plo # am--include-marker
-include ./$(DEPDIR)/SHA256WithRSA.Plo # am--include-marker
 include ./$(DEPDIR)/URL.Plo # am--include-marker
 include ./$(DEPDIR)/aes_256_gcm.Plo # am--include-marker
 include ./$(DEPDIR)/base64.Plo # am--include-marker
@@ -578,7 +575,6 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
 
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/HMAC_SHA1.Plo
-	-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
 	-rm -f ./$(DEPDIR)/URL.Plo
 	-rm -f ./$(DEPDIR)/aes_256_gcm.Plo
 	-rm -f ./$(DEPDIR)/base64.Plo
@@ -628,7 +624,6 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/HMAC_SHA1.Plo
-	-rm -f ./$(DEPDIR)/SHA256WithRSA.Plo
 	-rm -f ./$(DEPDIR)/URL.Plo
 	-rm -f ./$(DEPDIR)/aes_256_gcm.Plo
 	-rm -f ./$(DEPDIR)/base64.Plo

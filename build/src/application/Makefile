@@ -103,14 +103,15 @@ am__installdirs = "$(DESTDIR)$(sbindir)"
 PROGRAMS = $(sbin_PROGRAMS)
 am_wangyonglin_OBJECTS = UserMain.$(OBJEXT) AliyunHandler.$(OBJEXT) \
 	AliyunUtils.$(OBJEXT) AliyunConfig.$(OBJEXT) \
-	HTTPDServer.$(OBJEXT) HTTPDHandler.$(OBJEXT) \
-	HTTPDResult.$(OBJEXT) WechatHttps.$(OBJEXT) \
-	WechatConfig.$(OBJEXT) AliyunHttps.$(OBJEXT) \
-	ResultUtil.$(OBJEXT) WechatHandler.$(OBJEXT) \
+	WebServer.$(OBJEXT) HTTPDHandler.$(OBJEXT) \
+	WechatHttps.$(OBJEXT) WechatConfig.$(OBJEXT) \
+	AliyunHttps.$(OBJEXT) WechatHandler.$(OBJEXT) \
 	ServerResponse.$(OBJEXT) WechatConfigCertificates.$(OBJEXT) \
 	WechatHandlerShipping.$(OBJEXT) \
 	WechatConfigAuthorization.$(OBJEXT) \
-	WechatHandlerNotifyUrl.$(OBJEXT)
+	WechatHandlerNotifyUrl.$(OBJEXT) TiktokConfig.$(OBJEXT) \
+	TiktokSignature.$(OBJEXT) TiktokHandlerAccessToken.$(OBJEXT) \
+	TiktokHandlerTast.$(OBJEXT)
 wangyonglin_OBJECTS = $(am_wangyonglin_OBJECTS)
 wangyonglin_DEPENDENCIES = $(top_builddir)/src/zlog/libzlog.la \
 	$(top_builddir)/src/SnowFlake/libSnowFlake.la \
@@ -141,9 +142,11 @@ am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/AliyunConfig.Po \
 	./$(DEPDIR)/AliyunHandler.Po ./$(DEPDIR)/AliyunHttps.Po \
 	./$(DEPDIR)/AliyunUtils.Po ./$(DEPDIR)/HTTPDHandler.Po \
-	./$(DEPDIR)/HTTPDResult.Po ./$(DEPDIR)/HTTPDServer.Po \
-	./$(DEPDIR)/ResultUtil.Po ./$(DEPDIR)/ServerResponse.Po \
-	./$(DEPDIR)/UserMain.Po ./$(DEPDIR)/WechatConfig.Po \
+	./$(DEPDIR)/ServerResponse.Po ./$(DEPDIR)/TiktokConfig.Po \
+	./$(DEPDIR)/TiktokHandlerAccessToken.Po \
+	./$(DEPDIR)/TiktokHandlerTast.Po \
+	./$(DEPDIR)/TiktokSignature.Po ./$(DEPDIR)/UserMain.Po \
+	./$(DEPDIR)/WebServer.Po ./$(DEPDIR)/WechatConfig.Po \
 	./$(DEPDIR)/WechatConfigAuthorization.Po \
 	./$(DEPDIR)/WechatConfigCertificates.Po \
 	./$(DEPDIR)/WechatHandler.Po \
@@ -333,19 +336,21 @@ wangyonglin_SOURCES = \
     AliyunHandler.c    \
     AliyunUtils.c \
     AliyunConfig.c \
-    HTTPDServer.c \
+    WebServer.c \
     HTTPDHandler.c \
-    HTTPDResult.c \
     WechatHttps.c \
     WechatConfig.c \
     AliyunHttps.c \
-    ResultUtil.c \
     WechatHandler.c \
     ServerResponse.c \
     WechatConfigCertificates.c \
     WechatHandlerShipping.c \
     WechatConfigAuthorization.c \
-    WechatHandlerNotifyUrl.c
+    WechatHandlerNotifyUrl.c    \
+    TiktokConfig.c              \
+    TiktokSignature.c   \
+    TiktokHandlerAccessToken.c   \
+    TiktokHandlerTast.c
 
 wangyonglin_LDADD = \
     $(top_builddir)/src/zlog/libzlog.la \
@@ -456,11 +461,13 @@ include ./$(DEPDIR)/AliyunHandler.Po # am--include-marker
 include ./$(DEPDIR)/AliyunHttps.Po # am--include-marker
 include ./$(DEPDIR)/AliyunUtils.Po # am--include-marker
 include ./$(DEPDIR)/HTTPDHandler.Po # am--include-marker
-include ./$(DEPDIR)/HTTPDResult.Po # am--include-marker
-include ./$(DEPDIR)/HTTPDServer.Po # am--include-marker
-include ./$(DEPDIR)/ResultUtil.Po # am--include-marker
 include ./$(DEPDIR)/ServerResponse.Po # am--include-marker
+include ./$(DEPDIR)/TiktokConfig.Po # am--include-marker
+include ./$(DEPDIR)/TiktokHandlerAccessToken.Po # am--include-marker
+include ./$(DEPDIR)/TiktokHandlerTast.Po # am--include-marker
+include ./$(DEPDIR)/TiktokSignature.Po # am--include-marker
 include ./$(DEPDIR)/UserMain.Po # am--include-marker
+include ./$(DEPDIR)/WebServer.Po # am--include-marker
 include ./$(DEPDIR)/WechatConfig.Po # am--include-marker
 include ./$(DEPDIR)/WechatConfigAuthorization.Po # am--include-marker
 include ./$(DEPDIR)/WechatConfigCertificates.Po # am--include-marker
@@ -635,11 +642,13 @@ distclean: distclean-am
 	-rm -f ./$(DEPDIR)/AliyunHttps.Po
 	-rm -f ./$(DEPDIR)/AliyunUtils.Po
 	-rm -f ./$(DEPDIR)/HTTPDHandler.Po
-	-rm -f ./$(DEPDIR)/HTTPDResult.Po
-	-rm -f ./$(DEPDIR)/HTTPDServer.Po
-	-rm -f ./$(DEPDIR)/ResultUtil.Po
 	-rm -f ./$(DEPDIR)/ServerResponse.Po
+	-rm -f ./$(DEPDIR)/TiktokConfig.Po
+	-rm -f ./$(DEPDIR)/TiktokHandlerAccessToken.Po
+	-rm -f ./$(DEPDIR)/TiktokHandlerTast.Po
+	-rm -f ./$(DEPDIR)/TiktokSignature.Po
 	-rm -f ./$(DEPDIR)/UserMain.Po
+	-rm -f ./$(DEPDIR)/WebServer.Po
 	-rm -f ./$(DEPDIR)/WechatConfig.Po
 	-rm -f ./$(DEPDIR)/WechatConfigAuthorization.Po
 	-rm -f ./$(DEPDIR)/WechatConfigCertificates.Po
@@ -697,11 +706,13 @@ maintainer-clean: maintainer-clean-am
 	-rm -f ./$(DEPDIR)/AliyunHttps.Po
 	-rm -f ./$(DEPDIR)/AliyunUtils.Po
 	-rm -f ./$(DEPDIR)/HTTPDHandler.Po
-	-rm -f ./$(DEPDIR)/HTTPDResult.Po
-	-rm -f ./$(DEPDIR)/HTTPDServer.Po
-	-rm -f ./$(DEPDIR)/ResultUtil.Po
 	-rm -f ./$(DEPDIR)/ServerResponse.Po
+	-rm -f ./$(DEPDIR)/TiktokConfig.Po
+	-rm -f ./$(DEPDIR)/TiktokHandlerAccessToken.Po
+	-rm -f ./$(DEPDIR)/TiktokHandlerTast.Po
+	-rm -f ./$(DEPDIR)/TiktokSignature.Po
 	-rm -f ./$(DEPDIR)/UserMain.Po
+	-rm -f ./$(DEPDIR)/WebServer.Po
 	-rm -f ./$(DEPDIR)/WechatConfig.Po
 	-rm -f ./$(DEPDIR)/WechatConfigAuthorization.Po
 	-rm -f ./$(DEPDIR)/WechatConfigCertificates.Po

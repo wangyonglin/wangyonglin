@@ -12,7 +12,7 @@
 #include <openssl/sha.h>
 #include <openssl/rand.h>
 #include <openssl/bio.h>
-#include <string_by_this.h>
+
 #include <Stringex.h>
 
 Boolean Stringex_Sha256WithRSA_Signature(

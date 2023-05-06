@@ -13,7 +13,7 @@ ServerResponse *ServerResponseCreate(ServerResponse **response, zlog_category_t 
         memset(&(*response)->params, 0x00, sizeof(struct evkeyvalq));
         if (arg)
         {
-            (*response)->httpd = (HTTPDServer *)arg;
+            (*response)->webServer = (WebServer *)arg;
         }
 
         size_t post_size = EVBUFFER_LENGTH(request->input_buffer);
@@ -35,7 +35,6 @@ void ServerResponseDelete(ServerResponse *response)
 }
 Boolean ServerResponseBySuccessfly(ServerResponse *response, cJSON *responseBody)
 {
-
     Boolean err = Boolean_false;
     if (response)
     {
@@ -141,31 +140,6 @@ void ServerResponseStringComplete(ServerResponse *response, int code, char *json
     }
 }
 
-void ServerResponseResultUtilComplete(ServerResponse *response, ResultUtil *ResUtil)
-{
-    char *datastring = ResultUtilStringify(ResUtil);
-    struct evbuffer *buffer = evbuffer_new();
-    if (buffer)
-    {
-        if (datastring)
-        {
-            evbuffer_add(buffer, datastring, strlen(datastring));
-            free(datastring);
-        }
-        else
-        {
-            evbuffer_add(buffer, "{}", strlen("{}"));
-        }
-
-        cJSON *Code = cJSON_GetObjectItem(ResUtil->Root, "Code");
-        if (Code->valueint == 0)
-            evhttp_send_reply(response->request, 200, "ok", buffer);
-        else
-            evhttp_send_reply(response->request, 400, "fail", buffer);
-        evbuffer_free(buffer);
-    }
-}
-
 // 解析http头，主要用于get请求时解析uri和请求参数
 Boolean ServerResponseQuery(Stringex *retvalue, ServerResponse *response, const char *query_char)
 {
@@ -205,12 +179,15 @@ Boolean ServerResponseQuery(Stringex *retvalue, ServerResponse *response, const 
     // 查询指定参数的值
     evhttp_parse_query_str(query, &response->params);
     query_result = (char *)evhttp_find_header(&response->params, query_char);
-
-    if (StringexCreate(retvalue, query_result, strlen(query_result)))
+    if (query_result)
     {
-        return Boolean_true;
+        if (StringexCreate(retvalue, query_result, strlen(query_result)))
+        {
+            return Boolean_true;
+        }
+        StringDelete(query_result);
     }
-    StringDelete(query_result);
+
     return err;
 }
 

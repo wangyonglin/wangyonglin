@@ -242,7 +242,16 @@
         "category.h": "c",
         "rule.h": "c",
         "record_table.h": "c",
-        "random": "c"
+        "random": "c",
+        "tiktokconfig.h": "c",
+        "tiktoksignature.h": "c",
+        "sha256_rsa2048.h": "c",
+        "sha256rsa2048.h": "c",
+        "wechathandlernotifyurl.h": "c",
+        "aes_256_gcm.h": "c",
+        "webserver.h": "c",
+        "initializer_list": "c",
+        "utility": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

@@ -1,7 +1,7 @@
 #include <MemoryInject.h>
 #include <openssl/conf.h>
 #include <openssl/bio.h>
-
+#include <StringexFile.h>
 void MemoryInject_BooleanCreate(unsigned char **pointer, Boolean value)
 {
     *pointer = (unsigned char *)value;
@@ -24,93 +24,121 @@ char *MemoryInject_StringexCreate(char **outstring, char *valuestring)
     return (*outstring) = NULL;
 }
 
-Boolean MemoryInjectCreate(MemoryInject **memoryInject, Stringex ini)
+Boolean InjectObjectCreate(InjectObject **injectObject, Stringex ini)
 {
     Boolean err = Boolean_false;
-    if (ObjectCreate((void **)memoryInject, sizeof(MemoryInject)))
+    if (ObjectCreate((void **)injectObject, sizeof(InjectObject)))
     {
-        memset((*memoryInject), 0x00, sizeof(MemoryInject));
-        (*memoryInject)->ini = ini;
+        memset((*injectObject), 0x00, sizeof(InjectObject));
+        (*injectObject)->ini = ini;
         return Boolean_true;
     }
     return err;
 }
-void MemoryInjectDelect(MemoryInject *memoryInject)
+Boolean InjectObjectLogger(InjectObject *injectObject, zlog_category_t *log)
 {
-    if (memoryInject)
+    Boolean err = Boolean_false;
+    if (injectObject && log)
     {
-        ObjectDelete(memoryInject);
+        injectObject->log = log;
+        return Boolean_true;
+    }
+    return err;
+}
+void InjectObjectDelect(InjectObject *injectObject)
+{
+    if (injectObject)
+    {
+        ObjectDelete(injectObject);
     }
 }
 
-Boolean MemoryInjectInster(MemoryInject *memoryInject, MemoryInject_Command commands[], void *obj, const char *section)
+Boolean InjectCommandInit(InjectObject *injectObject, InjectCommand injectCommand[], void *objectPointer, const char *section)
 {
     Boolean err = Boolean_false;
-    if (!memoryInject)
+    if (!injectObject)
         return err;
-    if (!Stringex_IsString(memoryInject->ini) && !Stringex_IsEmpty(memoryInject->ini))
+    if (!Stringex_IsString(injectObject->ini) && !Stringex_IsEmpty(injectObject->ini))
     {
         return err;
     }
+    zlog_category_t *log = injectObject->log;
+
     CONF *pConf = NCONF_new(NULL);
-    BIO *pBio = BIO_new_file(memoryInject->ini.valuestring, "r");
+    BIO *pBio = BIO_new_file(injectObject->ini.valuestring, "r");
     if (pBio == NULL)
     {
-        fprintf(stderr, "[inject_build]=> %s not open", memoryInject->ini.valuestring);
-        exit(EXIT_FAILURE);
+        if (log)
+            zlog_error(log, "[inject_build]=> %s not open", injectObject->ini.valuestring);
         return err;
     }
 
     long callintger;
     long lELine = 0;
     NCONF_load_bio(pConf, pBio, &lELine);
-
     int i = 0;
 
-    while (commands[i].keystring != NULL)
+    while (injectCommand[i].name != NULL)
     {
-        commands[i].addr += (obj);
-        if (commands[i].type == OBJECT_TYPE_STRING)
-        {
+        injectCommand[i].addr += (objectPointer);
 
-            char *out = NCONF_get_string(pConf, section, commands[i].keystring);
+        if (injectCommand[i].type == OBJECT_TYPE_FILE)
+        {
+            char *out = NCONF_get_string(pConf, section, injectCommand[i].name);
             if (out)
             {
-                StringexCreate((Stringex *)commands[i].addr, out, strlen(out));
+                if (log)
+                    zlog_info(log, "[配置文件获取成功[%s=>%s]值为{%s}", section, injectCommand[i].name, out);
+                StringexFileDataCallback(injectCommand[i].addr, out);
             }
             else
             {
-                ((Stringex *)commands[i].addr)->valuelength = 0;
-                ((Stringex *)commands[i].addr)->valuestring = NULL;
+                if (log)
+                    zlog_error(log, "[配置文件获取失败[%s=>%s]", section, injectCommand[i].name);
             }
         }
-        else if (commands[i].type == OBJECT_TYPE_INTEGER)
+        else if (injectCommand[i].type == OBJECT_TYPE_STRING)
         {
-            if (NCONF_get_number(pConf, section, commands[i].keystring, &callintger) == 1)
+
+            char *out = NCONF_get_string(pConf, section, injectCommand[i].name);
+            if (out)
             {
-                MemoryInject_IntegerCreate(commands[i].addr, callintger);
+                if (log)
+                    zlog_info(log, "[配置文件获取成功[%s=>%s]值为{%s}", section, injectCommand[i].name, out);
+                StringexCreate((Stringex *)injectCommand[i].addr, out, strlen(out));
             }
         }
-        else if (commands[i].type == OBJECT_TYPE_BOOLEAN)
+        else if (injectCommand[i].type == OBJECT_TYPE_INTEGER)
         {
-            char *buffer = NCONF_get_string(pConf, section, commands[i].keystring);
+            if (NCONF_get_number(pConf, section, injectCommand[i].name, &callintger) == 1)
+            {
+                if (log)
+                    zlog_info(log, "[配置文件获取成功[%s=>%s]值为{%lld}", section, injectCommand[i].name, callintger);
+                MemoryInject_IntegerCreate(injectCommand[i].addr, callintger);
+            }
+        }
+        else if (injectCommand[i].type == OBJECT_TYPE_BOOLEAN)
+        {
+            char *buffer = NCONF_get_string(pConf, section, injectCommand[i].name);
             if (buffer)
             {
 
                 if ((strcmp(buffer, "on") == 0) || (strcmp(buffer, "ON") == 0) || strcmp(buffer, "On") == 0)
                 {
-
-                    MemoryInject_BooleanCreate(commands[i].addr, Boolean_true);
+                    if (log)
+                        zlog_info(log, "[配置文件获取成功[%s=>%s]值为{true}", section, injectCommand[i].name);
+                    MemoryInject_BooleanCreate(injectCommand[i].addr, Boolean_true);
                 }
                 else if ((strcmp(buffer, "off") == 0) || (strcmp(buffer, "OFF") == 0) || (strcmp(buffer, "Off") == 0))
                 {
-
-                    MemoryInject_BooleanCreate(commands[i].addr, Boolean_false);
+                    if (log)
+                        zlog_info(log, "[配置文件获取成功[%s=>%s]值为{%false}", section, injectCommand[i].name);
+                    MemoryInject_BooleanCreate(injectCommand[i].addr, Boolean_false);
                 }
             }
             else
             {
-                MemoryInject_BooleanCreate(commands[i].addr, Boolean_invalid);
+                MemoryInject_BooleanCreate(injectCommand[i].addr, Boolean_invalid);
             }
         }
         i++;

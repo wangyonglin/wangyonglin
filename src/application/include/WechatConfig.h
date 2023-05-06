@@ -1,7 +1,6 @@
 #if !defined(INCLUDE_WECHATPAYMENT_H)
 #define INCLUDE_WECHATPAYMENT_H
 
-#include <string_by_this.h>
 #include <cJSON.h>
 #include <Stringex.h>
 #include <MainConfig.h>
@@ -27,5 +26,5 @@ WechatConfig *WechatConfigCreate(MainConfig *mainConfig, WechatConfig **wcConfig
 void WechatConfigDelete(WechatConfig *wcConfig);
 
 cJSON *WechatShippingJSON(cJSON **root, WechatConfig *weConfig, char *openidlString, int totalInteger, char *descriptionString);
-void WechatPOSTAuth(string_by_t *authString, WechatConfig *wcConfig, cJSON *bodyJSON, string_by_t url);
+void WechatPOSTAuth(Stringex *authString, WechatConfig *wcConfig, cJSON *bodyJSON, Stringex url);
 #endif

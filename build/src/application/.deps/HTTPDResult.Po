@@ -147,6 +147,7 @@ HTTPDResult.o: ../../../src/application/HTTPDResult.c \
  ../../../src/openssl/include/stdssl.h \
  ../../../src/string/include/StringexBase64.h /usr/include/openssl/rand.h \
  /usr/include/openssl/randerr.h \
+ ../../../src/application/include/Tiktok/TiktokConfig.h \
  ../../../src/application/include/HTTPDResultCode.h
 
 /usr/include/stdc-predef.h:
@@ -658,5 +659,7 @@ HTTPDResult.o: ../../../src/application/HTTPDResult.c \
 /usr/include/openssl/rand.h:
 
 /usr/include/openssl/randerr.h:
+
+../../../src/application/include/Tiktok/TiktokConfig.h:
 
 ../../../src/application/include/HTTPDResultCode.h:

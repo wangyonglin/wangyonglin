@@ -27,7 +27,7 @@ WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
     return realsize;
 }
 
-long WechatHttpsPost(WechatHttpsCallback *callback, WechatConfig *wConfig, cJSON *postJSON, string_by_t authString, string_by_t url)
+long WechatHttpsPost(WechatHttpsCallback *callback, WechatConfig *wConfig, cJSON *postJSON, Stringex authString, Stringex url)
 {
 
     callback->memory = malloc(1); /* will be grown as needed by the realloc above */

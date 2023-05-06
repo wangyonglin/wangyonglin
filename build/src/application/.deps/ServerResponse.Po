@@ -57,7 +57,7 @@ ServerResponse.o: ../../../src/application/ServerResponse.c \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
  /usr/include/bits/getopt_core.h ../../../src/cJSON/include/cJSON.h \
- ../../../src/application/include/HTTPDServer.h \
+ ../../../src/application/include/WebServer.h \
  ../../../src/wangyonglin/include/MainConfig.h \
  ../../../src/wangyonglin/include/MainPackage.h /usr/include/fcntl.h \
  /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
@@ -118,7 +118,6 @@ ServerResponse.o: ../../../src/application/ServerResponse.c \
  /usr/include/openssl/ssl2.h /usr/include/openssl/ssl3.h \
  /usr/include/openssl/tls1.h /usr/include/openssl/dtls1.h \
  /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h \
- ../../../src/string/include/string_by_this.h \
  ../../../src/wangyonglin/include/MainOption.h \
  ../../../src/string/include/Stringex.h \
  ../../../src/string/include/Unix_timestamp_converter.h \
@@ -139,14 +138,13 @@ ServerResponse.o: ../../../src/application/ServerResponse.c \
  /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
  /usr/include/curl/typecheck-gcc.h \
  ../../../src/application/include/AliyunConfig.h \
- ../../../src/application/include/ResultUtil.h \
- ../../../src/string/include/string_by_id.h \
  ../../../src/application/include/WechatConfig.h \
  ../../../src/application/include/WechatConfigCertificates.h \
  ../../../src/openssl/include/aes_256_gcm.h \
  ../../../src/openssl/include/stdssl.h \
  ../../../src/string/include/StringexBase64.h /usr/include/openssl/rand.h \
  /usr/include/openssl/randerr.h \
+ ../../../src/application/include/Tiktok/TiktokConfig.h \
  ../../../src/application/include/HTTPDResultCode.h
 
 /usr/include/stdc-predef.h:
@@ -361,7 +359,7 @@ ServerResponse.o: ../../../src/application/ServerResponse.c \
 
 ../../../src/cJSON/include/cJSON.h:
 
-../../../src/application/include/HTTPDServer.h:
+../../../src/application/include/WebServer.h:
 
 ../../../src/wangyonglin/include/MainConfig.h:
 
@@ -589,8 +587,6 @@ ServerResponse.o: ../../../src/application/ServerResponse.c \
 
 /usr/include/openssl/err.h:
 
-../../../src/string/include/string_by_this.h:
-
 ../../../src/wangyonglin/include/MainOption.h:
 
 ../../../src/string/include/Stringex.h:
@@ -641,10 +637,6 @@ ServerResponse.o: ../../../src/application/ServerResponse.c \
 
 ../../../src/application/include/AliyunConfig.h:
 
-../../../src/application/include/ResultUtil.h:
-
-../../../src/string/include/string_by_id.h:
-
 ../../../src/application/include/WechatConfig.h:
 
 ../../../src/application/include/WechatConfigCertificates.h:
@@ -658,5 +650,7 @@ ServerResponse.o: ../../../src/application/ServerResponse.c \
 /usr/include/openssl/rand.h:
 
 /usr/include/openssl/randerr.h:
+
+../../../src/application/include/Tiktok/TiktokConfig.h:
 
 ../../../src/application/include/HTTPDResultCode.h:

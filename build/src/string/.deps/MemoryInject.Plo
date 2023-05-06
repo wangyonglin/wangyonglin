@@ -37,9 +37,8 @@ MemoryInject.lo: ../../../src/string/MemoryInject.c \
  /usr/include/bits/types/struct_tm.h \
  /usr/include/bits/types/struct_itimerspec.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
- ../../../src/string/include/Stringex.h /usr/include/openssl/conf.h \
- /usr/include/openssl/bio.h /usr/include/openssl/e_os2.h \
- /usr/include/openssl/opensslconf.h \
+ ../../../src/string/include/Stringex.h /usr/include/openssl/bio.h \
+ /usr/include/openssl/e_os2.h /usr/include/openssl/opensslconf.h \
  /usr/include/openssl/opensslconf-x86_64.h \
  /usr/include/openssl/opensslv.h /usr/include/inttypes.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdint.h \
@@ -56,7 +55,11 @@ MemoryInject.lo: ../../../src/string/MemoryInject.c \
  /usr/include/sched.h /usr/include/bits/sched.h \
  /usr/include/bits/types/struct_sched_param.h /usr/include/bits/cpu-set.h \
  /usr/include/bits/setjmp.h /usr/include/openssl/bioerr.h \
- /usr/include/openssl/lhash.h /usr/include/openssl/conferr.h
+ /usr/include/openssl/buffer.h /usr/include/openssl/buffererr.h \
+ /usr/include/openssl/err.h /usr/include/openssl/lhash.h \
+ ../../../src/zlog/include/zlog/zlog.h /usr/include/openssl/conf.h \
+ /usr/include/openssl/conferr.h \
+ ../../../src/string/include/StringexFile.h
 
 /usr/include/stdc-predef.h:
 
@@ -196,8 +199,6 @@ MemoryInject.lo: ../../../src/string/MemoryInject.c \
 
 ../../../src/string/include/Stringex.h:
 
-/usr/include/openssl/conf.h:
-
 /usr/include/openssl/bio.h:
 
 /usr/include/openssl/e_os2.h:
@@ -258,6 +259,18 @@ MemoryInject.lo: ../../../src/string/MemoryInject.c \
 
 /usr/include/openssl/bioerr.h:
 
+/usr/include/openssl/buffer.h:
+
+/usr/include/openssl/buffererr.h:
+
+/usr/include/openssl/err.h:
+
 /usr/include/openssl/lhash.h:
 
+../../../src/zlog/include/zlog/zlog.h:
+
+/usr/include/openssl/conf.h:
+
 /usr/include/openssl/conferr.h:
+
+../../../src/string/include/StringexFile.h:

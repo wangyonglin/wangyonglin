@@ -93,7 +93,6 @@ MainDaemonize.lo: ../../../src/wangyonglin/MainDaemonize.c \
  /usr/include/openssl/ssl2.h /usr/include/openssl/ssl3.h \
  /usr/include/openssl/tls1.h /usr/include/openssl/dtls1.h \
  /usr/include/openssl/srtp.h ../../config.h /usr/include/openssl/err.h \
- ../../../src/string/include/string_by_this.h \
  ../../../src/zlog/include/zlog/zlog.h \
  ../../../src/string/include/Stringex.h /usr/include/sys/time.h \
  ../../../src/string/include/Unix_timestamp_converter.h
@@ -453,8 +452,6 @@ MainDaemonize.lo: ../../../src/wangyonglin/MainDaemonize.c \
 ../../config.h:
 
 /usr/include/openssl/err.h:
-
-../../../src/string/include/string_by_this.h:
 
 ../../../src/zlog/include/zlog/zlog.h:
 

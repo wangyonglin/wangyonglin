@@ -1,6 +1,6 @@
 #include <Stringex.h>
 #include <WechatConfig.h>
-#include <HTTPDServer.h>
+#include <WebServer.h>
 #include <ServerResponse.h>
 #include <HTTPSUtils.h>
 #include <StringexSha256WithRsa.h>
@@ -163,12 +163,12 @@ Boolean WechatHandlerShippingResult(
 void WechatHandlerShipping(struct evhttp_request *request, void *arg)
 {
 
-    Stringex appid = ((HTTPDServer *)arg)->wConfig->appid;
-    Stringex mchid = ((HTTPDServer *)arg)->wConfig->mchid;
-    Stringex notify_url = ((HTTPDServer *)arg)->wConfig->notify_url;
-    Stringex apiclient_key = ((HTTPDServer *)arg)->wConfig->apiclient_key;
-    Stringex serial_no = ((HTTPDServer *)arg)->wConfig->serial_no;
-    zlog_category_t *log =((HTTPDServer *)arg)->log;
+    Stringex appid = ((WebServer *)arg)->wConfig->appid;
+    Stringex mchid = ((WebServer *)arg)->wConfig->mchid;
+    Stringex notify_url = ((WebServer *)arg)->wConfig->notify_url;
+    Stringex apiclient_key = ((WebServer *)arg)->wConfig->apiclient_key;
+    Stringex serial_no = ((WebServer *)arg)->wConfig->serial_no;
+    zlog_category_t *log =((WebServer *)arg)->log;
     Stringex body = Stringex_null;
     Stringex auth = Stringex_null;
     ServerResponse *response;

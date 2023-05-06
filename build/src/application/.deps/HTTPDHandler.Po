@@ -57,17 +57,16 @@ HTTPDHandler.o: ../../../src/application/HTTPDHandler.c \
  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
  /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
  /usr/include/bits/getopt_core.h \
- ../../../src/string/include/string_by_this.h /usr/include/assert.h \
- /usr/include/stdlib.h /usr/include/bits/waitflags.h \
- /usr/include/bits/waitstatus.h /usr/include/bits/floatn.h \
- /usr/include/bits/floatn-common.h /usr/include/alloca.h \
- /usr/include/bits/stdlib-bsearch.h /usr/include/bits/stdlib-float.h \
- ../../../src/application/include/HTTPDServer.h \
+ ../../../src/application/include/WebServer.h \
  ../../../src/cJSON/include/cJSON.h \
  ../../../src/wangyonglin/include/MainConfig.h \
  ../../../src/wangyonglin/include/MainPackage.h /usr/include/fcntl.h \
  /usr/include/bits/fcntl.h /usr/include/bits/fcntl-linux.h \
- /usr/include/bits/stat.h \
+ /usr/include/bits/stat.h /usr/include/stdlib.h \
+ /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+ /usr/include/bits/floatn.h /usr/include/bits/floatn-common.h \
+ /usr/include/alloca.h /usr/include/bits/stdlib-bsearch.h \
+ /usr/include/bits/stdlib-float.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
  /usr/include/signal.h /usr/include/bits/signum.h \
  /usr/include/bits/signum-generic.h \
@@ -80,10 +79,10 @@ HTTPDHandler.o: ../../../src/application/HTTPDHandler.c \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
  /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
  /usr/include/bits/sigthread.h /usr/include/getopt.h \
- /usr/include/bits/getopt_ext.h /usr/include/ctype.h \
- /usr/include/sys/stat.h /usr/include/openssl/x509v3.h \
- /usr/include/openssl/bio.h /usr/include/openssl/e_os2.h \
- /usr/include/openssl/opensslconf.h \
+ /usr/include/bits/getopt_ext.h /usr/include/assert.h \
+ /usr/include/ctype.h /usr/include/sys/stat.h \
+ /usr/include/openssl/x509v3.h /usr/include/openssl/bio.h \
+ /usr/include/openssl/e_os2.h /usr/include/openssl/opensslconf.h \
  /usr/include/openssl/opensslconf-x86_64.h \
  /usr/include/openssl/opensslv.h /usr/include/inttypes.h \
  /usr/include/openssl/crypto.h /usr/include/openssl/safestack.h \
@@ -140,25 +139,20 @@ HTTPDHandler.o: ../../../src/application/HTTPDHandler.c \
  /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
  /usr/include/curl/typecheck-gcc.h \
  ../../../src/application/include/AliyunConfig.h \
- ../../../src/application/include/ResultUtil.h \
- ../../../src/string/include/string_by_id.h \
  ../../../src/application/include/WechatConfig.h \
  ../../../src/application/include/WechatConfigCertificates.h \
  ../../../src/openssl/include/aes_256_gcm.h \
  ../../../src/openssl/include/stdssl.h \
  ../../../src/string/include/StringexBase64.h /usr/include/openssl/rand.h \
  /usr/include/openssl/randerr.h \
- ../../../src/application/include/HTTPDResult.h \
- ../../../src/application/include/HTTPDResultCode.h \
+ ../../../src/application/include/Tiktok/TiktokConfig.h \
  ../../../src/SnowFlake/include/SnowFlake.h \
  ../../../src/SnowFlake/include/IdGenOptions.h \
  ../../../src/SnowFlake/include/common.h \
  ../../../src/openssl/include/base64.h \
- ../../../src/openssl/include/SHA256WithRSA.h \
  ../../../src/application/include/WechatHttps.h \
- ../../../src/string/include/string_by_timestamp.h \
- ../../../src/string/include/string_by_hex.h \
- ../../../src/application/include/ServerResponse.h
+ ../../../src/application/include/ServerResponse.h \
+ ../../../src/application/include/HTTPDResultCode.h
 
 /usr/include/stdc-predef.h:
 
@@ -370,9 +364,21 @@ HTTPDHandler.o: ../../../src/application/HTTPDHandler.c \
 
 /usr/include/bits/getopt_core.h:
 
-../../../src/string/include/string_by_this.h:
+../../../src/application/include/WebServer.h:
 
-/usr/include/assert.h:
+../../../src/cJSON/include/cJSON.h:
+
+../../../src/wangyonglin/include/MainConfig.h:
+
+../../../src/wangyonglin/include/MainPackage.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/bits/fcntl.h:
+
+/usr/include/bits/fcntl-linux.h:
+
+/usr/include/bits/stat.h:
 
 /usr/include/stdlib.h:
 
@@ -389,22 +395,6 @@ HTTPDHandler.o: ../../../src/application/HTTPDHandler.c \
 /usr/include/bits/stdlib-bsearch.h:
 
 /usr/include/bits/stdlib-float.h:
-
-../../../src/application/include/HTTPDServer.h:
-
-../../../src/cJSON/include/cJSON.h:
-
-../../../src/wangyonglin/include/MainConfig.h:
-
-../../../src/wangyonglin/include/MainPackage.h:
-
-/usr/include/fcntl.h:
-
-/usr/include/bits/fcntl.h:
-
-/usr/include/bits/fcntl-linux.h:
-
-/usr/include/bits/stat.h:
 
 /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
 
@@ -449,6 +439,8 @@ HTTPDHandler.o: ../../../src/application/HTTPDHandler.c \
 /usr/include/getopt.h:
 
 /usr/include/bits/getopt_ext.h:
+
+/usr/include/assert.h:
 
 /usr/include/ctype.h:
 
@@ -652,10 +644,6 @@ HTTPDHandler.o: ../../../src/application/HTTPDHandler.c \
 
 ../../../src/application/include/AliyunConfig.h:
 
-../../../src/application/include/ResultUtil.h:
-
-../../../src/string/include/string_by_id.h:
-
 ../../../src/application/include/WechatConfig.h:
 
 ../../../src/application/include/WechatConfigCertificates.h:
@@ -670,9 +658,7 @@ HTTPDHandler.o: ../../../src/application/HTTPDHandler.c \
 
 /usr/include/openssl/randerr.h:
 
-../../../src/application/include/HTTPDResult.h:
-
-../../../src/application/include/HTTPDResultCode.h:
+../../../src/application/include/Tiktok/TiktokConfig.h:
 
 ../../../src/SnowFlake/include/SnowFlake.h:
 
@@ -682,12 +668,8 @@ HTTPDHandler.o: ../../../src/application/HTTPDHandler.c \
 
 ../../../src/openssl/include/base64.h:
 
-../../../src/openssl/include/SHA256WithRSA.h:
-
 ../../../src/application/include/WechatHttps.h:
 
-../../../src/string/include/string_by_timestamp.h:
-
-../../../src/string/include/string_by_hex.h:
-
 ../../../src/application/include/ServerResponse.h:
+
+../../../src/application/include/HTTPDResultCode.h:

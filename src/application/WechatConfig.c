@@ -1,34 +1,24 @@
 #include <WechatConfig.h>
-#include <string_by_this.h>
 #include <cJSON.h>
-#include <SHA256WithRSA.h>
-
-#include <string_by_hex.h>
-#include <string_by_id.h>
-
-#include <string_by_log.h>
-
-#include <string_by_timestamp.h>
-#include <string_by_inject.h>
 #include <StringexSha256WithRsa.h>
 
 WechatConfig *WechatConfigCreate(MainConfig *mainConfig, WechatConfig **wcConfig, const char *section)
 {
-    if (mainConfig && mainConfig->memoryInject)
+    if (mainConfig && mainConfig->injectObject)
     {
         if (ObjectCreate((void **)wcConfig, sizeof(WechatConfig)))
         {
-            MemoryInject_Command commands[] = {
-                MEMORYINJECT_STRING_COMMAND("appid", offsetof(WechatConfig, appid)),
-                MEMORYINJECT_STRING_COMMAND("secret", offsetof(WechatConfig, secret)),
-                MEMORYINJECT_STRING_COMMAND("mchid", offsetof(WechatConfig, mchid)),
-                MEMORYINJECT_STRING_COMMAND("serial_no", offsetof(WechatConfig, serial_no)),
-                MEMORYINJECT_STRING_COMMAND("apiclient_key", offsetof(WechatConfig, apiclient_key)),
-                MEMORYINJECT_STRING_COMMAND("apiclient_cert", offsetof(WechatConfig, apiclient_cert)),
-                MEMORYINJECT_STRING_COMMAND("notify_url", offsetof(WechatConfig, notify_url)),
-                MEMORYINJECT_STRING_COMMAND("apiv3_key", offsetof(WechatConfig, apiv3_key)),
-                MEMORYINJECT_NULL_COMMAND};
-            MemoryInjectInster(mainConfig->memoryInject, commands, *wcConfig, "WECHAT_PAYMENT");
+            InjectCommand injectCommand[] = {
+                INJECT_COMMAND_STRING("appid", offsetof(WechatConfig, appid)),
+                INJECT_COMMAND_STRING("secret", offsetof(WechatConfig, secret)),
+                INJECT_COMMAND_STRING("mchid", offsetof(WechatConfig, mchid)),
+                INJECT_COMMAND_STRING("serial_no", offsetof(WechatConfig, serial_no)),
+                INJECT_COMMAND_STRING("apiclient_key", offsetof(WechatConfig, apiclient_key)),
+                INJECT_COMMAND_STRING("apiclient_cert", offsetof(WechatConfig, apiclient_cert)),
+                INJECT_COMMAND_STRING("notify_url", offsetof(WechatConfig, notify_url)),
+                INJECT_COMMAND_STRING("apiv3_key", offsetof(WechatConfig, apiv3_key)),
+                INJECT_COMMAND_NULL};
+            InjectCommandInit(mainConfig->injectObject, injectCommand, *wcConfig, "WECHAT_PAYMENT");
             return (*wcConfig);
         }
     }

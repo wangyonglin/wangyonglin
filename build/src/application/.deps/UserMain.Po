@@ -46,16 +46,9 @@ UserMain.o: ../../../src/application/UserMain.c \
  /usr/include/curl/easy.h /usr/include/curl/multi.h \
  /usr/include/curl/curl.h /usr/include/curl/urlapi.h \
  /usr/include/curl/typecheck-gcc.h ../../../src/cJSON/include/cJSON.h \
- ../../../src/string/include/string_by_hex.h \
- ../../../src/string/include/string_by_this.h /usr/include/assert.h \
- /usr/include/errno.h /usr/include/bits/errno.h \
- /usr/include/linux/errno.h /usr/include/asm/errno.h \
- /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- ../../../src/string/include/string_by_id.h \
- ../../../src/string/include/string_by_log.h \
+ ../../../src/openssl/include/HMAC_SHA1.h /usr/include/assert.h \
  /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h \
- ../../../src/openssl/include/SHA256WithRSA.h /usr/include/openssl/evp.h \
- /usr/include/openssl/opensslconf.h \
+ /usr/include/openssl/evp.h /usr/include/openssl/opensslconf.h \
  /usr/include/openssl/opensslconf-x86_64.h \
  /usr/include/openssl/opensslv.h /usr/include/openssl/ossl_typ.h \
  /usr/include/openssl/e_os2.h /usr/include/inttypes.h \
@@ -73,19 +66,13 @@ UserMain.o: ../../../src/application/UserMain.c \
  /usr/include/openssl/asn1err.h /usr/include/openssl/bn.h \
  /usr/include/openssl/bnerr.h /usr/include/openssl/objectserr.h \
  /usr/include/openssl/err.h /usr/include/openssl/lhash.h \
+ /usr/include/errno.h /usr/include/bits/errno.h \
+ /usr/include/linux/errno.h /usr/include/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/openssl/rsa.h /usr/include/openssl/rsaerr.h \
  /usr/include/openssl/sha.h /usr/include/openssl/rand.h \
- /usr/include/openssl/randerr.h ../../../src/openssl/include/base64.h \
- /usr/include/openssl/pem.h /usr/include/openssl/x509.h \
- /usr/include/openssl/buffer.h /usr/include/openssl/buffererr.h \
- /usr/include/openssl/ec.h /usr/include/openssl/ecerr.h \
- /usr/include/openssl/dsa.h /usr/include/openssl/dh.h \
- /usr/include/openssl/dherr.h /usr/include/openssl/dsaerr.h \
- /usr/include/openssl/x509err.h /usr/include/openssl/x509_vfy.h \
- /usr/include/openssl/pkcs7.h /usr/include/openssl/pkcs7err.h \
- /usr/include/openssl/pemerr.h ../../../src/openssl/include/HMAC_SHA1.h \
- /usr/include/openssl/hmac.h \
- ../../../src/application/include/HTTPDServer.h /usr/include/event.h \
+ /usr/include/openssl/randerr.h /usr/include/openssl/hmac.h \
+ ../../../src/application/include/WebServer.h /usr/include/event.h \
  /usr/include/event2/event-config.h /usr/include/event2/event-config-64.h \
  /usr/include/evutil.h /usr/include/event2/util.h \
  /usr/include/event2/visibility.h /usr/include/netdb.h \
@@ -120,14 +107,22 @@ UserMain.o: ../../../src/application/UserMain.c \
  /usr/include/bits/sigthread.h /usr/include/getopt.h \
  /usr/include/bits/getopt_ext.h /usr/include/ctype.h \
  /usr/include/sys/stat.h /usr/include/openssl/x509v3.h \
- /usr/include/openssl/conf.h /usr/include/openssl/conferr.h \
- /usr/include/openssl/x509v3err.h /usr/include/openssl/ssl.h \
- /usr/include/openssl/comp.h /usr/include/openssl/comperr.h \
- /usr/include/openssl/async.h /usr/include/openssl/asyncerr.h \
- /usr/include/openssl/ct.h /usr/include/openssl/cterr.h \
- /usr/include/openssl/sslerr.h /usr/include/openssl/ssl2.h \
- /usr/include/openssl/ssl3.h /usr/include/openssl/tls1.h \
- /usr/include/openssl/dtls1.h /usr/include/openssl/srtp.h ../../config.h \
+ /usr/include/openssl/x509.h /usr/include/openssl/buffer.h \
+ /usr/include/openssl/buffererr.h /usr/include/openssl/ec.h \
+ /usr/include/openssl/ecerr.h /usr/include/openssl/dsa.h \
+ /usr/include/openssl/dh.h /usr/include/openssl/dherr.h \
+ /usr/include/openssl/dsaerr.h /usr/include/openssl/x509err.h \
+ /usr/include/openssl/x509_vfy.h /usr/include/openssl/pkcs7.h \
+ /usr/include/openssl/pkcs7err.h /usr/include/openssl/conf.h \
+ /usr/include/openssl/conferr.h /usr/include/openssl/x509v3err.h \
+ /usr/include/openssl/ssl.h /usr/include/openssl/comp.h \
+ /usr/include/openssl/comperr.h /usr/include/openssl/pem.h \
+ /usr/include/openssl/pemerr.h /usr/include/openssl/async.h \
+ /usr/include/openssl/asyncerr.h /usr/include/openssl/ct.h \
+ /usr/include/openssl/cterr.h /usr/include/openssl/sslerr.h \
+ /usr/include/openssl/ssl2.h /usr/include/openssl/ssl3.h \
+ /usr/include/openssl/tls1.h /usr/include/openssl/dtls1.h \
+ /usr/include/openssl/srtp.h ../../config.h \
  ../../../src/wangyonglin/include/MainOption.h \
  ../../../src/string/include/Stringex.h \
  ../../../src/string/include/Unix_timestamp_converter.h \
@@ -144,13 +139,14 @@ UserMain.o: ../../../src/application/UserMain.c \
  ../../../src/string/include/ArrayList.h \
  ../../../src/application/include/AliyunUtils.h \
  ../../../src/application/include/AliyunConfig.h \
- ../../../src/application/include/ResultUtil.h \
  ../../../src/application/include/WechatConfig.h \
  ../../../src/application/include/WechatConfigCertificates.h \
  ../../../src/openssl/include/aes_256_gcm.h \
  ../../../src/openssl/include/stdssl.h \
  ../../../src/string/include/StringexBase64.h \
- ../../../src/application/include/WechatHttps.h
+ ../../../src/application/include/Tiktok/TiktokConfig.h \
+ ../../../src/application/include/WechatHttps.h \
+ ../../../src/openssl/include/base64.h
 
 /usr/include/stdc-predef.h:
 
@@ -324,31 +320,11 @@ UserMain.o: ../../../src/application/UserMain.c \
 
 ../../../src/cJSON/include/cJSON.h:
 
-../../../src/string/include/string_by_hex.h:
-
-../../../src/string/include/string_by_this.h:
+../../../src/openssl/include/HMAC_SHA1.h:
 
 /usr/include/assert.h:
 
-/usr/include/errno.h:
-
-/usr/include/bits/errno.h:
-
-/usr/include/linux/errno.h:
-
-/usr/include/asm/errno.h:
-
-/usr/include/asm-generic/errno.h:
-
-/usr/include/asm-generic/errno-base.h:
-
-../../../src/string/include/string_by_id.h:
-
-../../../src/string/include/string_by_log.h:
-
 /usr/lib/gcc/x86_64-redhat-linux/8/include/stdbool.h:
-
-../../../src/openssl/include/SHA256WithRSA.h:
 
 /usr/include/openssl/evp.h:
 
@@ -418,6 +394,18 @@ UserMain.o: ../../../src/application/UserMain.c \
 
 /usr/include/openssl/lhash.h:
 
+/usr/include/errno.h:
+
+/usr/include/bits/errno.h:
+
+/usr/include/linux/errno.h:
+
+/usr/include/asm/errno.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/asm-generic/errno-base.h:
+
 /usr/include/openssl/rsa.h:
 
 /usr/include/openssl/rsaerr.h:
@@ -428,43 +416,9 @@ UserMain.o: ../../../src/application/UserMain.c \
 
 /usr/include/openssl/randerr.h:
 
-../../../src/openssl/include/base64.h:
-
-/usr/include/openssl/pem.h:
-
-/usr/include/openssl/x509.h:
-
-/usr/include/openssl/buffer.h:
-
-/usr/include/openssl/buffererr.h:
-
-/usr/include/openssl/ec.h:
-
-/usr/include/openssl/ecerr.h:
-
-/usr/include/openssl/dsa.h:
-
-/usr/include/openssl/dh.h:
-
-/usr/include/openssl/dherr.h:
-
-/usr/include/openssl/dsaerr.h:
-
-/usr/include/openssl/x509err.h:
-
-/usr/include/openssl/x509_vfy.h:
-
-/usr/include/openssl/pkcs7.h:
-
-/usr/include/openssl/pkcs7err.h:
-
-/usr/include/openssl/pemerr.h:
-
-../../../src/openssl/include/HMAC_SHA1.h:
-
 /usr/include/openssl/hmac.h:
 
-../../../src/application/include/HTTPDServer.h:
+../../../src/application/include/WebServer.h:
 
 /usr/include/event.h:
 
@@ -594,6 +548,32 @@ UserMain.o: ../../../src/application/UserMain.c \
 
 /usr/include/openssl/x509v3.h:
 
+/usr/include/openssl/x509.h:
+
+/usr/include/openssl/buffer.h:
+
+/usr/include/openssl/buffererr.h:
+
+/usr/include/openssl/ec.h:
+
+/usr/include/openssl/ecerr.h:
+
+/usr/include/openssl/dsa.h:
+
+/usr/include/openssl/dh.h:
+
+/usr/include/openssl/dherr.h:
+
+/usr/include/openssl/dsaerr.h:
+
+/usr/include/openssl/x509err.h:
+
+/usr/include/openssl/x509_vfy.h:
+
+/usr/include/openssl/pkcs7.h:
+
+/usr/include/openssl/pkcs7err.h:
+
 /usr/include/openssl/conf.h:
 
 /usr/include/openssl/conferr.h:
@@ -605,6 +585,10 @@ UserMain.o: ../../../src/application/UserMain.c \
 /usr/include/openssl/comp.h:
 
 /usr/include/openssl/comperr.h:
+
+/usr/include/openssl/pem.h:
+
+/usr/include/openssl/pemerr.h:
 
 /usr/include/openssl/async.h:
 
@@ -662,8 +646,6 @@ UserMain.o: ../../../src/application/UserMain.c \
 
 ../../../src/application/include/AliyunConfig.h:
 
-../../../src/application/include/ResultUtil.h:
-
 ../../../src/application/include/WechatConfig.h:
 
 ../../../src/application/include/WechatConfigCertificates.h:
@@ -674,4 +656,8 @@ UserMain.o: ../../../src/application/UserMain.c \
 
 ../../../src/string/include/StringexBase64.h:
 
+../../../src/application/include/Tiktok/TiktokConfig.h:
+
 ../../../src/application/include/WechatHttps.h:
+
+../../../src/openssl/include/base64.h:

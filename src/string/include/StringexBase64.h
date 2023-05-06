@@ -20,4 +20,7 @@
 
 char *StringexBase64Encrypt(Stringex *callStringex,const void *b64_encode_this, int encode_this_many_bytes, Boolean with_new_line);
 char *StringexBase64Decrypt(Stringex *callStringex, const void *b64_decode_this, int decode_this_many_bytes, Boolean with_new_line);
+
+char *Base64Encrypt(Stringex *ciphertext,const void *b64_encode_this, int encode_this_many_bytes, Boolean with_new_line);
+char *Base64Decrypt(Stringex *plainText, const void *b64_decode_this, int decode_this_many_bytes, Boolean with_new_line);
 #endif
